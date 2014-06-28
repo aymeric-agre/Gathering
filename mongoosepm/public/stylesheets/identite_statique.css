@@ -1,0 +1,85 @@
+/*	Aside	*/
+aside {
+	display : inline-block;
+	float : right;
+	width : 240px;
+	margin : 35px 20px 35px 5px;
+	padding: 20px 0px;
+	text-align: center;
+	
+	background : linear-gradient(to bottom, rgba(80,80,80,0.6), rgba(40,40,40, 0.3));
+	border-radius: 10px;
+	box-shadow: 0px 0px 10px 1px rgba(119, 119, 119, 0.6);	
+}
+
+aside [type=button] {
+	text-align: center;
+	margin: 5px 10px;
+	padding: 10px 0px;
+	border-radius: 8px;
+	background: linear-gradient(to bottom, rgba(8,120,120,0.8), rgba(3,60,60,0.8));
+	box-shadow: 1px 1px 2px #360 inset, 
+				0px 0px 1px black, 
+				0px -1px 1px white;
+	color: rgba(250,250,250,0.8);
+}
+
+
+aside h3:hover {
+	background: linear-gradient(to bottom, rgba(8,80,80,0.8), rgba(3,40,40,0.8));
+	color: white;
+}
+
+#photo{
+	max-width: 200px;
+	height: auto;
+}
+
+/*	Partie fixe	*/
+article{
+	display : inline-block;
+	width : 620px;
+}
+
+#base {
+	padding : 10px 0px 10px 10px;
+	background : linear-gradient(to bottom, rgba(140,50,50,0.6), rgba(255,255,255,1));
+}
+
+/*	Chaque section en non éditable	*/
+
+.case {
+	display : block;
+	margin : 30px 10px;
+	width : 620px;
+	background : linear-gradient(to bottom, rgba(210,210,210,1), rgba(255,255,255,1));
+}
+
+.case ul {
+	display : block;
+	padding : 5px 10px;
+	margin : 5px 0px;
+}
+
+.case li{
+	display : inline-block;
+}
+
+.gauche{
+	float : left;
+	width : 40px;
+}
+
+.centre{
+	width : 100px;
+	margin : 0px 5px;
+}
+
+.droite{
+	float : right;
+	width : 100px;
+}
+
+/*	Chaque section en éditable	*/
+
+

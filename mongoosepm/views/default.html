@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+		<meta charset="utf-8" />
+		<!--[if lt IE 9]>
+			<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+		<![endif]-->
+	<link rel="stylesheet" href="/public/stylesheets/commun.css" />
+	<title> <%= title %> </title>
+
+</head>
+
+<body>
+	
+	<header>
+		<p id="langue"><a href="">FR</a> | <a href="">EN</a></p>
+		<h1> <a href="/"> Gathering </a></h1>
+	</header>
+	
+	<div id="page">
+	
+		<nav>
+			<div class="bloc_nav">
+				<h3> Gathering </h3>
+				<ul>
+					<li class="liste"> <a href="/index"> Accueil </a> </li>
+					<li class="liste"> <a href="/identite_formulaire"> Créer un compte </a> </li>
+					<li class="liste" id="clickme" style="cursor:pointer"> Se connecter  </li>
+					
+					<form id="connexion" action="/doLogin" method="post">
+					<li><input type="text" name="mail" placeholder="Adresse mail" /></li>
+					<li><input type="password" name="password" placeholder="Mot de passe" /></li>
+					<li><input type="submit" value="se connecter" /></li>
+					</form>
+					
+					<li class="liste"> <a href=""> Options </a> </li>
+										
+				</ul>
+				
+
+			</div>
+			<div class="bloc_nav">
+				<h3> Recherche </h3>
+				<ul>
+					<li class="liste"> <a href="/recherche"> Recherche avancée </a> </li>
+					<form name="recherche" action="/doSearchProject" method="post">	
+						<li class="liste"><input type="search" name="tag" class="recherche"> </li>
+						<li class="liste"><button type="submit">Rechercher projet</button> </li>
+					</form>
+					<form name="recherche" action="/doSearchUser" method="post">
+						<li class="liste"><input type="search" name="tag" class="recherche"> </li>
+						<li class="liste"><button type="submit">Rechercher utilisateur</button> </li>
+					</form> 
+				</ul>
+			</div>	
+		</nav>
+		<section>
+		<%- body %>
+		</section>
+		<div class="push"></div>
+	</div>
+	
+	
+	<footer>
+		<!--&nbsp;-->
+	</footer>
+
+	<!-- Script -->
+	<script src="/public/javascripts/jquery/jquery.js"></script>
+	<script src="/public/javascripts/jquery/jquery-ui.js"></script>
+	<script src="/public/javascripts/commun.js"></script>
+
+</body>		
+</html>

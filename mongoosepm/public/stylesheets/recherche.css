@@ -1,0 +1,201 @@
+/* Formulaire*/
+.highlight1{
+	background-color : rgba(200,200,200,1);
+}
+
+.highlight2{
+	background-color : rgba(230,230,230,1);
+}
+
+input[type="search"] {
+	color: grey;
+	font-style:italic;
+}
+
+	/* Reste de la page*/
+article{
+	width: 880px;
+	height : 460px;
+	margin : 20px;
+	border : solid 1px;
+	background-color: rgba(225,225,225,1);
+}
+
+
+article h1 {
+	margin : auto;
+	padding-top: 10px;
+	text-align: center;
+}
+article h2 {
+	font-size : 1em;
+}
+
+
+	/*Recherche projet*/
+
+#projet {
+	height : 350px;	
+}
+
+#projet ul{
+	padding: 0px;
+	list-style-type: none; 
+}
+
+#projet li {
+	display : inline-block;
+	width : 345px;
+	overflow : hidden;
+	margin: 10px 0px;
+}
+
+.theme {
+	padding: 0px 20px;
+	border-right:inset rgba(200,200,200,1);
+}
+
+#theme_ligne2 {
+	height : 30%;
+}
+
+#theme_ligne2 li {
+	width : 45%;
+}
+
+#theme_ligne3 {
+	height : 30%;
+}
+
+#theme_ligne3 li {
+	width : 45%;
+	vertical-align : top;
+}
+
+#theme_ligne3 select {
+	width : 150px;
+}
+
+#autre_filtre {
+	float: right;
+	padding: 0px 20px;
+}
+
+#lieu li {
+	width : 45%;
+	display : inline-block;
+}
+#lieu select {
+	width : 150px;
+}
+#competence {
+	height : 30%;
+}
+
+#competence li {
+	width : 45%;
+	vertical-align : top;
+	display : inline-block;
+}
+
+#competence select {
+	width : 150px;
+}
+ 
+ 
+	/*Recherche personne*/
+	
+#personne {
+	height : 350px;
+	display : none;
+}
+
+#personne ul{
+	padding: 0px;
+	list-style-type: none; 
+}
+
+#personne li {
+	display : inline-block;
+	width : 345px;
+	overflow : hidden;
+	margin: 10px 0px;
+}
+
+.centre_interet {
+	padding: 0px 20px;
+	border-right:inset rgba(200,200,200,1);
+}
+
+#interet_ligne2 {
+	height : 30%;
+}
+
+#interet_ligne2 li {
+	width : 45%;
+}
+
+#interet_ligne3 {
+	height : 30%;
+}
+
+#interet_ligne3 li {
+	width : 45%;
+	vertical-align : top;
+}
+
+#interet_ligne3 select {
+	width : 150px;
+}
+
+#lieu_personne li {
+	width : 45%;
+	display : inline-block;
+}
+#lieu_personne select {
+	width : 150px;
+}
+#competence_personne {
+	height : 30%;
+}
+
+#competence_personne li {
+	width : 45%;
+	vertical-align : top;
+	display : inline-block;
+}
+
+#competence_personne select {
+	width : 150px;
+}
+
+	/*aside*/
+aside{	
+	float: left;
+	text-align: left;
+	width: 75px;
+	padding : 0.5%;
+	margin : 90px 15px 90px -2px;
+	line-height :80px;
+	border : solid 1px;
+		border-left : none;
+	border-radius: 0px 10px 10px 0px;
+	box-shadow :2px 2px 2px 0px;
+	background-color: white;
+}
+
+aside ul{
+	padding: 0px;
+	list-style-type: none; 
+}
+
+aside li img {
+	margin: 5px 2px;
+	vertical-align : bottom;
+}
+
+/* Bouton */
+button {
+	display : block;
+	margin : auto;
+}

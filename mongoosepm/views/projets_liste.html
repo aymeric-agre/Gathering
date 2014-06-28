@@ -1,0 +1,97 @@
+<head>
+<link rel="stylesheet" href="/public/stylesheets/projets_liste.css" />
+</head>
+<html>
+
+<!-- 
+		LISTE DE PROJETS
+							-->
+<div id="liste_projets">
+	
+	<h1> Mes projets </h1>
+	<ul data-liffect="slideBottom" id="liste">
+	<li></li>
+	</ul>
+
+	<h3 class="modifier" id="creation">Créer un nouveau projet</h3>
+
+</div>
+
+
+<!-- 
+		CREATION DE PROJETS 
+								-->
+								
+<form method="post" action="" id="formulaire">
+								
+<div id="creation_projet">
+	<input class="output" id="input-projectName" name="projectName"></input>
+	<input class="input-projectName" placeholder="Mon projet"></input>
+	
+	<div id="menu">
+		<input class="bouton active" type="button" value='presentation' onclick='afficher(this, "presentation")'/>
+		<input class="bouton active" type="button" value='toolstore' onclick='afficher(this, "toolstore")'/>
+	</div>
+		
+	<aside>
+		<div class="case">
+			<canvas id="mon_canvas" width="250" height="80"> 
+			<script src="/public/javascripts/canvas.js"></script>
+			</canvas>
+			
+				
+					<h3 class="new" id="new-members">L'Équipe</h3>				
+					<input class="output" id="output-members" name="members" multiple></input>
+					<input class="input-members input" placeholder="members"></input>
+					
+
+					<h3 class="new" id="new-groups">Ecoles</h3>
+					<input class="output" id="output-groups" name="groups" multiple></input>
+					<input class="input-groups input" placeholder="groups"></input>
+					
+					<h3 class="new" id="new-themes">Thèmes</h3>
+					<input class="output" id="output-themes" name="themes" multiple></input>
+					<input class="input-themes input" placeholder="themes"></input>
+
+					<h3 class="new" id="new-needs">Recherche</h3>
+					<input class="output" id="output-needs" name="needs" multiple></input>
+					<input class="input-needs input" placeholder="needs"></input>
+				
+		</div>
+
+	</aside>
+	
+	<article id="presentation">
+		
+			<!-- Éiteur de texte -->
+
+			<textarea class="textarea" id='textarea-presentation' name='presentation'>				</textarea>
+			
+			
+		<div class="contenu" id="contenu-presentation" name="contenu-presentation">
+			<p>Décrivez votre projet :</br>
+			Vous pouvez mettre des images, des vidéo ou du texte</br>
+			Vous pouvez ajouter un nom de projet, des membres, ... Juste en cliquant sur la case correspondante !</p>
+		</div>
+	</article>
+
+	<article id="toolstore">	
+	<p> Il y aura ici la liste des outils qu'on pourra tester en ligne </p>	
+	</article>
+	
+	
+	<h3 class="modifier" id="annuler">Annuler</h3>	
+	<h3 class="modifier" id="Submit">Submit</h3>	
+</div>
+</form>
+
+
+<script src="/public/javascripts/jquery/jquery.js"></script>
+<script src="/public/javascripts/jquery/jquery-ui.js"></script>
+<script src="/public/javascripts/tinymce/tinymce.min.js"></script>
+<script>
+	var userID = "<%=user._id%>";	//On défini la variable userID qui récupère l'_id de l'utilisateur connecté.
+</script>
+<script src="/public/javascripts/projets_liste.js"></script>
+
+</html>

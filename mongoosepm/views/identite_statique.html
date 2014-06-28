@@ -1,0 +1,110 @@
+<head>
+<link rel="stylesheet" href="/public/stylesheets/identite_statique.css" />
+</head>
+
+<h1><%= user.userFirstName %> <%= user.userLastName %></h1>
+
+<aside>
+	<img src="/uploads/<%= user.mail %>/<%= user.mail %>.jpg" title="mon nom" id="photo" /> </br>
+	<button id="editer" type="button">Editer</button> 
+	<button id="message" type="button">Messagerie</button> 
+	<button id="effacer" type="button">Supprimer mon compte</button>
+</aside>
+	
+	
+<article>
+	<div class="case" id="base">
+		<h2> Présentation </h2>
+		<p>	<!-- utilisation de la syntaxe propre à ejs pour un rendu en utilisant les données contenues dans la bdd -->
+			<%= user.userFirstName %> <%= user.userLastName %></br>
+			<%= user.birthDate %> </br>
+			<%= user.country %></br>
+			<%= user.town %></br>
+			<%= user.area %></br>
+			<%= user.mail %></br>
+			<%= user.phone %></br>
+		</p>
+	</div>
+
+	<div class="case" class="sortable">
+		<h2>Projets</h2>		
+			<ul>
+				<li class="gauche"> Date </li>
+				<li class="centre">	Description </li>
+				<li class="droit">	Image-lien </li>
+			</ul>
+			<ul>
+				<li class="gauche"> Date </li>
+				<li class="centre">	Description </li>
+				<li class="droit">	Image-lien </li>
+			</ul>
+			<ul>
+				<li class="gauche"> Date </li>
+				<li class="centre">	Description </li>
+				<li class="droit">	Image-lien </li>
+			</ul>
+	</div>
+			
+
+			
+	<div class="case" class="sortable">
+		<h2>Education</h2>		
+			<ul>
+				<li class="gauche"> Date </li>
+				<li class="centre">	Description </li>
+				<li class="droit">	Image-lien </li>
+			</ul>
+			<ul>
+				<li class="gauche"> Date </li>
+				<li class="centre">	Description </li>
+				<li class="droit">	Image-lien </li>
+			</ul>
+			<ul>
+				<li class="gauche"> Date </li>
+				<li class="centre">	Description </li>
+				<li class="droit">	Image-lien </li>
+			</ul>		
+	</div>
+				
+	<div class="case" class="sortable">
+		<h2>Compétences</h2>		
+			<ul>
+				<li class="gauche"> Date </li>
+				<li class="centre">	Description </li>
+				<li class="droit">	Image-lien </li>
+			</ul>
+			<ul>
+				<li class="gauche"> Date </li>
+				<li class="centre">	Description </li>
+				<li class="droit">	Image-lien </li>
+			</ul>
+			<ul>
+				<li class="gauche"> Date </li>
+				<li class="centre">	Description </li>
+				<li class="droit">	Image-lien </li>
+			</ul>		
+	</div>
+				
+	<div class="case" class="sortable">
+		<h2>Activités</h2>		
+			<ul>
+				<li class="gauche"> Date </li>
+				<li class="centre">	Description </li>
+				<li class="droit">	Image-lien </li>
+			</ul>
+			<ul>
+				<li class="gauche"> Date </li>
+				<li class="centre">	Description </li>
+				<li class="droit">	Image-lien </li>
+			</ul>
+			<ul>
+				<li class="gauche"> Date </li>
+				<li class="centre">	Description </li>
+				<li class="droit">	Image-lien </li>
+			</ul>	
+	</div>
+</article>
+
+<script src="/public/javascripts/jquery/jquery.js"></script>
+<script src="/public/javascripts/jquery/jquery-ui.js"></script> 
+<script src="/public/javascripts/identite_statique.js"></script> 
