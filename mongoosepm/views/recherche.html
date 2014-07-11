@@ -1,257 +1,72 @@
-	<head>
+<head>
 <link rel="stylesheet" href="/public/stylesheets/recherche.css" />
 </head>
 
-<article>		
-	<aside>
-		<ul>
-			<li><img src="/public/images/cafe_projet_2.png" onclick="$('#personne').css('display','none'),$('#projet').css('display','block')"></li>
-			<li><img src="/public/images/imgPersonne.png" onclick="$('#projet').css('display','none'),$('#personne').css('display','block')"></li>
-		</ul>
-	</aside>
-	
-		<!-- Barre de recherche : projet -->
-	<ul id="projet">
-		<h1> Rechercher un projet </h1>
-		<form name="project" action="" method="post">	<!-- Fromulaire de recherche par projet -->
-		
-		<!-- Zone de gauche -->
-		<li class="theme">	
-			<ul>
-				<h2> Thèmes </h2>
-				<li>	<!-- barre de recherche par mot-clef -->						
-						<input type="search" name="recherche" placeholder="mot-clef">
-						<input type="submit" value="Rechercher">					
-				</li>
-				<li id="theme_ligne2">	
-					<ul>
-						<li>	<!-- Liste non-exhaustive de thème -->	
-							<input type="checkbox" name="informatique"> Informatique<br>
-							<input type="checkbox" name="scientifique"> Scientifique<br>
-							<input type="checkbox" name="humanitaire"> Humanitaire<br>
-							<input type="checkbox" name="ecologie"> Ecologie<br>
-							<input type="checkbox" name="sport"> Sport<br>
-						</li>
-						<li>
-							<input type="checkbox" name="musique"> Musique<br>
-							<input type="checkbox" name="film"> Film<br>
-							<input type="checkbox" name="litterature"> Littérature<br>
-							<input type="checkbox" name="architecture"> Architecture<br>
-							<input type="checkbox" name="art"> Art<br>
-						</li>
-					</ul>	
-				</li>
-				<li id="theme_ligne3">
-					<ul>
-						<li>	<!-- Liste exhaustive de thème -->
-							<select>
-								  <option value="mot-clef1" selected>Architecture</option>
-								  <option value="mot-clef2">Art</option>
-								  <option value="mot-clef11">Cuisine</option>
-								  <option value="mot-clef3">Ecologie</option>
-								  <option value="mot-clef4">Film</option>
-								  <option value="mot-clef5">Humanitaire</option>
-								  <option value="mot-clef6">Informatique</option>
-								  <option value="mot-clef7">Littérature</option>
-								  <option value="mot-clef8">Musique</option>
-								  <option value="mot-clef9">Scientifique</option>
-								  <option value="mot-clef10">Sport</option>
-								  <option value="mot-clef12">Traduction</option>
-							</select>
-						</li>
-						<li>
-							<textarea readonly>
-							</textarea>
-						</li>
-					</ul>
-					
-				</li>	
-			</ul>	
-		</li>	
-		
-		<!-- Zone de droite -->
+<article>
+	<form id="find_projects">
+	<ul>
 		<li>
-			<ul>
-				<h2> Etat d'avancement du projet </h2>
-				<li><canvas id="mon_canvas" width="250" height="60"> 
-					<script src="/public/javascripts/canvas.js"></script>
-					</canvas>
-				</li>
-				<h2> Lieu </h2>
-				<li id="lieu"> 
-					<ul>
-						<li>	<!-- Liste exhaustive de compétences -->
-						<select>
-							<option value="pays1" selected>Allemagne</option>
-							<option value="pays2">France</option>
-							<option value="pays3">Japon</option>
-							<option value="pays4">Royaume-Uni</option>
-						</select>
-						</li>
-						<li>
-						<select>
-							<option value="region1" selected>Basse-Normandie</option>
-							<option value="region2">Bretagne</option>
-							<option value="region3">Rhône-Alpes</option>
-						</select>	
-						</li>
-					</ul>
-				</li>
-				<h2> Compétences nécessaires au projet </h2>
-				<li id="competence">
-								<ul>
-									<li>	<!-- Liste exhaustive de compétences -->
-										<select>
-											  <option value="competence1" selected>Architecture</option>
-											  <option value="competence2">Art</option>
-											  <option value="competence11">Cuisine</option>
-											  <option value="competence3">Ecologie</option>
-											  <option value="competence4">Film</option>
-											  <option value="competence5">Humanitaire</option>
-											  <option value="competence6">Informatique</option>
-											  <option value="competence7">Littérature</option>
-											  <option value="competence8">Musique</option>
-											  <option value="competence9">Scientifique</option>
-											  <option value="competence10">Sport</option>
-											  <option value="competence12">Traduction</option>
-										</select>
-									</li>
-									<li>
-										<textarea readonly>
-										</textarea>
-									</li>
-								</ul>
-				</li>
+			<ul class="ligne" id="theme">
+				<li><input onclick="showDetails(this)" onfocus="this.blur()" value="Informatique" readonly></li>
+				<li><input onclick="showDetails(this)" onfocus="this.blur()" value="Art" readonly></li>
+				<li><input onclick="showDetails(this)" onfocus="this.blur()" value="Technologie" readonly></li>
+				<li><input onclick="showDetails(this)" onfocus="this.blur()" value="Sport" readonly></li>
+				<li><input onclick="showDetails(this)" onfocus="this.blur()" value="Entrepreneuriat" readonly></li>
 			</ul>
 		</li>
-		<button type='submit'>Submit</button>
-		</form>
-	</ul>		
-	
-	
-		<!-- Barre de recherche : personne -->
-		
-	<ul id="personne">
-		<h1> Rechercher quelqu'un </h1>
-		<form name="user" action="" method="post">	<!-- Fromulaire de recherche par projet -->
-		
-		<!-- Zone de gauche -->
-		<li class="centre_interet">	
-			<ul>
-				<h2> Centres d'intérêt </h2>
-				<li>	<!-- barre de recherche par mot-clef -->						
-						<input type="search" name="recherche" placeholder="mot-clef">
-						<input type="submit" value="Rechercher">					
-				</li>
-				<li>	
-					<ul id="interet_ligne2">
-						<li>	<!-- Liste non-exhaustive de thème -->	
-							<input type="checkbox" name="informatique"> Informatique<br>
-							<input type="checkbox" name="scientifique"> Scientifique<br>
-							<input type="checkbox" name="humanitaire"> Humanitaire<br>
-							<input type="checkbox" name="ecologie"> Ecologie<br>
-							<input type="checkbox" name="sport"> Sport<br>
-						</li>
-						<li>
-							<input type="checkbox" name="musique"> Musique<br>
-							<input type="checkbox" name="film"> Film<br>
-							<input type="checkbox" name="litterature"> Littérature<br>
-							<input type="checkbox" name="architecture"> Architecture<br>
-							<input type="checkbox" name="art"> Art<br>
-						</li>
-					</ul>	
-				</li>
-				<li>
-					<ul id="interet_ligne3">
-						<li>	<!-- Liste exhaustive de thème -->
-							<select>
-								  <option value="mot-clef1" selected>Architecture</option>
-								  <option value="mot-clef2">Art</option>
-								  <option value="mot-clef11">Cuisine</option>
-								  <option value="mot-clef3">Ecologie</option>
-								  <option value="mot-clef4">Film</option>
-								  <option value="mot-clef5">Humanitaire</option>
-								  <option value="mot-clef6">Informatique</option>
-								  <option value="mot-clef7">Littérature</option>
-								  <option value="mot-clef8">Musique</option>
-								  <option value="mot-clef9">Scientifique</option>
-								  <option value="mot-clef10">Sport</option>
-								  <option value="mot-clef12">Traduction</option>
-							</select>
-						</li>
-						<li>
-							<textarea readonly>
-							</textarea>
-						</li>
-					</ul>
-					
-				</li>	
-			</ul>	
-		</li>	
-		
-		<!-- Zone de droite -->
+			
 		<li>
-			<ul>
-				<h2> Disponibilités horaires (par semaine) </h2>
-				<li><canvas id="mon_canvas_2" width="250" height="60"> 
-					<script src="/public/javascripts/canvas_dispo.js"></script>
-					</canvas>
-				</li>
-				<h2> Lieu </h2>
-				<li>
-					<ul id="lieu_personne">
-						<li>	<!-- Liste exhaustive de compétences -->
-						<select>
-							<option value="pays1" selected>Allemagne</option>
-							<option value="pays2">France</option>
-							<option value="pays3">Japon</option>
-							<option value="pays4">Royaume-Uni</option>
-						</select>
-						</li>
-						<li>
-						<select>
-							<option value="region1" selected>Basse-Normandie</option>
-							<option value="region2">Bretagne</option>
-							<option value="region3">Rhône-Alpes</option>
-						</select>	
-						</li>
-					</ul>
-				</li>
-				<h2> Compétences de la personne </h2>
-				<li>
-					<ul id="competence_personne">
-						<li>	<!-- Liste exhaustive de compétences -->
-							<select>
-								  <option value="competence1" selected>Architecture</option>
-								  <option value="competence2">Art</option>
-								  <option value="competence11">Cuisine</option>
-								  <option value="competence3">Ecologie</option>
-								  <option value="competence4">Film</option>
-								  <option value="competence5">Humanitaire</option>
-								  <option value="competence6">Informatique</option>
-								  <option value="competence7">Littérature</option>
-								  <option value="competence8">Musique</option>
-								  <option value="competence9">Scientifique</option>
-								  <option value="competence10">Sport</option>
-								  <option value="competence12">Traduction</option>
-							</select>
-						</li>
-						<li>
-							<textarea readonly>
-							</textarea>
-						</li>
-					</ul>
-				</li>
+			<ul class="ligne category" id="Informatique">
+				<li><input onclick="selectCategory(this)" onfocus="this.blur()"  value="Gathering"></li>
+				<li><input onclick="selectCategory(this)" onfocus="this.blur()"  value="Open-source"></li>
+				<li><input onclick="selectCategory(this)" onfocus="this.blur()"  value="Web"></li>
+				<li><input onclick="selectCategory(this)" onfocus="this.blur()"  value="Infographie"></li>
+				<li><input onclick="selectCategory(this)" onfocus="this.blur()"  value="Logiciel"></li>
+			</ul>
+			<ul class="ligne category" id="Art">
+				<li><input onclick="selectCategory(this)" onfocus="this.blur()"  value="Littérature"></li>
+				<li><input onclick="selectCategory(this)" onfocus="this.blur()"  value="Cinéma"></li>
+				<li><input onclick="selectCategory(this)" onfocus="this.blur()"  value="Musique"></li>
+				<li><input onclick="selectCategory(this)" onfocus="this.blur()"  value="Jeu vidéo"></li>
+				<li><input onclick="selectCategory(this)" onfocus="this.blur()"  value="Arhitecture"></li>
+				<li><input onclick="selectCategory(this)" onfocus="this.blur()"  value="Photographie"></li>
+				<li><input onclick="selectCategory(this)" onfocus="this.blur()"  value="Théâtre"></li>
+			</ul>
+			<ul class="ligne category" id="Technologie">
+				<li><input onclick="selectCategory(this)" onfocus="this.blur()"  value="Techno1"></li>
+				<li><input onclick="selectCategory(this)" onfocus="this.blur()"  value="Techno2"></li>
+				<li><input onclick="selectCategory(this)" onfocus="this.blur()"  value="Techno3"></li>
+				<li><input onclick="selectCategory(this)" onfocus="this.blur()"  value="Techno4"></li>
+				<li><input onclick="selectCategory(this)" onfocus="this.blur()"  value="Techno5"></li>
+			</ul>
+			<ul class="ligne category" id="Sport">
+				<li><input onclick="selectCategory(this)" onfocus="this.blur()"  value="Football"></li>
+				<li><input onclick="selectCategory(this)" onfocus="this.blur()"  value="Escrime"></li>
+				<li><input onclick="selectCategory(this)" onfocus="this.blur()"  value="Basket"></li>
+				<li><input onclick="selectCategory(this)" onfocus="this.blur()"  value="Dance"></li>
+				<li></li>
+			</ul>
+			<ul class="ligne category" id="Entrepreneuriat">
+				<li><input onclick="selectCategory(this)" onfocus="this.blur()"  value="Solidaire"></li>
+				<li><input onclick="selectCategory(this)" onfocus="this.blur()"  value="Terroire"></li>
+				<li><input onclick="selectCategory(this)" onfocus="this.blur()"  value="Start'Up"></li>
+				
 			</ul>
 		</li>
-		<button type='submit'>Submit</button>
-		</form>
 	</ul>
+	
+	<div id="place">
+		
+	</div>
+	
+	</form>
 </article>
+
 <ul id='liste'>
-	<!-- Ici on accueil les projets et les utilisateurs recherchés-->
+			<!-- Ici on accueil les projets et les utilisateurs recherchés-->
 </ul>
 
-<script src="/public/javascripts/jquery/jquery.js"></script>
-<script src="/public/javascripts/jquery/jquery-ui.js"></script>
+
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
 <script src="/public/javascripts/recherche.js"></script>
