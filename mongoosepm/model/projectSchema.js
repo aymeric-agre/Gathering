@@ -8,7 +8,7 @@ var mongooseProject = require('mongoose');	// initialisation de mongoose
 var Schema = mongooseProject.Schema;
 
 var projectSchema = new Schema({		// création du modèle -> structure des données
-	projectName: {type: String, unique: true},
+	projectName: {type: String, unique: true, required: true},
 	createdBy: {type: mongooseProject.Schema.Types.ObjectId, ref: 'user'},		//Créé par une seule personne
 	members: [{type: String}],		//Plusieurs membre : on utilise un tableau
 	administrators: [{type: mongooseProject.Schema.Types.ObjectId, ref: 'user'}],
