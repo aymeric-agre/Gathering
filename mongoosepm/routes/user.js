@@ -153,6 +153,11 @@ exports.doSearchUser = function(req, res) {
 	}
 };
 
+/*	Recherche utilisateur à partir des catégories	*/
+exports.doSearchUserByCategory = function (req, res){
+	console.log("Chercher un utilisateur avec les caractéristiques :"+req.body.selectedTheme+req.body.selectedCategory);
+};
+
 /*	Ouvrir une page à partir de l'id de l'utilisateur	*/
 exports.user = function(req,res) {
 	console.log("Cherche le projet_id : " + req.params.id);

@@ -148,7 +148,7 @@ exports.doCreateProject = function(req, res) {
 	********************	*/
 /*	Ouvrir un de ses projets à partir de son id	*/
 exports.project = function(req,res) {
-	console.log("Cherche le projet_id : " + req.params.id);
+	console.log("Cherche le projet_id : " + data);
 	if(req.params.id) {		//si on a bien un id en paramêtre dans l'url
 		projectSchema.Project.findById(req.params.id, function(err, projectInfo) {	//On cherche le projet avec cet Id
 			if(err)	{
@@ -187,16 +187,33 @@ exports.doSearchProject = function(req, res) {
 			}else{
 				console.log(projectNom);
 				if(projectNom[0] != null){				
-					req.projects = projectNom[0].id;	//On enregiste l'id du premier projetpour l'instant pour l'envoyer dans le res.render 'recherche'
-					res.redirect('/project/'+req.projects);
+					projects = projectNom[0].id;	//On enregiste l'id du premier projetpour l'instant pour l'envoyer dans le res.render 'recherche'
+					res.redirect('/project/'+projects);
 				}else{
-					res.redirect('/recherche/?404=user');
+					res.redirect('/recherche/?404=project');
 				}
 			}
 		});
 	}else{
 		res.redirect('/recherche');
 	}
+};
+
+/* Rechercher un projet à partir de ses catégories 	*/
+exports.doSearchProjectByCategory = function (req, res){
+	console.log("Chercher un projet avec les caractéristiques :"+req.selectedTheme);
+	$result = projectSchema.Project.find({ themes: req.body.selectedTheme }, function(err, projects){
+		if(err){
+			console.log(err);
+		}else{
+			console.log(projects);
+			if(projects[0]!=null){
+				return('<h3 style="text-align:center; margin:10px 0;">Pas de r&eacute;sultats pour cette recherche</h3>');
+			}else{
+				return('<p>quelque chose en ejs</p>');
+			}
+		}
+	});
 };
 /* ******************************* 
    SUPPRIMER TOUS LES UTILISATEURS

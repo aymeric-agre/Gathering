@@ -3,63 +3,62 @@
 </head>
 
 <article>
-	<form id="find_projects">
+	<form id="find_projects" action="doSearchProjectByCategories" method="POST">
 	<ul>
 		<li>
 			<ul class="ligne" id="theme">
-				<li><input onclick="showDetails(this)" onfocus="this.blur()" value="Informatique" readonly></li>
-				<li><input onclick="showDetails(this)" onfocus="this.blur()" value="Art" readonly></li>
-				<li><input onclick="showDetails(this)" onfocus="this.blur()" value="Technologie" readonly></li>
-				<li><input onclick="showDetails(this)" onfocus="this.blur()" value="Sport" readonly></li>
-				<li><input onclick="showDetails(this)" onfocus="this.blur()" value="Entrepreneuriat" readonly></li>
+				<li><input onclick="showDetails(this)" onfocus="this.blur()" class="button" value="Informatique" name="jesuischoisiyoupi"></li>
+				<li><input onclick="showDetails(this)" onfocus="this.blur()" class="button" value="Art" readonly></li>
+				<li><input onclick="showDetails(this)" onfocus="this.blur()" class="button" value="Technologie" readonly></li>
+				<li><input onclick="showDetails(this)" onfocus="this.blur()" class="button" value="Sport" readonly></li>
+				<li><input onclick="showDetails(this)" onfocus="this.blur()" class="button" value="Entrepreneuriat" readonly></li>
 			</ul>
 		</li>
 			
 		<li>
 			<ul class="ligne category" id="Informatique">
-				<li><input onclick="selectCategory(this)" onfocus="this.blur()"  value="Gathering"></li>
-				<li><input onclick="selectCategory(this)" onfocus="this.blur()"  value="Open-source"></li>
-				<li><input onclick="selectCategory(this)" onfocus="this.blur()"  value="Web"></li>
-				<li><input onclick="selectCategory(this)" onfocus="this.blur()"  value="Infographie"></li>
-				<li><input onclick="selectCategory(this)" onfocus="this.blur()"  value="Logiciel"></li>
+				<li><input onclick="selectCategory(this)" onfocus="this.blur()" class="button" value="Gathering"></li>
+				<li><input onclick="selectCategory(this)" onfocus="this.blur()" class="button" value="Open-source"></li>
+				<li><input onclick="selectCategory(this)" onfocus="this.blur()" class="button" value="Web"></li>
+				<li><input onclick="selectCategory(this)" onfocus="this.blur()" class="button" value="Infographie"></li>
+				<li><input onclick="selectCategory(this)" onfocus="this.blur()" class="button" value="Logiciel"></li>
 			</ul>
 			<ul class="ligne category" id="Art">
-				<li><input onclick="selectCategory(this)" onfocus="this.blur()"  value="Littérature"></li>
-				<li><input onclick="selectCategory(this)" onfocus="this.blur()"  value="Cinéma"></li>
-				<li><input onclick="selectCategory(this)" onfocus="this.blur()"  value="Musique"></li>
-				<li><input onclick="selectCategory(this)" onfocus="this.blur()"  value="Jeu vidéo"></li>
-				<li><input onclick="selectCategory(this)" onfocus="this.blur()"  value="Arhitecture"></li>
-				<li><input onclick="selectCategory(this)" onfocus="this.blur()"  value="Photographie"></li>
-				<li><input onclick="selectCategory(this)" onfocus="this.blur()"  value="Théâtre"></li>
+				<li><input onclick="selectCategory(this)" onfocus="this.blur()" class="button" value="Littérature"></li>
+				<li><input onclick="selectCategory(this)" onfocus="this.blur()" class="button" value="Cinéma"></li>
+				<li><input onclick="selectCategory(this)" onfocus="this.blur()" class="button" value="Musique"></li>
+				<li><input onclick="selectCategory(this)" onfocus="this.blur()" class="button" value="Jeu vidéo"></li>
+				<li><input onclick="selectCategory(this)" onfocus="this.blur()" class="button" value="Arhitecture"></li>
+				<li><input onclick="selectCategory(this)" onfocus="this.blur()" class="button" value="Photographie"></li>
+				<li><input onclick="selectCategory(this)" onfocus="this.blur()" class="button" value="Théâtre"></li>
 			</ul>
 			<ul class="ligne category" id="Technologie">
-				<li><input onclick="selectCategory(this)" onfocus="this.blur()"  value="Techno1"></li>
-				<li><input onclick="selectCategory(this)" onfocus="this.blur()"  value="Techno2"></li>
-				<li><input onclick="selectCategory(this)" onfocus="this.blur()"  value="Techno3"></li>
-				<li><input onclick="selectCategory(this)" onfocus="this.blur()"  value="Techno4"></li>
-				<li><input onclick="selectCategory(this)" onfocus="this.blur()"  value="Techno5"></li>
+				<li><input onclick="selectCategory(this)" onfocus="this.blur()" class="button" value="Techno1"></li>
+				<li><input onclick="selectCategory(this)" onfocus="this.blur()" class="button" value="Techno2"></li>
+				<li><input onclick="selectCategory(this)" onfocus="this.blur()" class="button" value="Techno3"></li>
+				<li><input onclick="selectCategory(this)" onfocus="this.blur()" class="button" value="Techno4"></li>
+				<li><input onclick="selectCategory(this)" onfocus="this.blur()" class="button" value="Techno5"></li>
 			</ul>
 			<ul class="ligne category" id="Sport">
-				<li><input onclick="selectCategory(this)" onfocus="this.blur()"  value="Football"></li>
-				<li><input onclick="selectCategory(this)" onfocus="this.blur()"  value="Escrime"></li>
-				<li><input onclick="selectCategory(this)" onfocus="this.blur()"  value="Basket"></li>
-				<li><input onclick="selectCategory(this)" onfocus="this.blur()"  value="Dance"></li>
+				<li><input onclick="selectCategory(this)" onfocus="this.blur()" class="button" value="Football"></li>
+				<li><input onclick="selectCategory(this)" onfocus="this.blur()" class="button" value="Escrime"></li>
+				<li><input onclick="selectCategory(this)" onfocus="this.blur()" class="button" value="Basket"></li>
+				<li><input onclick="selectCategory(this)" onfocus="this.blur()" class="button" value="Dance"></li>
 				<li></li>
 			</ul>
 			<ul class="ligne category" id="Entrepreneuriat">
-				<li><input onclick="selectCategory(this)" onfocus="this.blur()"  value="Solidaire"></li>
-				<li><input onclick="selectCategory(this)" onfocus="this.blur()"  value="Terroire"></li>
-				<li><input onclick="selectCategory(this)" onfocus="this.blur()"  value="Start'Up"></li>
+				<li><input onclick="selectCategory(this)" onfocus="this.blur()" class="button" value="Solidaire"></li>
+				<li><input onclick="selectCategory(this)" onfocus="this.blur()" class="button" value="Terroire"></li>
+				<li><input onclick="selectCategory(this)" onfocus="this.blur()" class="button" value="Start'Up"></li>
 				
 			</ul>
 		</li>
 	</ul>
-	
-	<div id="place">
-		
-	</div>
-	
 	</form>
+	<br/><br/>
+	<div id="results">
+		ici on trouvera les résultats de la recherche
+	</div>
 </article>
 
 <ul id='liste'>

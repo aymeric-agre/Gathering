@@ -61,6 +61,7 @@ app.get('/projet_gathering',project.projet_gathering);
 app.get('/project/byuser/:userid',project.byUser);	//Projet créé par un utilisateur (/:userid permet d'être utilisé avec req.params)
 app.post('/projets_liste', project.doCreateProject);
 app.post('/doSearchProject',project.doSearchProject);
+app.post('/doSearchProjectByCategory',project.doSearchProjectByCategory);
 app.get('/project/byId/:projectId', project.byProjectId);	//Afficher les projets par Id dans une liste
 app.get('/delete_projects',project.doDeleteAllProjects);
 
@@ -73,6 +74,7 @@ app.post('/traitement_formulaire', user.doCreateUser);	//Action de se créer un 
 app.get('/user/:id', user.user);
 app.post('/doSearchUser',user.doSearchUser);
 app.get('/delete_users',user.doDeleteAllUsers);
+app.post('/doSearchUserByCategory',user.doSearchUserByCategory);
 
 
 /*	**********

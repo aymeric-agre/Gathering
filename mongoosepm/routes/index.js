@@ -95,7 +95,7 @@ exports.doLogout = function (req, res) {
 /*	Afficher la page recherche	*/
 exports.recherche = function(req, res) {
 	console.log("ouverture de la page recherche");
-	res.render('recherche', {users: req.users, projects: req.projects}, function(err, html){	//Les données de user sont dans la session
+	res.render('recherche', function(err, html){	//Les données de user sont dans la session
 		var data = {
 				title: "Recherche",
 				body: html
@@ -107,8 +107,7 @@ exports.recherche = function(req, res) {
 			};
 			if(req.session.loggedIn === true) {res.render('connected', data_connected);}		//S'il est loggé on rend connected
 			else {res.render('default', data);}
-		});
-	console.log('req.projects '+req.projects);
+	});
 };
 
 /*	On vérifie qu'on a un projet recherché	*/
