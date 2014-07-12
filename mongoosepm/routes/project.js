@@ -154,24 +154,27 @@ exports.project = function(req,res) {
 			if(err)	{
 				console.log(err);
 				res.redirect('/user?404=project');
-			}else {
+			}else{
 				console.log(projectInfo);
 				res.render('projet', {project: projectInfo}, function(err,html){	//on renvoie la page projet
 					var data={
-					title: projectInfo.projectName,
-					body: html
+						title: projectInfo.projectName,
+						body: html
 					};
 					var data_connected = {
-					title: projectInfo.projectName,
-					body: html,
-					user:req.session.user
+						title: projectInfo.projectName,
+						body: html,
+						user:req.session.user
 					};
-					if(req.session.loggedIn === true) {res.render('connected', data_connected);}		//S'il est loggé on rend connected
-					else {res.render('default', data);}
-					});
-				}
+					if(req.session.loggedIn === true) {
+						res.render('connected', data_connected);	//S'il est loggé on rend connected
+					}else{	
+						res.render('default', data);
+					}
+				});
+			}
 		});
-	} else {			//Si on a pas d'id en paramêtre
+	}else{			//Si on a pas d'id en paramêtre
 		res.redirect('/');	//on renvoie la page d'accueil
 	}
 };

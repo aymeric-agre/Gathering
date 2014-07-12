@@ -158,27 +158,30 @@ exports.user = function(req,res) {
 	console.log("Cherche le projet_id : " + req.params.id);
 	if(req.params.id) {		//si on a bien un id en paramêtre dans l'url
 		userSchema.User.findById(req.params.id, function(err, userInfo) {	//On cherche le projet avec cet Id
-			if(err)	{
+			if(err){
 				console.log(err);
 				res.redirect('/user?404=user');
-			}else {
+			}else{
 				console.log(userInfo);
 				res.render('identite_statique', {user: userInfo}, function(err,html){	//on renvoie la page projet
 					var data={
-					title: userInfo.userFirstName + " " + userInfo.userLastName,
-					body: html
+						title: userInfo.userFirstName + " " + userInfo.userLastName,
+						body: html
 					};
 					var data_connected = {
-					title: userInfo.userFirstName + " " + userInfo.userLastName,
-					body: html,
-					user:req.session.user
+						title: userInfo.userFirstName + " " + userInfo.userLastName,
+						body: html,
+						user:req.session.user
 					};
-					if(req.session.loggedIn === true) {res.render('connected', data_connected);}		//S'il est loggé on rend connected
-					else {res.render('default', data);}
-					});
-				}
+					if(req.session.loggedIn === true) {
+						res.render('connected', data_connected);	//S'il est loggé on rend connected
+					}else{
+						res.render('default', data);
+					}
+				});
+			}
 		});
-	} else {			//Si on a pas d'id en paramêtre
+	}else{			//Si on a pas d'id en paramêtre
 		res.redirect('/');	//on renvoie la page d'accueil
 	}
 };
