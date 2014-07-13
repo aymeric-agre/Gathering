@@ -27,25 +27,30 @@ exports.index = function(req, res) {
 /*accueil non-connectée*/
 exports.index_default = function(req, res){ // appel de la page index lorsqu'on est déconnecté
 	console.log("une requete pr /");
-	res.render('index', function(err,html){	// 1er rendu de l'index
-		var data={
-		title: 'Accueil',
-		body: html
-		};
-	res.render('default', data); // 2nd rendu avec le layout correspondant au profil déconnecté appelé en callback
+	projectSchema.Project.find( function(err, project_list) {
+		console.log(project_list);
+		res.render('index', {projects:project_list}, function(err,html){	// 1er rendu de l'index
+			var data={
+			title: 'Accueil',
+			body: html
+			};
+			res.render('default', data); // 2nd rendu avec le layout correspondant au profil déconnecté appelé en callback
 		});
+	});
 };
 
 /*accueil connecté*/
 exports.index_connected = function(req, res){	// appel de la page index lorsqu'on est connecté
 	console.log("une requete pr /");
-	res.render('index', {user:req.session.user, userID: req.session.user._id}, function(err,html){	// on récupère les infos de l'utilisateur connecté et ouvre la page
-		var data_connected={
-		title: 'Accueil',
-		body: html,
-		user:req.session.user
-		};
-	res.render('connected', data_connected);	// 2nd rendu en appelant le layout correspondant au profil connecté appelé en callback
+	projectSchema.Project.find( function(err, project_list) {
+		res.render('index', {user:req.session.user, userID: req.session.user._id, projects:project_list}, function(err,html){	// on récupère les infos de l'utilisateur connecté et ouvre la page
+			var data_connected={
+			title: 'Accueil',
+			body: html,
+			user:req.session.user
+			};
+		res.render('connected', data_connected);	// 2nd rendu en appelant le layout correspondant au profil connecté appelé en callback
+			});
 		});
 };
 
