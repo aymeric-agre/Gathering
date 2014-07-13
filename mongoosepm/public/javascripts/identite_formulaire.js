@@ -91,13 +91,18 @@ var tailleFinale = function(origineW, origineH, maxW, maxH){
 	Fonctions de vérification
 	*************************	*/
 
+//vérification mail
 $(function(){
 	$('#mail').focusout(function(){
-		if(mail.value === 'coucou'){
-			alert('salut');
+		var nameExplosed = mail.value.split('@');
+		var	mailName = nameExplosed[0];
+		var mailKey = nameExplosed[1];
+		var mailKeyExplosed = mailKey.split('.');
+		if(mailKeyExplosed == 'em'){
+			alert('cet email est correct');
 		}else{
-			alert('au revoir');
-		}
+			alert('email non correct');
+		}*/
 	});
 });
 	
