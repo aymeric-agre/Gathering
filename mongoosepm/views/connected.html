@@ -20,7 +20,7 @@
 	<div id="barre">
 		<ul>
 			<% if (user.userFirstName === "aymeric") {%>
-			<li><a href="/projet_gathering"><img src="/public/images/logo_<%=user.userFirstName%>.png" alt="" /></a></li>
+			<li><a href="/project_gathering"><img src="/public/images/logo_<%=user.userFirstName%>.png" alt="" /></a></li>
 			<% } else {%>
 			<li><img src="/public/images/logo.png" alt="" /></li>
 			<% }%>
@@ -38,7 +38,7 @@
 				<h3> <%= user.userFirstName %> </h3>
 				<ul>
 					<li class="liste"> <a href="/index"> Accueil </a> </li>
-					<li class="liste"> <a href="/projets_liste"> Mes projets </a> </li>
+					<li class="liste"> <a href="/projects_liste"> Mes projets </a> </li>
 					<li class="liste"> <a href="/identite_statique"> Mon compte </a> </li>
 					<li class="liste" id="click" style="cursor:pointer"> Style  </li>
 						<div id="colorer" style="display:none">
@@ -52,16 +52,23 @@
 			</div>					
 			<div class="bloc_nav">
 				<h3> Recherche </h3>
+<<<<<<< HEAD
 				<ul>
 					<form name="recherche" action="/doSearchProject" method="post">	
 						<li class="liste"><input type="search" name="tag" class="recherche"> </li>
 						<li class="liste"><button type="submit">Rechercher projet</button> </li>
+=======
+				
+				<form name="search_project" action="/doSearchProject" method="post">	
+						<span class="liste"><input type="search" name="tag" class="recherche"> </span>
+						<span class="liste"><button type="submit">Projet</button> </span></br>
+>>>>>>> origin/Bastien
 					</form>
-					<form name="recherche" action="/doSearchUser" method="post">
-						<li class="liste"><input type="search" name="tag" class="recherche"> </li>
-						<li class="liste"><button type="submit">Rechercher utilisateur</button> </li>
+					<form name="search_user" action="/doSearchUser" method="post">
+						<span class="liste"><input type="search" name="tag" class="recherche"> </span>
+						<span class="liste"><button type="submit">Utilisateur</button> </span></br>
 					</form> 
-				</ul>
+				
 			</div>	
 			
 		</nav>
