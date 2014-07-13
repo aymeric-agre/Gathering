@@ -90,20 +90,17 @@ var tailleFinale = function(origineW, origineH, maxW, maxH){
 /*	*************************
 	Fonctions de vérification
 	*************************	*/
-/*
-function verifier_email(input_email){
-	var utilisateur = require('../model/utilisateur.js'); // appel du modèle mongoose utilisateur
-	var query = utilisateur.Inscrit.find({email: input_email});
-	query.exec(function(err, emails){
-		if(err) {throw err;}
-		if(emails.length>0){
-			input_email.style.backgroundColor = 'red';
+
+$(function(){
+	$('#mail').focusout(function(){
+		if(mail.value === 'coucou'){
+			alert('salut');
 		}else{
-			input_email.style.backgroundColor = 'green';
+			alert('au revoir');
 		}
 	});
-}
-*/
+});
+	
 /*
 var fieldalias="mot de passe"
 function verifier_pass(confirm_pass, pass){
