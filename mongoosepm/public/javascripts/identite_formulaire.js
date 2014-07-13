@@ -90,20 +90,19 @@ var tailleFinale = function(origineW, origineH, maxW, maxH){
 /*	*************************
 	Fonctions de vérification
 	*************************	*/
-/*
-function verifier_email(input_email){
-	var utilisateur = require('../model/utilisateur.js'); // appel du modèle mongoose utilisateur
-	var query = utilisateur.Inscrit.find({email: input_email});
-	query.exec(function(err, emails){
-		if(err) {throw err;}
-		if(emails.length>0){
-			input_email.style.backgroundColor = 'red';
+
+//vérification mail
+$(function(){
+	$('#mail').focusout(function(){
+		var mailExplosed = mail.value.split('@')[1];
+		if(mailExplosed.search(".ec-lyon.") < 0 && mailExplosed.search(".em-lyon.") < 0){
+			document.getElementById('mail_verification').innerHTML = "Cet email n\'est pas valide";
 		}else{
-			input_email.style.backgroundColor = 'green';
+			document.getElementById('mail_verification').innerHTML = "";
 		}
 	});
-}
-*/
+});
+
 /*
 var fieldalias="mot de passe"
 function verifier_pass(confirm_pass, pass){

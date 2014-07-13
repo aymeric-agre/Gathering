@@ -50,16 +50,15 @@
 			</div>					
 			<div class="bloc_nav">
 				<h3> Recherche </h3>
-				<form name="search_project" action="/doSearchProject" method="post">	
-						<span class="liste"><input type="search" name="tag" class="recherche"> </span>
-						<span class="liste"><button type="submit">Projet</button> </span></br>
-					</form>
-					<form name="search_user" action="/doSearchUser" method="post">
-						<span class="liste"><input type="search" name="tag" class="recherche"> </span>
-						<span class="liste"><button type="submit">Utilisateur</button> </span></br>
-					</form>				
-			</div>	
-			
+				<form name="search_project" action="/doSearchProject" method="post">		
+					<span class="liste"><input type="search" name="tag" class="recherche"> </span>
+					<span class="liste"><button type="submit">Projet</button> </span></br>
+				</form>
+				<form name="search_user" action="/doSearchUser" method="post">
+					<span class="liste"><input type="search" name="tag" class="recherche"> </span>
+					<span class="liste"><button type="submit">Utilisateur</button> </span></br>
+				</form>				
+			</div>
 		</nav>
 		<section>
 		<%- body %>
