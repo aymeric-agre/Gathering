@@ -94,14 +94,15 @@ var tailleFinale = function(origineW, origineH, maxW, maxH){
 //vérification mail
 $(function(){
 	$('#mail').focusout(function(){
-		if(mail.value.search(".ec-lyon.") != -1){
-			alert('cet email est correct');
+		var mailExplosed = mail.value.split('@')[1];
+		if(mailExplosed.search(".ec-lyon.") < 0 && mailExplosed.search(".em-lyon.") < 0){
+			document.getElementById('mail_verification').innerHTML = "Cet email n\'est pas valide";
 		}else{
-			alert('email non correct');
+			document.getElementById('mail_verification').innerHTML = "";
 		}
 	});
 });
-	
+
 /*
 var fieldalias="mot de passe"
 function verifier_pass(confirm_pass, pass){

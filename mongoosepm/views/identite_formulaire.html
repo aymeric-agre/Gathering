@@ -14,7 +14,7 @@
 				<p>Votre photo.</p>
 			</div>
 			<label for="thumbnail">Photo </label> : <input type="file" id="thumbnail" name="thumbnail" />
-			<span>Veuillez ajouter une photo de profil.</span><br/><br/>
+			<span class="help">Veuillez ajouter une photo de profil.</span><br/><br/>
 		</div>
 		<div id="compte">
 			haut : </label><input class="color" id="color1" value="087878"/><br>
@@ -26,51 +26,52 @@
 		<fieldset id="donnees_perso">
 			<legend>Données personnelles</legend>
 			<label for="mail">Adresse e-mail</label><input type="text" name="mail" id="mail"/>
-			<span>Votre e-mail vous servira à vous connecter et ne sera pas rendu visible sans votre autorisation.</span><br/><br/>
+			<span class="help">Votre e-mail vous servira à vous connecter et ne sera pas rendu visible sans votre autorisation.</span>
+			<span class="verification" id="mail_verification"></span><br/><br/>
 			<label for="password">Mot de passe</label><input type="password" name="password" id="password"/>
-			<span>Votre mot de passe doit comporter des chiffres et des lettres et faire un minimum de 8 charactères.</span><br/><br/>
+			<span class="help">Votre mot de passe doit comporter des chiffres et des lettres et faire un minimum de 8 charactères.</span><br/><br/>
 			<label for="confirm_password">Confirmez votre mot de passe</label><input type="password" name="confirm_password" id="confirm_password"/>
-			<span>Réécrivez votre mot de passe.</span><br/><br/>
+			<span class="help">Réécrivez votre mot de passe.</span><br/><br/>
 			<label for="userLastName">Nom</label><input type="text" name="userLastName" id="userLastName"/>
-			<span>Écrivez votre (vos) noms de famille.</span><br/><br/>
+			<span class="help">Écrivez votre (vos) noms de famille.</span><br/><br/>
 			<label for="userFirstName">Prénom</label><input type="text" name="userFirstName" id="userFirstName"/>
-			<span>Écrivez votre (vos) prénoms.</span><br/><br/>
+			<span class="help">Écrivez votre (vos) prénoms.</span><br/><br/>
 			<label for="birthDate">Date de naissance</label><input type="date" name="birthDate" id="birthDate"/>
-			<span>Veuillez renseigner votre date de naissance au format: mm/jj/aaaa.</span><br/><br/>
+			<span class="help">Veuillez renseigner votre date de naissance au format: mm/jj/aaaa.</span><br/><br/>
 			<label for="country">Pays</label><input type="text" name="country" id="country"/>
-			<span>Veuillez renseigner votre pays de résidence.</span><br/><br/>
+			<span class="help">Veuillez renseigner votre pays de résidence.</span><br/><br/>
 			<label for="area">Région</label><input type="text" name="area" id="area"/>
-			<span>Veuillez renseigner votre région de résidence.</span><br/><br/>
+			<span class="help">Veuillez renseigner votre région de résidence.</span><br/><br/>
 			<label for="town">Ville</label><input type="text" name="town" id="town"/>
-			<span>Veuillez renseigner votre ville de résidence.</span><br/><br/>
+			<span class="help">Veuillez renseigner votre ville de résidence.</span><br/><br/>
 			<label for="phone">Téléphone</label><input type="text" name="phone" id="phone"/>
-			<span>Veuillez renseigner votre numéro de téléphone. Ce dernier ne sera pas diffusé sans votre autorisation.</span><br/><br/>
+			<span class="help">Veuillez renseigner votre numéro de téléphone. Ce dernier ne sera pas diffusé sans votre autorisation.</span><br/><br/>
 		</fieldset>
 				
 		<fieldset id="centre_interet">
 			<legend>Centre d'intérêt</legend>
 			<label for="competences">Compétences</label> : <textarea type="text" name="competences" id="competences" class="champs_gauche"/></textarea>
-			<span>Veuillez renseigner les compétences que vous voulez mettre en avant.</span><br/><br/>
+			<span class="help">Veuillez renseigner les compétences que vous voulez mettre en avant.</span><br/><br/>
 			<label for="interests">Centres d'intérêt</label> : <textarea type="text" name="interests" id="interests" class="champs_gauche"/></textarea>
-			<span>Veuillez renseigner vos centres d'intérêts.</span><br/><br/>
+			<span class="help">Veuillez renseigner vos centres d'intérêts.</span><br/><br/>
 			<label for="sports">Sports</label> : <textarea type="text" name="sports" id="sports" class="champs_gauche"/></textarea>
-			<span>Vous pouvez renseigner les sports que vous pratiquez.</span><br/><br/>
+			<span class="help">Vous pouvez renseigner les sports que vous pratiquez.</span><br/><br/>
 			<label for="leisures">Loisirs</label> : <textarea type="text" name="leisures" id="leisures" class="champs_gauche"/></textarea>
-			<span>Vous pouvez renseigner vos loisirs préférés.</span><br/><br/>
+			<span class="help">Vous pouvez renseigner vos loisirs préférés.</span><br/><br/>
 			<label for="otherInterests">Autres centres d'intérêt</label> : <textarea type="text" name="otherInterests" id="otherInterests" class="champs_gauche"/></textarea>
-			<span>Si vous souhaitez rajouter quelque chose en rapport avec vos centres d'intérêt.</span><br/><br/>
+			<span class="help">Si vous souhaitez rajouter quelque chose en rapport avec vos centres d'intérêt.</span><br/><br/>
 		</fieldset>
 		
 		<fieldset id="vie_professionelle">
 			<legend>Vie professionelle</legend><br/>			
 			<label for="profession">Profession</label> : <textarea type="text" name="profession" id="profession" class="champs_droit"/></textarea>
-			<span>Veuillez renseigner votre parcours professionel.</span><br/><br/>
+			<span class="help">Veuillez renseigner votre parcours professionel.</span><br/><br/>
 			<label for="studies">Études</label> : <textarea type="text" name="studies" id="studies" class="champs_droit"/></textarea>
-			<span>Veuillez renseigner votre parcours scolaire.</span><br/><br/>
+			<span class="help">Veuillez renseigner votre parcours scolaire.</span><br/><br/>
 			<label for="diplomas">Diplômes</label> : <textarea type="text" name="diplomas" id="diplomas" class="champs_droit"/></textarea>
-			<span>Veuillez renseigner vos différents diplômes.</span><br/><br/>
+			<span class="help">Veuillez renseigner vos différents diplômes.</span><br/><br/>
 			<label for="otherProfession">Autres</label> : <textarea type="text" name="otherProfession" id="otherProfession" class="champs_droit"/></textarea>
-			<span>Si vous souhaitez rajouter quelque chose en rapport avec votre vie professionelle.</span><br/><br/>
+			<span class="help">Si vous souhaitez rajouter quelque chose en rapport avec votre vie professionelle.</span><br/><br/>
 		</fieldset>
 		
 		<input id="submit" type="submit" value="submit">

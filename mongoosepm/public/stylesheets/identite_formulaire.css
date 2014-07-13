@@ -33,9 +33,9 @@ legend {
 }
 
 /* Positionnement des bulles d'aide */
-#formulaire span{
+.help{
 	position : absolute;
-	background : linear-gradient(to bottom, rgba(15,150,150,0.5), rgba(10,90,90,0.6));
+	background : linear-gradient(to bottom, rgba(15,150,150,0.6), rgba(10,90,90,0.7));
 	opacity : 0;
 	transform:scale(0);
 	transition:all 120ms 100ms;
@@ -43,14 +43,21 @@ legend {
 	margin: -5px 0px 0px 20px;
 	border-radius: 8px 8px 8px 8px;
 	width: 243px;
-	font-size: 0.6em;
+	font-size: 0.8em;
 	padding: 5px;
  }
+ 
+.verification{
+	position: relative;
+	margin-left: 20px;
+	color: red;
+}
 
  /* Apparition des bulles */
- #formulaire  input:hover + span, #formulaire textarea:hover + span{
+ #formulaire  input:hover + .help, #formulaire textarea:hover + .help{
     opacity : 1;
 	transform: scale(1);
+	z-index: 5;
 }
 
 fieldset {
