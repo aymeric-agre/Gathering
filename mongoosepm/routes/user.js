@@ -137,19 +137,19 @@ exports.doSearchUser = function(req, res) {
 		userSchema.User.findByName(req.body.tag, function(err, userNom) {
 			if(err){
 				console.log(err);
-				res.redirect('/recherche/?500');
+				res.redirect('/search_user/?500');
 			}else{
 				console.log(userNom);
 				if(userNom[0] != null){				
 					req.users = userNom[0].id;	//On enregiste la liste d'utilisateurs pour l'envoyer dans le res.render 'recherche'
 					res.redirect('/user/'+req.users);
 				}else{
-					res.redirect('/recherche/?404=user');
+					res.redirect('/search_user/?404=user');
 				}
 			}
 		});
 	}else{
-		res.redirect('/recherche');
+		res.redirect('/search_user');
 	}
 };
 
