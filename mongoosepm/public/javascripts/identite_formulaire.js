@@ -94,15 +94,11 @@ var tailleFinale = function(origineW, origineH, maxW, maxH){
 //vérification mail
 $(function(){
 	$('#mail').focusout(function(){
-		var nameExplosed = mail.value.split('@');
-		var	mailName = nameExplosed[0];
-		var mailKey = nameExplosed[1];
-		var mailKeyExplosed = mailKey.split('.');
-		if(mailKeyExplosed == 'em'){
+		if(mail.value.search(".ec-lyon.") != -1){
 			alert('cet email est correct');
 		}else{
 			alert('email non correct');
-		}*/
+		}
 	});
 });
 	
