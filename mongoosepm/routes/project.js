@@ -135,7 +135,23 @@ exports.doCreateProject = function(req, res) {
 			console.log(err);
 			console.log(req.body.projectName);
 			console.log("Le projet créé est " + project);
-			res.redirect('/projets_liste');
+			fs.readFile(req.files.thumbnail.path, function(err, data){		//lit tout le contenu du fichier
+				var imageName = req.files.thumbnail.name;		//recuperation du nom de l'image
+				console.log("l'image uploade est " + imageName);
+				if(!imageName){
+					console.log("Il n'y a pas d'image");
+				}
+				else{
+					var directory = './uploads/pojects/' + req.body.mail;
+					var directoryExists = fs.existsSync(directory);
+					if(!directoryExists) fs.mkdirSync(directory);		//creation du repertoire de l'utilisateur, pourra contenir tous ses uploads
+					var newPath = './uploads/projects/logo_' + req.body.projectName + '.jpg';		//nvx chemin (pr l'instant ne gere pas les extensions)
+					fs.writeFile(newPath,data,function(err){		//ecrit les data dans le fichier newPath
+					console.log("L'enregistrement de l'image a fonctionne.");
+					});	
+				}
+			});
+			res.redirect('/projects_liste');
 		}else{
 			console.log(project);
 			res.redirect('/project/' + project._id);

@@ -78,13 +78,13 @@ exports.doCreateUser = function(req,res){	// fonction de traitement du formulair
 				var imageName = req.files.thumbnail.name;		//recuperation du nom de l'image
 				console.log("l'image uploade est " + imageName);
 				if(!imageName){
-					console.log("there was an error");
+					console.log("Il n'y a pas d'image");
 				}
 				else{
-					var directory = './uploads/' + req.body.mail;
+					var directory = './uploads/users/' + req.body.mail;
 					var directoryExists = fs.existsSync(directory);
 					if(!directoryExists) fs.mkdirSync(directory);		//creation du repertoire de l'utilisateur, pourra contenir tous ses uploads
-					var newPath = './uploads/' + req.body.mail + '/' + req.body.mail + '.jpg';		//nvx chemin (pr l'instant ne gere pas les extensions)
+					var newPath = './uploads/users/' + req.body.mail + '/' + req.body.mail + '.jpg';		//nvx chemin (pr l'instant ne gere pas les extensions)
 					fs.writeFile(newPath,data,function(err){		//ecrit les data dans le fichier newPath
 					console.log("L'enregistrement de l'image a fonctionne.");
 					});	

@@ -27,25 +27,30 @@ exports.index = function(req, res) {
 /*accueil non-connectée*/
 exports.index_default = function(req, res){ // appel de la page index lorsqu'on est déconnecté
 	console.log("une requete pr /");
-	res.render('index', function(err,html){	// 1er rendu de l'index
-		var data={
-		title: 'Accueil',
-		body: html
-		};
-	res.render('default', data); // 2nd rendu avec le layout correspondant au profil déconnecté appelé en callback
+	projectSchema.Project.find( function(err, project_list) {
+		console.log(project_list);
+		res.render('index', {projects:project_list}, function(err,html){	// 1er rendu de l'index
+			var data={
+			title: 'Accueil',
+			body: html
+			};
+			res.render('default', data); // 2nd rendu avec le layout correspondant au profil déconnecté appelé en callback
 		});
+	});
 };
 
 /*accueil connecté*/
 exports.index_connected = function(req, res){	// appel de la page index lorsqu'on est connecté
 	console.log("une requete pr /");
-	res.render('index', {user:req.session.user, userID: req.session.user._id}, function(err,html){	// on récupère les infos de l'utilisateur connecté et ouvre la page
-		var data_connected={
-		title: 'Accueil',
-		body: html,
-		user:req.session.user
-		};
-	res.render('connected', data_connected);	// 2nd rendu en appelant le layout correspondant au profil connecté appelé en callback
+	projectSchema.Project.find( function(err, project_list) {
+		res.render('index', {user:req.session.user, userID: req.session.user._id, projects:project_list}, function(err,html){	// on récupère les infos de l'utilisateur connecté et ouvre la page
+			var data_connected={
+			title: 'Accueil',
+			body: html,
+			user:req.session.user
+			};
+		res.render('connected', data_connected);	// 2nd rendu en appelant le layout correspondant au profil connecté appelé en callback
+			});
 		});
 };
 
@@ -93,9 +98,9 @@ exports.doLogout = function (req, res) {
 	RECHERCHE
 	*********	*/
 /*	Afficher la page recherche	*/
-exports.search_user = function(req, res) {
+exports.recherche = function(req, res) {
 	console.log("ouverture de la page recherche");
-	res.render('search_user', {users: req.users}, function(err, html){	//Les données de user sont dans la session
+	res.render('recherche', {users: req.users, projects: req.projects}, function(err, html){	//Les données de user sont dans la session
 		var data = {
 				title: "Recherche",
 				body: html
@@ -111,27 +116,8 @@ exports.search_user = function(req, res) {
 	console.log('req.projects '+req.projects);
 };
 
-// cette fonction n'est pas terminée, il faut récupérer le projet et l'afficher
-exports.search_project = function(req, res) {
-	console.log("ouverture de la page recherche");
-	res.render('search_project', {users: req.users, projects: req.projects}, function(err, html){	//Les données de user sont dans la session
-		var data = {
-				title: "Recherche",
-				body: html
-			};
-		var data_connected = {
-				title: "Recherche",
-				body: html,
-				user:req.session.user
-			};
-			if(req.session.loggedIn === true) {res.render('connected', data_connected);}		//S'il est loggé on rend connected
-			else {res.render('default', data);}
-		});
-	console.log('req.projects '+req.projects); 
-};
-
 /*	On vérifie qu'on a un projet recherché	*/
-exports.searchProject = function(req, res) {
+exports.rechercheProject = function(req, res) {
 	console.log("Page de recherche avec les projets : " + req.params.projectId);
 	if(req.params.projectId) {		//si on a bien un id en paramêtre dans l'url
 		projectSchema.Project.findById(req.params.projectId, function(err, projectListe) {	//On cherche le projet avec cet Id
@@ -140,7 +126,7 @@ exports.searchProject = function(req, res) {
 				res.redirect('/search?404=project');
 			}else {
 				console.log(projectListe);
-				res.render('search_project', {projects: projectListe}, function(err,html){	//on renvoie la page projet
+				res.render('recherche', {projects: projectListe}, function(err,html){	//on renvoie la page projet
 					var data={
 					title: "Recherche",
 					body: html
@@ -156,7 +142,7 @@ exports.searchProject = function(req, res) {
 				}
 		});
 	} else {			//Si on a pas d'id en paramêtre
-		res.redirect('/search_project');
+		res.redirect('/recherche');
 	}
 };
 

@@ -48,7 +48,7 @@ app.get('/index_connected',index.index_connected);
 app.get('/index_default', index.index_default);
 app.post('/doLogin', index.doLogin);			//Action de se connecter
 app.get('/doLogout', index.doLogout);	// Action pour se déconnecter
-app.get('/search_project',index.search_project);
+app.get('/search_project', index.search_project);
 app.get('/search_user',index.search_user);
 app.get('/search_project/:projectId',index.searchProject);
 
