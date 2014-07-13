@@ -48,20 +48,20 @@ app.get('/index_connected',index.index_connected);
 app.get('/index_default', index.index_default);
 app.post('/doLogin', index.doLogin);			//Action de se connecter
 app.get('/doLogout', index.doLogout);	// Action pour se déconnecter
-app.get('/recherche',index.recherche);
-app.get('/recherche/:projectId',index.rechercheProject);
+app.get('/search_project',index.search_project);
+app.get('/search_user',index.search_user);
+app.get('/search_project/:projectId',index.searchProject);
 
 
 
-//Routes/Projet.js
+//Routes/project.js
 app.get('/project/:id', project.project);	//Ouvrir un de ses projets à partir de son id
-app.get('/projets_liste',project.projets_liste);
-app.get('/projet_gatherer',project.projet_gatherer);
-app.get('/projet_gathering',project.projet_gathering);
-app.get('/project/byuser/:userid',project.byUser);	//Projet créé par un utilisateur (/:userid permet d'être utilisé avec req.params)
-app.post('/projets_liste', project.doCreateProject);
+app.get('/projects_liste',project.projects_liste);
+app.get('/project_gatherer',project.project_gatherer);
+app.get('/project_gathering',project.project_gathering);
+app.get('/project/byuser/:userid',project.byUser);	//project créé par un utilisateur (/:userid permet d'être utilisé avec req.params)
+app.post('/projects_liste', project.doCreateProject);
 app.post('/doSearchProject',project.doSearchProject);
-app.post('/doSearchProjectByCategory',project.doSearchProjectByCategory);
 app.get('/project/byId/:projectId', project.byProjectId);	//Afficher les projets par Id dans une liste
 app.get('/delete_projects',project.doDeleteAllProjects);
 
@@ -74,7 +74,6 @@ app.post('/traitement_formulaire', user.doCreateUser);	//Action de se créer un 
 app.get('/user/:id', user.user);
 app.post('/doSearchUser',user.doSearchUser);
 app.get('/delete_users',user.doDeleteAllUsers);
-app.post('/doSearchUserByCategory',user.doSearchUserByCategory);
 
 
 /*	**********

@@ -35,12 +35,10 @@
 /*	THEMES	*/						
 function showDetails(theme) {
 	played = $(".play").closest("ul").attr("id");
-	$("input[value="+played+"]").css('background', 'linear-gradient(to bottom, rgba(8,120,120,0.8), rgba(3,60,60,0.8))')	//on remet la couleur normale
-		.attr('name', '');	//on retire le name
-	$(".play").removeClass("play")		//On enlève la classe à ceux qui l'avaient
-		.css('background', 'linear-gradient(to bottom, rgba(8,120,120,0.8), rgba(3,60,60,0.8))');
-	$(theme).css('background','linear-gradient(to bottom, rgba(120,8,8,0.6), rgba(60,3,3,0.8))')	//On identifie la classe sélectionnée par une couleur
-		.attr('name', 'selectedTheme');	//on ajoute le name
+	$("input[value="+played+"]").css('background', 'linear-gradient(to bottom, rgba(8,120,120,0.8), rgba(3,60,60,0.8))');	//on remet la couleur normale
+	$(".play").removeClass("play");		//On enlève la classe à ceux qui l'avaient
+	
+	$(theme).css('background','linear-gradient(to bottom, rgba(120,8,8,0.6), rgba(60,3,3,0.8))');	//On identifie la classe sélectionnée par une couleur
 	var category = $(theme).attr("value");	//On récupère son nom
 	$("#"+category+" li").each(function (i) {			//On fait apparaitre les li les uns après les autres
         $(this).attr("style", "-webkit-animation-delay:" + i * 100 + "ms;"
@@ -55,34 +53,15 @@ function showDetails(theme) {
 
 /*	CATEGORY */
 function selectCategory(theme) {
-	if($(theme).attr("class")=="button play"){	//S'il était déjà selectionné
-		$(theme).css('background', 'linear-gradient(to bottom, rgba(8,120,120,0.8), rgba(3,60,60,0.8))')	//on remet la couleur normale
-			.removeClass("play")	//On retire sa classe
-			.attr('name', '');	//on r²etire le name
+	if($(theme).attr("class")==="play"){	//S'il était déjà selectionné
+		$(theme).css('background', 'linear-gradient(to bottom, rgba(8,120,120,0.8), rgba(3,60,60,0.8))');	//on remet la couleur normale
+		$(theme).removeClass("play");	//On retire sa classe
 	} else {
-		$(theme).css('background','linear-gradient(to bottom, rgba(120,8,8,0.6), rgba(60,3,3,0.8))')	//On identifie la classe sélectionnée par une couleur
-			.addClass("play")	//On ajoute la class play
-			.attr('name', 'selectedCategory');	//on ajoute le name
+		$(theme).css('background','linear-gradient(to bottom, rgba(120,8,8,0.6), rgba(60,3,3,0.8))');	//On identifie la classe sélectionnée par une couleur
+		$(theme).addClass("play");	//On ajoute la class play
 	}
 }
 	
-/*	RESULTATS	*/
-$(document).ready(function(){
-	$(".button").click(function(){	//détection du clic -> modifier le nom de l'id
-		$field = $(this);
-		$("#results").html('');	//on vide les resultats
-		$("#ajax-loader").remove();	//on retire le loader
-		$.ajax({
-			type: 'POST',	//méthode d'envoi
-			url: 'doSearchProjectByCategory',	//url du fichier de traitement
-			data: 'data='+$('input[name="selectedTheme"]').val()+$('input[name="selectedCategory"]').val(),	//données à envoyer
-			beforeSend: function(){	//traitement à faire avant l'envoi
-				//$field.after('<img src="blabla.gif" alt="loader" id="ajax-loader">');	//ajout d'une image indiquant le chargement
-			},
-			success: function(data){	//traitement JS à faire après l'envoi
-				$("#ajax-loader").remove();	//On enlève le loader
-				$("#results").html(data);	//affichage des résultats dans le bloc
-			}
-		});
-	});
-});
+	
+	
+	

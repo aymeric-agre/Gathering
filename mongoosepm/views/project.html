@@ -1,5 +1,5 @@
 <head>
-<link rel="stylesheet" href="/public/stylesheets/projet.css" />
+<link rel="stylesheet" href="/public/stylesheets/project.css" />
 </head>
 <html>
 	<div id="titre">
@@ -30,13 +30,13 @@
 			
 				<h3>Thèmes</h3>
 				<%for(var i=0; i<project.themes.length; i++){%>
-					<p><%=project.themes%></p>
+					<p><%=project.themes[i]%></p>
 				<% } %>
 			
 			
 				<h3>Recherche</h3>
 				<%for(var i=0; i<project.needs.length; i++){%>
-					<p><%=project.needs%></p>
+					<p><%=project.needs[i]%></p>
 				<% } %>
 
 		</div>
@@ -70,7 +70,7 @@
 	<script src="/public/javascripts/jquery/jquery.js"></script>
 	<script src="/public/javascripts/jquery/jquery-ui.js"></script>
 	<script src="/public/javascripts/tinymce/tinymce.min.js"></script>
-	<script src="/public/javascripts/projet.js"></script>
+	<script src="/public/javascripts/project.js"></script>
 	
 
 	

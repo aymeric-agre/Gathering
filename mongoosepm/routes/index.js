@@ -93,9 +93,9 @@ exports.doLogout = function (req, res) {
 	RECHERCHE
 	*********	*/
 /*	Afficher la page recherche	*/
-exports.recherche = function(req, res) {
+exports.search_user = function(req, res) {
 	console.log("ouverture de la page recherche");
-	res.render('recherche', function(err, html){	//Les données de user sont dans la session
+	res.render('search_user', {users: req.users}, function(err, html){	//Les données de user sont dans la session
 		var data = {
 				title: "Recherche",
 				body: html
@@ -107,11 +107,31 @@ exports.recherche = function(req, res) {
 			};
 			if(req.session.loggedIn === true) {res.render('connected', data_connected);}		//S'il est loggé on rend connected
 			else {res.render('default', data);}
-	});
+		});
+	console.log('req.projects '+req.projects);
+};
+
+// cette fonction n'est pas terminée, il faut récupérer le projet et l'afficher
+exports.search_project = function(req, res) {
+	console.log("ouverture de la page recherche");
+	res.render('search_project', {users: req.users, projects: req.projects}, function(err, html){	//Les données de user sont dans la session
+		var data = {
+				title: "Recherche",
+				body: html
+			};
+		var data_connected = {
+				title: "Recherche",
+				body: html,
+				user:req.session.user
+			};
+			if(req.session.loggedIn === true) {res.render('connected', data_connected);}		//S'il est loggé on rend connected
+			else {res.render('default', data);}
+		});
+	console.log('req.projects '+req.projects); 
 };
 
 /*	On vérifie qu'on a un projet recherché	*/
-exports.rechercheProject = function(req, res) {
+exports.searchProject = function(req, res) {
 	console.log("Page de recherche avec les projets : " + req.params.projectId);
 	if(req.params.projectId) {		//si on a bien un id en paramêtre dans l'url
 		projectSchema.Project.findById(req.params.projectId, function(err, projectListe) {	//On cherche le projet avec cet Id
@@ -120,7 +140,7 @@ exports.rechercheProject = function(req, res) {
 				res.redirect('/search?404=project');
 			}else {
 				console.log(projectListe);
-				res.render('recherche', {projects: projectListe}, function(err,html){	//on renvoie la page projet
+				res.render('search_project', {projects: projectListe}, function(err,html){	//on renvoie la page projet
 					var data={
 					title: "Recherche",
 					body: html
@@ -136,7 +156,7 @@ exports.rechercheProject = function(req, res) {
 				}
 		});
 	} else {			//Si on a pas d'id en paramêtre
-		res.redirect('/recherche');
+		res.redirect('/search_project');
 	}
 };
 

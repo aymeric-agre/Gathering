@@ -20,9 +20,9 @@ function isLogged() {
 
 
 /* Projet Gathering */
-exports.projet_gathering = function(req, res){
+exports.project_gathering = function(req, res){
 	console.log("une requete pr projet_gathering");
-	res.render('projet_gathering', function(err,html){
+	res.render('project_gathering', function(err,html){
 		var data={
 		title: 'Gathering',
 		body: html
@@ -38,9 +38,9 @@ exports.projet_gathering = function(req, res){
 };
 
 /*	Projet PE	*/
-exports.projet_gatherer = function(req, res){
-	console.log("une requete pr projets_gatherer");
-	res.render('projet_gatherer', function(err,html){
+exports.project_gatherer = function(req, res){
+	console.log("une requete pr projects_gatherer");
+	res.render('project_gatherer', function(err,html){
 		var data={
 		title: 'Gatherer',
 		body: html
@@ -61,9 +61,9 @@ exports.projet_gatherer = function(req, res){
 	*************	*/
 	
 /* Page de la liste de projets */
-exports.projets_liste = function(req, res){
-	console.log("une requete pr projets_liste");
-	res.render('projets_liste', {user: req.session.user}, function(err,html){
+exports.projects_liste = function(req, res){
+	console.log("une requete pr projects_liste");
+	res.render('projects_liste', {user: req.session.user}, function(err,html){
 		var data={
 		title: 'Mes projets',		
 		body: html
@@ -80,7 +80,7 @@ exports.projets_liste = function(req, res){
 	
 /*	Récupérer les projets de l'utilisateur	*/
 exports.byUser = function (req, res) {
-	console.log("récupérer les projets de l'utilisateur");
+	console.log("récupérer les projects de l'utilisateur");
 	if (req.params.userid) {											//Si on a un userid
 		projectSchema.Project.findByUserID(req.params.userid, function(err, projets) {	//on utilise la méthode créée dans Projet.js
 				if(!err) {
@@ -148,7 +148,7 @@ exports.doCreateProject = function(req, res) {
 	********************	*/
 /*	Ouvrir un de ses projets à partir de son id	*/
 exports.project = function(req,res) {
-	console.log("Cherche le projet_id : " + data);
+	console.log("Cherche le projet_id : " + req.params.id);
 	if(req.params.id) {		//si on a bien un id en paramêtre dans l'url
 		projectSchema.Project.findById(req.params.id, function(err, projectInfo) {	//On cherche le projet avec cet Id
 			if(err)	{
@@ -156,7 +156,7 @@ exports.project = function(req,res) {
 				res.redirect('/user?404=project');
 			}else {
 				console.log(projectInfo);
-				res.render('projet', {project: projectInfo}, function(err,html){	//on renvoie la page projet
+				res.render('project', {project: projectInfo}, function(err,html){	//on renvoie la page projet
 					var data={
 					title: projectInfo.projectName,
 					body: html
@@ -187,33 +187,16 @@ exports.doSearchProject = function(req, res) {
 			}else{
 				console.log(projectNom);
 				if(projectNom[0] != null){				
-					projects = projectNom[0].id;	//On enregiste l'id du premier projetpour l'instant pour l'envoyer dans le res.render 'recherche'
-					res.redirect('/project/'+projects);
+					req.projects = projectNom[0].id;	//On enregiste l'id du premier projetpour l'instant pour l'envoyer dans le res.render 'recherche'
+					res.redirect('/project/'+req.projects);
 				}else{
-					res.redirect('/recherche/?404=project');
+					res.redirect('/search_project/?404=user');
 				}
 			}
 		});
 	}else{
-		res.redirect('/recherche');
+		res.redirect('/search_project');
 	}
-};
-
-/* Rechercher un projet à partir de ses catégories 	*/
-exports.doSearchProjectByCategory = function (req, res){
-	console.log("Chercher un projet avec les caractéristiques :"+req.selectedTheme);
-	$result = projectSchema.Project.find({ themes: req.body.selectedTheme }, function(err, projects){
-		if(err){
-			console.log(err);
-		}else{
-			console.log(projects);
-			if(projects[0]!=null){
-				return('<h3 style="text-align:center; margin:10px 0;">Pas de r&eacute;sultats pour cette recherche</h3>');
-			}else{
-				return('<p>quelque chose en ejs</p>');
-			}
-		}
-	});
 };
 /* ******************************* 
    SUPPRIMER TOUS LES UTILISATEURS
