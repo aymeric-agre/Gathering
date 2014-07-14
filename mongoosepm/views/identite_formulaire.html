@@ -28,10 +28,15 @@
 			<label for="mail">Adresse e-mail</label><input type="text" name="mail" id="mail"/>
 			<span class="help">Votre e-mail vous servira à vous connecter et ne sera pas rendu visible sans votre autorisation.</span>
 			<span class="verification" id="mail_verification"></span><br/><br/>
-			<label for="password">Mot de passe</label><input type="password" name="password" id="password"/>
-			<span class="help">Votre mot de passe doit comporter des chiffres et des lettres et faire un minimum de 8 charactères.</span><br/><br/>
+			<label for="password">Mot de passe</label><input type="password" name="password" id="password" onkeyup="verifPassLength()"/>
+			<span class="help">Votre mot de passe doit comporter au minimum 4 caractères.</span>
+			<ul id="verificationPassword">
+				<li><canvas id="passToughnessCanvas"></canvas></li>
+				<li><span class="verification" id="password_verification"></span></li>
+			</ul><br/><br/>
 			<label for="confirm_password">Confirmez votre mot de passe</label><input type="password" name="confirm_password" id="confirm_password"/>
-			<span class="help">Réécrivez votre mot de passe.</span><br/><br/>
+			<span class="help">Réécrivez votre mot de passe.</span>
+			<span class="verification" id="confirmedPassword_verification"></span><br/><br/>
 			<label for="userLastName">Nom</label><input type="text" name="userLastName" id="userLastName"/>
 			<span class="help">Écrivez votre (vos) noms de famille.</span><br/><br/>
 			<label for="userFirstName">Prénom</label><input type="text" name="userFirstName" id="userFirstName"/>

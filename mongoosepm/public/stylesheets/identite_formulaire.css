@@ -49,8 +49,23 @@ legend {
  
 .verification{
 	position: relative;
-	margin-left: 20px;
+	font-size: 0.8em;
 	color: red;
+}
+
+ul{
+	list-style-type: none;
+}
+#verificationPassword{
+	display: inline-block;
+	position: relative;
+	bottom: 5px;
+}
+
+#passToughnessCanvas{
+	width: 200px;
+	height: 10px;
+	color: #969696;
 }
 
  /* Apparition des bulles */
