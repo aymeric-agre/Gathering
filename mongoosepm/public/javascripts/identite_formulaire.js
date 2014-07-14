@@ -93,19 +93,24 @@ var tailleFinale = function(origineW, origineH, maxW, maxH){
 
 var allIsOk = 1;	//Variable pour vérifier que le formulaire est conforme
 var mail_verif = 1;	//Variable de vérification du mail (de base 1 pour refuser l'envoi du formulaire)
-var pass_verif = 1;	//Variable de vérification du mot de passe (de base 1 pour refuser l'envoi du formulaire)
 var passLength_verif = 1;	//Variable de vérification de la longueur du mdp (de base 1)
+var pass_verif = 1;	//Variable de vérification du mot de passe (de base 1 pour refuser l'envoi du formulaire)
 
 //vérification mail
 $(function(){
 	$('#mail').focusout(function(){
-		var mailExplosed = mail.value.split('@')[1];
-		if(mailExplosed.search(".ec-lyon.") < 0 && mailExplosed.search(".em-lyon.") < 0){
+		if(mail.value.search("@")<0){
 			document.getElementById('mail_verification').innerHTML = "Cet email n\'est pas valide.";
-			//mail_verif++;	//ceci permet d'éviter que le mail soit valide puis modifié
+			mail_verif++;	//ceci permet d'éviter que le mail soit valide puis modifié
 		}else{
-			document.getElementById('mail_verification').innerHTML = "";
-			mail_verif = 0;	//le test est un succès, on met la variable de vérification à 0
+			var mailExplosed = mail.value.split('@');
+			if(mailExplosed[1].search("ec-lyon.") < 0 && mailExplosed[1].search("em-lyon.") < 0){
+				document.getElementById('mail_verification').innerHTML = "Cet email n\'est pas valide.";
+				mail_verif++;	//ceci permet d'éviter que le mail soit valide puis modifié
+			}else{
+				document.getElementById('mail_verification').innerHTML = "";
+				mail_verif = 0;	//le test est un succès, on met la variable de vérification à 0
+			}
 		}
 	});
 });
@@ -154,6 +159,20 @@ $(function(){
 		}
 	});
 });
+
+//Proposition des dates
+function dayProp(day){
+	
+};
+
+function monthProp(month){
+
+};
+
+function yearProp(year){
+
+};
+
 /*
 //vérification que les champs de données personnelles sont bien remplis
 function verifForm(){

@@ -32,6 +32,24 @@ legend {
 	padding-left : 10px;
 }
 
+fieldset {
+	width: 600px;
+	margin: 10px;
+	background : linear-gradient(to bottom, rgba(210,210,210,1), rgba(255,255,255,1));
+}
+
+#donnees_perso label {
+	display : inline-block;
+	padding : 0px 3px;
+	background : linear-gradient(to bottom, rgba(80,80,80,1), rgba(40,40,40, 1));
+	color : rgba(240, 240, 240, 1);
+	border-radius : 3px 0px 0px 3px;
+}
+
+#donnees_perso input {
+	border-radius : 0px 3px 3px 0px;
+}
+
 /* Positionnement des bulles d'aide */
 .help{
 	position : absolute;
@@ -70,30 +88,48 @@ ul{
 	color: #969696;
 }
 
+/*Date de naissance*/
+#birthDateBlock label{
+	position: relative;
+	top: 16px;
+}
+
+#birthTable{
+	display: inline-block;
+	vertical-align: top;
+	position: relative;
+}
+
+#birthTable th{
+	text-align: center;
+	font-size: 0.9em;
+	height: 15px;
+}
+
+#birthDateDay{
+	width: 40px;
+	height: 14px;
+}
+
+#birthDateMonth{
+	width: 60px;
+	height: 14px;
+}
+
+#birthDateYear{
+	width: 50px;
+	height: 14px;
+}
+
+#birthDate{
+	display: none;
+}
+
  /* Apparition des bulles */
  #formulaire  input:hover + .help, #formulaire textarea:hover + .help{
     opacity : 1;
 	transform: scale(1);
 	z-index: 5;
-}
-
-fieldset {
-	width: 600px;
-	margin: 10px;
-	background : linear-gradient(to bottom, rgba(210,210,210,1), rgba(255,255,255,1));
-}
-
-#donnees_perso label {
-	display : inline-block;
-	padding : 0px 3px;
-	background : linear-gradient(to bottom, rgba(80,80,80,1), rgba(40,40,40, 1));
-	color : rgba(240, 240, 240, 1);
-	border-radius : 3px 0px 0px 3px;
-}
-
-#donnees_perso input {
-	display : inline-block;
-	border-radius : 0px 3px 3px 0px;
 }
 
 #submit {

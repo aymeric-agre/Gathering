@@ -40,9 +40,23 @@
 			<label for="userLastName">Nom</label><input type="text" name="userLastName" id="userLastName"/>
 			<span class="help">Écrivez votre (vos) noms de famille.</span><br/><br/>
 			<label for="userFirstName">Prénom</label><input type="text" name="userFirstName" id="userFirstName"/>
-			<span class="help">Écrivez votre (vos) prénoms.</span><br/><br/>
-			<label for="birthDate">Date de naissance</label><input type="date" name="birthDate" id="birthDate"/>
-			<span class="help">Veuillez renseigner votre date de naissance au format: mm/jj/aaaa.</span><br/><br/>
+			<span class="help">Écrivez votre (vos) prénoms.</span><br/>
+			<div id="birthDateBlock">
+				<label for="birthDateDay">Date de naissance</label>
+				<table id="birthTable">
+					<tr>
+						<th>Jour</th>
+						<th>Mois</th>
+						<th>Année</th>
+					</tr>
+					<tr>
+						<td><input type="date" name="birthDateDay" id="birthDateDay" onkeypress="dayProp($(this))"/></td>
+						<td><input type="date" name="birthDateMonth" id="birthDateMonth" onkeypress="monthProp($(this))"/></td>
+						<td><input type="date" name="birthDateYear" id="birthDateYear" onkeypress="yearProp($(this))"/></td>
+					</tr>
+				</table>	
+				<input type="date" name="birthDate" id="birthDate"/>
+			</div>
 			<label for="country">Pays</label><input type="text" name="country" id="country"/>
 			<span class="help">Veuillez renseigner votre pays de résidence.</span><br/><br/>
 			<label for="area">Région</label><input type="text" name="area" id="area"/>
