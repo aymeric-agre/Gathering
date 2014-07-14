@@ -56,15 +56,17 @@ legend {
 ul{
 	list-style-type: none;
 }
+
 #verificationPassword{
 	display: inline-block;
 	position: relative;
-	bottom: 5px;
+	top: 8px;
+	opacity: 0;
 }
 
 #passToughnessCanvas{
 	width: 200px;
-	height: 10px;
+	height: 8px;
 	color: #969696;
 }
 

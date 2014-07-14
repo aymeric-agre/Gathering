@@ -112,6 +112,7 @@ $(function(){
 
 //Vérification que le mot de passe soit de longueur suffisante
 function verifPassLength(){
+	document.getElementById('verificationPassword').style.opacity = "1";
 	var x = password.value.length;
 	var canvas = document.getElementById('passToughnessCanvas');
 	var context = canvas.getContext('2d');

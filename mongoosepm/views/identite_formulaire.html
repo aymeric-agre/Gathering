@@ -27,12 +27,12 @@
 			<legend>Données personnelles</legend>
 			<label for="mail">Adresse e-mail</label><input type="text" name="mail" id="mail"/>
 			<span class="help">Votre e-mail vous servira à vous connecter et ne sera pas rendu visible sans votre autorisation.</span>
-			<span class="verification" id="mail_verification"></span><br/><br/>
+			<span class="verification" id="mail_verification"></span><br/>
 			<label for="password">Mot de passe</label><input type="password" name="password" id="password" onkeyup="verifPassLength()"/>
 			<span class="help">Votre mot de passe doit comporter au minimum 4 caractères.</span>
 			<ul id="verificationPassword">
 				<li><canvas id="passToughnessCanvas"></canvas></li>
-				<li><span class="verification" id="password_verification"></span></li>
+				<li><span class="verification" id="password_verification">verification du mot de passe</span></li>
 			</ul><br/><br/>
 			<label for="confirm_password">Confirmez votre mot de passe</label><input type="password" name="confirm_password" id="confirm_password"/>
 			<span class="help">Réécrivez votre mot de passe.</span>
