@@ -45,4 +45,5 @@ projectSchema.statics.findByProjectID = function (projectId, callback) {
 		{sort: 'modifiedOn'},	//On les tri par date de modification
 		callback);
 };
+
 exports.Project = mongooseProject.model('Project', projectSchema);	// exportation du modèle pour pouvoir l'utiliser

@@ -49,7 +49,7 @@ exports.index_connected = function(req, res){	// appel de la page index lorsqu'o
 			body: html,
 			user:req.session.user
 			};
-		res.render('connected', data_connected);	// 2nd rendu en appelant le layout correspondant au profil connecté appelé en callback
+			res.render('connected', data_connected);	// 2nd rendu en appelant le layout correspondant au profil connecté appelé en callback
 			});
 		});
 };

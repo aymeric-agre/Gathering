@@ -26,7 +26,7 @@
 								
 <div id="creation_projet">
 	<input class="output" id="input-projectName" name="projectName"></input>
-	<input class="input-projectName" placeholder="Mon projet"></input>
+	<input class="input-projectName" placeholder="Nommez votre projet"></input>
 	
 	<div id="menu">
 		<input class="bouton active" type="button" value='presentation' onclick='afficher(this, "presentation")'/>
@@ -35,9 +35,9 @@
 		
 	<aside>
 		<div class="case">
-			<canvas id="mon_canvas" width="250" height="80"> 
-			<script src="/public/javascripts/canvas.js"></script>
-			</canvas>
+			<div id="photo">
+				<label for="thumbnail">Logo </label><input type="file" id="thumbnail" name="thumbnail" enctype="multipart/form-data" />
+			</div>
 			
 				
 					<h3 class="new" id="new-members">L'Équipe</h3>				

@@ -99,6 +99,9 @@ ul[data-liffect="slideBottom"].play li {
 	 box-shadow: 0 1px 0 rgba( 255, 255, 255, 0.4);
 }
 
+#creation_projet .input-projectName{
+	border : dotted 0.5px;
+}
 
 /* Page*/
 
