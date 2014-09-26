@@ -1,0 +1,75 @@
+/*	***************
+	VIEWS-ANIMATION
+	***************	*/
+	
+
+		/*	REGLES D'ANIMATION	*/
+
+/*	Animation entre les pages	*/
+.view.ng-enter {	
+	z-index: 10;
+	-webkit-animation:slideInRight 0.4s both 0.1s ease-in;
+	-moz-animation:slideInRight 0.4s both 0.1s ease-in;
+	animation:slideInRight 0.4s both 0.1s ease-in;    
+}
+
+
+.view.ng-leave {
+	z-index : 20;
+	-webkit-animation:scaleDown 0.4s both ease-in;
+	-moz-animation:scaleDown 0.4s both ease-in;
+	animation:scaleDown 0.4s both ease-in;   
+}
+
+/* Aimation lors de la conneion/déconnexion	*/
+
+.connexion-page.ng-enter {	
+	z-index: 10;
+	-webkit-animation:showUp 0.4s both 0.1s ease-in;
+	-moz-animation:showUp 0.4s both 0.1s ease-in;
+	animation:showUp 0.4s both 0.1s ease-in;    
+}
+
+
+.connexion-page.ng-leave {
+	z-index : 20;
+	-webkit-animation:scaleDown 0.4s both ease-in;
+	-moz-animation:scaleDown 0.4s both ease-in;
+	animation:scaleDown 0.4s both ease-in;   
+}
+	
+
+
+		/*	ANIMATIONS TOUTES FAITES	*/
+	
+/* Animation de sortie ----------------------------------------- */
+
+
+/* scale down */
+@keyframes scaleDown {
+	from 		{ opacity: 1; -webkit-transform: scale(1); }
+	to 			{ opacity: .2; -webkit-transform: scale(0.95); }
+}
+@-moz-keyframes scaleDown {
+	from 		{ opacity: 1; -moz-transform: scale(1); }
+	to 			{ opacity: .2; -moz-transform: scale(0.95); }
+}
+@-webkit-keyframes scaleDown {
+	from 		{ opacity: 1; -webkit-transform: scale(1); }
+	to 			{ opacity: .2; -webkit-transform: scale(0.95); }
+}
+
+/* Animation d'entrée --------------------------------------- */
+
+
+/*	Juste apparaitre	*/
+@keyframes showUp {
+	from 	{ opacity :0; }
+	to 		{ opacity :1; }
+}
+@-moz-keyframes slideOutLeft {	
+	to 		{ opacity :1; }
+}
+@-webkit-keyframes slideOutLeft {
+	to 		{ opacity :1; }
+}

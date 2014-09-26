@@ -1,0 +1,69 @@
+<head>
+<link rel="stylesheet" href="/public/assets/stylesheets/project.css" />
+</head>
+<html>
+	<div id="titre">
+	<h1 id="titre_projet">{{project.projectName}}</h1>
+	<button id="work" type="button"></button>
+	</div>
+	
+	<div id="menu">
+		<input class="bouton active" type="button" value='presentation' onclick='afficher(this, "presentation")'/>	<!-- actionne "afficher" de js quand on clique dessus -->			
+	</div>
+		
+	<aside>
+		<div class="case">
+			<img src="/uploads/projects/logo_{{ project.projectName }}.jpg" title="{{ project.projectName }}" id="photo" /> </br>
+			
+				
+				<h3>L'Équipe</h3>
+					<div ng-repeat="member in members">
+						<p><a href="/identite">{{project.member}}<span></span></a></p>
+					</div>
+				
+				<h3>Ecoles</h3>
+					<div ng-repeat="group in groups">
+						<p><a href="">'{{project.group}}<span></a></span></p>
+					</div>	
+				
+				<h3>Thèmes</h3>
+					<div ng-repeat="theme in themes">
+						<p>{{project.theme}}</p>
+					</div>
+		
+				<h3>Recherche</h3>
+					<div ng-repeat="need in needs">
+						<p>{{project.need}}</p>
+					</div>
+
+		</div>
+
+	</aside>
+	
+	<article id="presentation">
+		<form method="post" class="form" id="form-presentation">
+			<textarea class="textarea" id='textarea-presentation' name='textarea-presentation'>
+			</textarea>
+		</form>
+		<div class="contenu" id="contenu-presentation">
+		[[project.presentation}}
+		</div>
+	
+		<form method="post" class="form" id="form-presentation">
+			<textarea class="textarea" id='textarea-presentation' name='textarea-presentation'>
+			</textarea>
+		</form>
+		<div class="contenu" id="contenu-presentation">
+		
+		
+		
+		</div>
+		
+	</article>	
+	
+	<script src="/public/javascripts/lib/tinymce/tinymce.min.js"></script>
+	<script src="/public/javascripts/view/project.js"></script>
+	
+
+	
+</html>

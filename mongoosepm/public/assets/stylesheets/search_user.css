@@ -1,0 +1,144 @@
+	/*	MODULE DE RECHERCHE	*/
+
+/*	Fond	*/
+article{
+	width: 880px;
+	height : 430px;
+	margin : 20px;
+	border : solid 1px;
+	background: linear-gradient(to bottom, rgba(80, 80, 80, 0.6), rgba(40, 40, 40, 0.3));
+	border-radius: 10px;
+	box-shadow: 0px 0px 10px 1px rgba(119, 119, 119, 0.6);	
+}
+
+
+
+article h1 {
+	margin : auto;
+	padding-top: 10px;
+	text-align: center;
+}
+
+article h2 {
+	font-size : 1em;
+}
+
+article input{
+	text-align: center;
+	font-size : 1em;
+	margin-top: 10px;
+	padding: 5px 0px;
+	border-radius: 8px;
+	background: linear-gradient(to bottom, rgba(8,120,120,0.8), rgba(3,60,60,0.8));
+	box-shadow: 5px;
+	color: rgba(250,250,250,0.8);
+} 
+
+article input:hover {
+	cursor : pointer;
+	background: linear-gradient(to bottom, rgba(8,80,80,0.8), rgba(3,40,40,0.8));
+	color: white;
+}
+
+ul {
+	list-style-type:none;
+	padding : 0px;
+}
+
+/*	Catégories // sous-catégories	*/
+
+#theme li {
+	display : inline;
+}
+
+/*	Effet d'entrée	*/
+ul.category li {
+	display : none;
+    opacity: 0;
+    position: relative;
+}
+
+ul.category input {
+	width: 160px;
+	
+}
+
+ul.play li {
+	display : inline;
+	background:linear-gradient(to bottom, rgba(8,120,120,0.8), rgba(3,60,60,0.8));
+    -webkit-animation: slideBottom 1000ms ease both; 
+    -moz-animation: slideBottom 1000ms ease both; 
+    -o-animation: slideBottom 1000ms ease both; 
+    animation: slideBottom 1000ms ease both; 
+}
+
+@-webkit-keyframes slideBottom {
+    0% { opacity: 0; top: 30px; }
+    100% { opacity: 1; top: 0; }
+}
+
+@-moz-keyframes slideBottom {
+    0% { opacity: 0; top: 30px; }
+    100% { opacity: 1; top: 0; }
+}
+
+@-o-keyframes slideBottom {
+    0% { opacity: 0; top: 30px; }
+    100% { opacity: 1; top: 0; }
+}
+
+@keyframes slideBottom {
+    0% { opacity: 0; top: 30px; }
+    100% { opacity: 1; top: 0; }
+}
+
+/*fiche identité*/
+
+
+.fiche {
+	display : block;
+	width: 90%;
+	height : 120px;
+	margin : auto;
+	margin-bottom:10px;
+	border : solid 1px;
+	box-shadow: 0px 0px 10px 1px rgba(119, 119, 119, 0.4);
+	background: rgba(200, 200, 200, 0.3);
+	position:relative;
+	z-index:1;
+	transform: all 150ms;
+}
+
+.fiche:hover {
+	transform: scale(1.02);
+	padding:10px 5px;
+	background: rgba(180, 180, 180, 0.9);
+	position:relative;
+	z-index:2;
+	margin-bottom:-10px;
+	margin-top:-20px;
+	transition: all 200ms ease;
+}
+
+.fiche .photo {
+	display:inline-block;
+	margin:20px 20px 20px 30px;
+	border:solid 2px;
+	
+}
+
+.fiche ul {
+	display:inline-block;
+	margin: 15px 20px 15px 90px;
+}
+
+.fiche li {
+	margin :  0px 0px 0px 10px;
+}
+
+
+
+
+
+
+

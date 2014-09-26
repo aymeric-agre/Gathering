@@ -1,0 +1,317 @@
+/*	Animation switch page formulaire	*/
+
+/* slide out to left */
+@keyframes slideOutLeft {
+	from	{ transform: translateX(0); opacity: 1;}
+	to 		{ transform: translateX(-10%); opacity: 0; }
+}
+@-moz-keyframes slideOutLeft {	
+	from	{ -moz-transform: translateX(0); opacity: 1;}
+	to 		{ -moz-transform: translateX(-10%); opacity: 0; }
+}
+@-webkit-keyframes slideOutLeft {
+	from	{ -webkit-transform: translateX(0); opacity: 1;}
+	to 		{ -webkit-transform: translateX(-10%); opacity: 0;}
+}
+/* slide in from the right */
+@keyframes slideInRight {
+	from 	{ transform:translateX(10%); opacity : 0}
+	to 		{ transform: translateX(0); opacity : 1}
+}
+@-moz-keyframes slideInRight {
+	from 	{ -moz-transform:translateX(10%); opacity : 0 }
+	to 		{ -moz-transform: translateX(0); opacity : 1 }
+}
+@-webkit-keyframes slideInRight {
+	from 	{ -webkit-transform:translateX(10%); opacity : 0}
+	to 		{ -webkit-transform: translateX(0); opacity : 1 }
+}
+
+.switch-form.ng-enter {	
+	-webkit-animation:slideInRight 0.4s both 0.3s ease-in;
+	-moz-animation:slideInRight 0.4s both 0.3s ease-in;
+	animation:slideInRight 0.4s both 0.3s ease-in;  
+}
+
+.switch-form.ng-leave {	
+	-webkit-animation:slideOutLeft 0.4s  ease-in;
+	-moz-animation:slideOutLeft 0.4s  ease-in;
+	animation:slideOutLeft 0.4s ease-in;  
+}
+
+	/*	BARRE D'AVANCEMENT	*/
+.etape {
+	width : 25%;
+	display : inline-block;
+	text-align : center;
+	font-size : 1.5em;
+	margin-bottom : 5px;
+	padding:.1em .2em;
+	cursor : pointer;
+	-moz-box-sizing:border-box;
+	box-sizing:border-box;
+	-webkit-transition:width .3s,right .3s;
+		-moz-transition:width .3s,right .3s;
+		-o-transition:width .3s,right .3s;
+		transition:width .3s,right .3s;
+}
+
+.selected {
+	color : #b01600;
+	-webkit-transition:all .3s ease;
+		-moz-transition:all .3s ease;
+		-o-transition:all .3s ease;
+		transition:all .3s ease;
+}
+
+.etape:nth-child(1):hover ~ hr  {
+	margin-left :0%;
+	opacity : 1;
+}
+
+.etape:nth-child(2):hover ~ hr{
+	margin-left :25%;
+	opacity : 1;
+}
+
+.etape:nth-child(3):hover ~ hr {
+	margin-left :50%;
+	opacity : 1;
+}
+
+.etape:nth-child(4):hover ~ hr {
+	margin-left :75%;
+	opacity : 1;
+}
+
+hr {
+	height: .25em;
+	width: 25%;
+	margin: 0; 
+	background:  #b01600;
+	opacity : 0;
+	border: none;
+	transition: .3s ease-in-out;
+}
+
+
+	/*	FORMULAIRE	*/
+.switch-form {
+	background : rgba(130, 150, 150, 0.8);
+	margin-top : 50px;
+	padding : 30px 0;
+	border-radius : 10px;
+	-webkit-box-shadow: 0px 0px 5px 0px rgba(255, 255, 255, 1);
+	-moz-box-shadow:    0px 0px 5px 0px rgba(255, 255, 255, 1);
+	box-shadow:         0px 0px 5px 0px rgba(255, 255, 255, 1);
+}
+	
+.switch-form input {
+	display : inline-block;
+	border : none;
+	outline-color: #ea8206;
+	width : 70%;
+	height : 40px;
+	margin : 10px 0px;
+	padding : 1em;
+	font-size: 1.2em;
+	background : rgba(240, 240, 240, 0.3);
+	-webkit-box-shadow: 0px 0px 2px 0px rgba(255, 255, 255, 1);
+	-moz-box-shadow:    0px 0px 2px 0px rgba(255, 255, 255, 1);
+	box-shadow:         0px 0px 2px 0px rgba(255, 255, 255, 1);
+} 
+
+.switch-form ::-webkit-input-placeholder { color:#fff; font-size: 1.2em;}
+.switch-form ::-moz-placeholder { color:#fff; font-size: 1.2em; } /* firefox 19+ */
+.switch-form :-ms-input-placeholder { color:#fff; font-size: 1.2em; } /* ie */
+.switch-form input:-moz-placeholder { color:#fff; font-size: 1.2em;}
+
+.switch-form input:hover, .switch input:active, .switch input:focus{
+	-webkit-box-shadow: 0px 0px 6px 0px #ea8206;
+		-moz-box-shadow:    0px 0px 6px 0px #ea8206;
+		box-shadow:         0px 0px 6px 0px #ea8206;
+}
+
+.date-button{
+	display : inline-block;
+	height : 40px;
+	width : 40px;
+}
+
+/*	fleches	*/
+.svg-wrap {
+	display:none;
+}
+
+nav a svg {
+	display: block;
+	margin: 0 auto;
+	padding: 0;
+}
+
+nav a.prev {
+	left: 0;
+	
+}
+
+nav a.next {
+	right: 0;
+}
+
+.nav-circlepop a {
+	margin: 0 30px;
+	width: 50px;
+	height: 50px;
+}
+
+.nav-circlepop a::before {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	border-radius: 50%;
+	background: #fff;
+	content: '';
+	opacity: 0;
+	-moz-transition: -moz-transform 0.3s, opacity 0.3s;
+		-webkit-transition: -webkit-transform 0.3s, opacity 0.3s;
+		transition: transform 0.3s, opacity 0.3s;
+	-moz-transform: scale(0.9);
+		-webkit-transform: scale(0.9);
+		transform: scale(0.9);
+}
+
+.nav-circlepop .icon-wrap {
+	position: relative;
+	display: block;
+	margin: 10%;
+	width: 80%;
+	height: 80%;
+}
+
+.nav-circlepop a.next .icon-wrap {
+	-moz-transform: rotate(180deg);	/* La fleche est dans l'autre sens*/
+		-webkit-transform: rotate(180deg);	/* La fleche est dans l'autre sens*/
+		transform: rotate(180deg);
+}
+
+.nav-circlepop .icon-wrap::before, .nav-circlepop .icon-wrap::after {
+	position: absolute;
+	left: 25%;
+	width: 3px;
+	height: 50%;
+	background: #fff;
+	content: '';	/*Bas (after) et haut (before) de la fleche*/
+	-moz-transition: -moz-transform 0.3s, background-color 0.3s;
+		-webkit-transition: -webkit-transform 0.3s, background-color 0.3s;
+		transition: transform 0.3s, background-color 0.3s;
+	-moz-backface-visibility: hidden;
+		-webkit-backface-visibility: hidden;
+		backface-visibility: hidden;
+}
+
+.nav-circlepop .icon-wrap::before {
+	-moz-transform: translateX(-50%) rotate(30deg);
+		-webkit-transform: translateX(-50%) rotate(30deg);
+		transform: translateX(-50%) rotate(30deg);
+	-moz-transform-origin: 0 100%;
+		-webkit-transform-origin: 0 100%;
+		transform-origin: 0 100%;
+}
+
+.nav-circlepop .icon-wrap::after {
+	top: 50%;
+	-moz-transform: translateX(-50%) rotate(-30deg);
+		-webkit-transform: translateX(-50%) rotate(-30deg);
+		transform: translateX(-50%) rotate(-30deg);
+	-moz-transform-origin: 0 0;
+		-webkit-transform-origin: 0 0;
+		transform-origin: 0 0;
+}
+
+.nav-circlepop a:hover::before {
+	opacity: 0.8;
+	-moz-transform: scale(0.6);
+		-webkit-transform: scale(0.6);
+		transform: scale(0.6);
+}
+
+.nav-circlepop .icon-wrap:hover::before, .nav-circlepop .icon-wrap:hover::after {
+	background :  rgba(130, 150, 150, 0.8);
+}
+
+/*	***********
+	COMPETENCES
+	***********	*/
+.competences-container i::after{
+	content : "\2713";
+	font-size : 3em;
+	
+}
+
+.competences-container i {
+	display : inline-block;
+	width : 15%;
+	margin : 0 5%;
+	padding-left : 2%;
+	border-radius : 50%;
+	cursor : pointer;
+	color:white;
+}
+
+.competences-container i:hover {
+	color:green;
+	transform : scale(1.1);
+		-moz-transform : scale(1.1);
+		-webkit-transform : scale(1.1);
+	transition : all 0.2s ease;
+}
+	
+.all-data {
+	border : none;
+	outline-color: #ea8206;
+	margin : 10px 0px;
+	padding : 1em;
+	font-size: 1.2em;
+	background : rgba(240, 240, 240, 0.3);
+	min-height : 60px;
+}
+
+.all-data li {
+	display : block;
+	margin : 1em auto;
+	width : 80%;
+	background : #f8bc74;
+	color : white;
+	text-align : center;
+}
+
+.all-data span {
+	display : inline-block;
+}
+
+.remove-data {
+	width : 20%;
+	cursor : pointer;
+}
+
+/*	Submit	*/
+#submit_button {
+	display :block;
+	margin :auto;
+	width : 80%;
+	height : 3em;
+	border : solid 3px rgba(130, 150, 150, 0.8);
+	border-radius : 50px;
+	background : rgba(180, 200, 200, 1);
+	text-align : center;
+	font-size : 2em;
+	transition : all 0.5s ease;
+}
+
+#submit_button:hover {
+	width : 100%;
+	background : rgba(130, 150, 150, 0.8);
+	color : white;
+}

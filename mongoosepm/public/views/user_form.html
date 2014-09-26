@@ -1,0 +1,154 @@
+<head>
+<link rel="stylesheet" href="/public/assets/stylesheets/user_form.css" />
+</head>
+
+
+
+<nav class="etape-container ">
+	<ul>
+		<li ng-repeat="etape in etapes"  ng-class="selectionClass(selection, this.etape)" class="etape">
+			<h2 ng-click="$parent.selection = etape"  > {{etape}} </h2>
+		</li>	
+		<hr/><!--	Ligne qui souligne	-->
+	</ul>
+</nav>
+
+
+<form name="userForm" id="formulaire" enctype="multipart/form-data" ng-submit="create(user)">
+<div ng-switch="selection" class="container form-group switch-container">
+
+	<!-- INFORMATION PERSONELLES -->
+	<div class="switch-form row" ng-switch-when="Informations personnelles">
+		
+		<div class="col-md-3 col-md-offset-1">
+				<!-- E-mail -->
+			<input type="email" name="mail" id="mail" placeholder="Adresse mail" ng-model="user.mail" required/>
+			<span class="verification" id="mail_verification"></span><br/>
+					
+				<!-- Mot de passe -->
+			<input type="password" name="password" id="password" ng-click placeholder="Mot de passe" ng-model="user.password" required/>
+			<input id="strength" class="weak" type="text" value="weak" ng-model="strength" disabled />
+			<!-- <ul id="verificationPassword">
+				<li><canvas id="passToughnessCanvas"></canvas></li>
+			</ul> -->
+				
+				<!-- Confirmer mot de passe -->
+			<input type="password" name="confirmPassword" id="confirmPassword" placeholder="Confirmer mot de passe" ng-model="user.confirmPassword" repeat-password="password" required/>
+			<span class="verification" id="confirmedPassword_verification"></span><br/><br/>
+				
+				
+				<!-- Nom et Prénom -->
+			<input type="text" name="userLastName" id="userLastName" placeholder="Nom" ng-model="user.userLastName"/>
+			<input type="text" name="userFirstName" id="userFirstName" placeholder="Prénom" ng-model="user.userFirstName"/>
+		</div>		
+		
+		<div class="col-md-4">
+				<!-- Localisation -->
+			<input type="text" name="country" id="country" placeholder="Pays" ng-model="user.country"/>
+			<input type="text" name="area" id="area" placeholder="Région" ng-model="area"/>
+			<input type="text" name="town" id="town" placeholder="ville" ng-model="town"/>	
+			<input type="text" name="phone" id="phone" placeholder="Tel" ng-model="phone"/>
+		
+		</div>
+		
+		<div class="col-md-3">
+				<!-- Date de naissance  -->
+			<div id="birthDateBlock">
+				<label for="birthDate">Date de naissance : </label></br></br>
+				<input type="text" placeholder="dd.MM.yyyy" datepicker-popup="dd.MM.yyyy" ng-model="birthDate" datepicker-options="dateOptions" is-open="$parent.opened"/>
+				<span class="input-group-btn date-button">
+					<button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+				</span>
+				
+			</div>	
+		</div>
+		
+		<nav class="col-md-1 nav-circlepop">
+			<a class="next" ng-click="next(selection)">
+				<span class="icon-wrap"><svg class="icon" width="32" height="32" viewBox="0 0 64 64"><use xlink:href="#arrow-right"></svg></span>
+			</a>
+		</nav>
+		
+	</div>	
+	
+	<!---------------------->
+	
+	<div class="switch-form row competences-container" ng-switch-when="Competences">
+		<nav class="col-md-1 nav-circlepop">
+			<a class="prev" ng-click="prev(selection)">
+				<span class="icon-wrap"><svg class="icon" width="32" height="32" viewBox="0 0 64 64"><use xlink:href="#arrow-left"></svg></span>
+			</a>
+		</nav>
+		
+		<div class="col-md-3 ">
+			<label for="competences">Compétences</label> : </br>
+			<input type="text" name="competences" placeholder="Mettez en avant vos compétences" ng-model="competence"/>
+			<i ng-click="add(competence)"></i>
+		</div>
+		<div class="col-md-2">
+			<p>Vos compétences : </p>
+			<ul class="all-data">
+				<li ng-repeat="competence in competences">
+					<span>{{competence}}</span>
+					<span class="remove-data" ng-click="remove(this.competence)">x</span>
+				</li>
+			</ul>
+		</div>
+		
+		<div class="col-md-3">
+			<label for="interests">Centres d'intérêt</label> : </br>
+			<input type="text" name="interests" placeholder="Qu'est ce qui vous intéresse ?" ng-model="interests"/>
+			<i ng-click="add(competence)"></i>
+		</div>
+		<div class="col-md-2">
+			<p>Vos centres d'intérêt : </p>
+			<ul class="all-data">
+				<li ng-repeat="interest in interests">
+					<span>{{interest}}</span>
+					<span class="remove-data" ng-click="remove(this.competence)">x</span>
+				</li>
+			</ul>
+		</div>
+		
+		<nav class="col-md-1 nav-circlepop">
+			<a class="next" ng-click="next(selection)">
+				<span class="icon-wrap"><svg class="icon" width="32" height="32" viewBox="0 0 64 64"><use xlink:href="#arrow-right"></svg></span>
+			</a>
+		</nav>
+	</div>
+	
+	
+	<div class="switch-form row" ng-switch-when="Formation">		
+		<nav class="col-md-1 nav-circlepop">
+			<a class="prev" ng-click="prev(selection)">
+				<span class="icon-wrap"><svg class="icon" width="32" height="32" viewBox="0 0 64 64"><use xlink:href="#arrow-left"></svg></span>
+			</a>
+		</nav>
+		<div class="col-md-5">
+			<label for="statut">Statut</label> : <select type="text" name="statut" ng-model="user.statut" ng-option="statuts.name for statut in statuts"/></select>
+			<br/>
+			<label for="diplomas">Diplômes</label> : <textarea type="text" name="diplomas" id="diplomas" class="champs_droit"/></textarea>
+		</div>
+		<div class="col-md-5">
+			<label for="profession">Profession</label> : <textarea type="text" name="profession" id="profession" class="champs_droit"/></textarea>
+			<br/>
+			<label for="otherProfession">Autres</label> : <textarea type="text" name="otherProfession" id="otherProfession" class="champs_droit"/></textarea>
+		</div>
+		<nav class="col-md-1 nav-circlepop">
+			<a class="next" ng-click="next(selection)">
+				<span class="icon-wrap"><svg class="icon" width="32" height="32" viewBox="0 0 64 64"><use xlink:href="#arrow-right"></svg></span>
+			</a>
+		</nav>
+	</div>
+	<div class="switch-form col-md-12" ng-switch-when="Projets">
+		<p> Projects réalisés ou à réaliser </p>
+	</div>
+</div>
+	
+<div class="row">
+	<div class="col-md-2 col-md-offset-6">
+		<button id="submit_button" type="submit" ng-disabled="score<2">Submit</button>
+	</div>
+</div>
+</form>
+	

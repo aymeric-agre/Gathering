@@ -1,0 +1,63 @@
+<header>
+		<div class="row-fluid banniere">
+			<div  class="col-md-1">
+				<div id="icon-container"  ng-click="isActive = !isActive">
+					<i id="icon"></i>
+				</div>
+			</div>
+			<div class="col-md-2">
+				<h1> <a href="/"> Gathering	</a></h1>	
+			</div>
+			
+			<div class="col-md-1 col-md-offset-3">
+				<button class="cn-button fa fa-search" id="cn-button" ng-click="opened = !opened"></button>
+				<div class="cn-wrapper" id="cn-wrapper" ng-class="{'opened-nav' : opened}">
+				    <ul>
+				      <li><a ui-sref="main.search_user"><span>Projets</span></a></li>
+				      <li><a href="#"><span>Groupes</span></a></li>
+				      <li><a href="#"><span>Utilisateur</span></a></li>
+				     </ul>
+				</div>
+				<div id="cn-overlay" class="cn-overlay" ng-class="{'on-overlay' : opened}"></div>
+			</div>
+			
+			
+		</header>
+	
+	<!-- Permet à Bootstrap de définir la grille lignes/colonnes sur toute la page -->		
+	
+		<div class="row-fluid" ng-switch="connected">
+		
+			<nav class="sidebar col-md-2" ng-class="{'sidebar' : !isActive, 'sidebar active' : isActive}" ng-init="isActive = true">	
+				<ul ng-switch-when="false">
+					<li class="navigation-button" > <a ui-sref="main.user_form"> Créer un compte </a> </li>
+					<li class="navigation-button" ng-click="isCollapsed = !isCollapsed"> Se connecter  </li>
+					
+										
+						<form method="post" name="loginForm" ng-submit="login(user)" collapse="isCollapsed" enctype="multipart/form-data" >
+							<input class="form-control" type="text" type="email" name="mail" placeholder="Adresse mail" ng-model="user.mail">
+							<input class="form-control" type="password" name="password" placeholder="Mot de passe" ng-model="user.password">
+							<button class="submit-login" ng-disabled="loginForm.$invalid" type="submit" > 
+								<span>Connexion</span>
+								<i class="fa fa-arrow-right"></i>
+							</button>	
+						</form>	
+					
+				</ul>
+				
+				<ul ng-switch-when="true">
+					<a ui-sref="main.profile.projects_liste({userId : currentUser._id})"> <li class="navigation-button"> Mes projets  </li></a>
+					<a ui-sref="main.profile({userId : currentUser._id})"><li class="navigation-button">  Mon compte  </li></a>
+					<li class="navigation-button" ng-click="logout()"> Se déconnecter  </li>
+					<a ui-sref="main.project_form"><button id="addProject">+</button></a>
+				</ul>
+			</nav>
+
+			<section class="col-md-8 col-md-offset-2 container" ui-view>		</section>
+			
+		</div>
+		
+		<div class="row fluid">
+			<footer class="footer col-md-10 col-md-offset-2">		</footer>
+		</div>	
+	</div>

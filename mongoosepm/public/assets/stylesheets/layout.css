@@ -1,0 +1,421 @@
+/*	*******
+	GENERAL
+	*******	*/
+* {
+	margin: auto;
+	font-family:  Trebuchet MS, Arial, sherif;
+	text-align : justify;
+}
+	
+a {
+	text-decoration : none;
+	color : black;
+	cursor: pointer;
+}
+
+a:hover {text-decoration : none; color : black;}
+
+.nav, .pagination, .carousel, .panel-title a { cursor: pointer; }	/*	Nécessaire pour bootstrap ui	*/
+
+
+ul {
+	list-style-type: none;
+	padding-left : 0;
+}
+
+
+/*	****************
+	LAYOUT PRINCIPAL
+	****************	*/
+	
+
+	
+body {
+	background: linear-gradient(to right, rgba(178, 190, 190, 0.8), rgba(240, 240, 240, 0.3), rgba(178, 190, 190, 0.8));
+	font-size: 1em;
+	height : 100%;
+}
+
+
+
+footer{
+	border: 1px solid black;
+	bottom : 0;
+	height: 60px;
+}
+
+header {
+	width: 100%;
+	min-width: 920px;
+	height : 8em;
+	background-color: rgba(230, 230, 230, 0.8);
+	z-index : 5;
+	position: fixed;
+	top: 0px;
+	box-shadow: 0px 0px 10px 5px rgba(119, 119, 119, 0.7);				
+}
+
+	
+	header h1 {
+		font-size : 3.2em;
+	}
+
+	header a {
+		text-decoration: none;
+		color: black;
+		
+	}
+	
+	#icon-container{
+		margin : 5px 30px 20px 30px;
+		text-align : center;
+		cursor : pointer;
+		padding-bottom : 1em;
+	}
+
+	#icon::after {
+		content:  "\2261";
+		font-size : 5em;
+	}
+
+	
+/* 	**********
+	NAVIGATEUR 
+	**********	*/
+
+.sidebar {
+	position: fixed;
+	height : 100%;
+	top :80px;
+	z-index : 1;
+	background: #ea8206;
+	-webkit-transform : translateX(-100%);
+	-moz-transform : translateX(-100%);
+	-o-transform : translateX(-100%);
+	transform : translateX(-100%);
+	-webkit-transition : all 0.2s ease;
+	-moz-transition : all 0.2s ease;
+	-o-transition : all 0.2s ease;
+	transition : all 0.2s ease;
+}
+
+.sidebar.active{
+	-webkit-transform : translateX(0);
+	-moz-transform : translateX(0);
+	-o-transform : translateX(0);
+	transform : translateX(0);
+}
+
+.navigation-button {
+	display : block;
+	height : 60px;
+	line-height:50px;
+	text-align:center;
+	font-size : 1.3em;
+	cursor : pointer;
+}
+
+.navigation-button:hover {
+	background : white;
+}
+
+/*	Login form	*/
+.sidebar input {
+	background : #f8bc74;
+	border : none;
+	outline: 0;
+	margin: 1em 0;
+}
+
+.sidebar ::-webkit-input-placeholder { color:#fff; font-size: 1.2em;}
+.sidebar ::-moz-placeholder { color:#fff; font-size: 1.2em; } /* firefox 19+ */
+.sidebar :-ms-input-placeholder { color:#fff; font-size: 1.2em; } /* ie */
+.sidebar input:-moz-placeholder { color:#fff; font-size: 1.2em;}
+
+.submit-login {
+	position : relative;
+	border: 3px solid #fff;
+	outline: none;
+	background: none;
+	padding: 2em 1em;
+	margin: 0 20%;
+	width : 60%;
+	border-radius: 50px;
+	overflow: hidden;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+	
+	transition: all 0.3s;
+		-webkit-transition: all 0.3s;
+		-moz-transition: all 0.3s;
+}
+
+.submit-login:active {
+	box-shadow:         1px 1px 9px 0px white;
+		-webkit-box-shadow: 1px 1px 9px 0px white;
+		-moz-box-shadow:    1px 1px 9px 0px white;
+}
+
+.submit-login:hover {
+	background: #b01600;
+}
+
+.submit-login span {
+	display : block;
+	text-align : center;
+	font-weight: 700;
+	color: #fff;
+}
+
+.submit-login:hover span {
+	opacity : 0;
+}
+
+.submit-login i {
+	position : absolute;
+	padding-bottom: 10px;
+	bottom : 10px;
+	left : 0;
+	font-size: 1.5em;
+	opacity : 0;
+	color : white;
+}
+
+.submit-login:hover i {
+	left : 50%;
+	opacity : 1;
+	transition : all 0.2s ease;
+		-moz-transition : all 0.2s ease;
+		-webkit-transition : all 0.2s ease;
+} 
+
+/* 	***************
+	Page Principale
+	***************	*/
+
+section {
+	min-height: 100%;
+	height: auto;
+	position: absolute;
+	top:100px;
+	margin : 0 auto 60px;	/*0 haut, auto sur les bords, -60 en bas*/
+	padding-bottom : 100px;
+	text-align : justify;
+	z-index : 1;	
+			
+}
+
+	
+h1{
+	font-size: 1.9em;		
+	font-weight: bold;		
+	text-align: center;		
+}
+
+h2{
+	font-size: 1.5em;
+	font-weight: bold;
+	text-align : center;
+}
+
+h3{
+	color: black;
+	font-size: 1.3em;
+	font-weight: bold;
+}
+
+
+/*	*********
+	Recherche	
+	*********	*/
+
+#search {
+	float : right;
+	display : block;
+	margin : 5px 0;
+	height : 70px;
+	width : 70px;
+	background : #ea8206;
+	border: 3px solid #fff;
+	border-radius : 50px;
+	transition : all 0.5s ease;
+}
+
+#search:hover, #search:active, #search:focus {
+	width : 100%;
+	background : #b01600;
+}
+
+#search i {
+	display : block;
+	font-size : 25px;
+	text-align : center;
+	margin : 20px 0;
+}
+
+#search:hover i{
+	display : none;
+}
+
+#search #search_field {
+	display : none;
+	float : right;
+	width : 90%;
+	transition-delay : 0.2s;
+}
+
+#search:hover #search_field {
+	display : block;
+}
+
+#search input {
+	background : rgba(255, 150, 150, 0.5);
+	width : 70%;
+	border : none;
+	border-radius : 5px;
+	outline: 0;	
+	font-size : 1.5em;
+	margin: 0.3em 0;
+}
+
+#search ::-webkit-input-placeholder { color:#fff; font-size: 1.2em;}
+#search ::-moz-placeholder { color:#fff; font-size: 1.2em; } /* firefox 19+ */
+#search :-ms-input-placeholder { color:#fff; font-size: 1.2em; } /* ie */
+#search input:-moz-placeholder { color:#fff; font-size: 1.2em;}
+
+#search button {
+	border : none;
+	background : none;
+	font-size : 1.6em;
+	color : white;
+}
+
+
+/*	Menu recherche	*/
+.cn-button {
+	position : absolute;
+	margin-top: 80px;
+	font-size : 2em;
+	text-align : center;
+	width : 4em;
+	height : 2em;
+	padding : 10%;
+	border-radius: 50% / 0 0 100% 100%;	/*Demi-cercle*/
+	border : none;
+	z-index : 4;
+	background : rgba(200,200,200, 0.5);
+}
+
+.cn-button:hover, .cn-button:active, .cn-button:focus{
+	background : rgba(230, 230, 230, 1);
+}
+
+.cn-wrapper {
+	position : absolute;
+	top : -5em; 	/*8em(header) - 26/2em(moitié de cercle)*/
+	left : -7.5em;	/*??*/
+	width : 26em;
+	height : 26em;
+	overflow : hidden;
+	border-radius : 50%;
+	z-index : 3;
+	
+	transform: scale(0.1);
+		-webkit-transform: scale(0.1);
+		-ms-transform: scale(0.1);
+		-moz-transform: scale(0.1);
+	visibility : hidden;
+	transition: all .3s ease;
+		-webkit-transition: all .3s ease;
+		-moz-transition: all .3s ease;
+	
+}
+
+.opened-nav {
+	border-radius: 50%;
+	visibility: visible;
+	transform: scale(1.3);
+		-webkit-transform: scale(1.3);
+		-moz-transform: scale(1.3);
+		-ms-transform: scale(1.3);
+}
+
+.cn-wrapper li {
+	position : absolute;
+
+	width : 10em;
+	height : 10em;
+	left : 50%;
+	top : 50%;
+	font-size : 1.5em;
+	overflow : hidden;
+	transform-origin : 0% 0% 0;
+		-webkit-transform-origin: 0% 0%;
+	  -moz-transform-origin: 0% 0% 0;
+	  -ms-transform-origin: 0% 0%;
+}
+
+
+/*	On skew les li et les a dedans	*/
+.cn-wrapper li:first-child {
+	transform: rotate(0deg) skew(30deg);
+		-webkit-transform: rotate(0deg) skew(30deg);
+		-ms-transform: rotate(0deg) skew(30deg);
+		-moz-transform: rotate(0deg) skew(30deg);  
+}
+
+.cn-wrapper li:nth-child(2) {
+	transform: rotate(60deg) skew(30deg);
+		-webkit-transform: rotate(60deg) skew(30deg);
+		-ms-transform: rotate(60deg) skew(30deg);
+		-moz-transform: rotate(60deg) skew(30deg);  
+}
+
+.cn-wrapper li:nth-child(3) {
+	transform: rotate(60deg) skew(30deg);
+		-webkit-transform: rotate(120deg) skew(30deg);
+		-ms-transform: rotate(120deg) skew(30deg);
+		-moz-transform: rotate(120deg) skew(30deg);  
+}
+
+.cn-wrapper li a{
+	position: absolute;
+	display: block;
+	width : 14em;
+	height : 14em;
+	left : -7em;
+	top : -7em;
+	
+	text-decoration : none;
+	border-radius: 50%;
+	text-align : center;
+	transform: skew(-30deg) rotate(-60deg) scale(1);	/* on skew dans l'autre sens*/
+		-webkit-transform: skew(-30deg) rotate(-60deg) scale(1);
+		-ms-transform: skew(-30deg) rotate(-60deg) scale(1);
+		-moz-transform: skew(-30deg) rotate(-60deg) scale(1);
+	background : #ea8206;
+}
+
+.cn-overlay {
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.2);
+  position: fixed;
+  margin : 0;	/*Fix un bug de chrome*/
+  top: 8em;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  opacity: 0;
+  visibility: hidden;
+  -webkit-transition: all .3s ease;
+  -moz-transition: all .3s ease;
+  transition: all .3s ease;
+  z-index: 2;
+}
+
+/*	Lance un overlay quand on passe dessus	*/
+.cn-overlay.on-overlay {
+  visibility: visible;
+  opacity: 1;
+}

@@ -1,0 +1,124 @@
+/* Page Principale*/
+
+
+/*Tableau images*/
+
+.ligne{
+	margin: 0px 0px 50px 0px;
+	height : 300px;
+}
+
+.ligne h2{
+	margin-bottom : 20px;
+	padding-top: 10px;
+	text-align: center;
+	font-size: 2em;
+	font-weight: bold;
+	color: black;
+}
+
+.project {	/* On ne devrait pas définir width : ça devrait être fait avec bootstrap */
+	margin : 10px;
+	padding : 0;
+	display : inline-block;
+	overflow : hidden;
+}
+
+.project .mask {
+	width : 100%;
+	height : 100%;
+    position: absolute;
+    overflow: hidden;
+	text-align : center;
+    top: 0;
+    left: 0;
+}
+
+.project img {
+    display: block;
+	width : 100%;
+	margin : 0 auto;
+	position : relative;
+}
+
+.project h3 {
+    text-transform: uppercase;
+    color: #fff;
+    text-align: center;
+    position: relative;
+	text-align : center;
+    font-size: 15px;
+    padding: 10px;
+    background: rgba(0, 0, 0, 0.6);
+    margin: 20px 0 0 0;
+	height : 20%;
+}
+
+.project p {
+    font-family: Georgia, serif;
+    font-style: italic;
+    font-size: 12px;
+    position: relative;
+    color: #fff;
+    padding: 10px 20px 20px;
+    text-align: center;
+	height : 40%;
+}
+
+.project a{
+    display: inline-block;
+    text-decoration: none;
+    padding: 7px 14px;
+    background: #000;
+    color: #fff;
+    text-transform: uppercase;
+    box-shadow: 0 0 1px #000;
+	height : 20%;
+}
+
+.project a:hover {
+    box-shadow: 0 0 5px #000
+}
+
+.project img { 
+    transition: all 0.3s linear;
+}
+
+.project .mask {
+    opacity: 0;
+    background-color: rgba(219,127,8, 0.7); 
+    transition: all 0.4s ease-in-out;
+}
+.project h2 {
+    transform: translateY(-100px);
+    opacity: 0;
+    transition: all 0.2s ease-in-out;
+}
+.project p { 
+    transform: translateY(100px);
+    opacity: 0;
+    transition: all 0.2s linear;
+}
+.project a{
+    opacity: 0;
+    transition: all 0.2s ease-in-out;
+}
+
+.project:hover img { 
+    transform: scale(1.1);
+} 
+.project:hover .mask { 
+    opacity: 1;
+}
+.project:hover h2, .project:hover p, .project:hover a {
+    opacity: 1;
+    transform: translateY(0px);
+}
+.project:hover p {
+    transition-delay: 0.1s;
+}
+.project:hover a {
+    transition-delay: 0.2s;
+}
+
+

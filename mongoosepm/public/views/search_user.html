@@ -1,0 +1,85 @@
+	<head>
+<link rel="stylesheet" href="/public/assets/stylesheets/search_user.css" />
+</head>
+
+<article>
+	<form id="find_users">
+	<ul>
+		<li>
+			<ul class="ligne" id="theme">
+				<li><input onclick="showDetails(this)" onfocus="this.blur()" value="Gestion" readonly></li>
+				<li><input onclick="showDetails(this)" onfocus="this.blur()" value="Art" readonly></li>
+				<li><input onclick="showDetails(this)" onfocus="this.blur()" value="Technologie" readonly></li>
+				<li><input onclick="showDetails(this)" onfocus="this.blur()" value="lasectionsansnom" readonly></li>
+				<li><input onclick="showDetails(this)" onfocus="this.blur()" value="Physique" readonly></li>
+			</ul>
+		</li>
+			
+		<li>
+			<ul class="ligne category" id="Gestion">
+				<li><input onclick="selectCategory(this)" onfocus="this.blur()"  value="Ressources Humaines"></li>
+				<li><input onclick="selectCategory(this)" onfocus="this.blur()"  value="Gestion de planning"></li>
+				<li><input onclick="selectCategory(this)" onfocus="this.blur()"  value="Finance"></li>
+				<li><input onclick="selectCategory(this)" onfocus="this.blur()"  value="Supply Chain"></li>
+				<li><input onclick="selectCategory(this)" onfocus="this.blur()"  value="Marketing"></li>
+			</ul>
+			<ul class="ligne category" id="Art">
+				<li><input onclick="selectCategory(this)" onfocus="this.blur()"  value="Littérature"></li>
+				<li><input onclick="selectCategory(this)" onfocus="this.blur()"  value="Cinéma"></li>
+				<li><input onclick="selectCategory(this)" onfocus="this.blur()"  value="Musique"></li>
+				<li><input onclick="selectCategory(this)" onfocus="this.blur()"  value="Jeu vidéo"></li>
+				<li><input onclick="selectCategory(this)" onfocus="this.blur()"  value="Arhitecture"></li>
+				<li><input onclick="selectCategory(this)" onfocus="this.blur()"  value="Photographie"></li>
+				<li><input onclick="selectCategory(this)" onfocus="this.blur()"  value="Théâtre"></li>
+			</ul>
+			<ul class="ligne category" id="Technologie">
+				<li><input onclick="selectCategory(this)" onfocus="this.blur()"  value="Développement web"></li>
+				<li><input onclick="selectCategory(this)" onfocus="this.blur()"  value="Base de données"></li>
+				<li><input onclick="selectCategory(this)" onfocus="this.blur()"  value="Web design"></li>
+				<li><input onclick="selectCategory(this)" onfocus="this.blur()"  value="Programmation autre"></li>
+				<li><input onclick="selectCategory(this)" onfocus="this.blur()"  value="Techno5"></li>
+			</ul>
+			<ul class="ligne category" id="lasectionsansnom">
+				<li><input onclick="selectCategory(this)" onfocus="this.blur()"  value="deal"></li>
+				<li><input onclick="selectCategory(this)" onfocus="this.blur()"  value="with"></li>
+				<li><input onclick="selectCategory(this)" onfocus="this.blur()"  value="it"></li>
+				<li><input onclick="selectCategory(this)" onfocus="this.blur()"  value="dude"></li>
+				<li></li>
+			</ul>
+			<ul class="ligne category" id="Physique">
+				<li><input onclick="selectCategory(this)" onfocus="this.blur()"  value="Physique quantique"></li>
+				<li><input onclick="selectCategory(this)" onfocus="this.blur()"  value="Chimie"></li>
+				<li><input onclick="selectCategory(this)" onfocus="this.blur()"  value="Mécanique"></li>
+				
+			</ul>
+		</li>
+	</ul>
+	Nom : <input ng-model="query">
+	<div id="place">
+		
+	</div>
+	
+	</form>
+</article>
+
+
+<ul id='liste'>
+			<!-- Ici on accueil les projets et les utilisateurs recherchés-->			
+	<li ng-repeat="user in users | filter:query">
+		<a class="fiche" ui-sref="/user/:{{user.id}}">
+			<div class="photo"><img src=""></div>
+			<ul>
+				<li>{{user.mail}}</li>
+				<li>{{user.userFirstName}} {{user.userLastName}}</li>
+				<li>{{user.town}}</li>
+				<li>{{user.studies}}</li>
+				<li>{{user.competences}}</li>
+			</ul>
+		</a>
+	</li>
+			
+</ul>
+
+
+	
+	<script src="/public/javascripts/view/search_user.js"></script>

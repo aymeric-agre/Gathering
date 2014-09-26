@@ -1,0 +1,79 @@
+<head>
+	<link rel="stylesheet" href="/public/assets/stylesheets/projects_liste.css" />
+</head>
+								
+<form method="post" id="formulaire" ng-submit="save()" name="addForm">
+								
+<div id="creation_projet">
+	<!-- <input class="output" id="input-projectName" name="projectName"></input> -->
+	<input class="input-projectName" placeholder="Nommez votre projet" ng-model="project.projectName"></input>
+	
+	<div id="menu">
+		<input class="bouton active" type="button" value='presentation' onclick='afficher(this, "presentation")'/>
+		<input class="bouton active" type="button" value='toolstore' onclick='afficher(this, "toolstore")'/>
+	</div>
+		
+	<aside>
+		<div class="case">
+			<div id="photo">
+				<label for="thumbnail">Logo </label><input type="file" id="thumbnail" name="thumbnail" enctype="multipart/form-data" />
+			</div>
+
+					<h3 class="new" id="new-members">L'Équipe</h3>				
+					<div ng-repeat="member in project.members">
+						<input class="input-members input" placeholder="members" ng-model="project.member"></input>
+						<button type="button" ng-click="removeMembers($index)" class="remove"> - </button>
+					</div>
+						<button type="button" ng-click="addMembers()" class="add"> + </button>
+					
+
+					<h3 class="new" id="new-groups">Ecoles</h3>
+					<div ng-repeat="group in project.groups">
+						<input class="input-groups input" placeholder="groups" ng-model="project.group"></input>
+						<button type="button" ng-click="removeGroups($index)" class="remove"> - </button>
+					</div>
+						<button type="button" ng-click="addGroups()" class="add"> + </button>
+					
+					<h3 class="new" id="new-themes">Thèmes</h3>
+					<div ng-reapeat="theme in project.themes">
+						<input class="input-themes input" placeholder="themes" ng-model="project.theme"></input>
+						<button type="button" ng-click="removeThemes($index)" class="remove"> - </button>
+					</div>
+						<button type="button" ng-click="addThemes()" class="add"> + </button>
+
+					<h3 class="new" id="new-needs">Recherche</h3>
+					<div ng-repeat="need in projects.needs">
+						<input class="input-needs input" placeholder="needs" ng-model="project.need"></input>
+						<button type="button" ng-click="removeNeeds($index)" class="remove"> - </button>
+					<div>
+						<button type="button" ng-click="addNeeds()" class="add"> + </button>
+		</div>
+
+	</aside>
+	
+	<article id="presentation">
+		
+			<!-- Éiteur de texte -->
+
+			<textarea class="textarea" id='textarea-presentation' name='presentation' ng-model="projet.presentation">				</textarea>
+			
+			
+		<div class="contenu" id="contenu-presentation" name="contenu-presentation">
+			<p>Décrivez votre projet :</br>
+			Vous pouvez mettre des images, des vidéo ou du texte</br>
+			Vous pouvez ajouter un nom de projet, des membres, ... Juste en cliquant sur la case correspondante !</p>
+		</div>
+	</article>
+
+	<article id="toolstore">	
+	<p> Il y aura ici la liste des outils qu'on pourra tester en ligne </p>	
+	</article>
+	
+	
+	<h3 class="modifier" id="annuler">Annuler</h3>	
+	<h3 class="modifier" id="Submit">Submit</h3>	
+</div>
+</form>
+<!-- 
+<script src="/public/javascripts/lib/tinymce/tinymce.min.js"></script>
+<script src="/public/javascripts/view/project_form.js"></script> -->
