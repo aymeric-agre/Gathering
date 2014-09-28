@@ -25,7 +25,6 @@ var userSchema = new Schema({	// Création d'un schéma userSchema (pour la cré
 	area: {type: String, required: false},
 	town: {type: String, required: false},
 	phone: {type: String, required: false},
-	group: {type: String},
 	competences: {type: String},
 	interests: {type: String},
 	sports: {type: String},
@@ -35,8 +34,8 @@ var userSchema = new Schema({	// Création d'un schéma userSchema (pour la cré
 	studies: {type: String},
 	diplomas: {type: String},
 	ohterProfession: {type: String},
-	project: [{type: mongooseUser.Schema.Types.ObjectId, ref: 'project'}],
-	group: [{type: mongooseUser.Schema.Types.ObjectId, ref: 'group'}],
+	project: [{type: mongooseUser.Schema.Types.ObjectId, ref: 'Project'}],
+	group: [{type: mongooseUser.Schema.Types.ObjectId, ref: 'Group'}],
 	createdOn: {type: Date, default: Date.now},
 	modifiedOn: {type: Date, default: Date.now},
 	lastLogin: {type: Date, default: Date.now}

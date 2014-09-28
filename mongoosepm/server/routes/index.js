@@ -41,20 +41,18 @@ exports.doLogin = function(req, res, next) {
 	console.log("avant server "+req.isAuthenticated());
 	passport.authenticate('local', function(err, user, info) {
 		if (err) return next(err);
-		console.log('doLogin : voici la var user');
-		console.log(user);
+		console.log('doLogin : voici la var user' + user);
 		if (!user) {			//La vérif se fait dès le début avec passport.authenticate (qui appelle passport.use) Ce if(!user) cherche ensuite à savoir si la variable user contient qqchose, mais personne n'est loggé à ce stade.
 			console.log('doLogin : l\'utilisateur n\'est pas reconnu');
 			req.session.messages =  [info.message];		//aucune idée du message, toujours undefined
-			console.log('doLogin : la valeur de req.session.message est :');
-			console.log(req.session.message);
+			console.log('doLogin : la valeur de req.session.message est :' + req.session.message);
 			return res.send(404);
 		}
 		req.login(user, function(err) {
 			if (err) return next(err);
 			res.send(req.isAuthenticated());	
 		});
-  })(req, res, next);
+	})(req, res, next);
   /*if(req.user.mail) {											//Si ce qui est dans la case est bien un email
 		userSchema.User.findOne({'mail':req.body.mail},function(err, currentUser) {	//On recherche un utilisaeur (inscrit)
 			if(!err) {											//S'il n'y a pas d'erreur

@@ -16,9 +16,9 @@ var Schema = mongooseGroup.Schema;
 
 var groupSchema = new Schema({		// création du modèle -> structure des données
 	groupName: {type: String, unique: true},
-	members: [{type: mongooseGroup.Schema.Types.ObjectId, ref: 'user'}],
-	administrators: [{type: mongooseGroup.Schema.Types.ObjectId, ref: 'user'}],
-	projects: [{type: mongooseGroup.Schema.Types.ObjectId, ref: 'project'}],
+	members: [{type: mongooseGroup.Schema.Types.ObjectId, ref: 'User'}],
+	administrators: [{type: mongooseGroup.Schema.Types.ObjectId, ref: 'User'}],
+	projects: [{type: mongooseGroup.Schema.Types.ObjectId, ref: 'Project'}],
 	createdOn: {type: Date, default: Date.now},
 	modifiedOn: {type: Date, default: Date.now}
 });
