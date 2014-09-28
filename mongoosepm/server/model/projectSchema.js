@@ -18,9 +18,9 @@ var projectSchema = new Schema({		// création du modèle -> structure des donn�
 	createdBy: {type: mongooseProject.Schema.Types.ObjectId, ref: 'User'},		//Créé par une seule personne
 	members: [{type: mongooseProject.Schema.Types.ObjectId, ref: 'User'}],		//Plusieurs membre : on utilise un tableau
 	administrators: [{type: mongooseProject.Schema.Types.ObjectId, ref: 'User'}],
-	group: [{type: mongooseUser.Schema.Types.ObjectId, ref: 'Group'}],
+	group: [{type: mongooseProject.Schema.Types.ObjectId, ref: 'Group'}],
 	needs: [{type: String}],
-	themes: [{type: mongooseUser.Schema.Types.ObjectId, ref: 'Theme'}],
+	themes: [{type: mongooseProject.Schema.Types.ObjectId, ref: 'Theme'}],
 	createdOn: {type: Date, default: Date.now},
 	modifiedOn: {type: Date, default: Date.now},
 	presentation: {type: String},
