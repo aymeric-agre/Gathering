@@ -96,7 +96,10 @@ gatheringModule.controller('searchProjectController', ['$scope', 'projects', fun
 	$scope.projects = projects;
 }]);
 
-
+gatheringModule.controller('projectsListController', ['$scope', 'thisUser', function($scope, thisUser) {
+	$scope.user = thisUser;
+	$scope.projects = thisUser.projects;
+}]);
 
 		
 		

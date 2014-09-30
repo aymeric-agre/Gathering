@@ -108,20 +108,20 @@ ul[data-liffect="slideBottom"].play li {
 	border : dotted 0.5px;
 }
 
-/* Page*/
 
-article{
+
+/* article{
 	width: 572px;
 	margin : 15px;
 	display : none;
 
 }
-article:nth-of-type(1) { /* N'affiche que le premier à savoir présentation */
+article:nth-of-type(1) { 
 	display: block;
 }
 
 
-/*	Barre d'outils	*/
+
 #menu {
 	width: 100%;
 	height: 25px;
@@ -129,7 +129,7 @@ article:nth-of-type(1) { /* N'affiche que le premier à savoir présentation */
 	z-index: 3;
 }
 
-.bouton {			/* Maximum 10boutons */
+.bouton {			
 	float: left;
 	width: 90px;
 	height: 24px;
@@ -159,7 +159,6 @@ article:nth-of-type(1) { /* N'affiche que le premier à savoir présentation */
 	height : 30px;
 } 
 
-/*Aside*/
 
 aside{	
 	vertical-align: top;
@@ -209,15 +208,16 @@ aside{
 	background : linear-gradient(to bottom, rgba(15,150,150,0.8), rgba(10,90,90,0.9));
 }
 
-.input-projectName {		/*Titre*/
+.input-projectName {		
 	border : 0px;
 	font-size : 2em;
 	text-align : center;
 	display : block;
 	margin : auto;
 }
-/* Éditeur TinyMCE */
+
 
 .form{
 	display : none;
 }
+ */

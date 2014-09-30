@@ -46,7 +46,7 @@
 				</ul>
 				
 				<ul ng-switch-when="true">
-					<a ui-sref="main.profile.projects_liste({userId : currentUser._id})"> <li class="navigation-button"> Mes projets  </li></a>
+					<a ui-sref="main.projects_list({userId : currentUser._id})"> <li class="navigation-button"> Mes projets  </li></a>
 					<a ui-sref="main.profile({userId : currentUser._id})"><li class="navigation-button">  Mon compte  </li></a>
 					<li class="navigation-button" ng-click="logout()"> Se déconnecter  </li>
 					<a ui-sref="main.project_form"><button id="addProject">+</button></a>

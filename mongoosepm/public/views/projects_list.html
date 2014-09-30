@@ -1,5 +1,5 @@
 <head>
-<link rel="stylesheet" href="/public/assets/stylesheets/projects_liste.css" />
+<link rel="stylesheet" href="/public/assets/stylesheets/projects_list.css" />
 </head>
 <html>
 
@@ -8,7 +8,7 @@
 							-->
 <div id="liste_projets">
 	
-	<h1> Mes projets </h1>
+	<h1> Projets de {{user.mail}}</h1>
 	<ul data-liffect="slideBottom" id="liste">
 	<li ng-repeat="project in projects" class="project col-md-3">
 		<img ng-src="/uploads/projects/{{project.projectName}}/logo_{{project.projectName}}.jpg">	<!-- Attention, l'image est défini en CSS aussi -->

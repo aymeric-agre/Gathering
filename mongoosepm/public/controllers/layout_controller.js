@@ -80,16 +80,7 @@ var main = {
 			
 			
 			
-			var projects_list = {
-				name : 'main.profile.projects_list',
-				url : '/projects_list/',
-				templateUrl : '/public/views/projects_list.html',
-				controller: 'projectsListController',
-				parent : profile,
-				resolve : {
-					userProjects : function(){return 'userProjects';}
-				}
-			}
+	
 	
 	var project_form = {
 			name : 'main.project_form',
@@ -117,6 +108,26 @@ var main = {
 					}]
 				}
 			}
+		
+	var projects_list = {
+		name : 'main.projects_list',
+		url : '/projects_list/:userId',
+		templateUrl : '/public/views/projects_list.html',
+		controller: 'projectsListController',
+		parent : main,
+		resolve : {	
+					//On défini l'utilisateur et on cherchera ses projets avec Angular
+					thisUser : ['User', '$stateParams', '$q',	function(User, $stateParams, $q) {	
+						var delay = $q.defer();
+						User.get({id: $stateParams.userId}, function(user) {	//On cherche l'utilisateur avec l'id de l'URL
+							delay.resolve(user);		//On renvoie l'utilisateur
+						}, function() {					//Sinon
+							delay.reject('Cet utilisateur n\'est pas trouvé : ' + $stateParams.userId);	//On envoie une erreur
+						});
+						{return delay.promise;}	//A la fin on retourne le résultat
+					}]
+				}
+		}		
 	
 	
 
@@ -162,52 +173,6 @@ $stateProvider.state(main)
 	});
 
 	
-
-
-		/*	Intercepteur	*/
-	/* $httpProvider.interceptors.push(function($q, $location) {	//On intercepte les appels AJAX pour vérifier s'il y a un souci d'authentification (401)
-		return {
-			'responseError': function(response) {
-				if(response.status === 401 || response.status === 403) {
-					$location.path('/login');
-				}
-				return $q.reject(response);
-			}
-		};
-	}); */
-			
-		/* 	//	Ancien INTERCEPTEUR	
-		$httpProvider.responseInterceptors.push(function($q, $location) {	//On intercepte les appels AJAX pour vérifier s'il y a un souci d'authentification (401)
-			return function(promise) {
-				return promise.then(
-					function(response){return response;}, 	//Succès : on renvoie la reponse
-					function(response) {					//Erreur : on vérifie le statut de l'erreur
-						if (response.status === 401)		//Si c'est 401
-							$location.url('/login');		//On renvoie à la page d'acceuil
-						return $q.reject(response);			//On rejète la réponse	
-					}
-				);
-			}
-		}); */
 			  		
 }]);
 
-/*	Tant que le module tourne on écoute les changement de state	*/
-/* gatheringModule.run(['$rootScope', '$state', 'Auth', function ($rootScope, $state, Auth) {
-	$rootScope.$on("$stateChangeStart", function (event, toState, toParams, fromState, fromParams) {	//Au moment de changer de state
-		var requireLogin = $state.get(toParams).requireLogin;
-		
-		if(fromState.url === '^') {		//Si le chemin est relatif
-			if(Auth.isLoggedIn() === requireLogin) {		//Si l'utilisateur est loggedIn
-				$state.go('logged.index');	//On ouvre le state : connected.index
-			} else {					//Sinon
-				$rootScope.error = null;
-				$state.go('public.index');	//On retourne à la page d'accueil
-			}
-		}
-	});
-}]); */
-
-gatheringModule.controller('layoutController', ['$scope', 'Auth', function($scope, Auth) {
-	$scope.currentUser = Auth.currentUser;		//Permet d'utiliser toutes les fonction de Auth dans le HTML =D
-}]);

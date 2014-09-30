@@ -34,7 +34,7 @@ var userSchema = new Schema({	// Création d'un schéma userSchema (pour la cré
 	studies: {type: String},
 	diplomas: {type: String},
 	ohterProfession: {type: String},
-	project: [{type: mongooseUser.Schema.Types.ObjectId, ref: 'Project'}],
+	projects: [{type: mongooseUser.Schema.Types.ObjectId, ref: 'Project'}],
 	group: [{type: mongooseUser.Schema.Types.ObjectId, ref: 'Group'}],
 	createdOn: {type: Date, default: Date.now},
 	modifiedOn: {type: Date, default: Date.now},
