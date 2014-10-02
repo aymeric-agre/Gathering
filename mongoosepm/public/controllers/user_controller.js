@@ -52,7 +52,8 @@ gatheringModule.controller('mainController', ['$rootScope', '$scope', '$location
 /*	Controller de la page /user_form	*/
 gatheringModule.controller('userFormController', ['$rootScope', '$scope', '$state', 'Auth', 'User', function($rootScope, $scope, $state, Auth, User)  {
 	$scope.title = "Formulaire";
-	$scope.user = {mail : "", password : "", confirmPassword : "", userLastName :"", userFirstName :"", country :"" };
+	// $scope.user = {mail : "", password : "", confirmPassword : "", userLastName :"", userFirstName :"", country :"" };
+	$scope.user = new User({mail : {}, password : {}, confirmPassword : {}, userLastName :{}, userFirstName :{}, country :{}}); 
 	$scope.statuts = {name: "Étudiant"}, {name: "Doctorant"}, {name: "Enseignant"} ;
 	
 	//Navigation
@@ -121,24 +122,14 @@ gatheringModule.controller('userFormController', ['$rootScope', '$scope', '$stat
 		}
 	};
 		
-	
-	
 	//Sauvegarder l'utilisateur
-	$scope.create = function(newUser){	//Préparation des données JSON pour les envoyer au serveur si le form est valide (selon Angular
-			var user = new User();
-			user.mail = newUser.mail;
-			user.password = newUser.password;
-			user.confirmPassword = newUser.confirmPassword;
-			user.userLastName =	newUser.userLastName;
-			user.userFirstName = newUser.userFirstName;
-			user.country = newUser.country;
-			console.log(user);
-			
-			user.$save(function(){//Fait un post à /user/
-				$state.go('main.index', {}, {reload:true});
-			});	
-			
+	$scope.create = function() {		//Enregistrer l'utilisateur
+		var userToSave = new User({user:$scope.user});
+		userToSave.$save(function(user) {
+			$state.go('main.index', {}, {reload:true});
+		});
 	};
+
 }]);
 
 
@@ -172,8 +163,8 @@ gatheringModule.controller('searchUserController', ['$scope', 'users', function(
 
 
 gatheringModule.controller('userController', ['$rootScope', 'thisUser',  function($scope,thisUser) {
-	console.log(thisUser);
 	$scope.user=thisUser;
+	$scope.groups=thisUser.groups;
 }]);
 
 

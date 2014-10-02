@@ -82,7 +82,7 @@ header {
 /* 	**********
 	NAVIGATEUR 
 	**********	*/
-
+	
 .sidebar {
 	position: fixed;
 	height : 100%;
@@ -93,10 +93,10 @@ header {
 	-moz-transform : translateX(-100%);
 	-o-transform : translateX(-100%);
 	transform : translateX(-100%);
-	-webkit-transition : all 0.2s ease;
-	-moz-transition : all 0.2s ease;
-	-o-transition : all 0.2s ease;
-	transition : all 0.2s ease;
+	-webkit-transition : all 0.2s ease-out;
+	-moz-transition : all 0.2s ease-out;
+	-o-transition : all 0.2s ease-out;
+	transition : all 0.2s ease-out;
 }
 
 .sidebar.active{
@@ -106,14 +106,25 @@ header {
 	transform : translateX(0);
 }
 
+
 .navigation-button {
 	display : block;
 	height : 60px;
 	line-height:50px;
-	text-align:center;
 	font-size : 1.3em;
+	text-align : left;
 	cursor : pointer;
 }
+
+.navigation-button i{
+	margin-left : 10%;
+}
+
+.navigation-button span {
+	margin-left : 5%;
+}
+
+
 
 .navigation-button:hover {
 	background : white;
@@ -188,6 +199,32 @@ header {
 		-moz-transition : all 0.2s ease;
 		-webkit-transition : all 0.2s ease;
 } 
+
+/*	CONNECTED	*/
+#addProject {
+	display : block;
+	margin : 5% auto;
+	width: 60%;
+	padding : 0.1em;
+	border-radius : 50px;
+	border : solid 3px white;
+	color : white;
+	background : none;
+	font-size : 2.2em;
+	text-align : center;
+}
+
+#addProject:hover {
+	background : #b01600;
+	width : 65%;
+	box-shadow:         1px 1px 9px 0px white;
+		-webkit-box-shadow: 1px 1px 9px 0px white;
+		-moz-box-shadow:    1px 1px 9px 0px white; 
+	transition : all 0.2s ease;
+		-moz-transition : all 0.2s ease;
+		-webkit-transition : all 0.2s ease;
+	
+}
 
 /* 	***************
 	Page Principale

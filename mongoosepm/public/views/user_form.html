@@ -14,7 +14,7 @@
 </nav>
 
 
-<form name="userForm" id="formulaire" enctype="multipart/form-data" ng-submit="create(user)">
+<form name="userForm" id="formulaire" enctype="multipart/form-data" ng-submit="create()">
 <div ng-switch="selection" class="container form-group switch-container">
 
 	<!-- INFORMATION PERSONELLES -->
@@ -22,18 +22,18 @@
 		
 		<div class="col-md-3 col-md-offset-1">
 				<!-- E-mail -->
-			<input type="email" name="mail" id="mail" placeholder="Adresse mail" ng-model="user.mail" required/>
+			<input type="email"  id="mail" placeholder="Adresse mail" ng-model="user.mail" required/>
 			<span class="verification" id="mail_verification"></span><br/>
 					
 				<!-- Mot de passe -->
-			<input type="password" name="password" id="password" ng-click placeholder="Mot de passe" ng-model="user.password" required/>
+			<input type="password"  id="password" ng-click placeholder="Mot de passe" ng-model="user.password" required/>
 			<input id="strength" class="weak" type="text" value="weak" ng-model="strength" disabled />
 			<!-- <ul id="verificationPassword">
 				<li><canvas id="passToughnessCanvas"></canvas></li>
 			</ul> -->
 				
 				<!-- Confirmer mot de passe -->
-			<input type="password" name="confirmPassword" id="confirmPassword" placeholder="Confirmer mot de passe" ng-model="user.confirmPassword" repeat-password="password" required/>
+			<input type="password"  id="confirmPassword" placeholder="Confirmer mot de passe" ng-model="user.confirmPassword" repeat-password="password" required/>
 			<span class="verification" id="confirmedPassword_verification"></span><br/><br/>
 				
 				

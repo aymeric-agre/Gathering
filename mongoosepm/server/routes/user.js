@@ -17,7 +17,9 @@ var pass = require("../model/pass");
 /*	Créer un utilisateur	*/
 exports.doCreateUser = function(req,res,done){	// fonction de traitement du formulaire d'inscription
 	var body = req.body;
-	pass.createUser(body.mail,body.password,body.confirmPassword,function(err,user){
+	console.log(body.user);
+	pass.createUser(body.user,
+		function(err,user){
 		 if (err) return res.render('user_form', {user: req.user, message: err.code === 11000 ? "User already exists" : err.message});
             req.login(user, function (err) {
                 if (err) {return next(err);}

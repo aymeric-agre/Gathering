@@ -26,12 +26,20 @@
 	
 	<!-- Permet à Bootstrap de définir la grille lignes/colonnes sur toute la page -->		
 	
-		<div class="row-fluid" ng-switch="connected">
+		<div class="row-fluid" ng-switch="connected" >
 		
-			<nav class="sidebar col-md-2" ng-class="{'sidebar' : !isActive, 'sidebar active' : isActive}" ng-init="isActive = true">	
+			<nav class="sidebar col-md-2"  ng-class="{'sidebar' : !isActive, 'sidebar active' : isActive}" ng-init="isActive = true">	
 				<ul ng-switch-when="false">
-					<li class="navigation-button" > <a ui-sref="main.user_form"> Créer un compte </a> </li>
-					<li class="navigation-button" ng-click="isCollapsed = !isCollapsed"> Se connecter  </li>
+					<a ui-sref="main.user_form"><li class="navigation-button" > 
+						<i class="fa fa-key"></i>
+						<span>Créer un compte</span>
+						
+					</li></a>
+					<li class="navigation-button" ng-click="isCollapsed = !isCollapsed"> 
+						<i class="fa fa-power-off"></i>
+						<span>Se connecter</span>
+						
+					</li>
 					
 										
 						<form method="post" name="loginForm" ng-submit="login(user)" collapse="isCollapsed" enctype="multipart/form-data" >
@@ -46,10 +54,19 @@
 				</ul>
 				
 				<ul ng-switch-when="true">
-					<a ui-sref="main.projects_list({userId : currentUser._id})"> <li class="navigation-button"> Mes projets  </li></a>
-					<a ui-sref="main.profile({userId : currentUser._id})"><li class="navigation-button">  Mon compte  </li></a>
-					<li class="navigation-button" ng-click="logout()"> Se déconnecter  </li>
-					<a ui-sref="main.project_form"><button id="addProject">+</button></a>
+					<a ui-sref="main.projects_list({userId : currentUser._id})"> <li class="navigation-button"> 
+						<i class="fa fa-coffee"></i>
+						<span>Mes projets</span>
+					</li></a>
+					<a ui-sref="main.profile({userId : currentUser._id})"><li class="navigation-button">  
+						<i class="fa fa-user"></i>
+						<span>Mon compte</span>  
+					</li></a>
+					<li class="navigation-button" ng-click="logout()"> 
+						<i class="fa fa-power-off"></i>
+						<span>Se déconnecter</span>
+					</li>
+					<a ui-sref="main.project_form" id="addProject">Créer un projet	</a>
 				</ul>
 			</nav>
 

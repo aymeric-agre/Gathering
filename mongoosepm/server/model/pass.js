@@ -62,26 +62,25 @@ exports.ensureAdmin = function ensureAdmin(req, res, next) {
 */
 
 // Helper function to create a new user
-exports.createUser = function(mail, password, confirmPassword, done) {
+exports.createUser = function(user, done) {
 	console.log("on crée un user partie user.js");
-	
+	console.log(user);
 	//correspondance des passwords
-	if(password !== confirmPassword){
-		console.log(password);
-		console.log(confirmPassword);
+	if(user.password !== user.confirmPassword){
+		console.log(user.password);
+		console.log(user.confirmPassword);
 		console.log("Passwords must match");
 		return done(null, false, {message: "Passwords must match"});}	//ne redirige pas
 		//return res.redirect('/identite_formulaire', {user: req.user});}  NE MARCHE PAS
 
 	//solidité du password
-	var result = zxcvbn(password);
+	var result = zxcvbn(user.password);
     if (result.score < MIN_PASSWORD_SCORE){
 		console.log('Password is too simple');
     	return done(null,false);}		//ne redirige pas
     	//res.redirect('/identite_formulaire', {user: req.user});}   NE MARCHE PAS
 
-    var user = new userSchema.User({ mail: mail
-        , password: password});
+    var user = new userSchema.User(user);
 
     user.save(function(err) {
         if(err) {
