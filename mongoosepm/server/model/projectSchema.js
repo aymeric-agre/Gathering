@@ -1,12 +1,5 @@
 var mongooseProject = require('mongoose');	// initialisation de mongoose
 
-var mongoOptions = {db: {safe: true} };
-
-mongooseProject.createConnection('mongodb://localhost/projects', mongoOptions, function(err, res){
-	if(err) console.log('Erreur connecting to mongodb://localhost/projects' + '.' + err);
-	else console.log('Successfully connected to : mongodb://localhost/projects');
-});	// création d'une connection propre aux projets
-
 /*	******
 	SCHEMA
 	******	*/
@@ -18,7 +11,7 @@ var projectSchema = new Schema({		// création du modèle -> structure des donn�
 	createdBy: {type: mongooseProject.Schema.Types.ObjectId, ref: 'User'},		//Créé par une seule personne
 	members: [{type: mongooseProject.Schema.Types.ObjectId, ref: 'User'}],		//Plusieurs membre : on utilise un tableau
 	administrators: [{type: mongooseProject.Schema.Types.ObjectId, ref: 'User'}],
-	group: [{type: mongooseProject.Schema.Types.ObjectId, ref: 'Group'}],
+	groups: [{type: mongooseProject.Schema.Types.ObjectId, ref: 'Group'}],
 	needs: [{type: String}],
 	themes: [{type: mongooseProject.Schema.Types.ObjectId, ref: 'Theme'}],
 	createdOn: {type: Date, default: Date.now},

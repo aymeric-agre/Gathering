@@ -2,14 +2,6 @@ var mongooseUser = require('mongoose');
 var bcrypt = require('bcrypt');
 var SALT_WORK_FACTOR = 10;
 
-// Database connect
-var mongoOptions = {db: {safe: true} };
-
-mongooseUser.createConnection('mongodb://localhost/users', mongoOptions, function(err, res){
-	if(err) console.log('Erreur connecting to mongodb://localhost/users' + '.' + err);
-	else console.log('Successfully connected to : mongodb://localhost/users');
-});
-	
 /*	******
 	SCHEMA
 	******	*/
@@ -18,24 +10,23 @@ var Schema = mongooseUser.Schema;
 var userSchema = new Schema({	// Création d'un schéma userSchema (pour la création d'utilisateur)
 	mail: {type: String, unique: true, required: true},
 	password: {type: String, max: 20, required: false},
-	userLastName: {type: String, required: false},
-	userFirstName: {type: String, required: false},
+	lastName: {type: String, required: false},
+	firstName: {type: String, required: false},
 	birthDate: { type: Date, required: false},
 	country: {type: String, required: false},
 	area: {type: String, required: false},
 	town: {type: String, required: false},
 	phone: {type: String, required: false},
-	competences: {type: String},
-	interests: {type: String},
-	sports: {type: String},
-	leisures: {type: String},
-	ohterInterests: {type: String},
+	competences: [{type: mongooseUser.Schema.Types.ObjectId, ref: 'Competence'}],
+	interests: [{type: String}],
+	leisures: [{type: String}],
+	ohterInterests: [{type: String}],
 	profession: {type: String},
-	studies: {type: String},
-	diplomas: {type: String},
+	studies: [{type: String}],
+	diplomas: [{type: String}],
 	ohterProfession: {type: String},
 	projects: [{type: mongooseUser.Schema.Types.ObjectId, ref: 'Project'}],
-	group: [{type: mongooseUser.Schema.Types.ObjectId, ref: 'Group'}],
+	groups: [{type: mongooseUser.Schema.Types.ObjectId, ref: 'Group'}],
 	createdOn: {type: Date, default: Date.now},
 	modifiedOn: {type: Date, default: Date.now},
 	lastLogin: {type: Date, default: Date.now}
