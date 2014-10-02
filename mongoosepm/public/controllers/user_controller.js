@@ -52,8 +52,7 @@ gatheringModule.controller('mainController', ['$rootScope', '$scope', '$location
 /*	Controller de la page /user_form	*/
 gatheringModule.controller('userFormController', ['$rootScope', '$scope', '$state', 'Auth', 'User', function($rootScope, $scope, $state, Auth, User)  {
 	$scope.title = "Formulaire";
-	// $scope.user = {mail : "", password : "", confirmPassword : "", userLastName :"", userFirstName :"", country :"" };
-	$scope.user = new User({mail : {}, password : {}, confirmPassword : {}, userLastName :{}, userFirstName :{}, country :{}}); 
+	$scope.user = new User({mail : "", password : "", confirmPassword : "", userLastName :"", userFirstName :"", country :""}); 
 	$scope.statuts = {name: "Étudiant"}, {name: "Doctorant"}, {name: "Enseignant"} ;
 	
 	//Navigation
@@ -165,6 +164,10 @@ gatheringModule.controller('searchUserController', ['$scope', 'users', function(
 gatheringModule.controller('userController', ['$rootScope', 'thisUser',  function($scope,thisUser) {
 	$scope.user=thisUser;
 	$scope.groups=thisUser.groups;
+	$scope.experiences=thisUser.experience;
+	$scope.competencies=thisUser.competencies;
+	$scope.projects=thisUser.projects;
+	$scope.languages=thisUser.languages;
 }]);
 
 

@@ -4,9 +4,10 @@
 <div>
 
 	<article>
-		<div class="case" id="headpage">
+		<div class="case row" id="headpage">
+			<h1> Profil </h1>
 			<div class="col-md-5">
-				<h2> {{user.userFirstName}} {{user.userLastName}} </h2>
+				<h2> {{user.userFirstName}} {{user.userLastName}} - {{user.statut}} </h2>
 				<p>	
 					{{ user.town }}</br>
 					{{ user.country }}</br>
@@ -19,79 +20,62 @@
 				<p>image</p>
 			</div>
 		</div>
-		
-		<div>
-			<p>Devise/titre</p>
-		</div>
 
-		<div class="case" id="formation">
-			<h2>{{user.statut}}</h2>		
+		<div class="case row" id="formation">
+			<h1><i class="fa fa-graduation-cap"></i> Formation </h1>		
 			<ul>
-				<li ng-repeat="groups in group">
+				<li ng-repeat="group in groups">
 					<div class="col-md-3"> Date </div>
 					<div class="col-md-6"> Description </div>
-					<li class="col-md-3">	Image-lien </li>
+					<div class="col-md-3">	Image-lien </div>
 				</li>
 			</ul>
 		</div>
 				
 
 				
-		<div class="case" class="sortable">
-			<h2>Education</h2>		
-				<ul>
-					<li class="gauche"> Date </li>
-					<li class="centre">	Description </li>
-					<li class="droit">	Image-lien </li>
-				</ul>
-				<ul>
-					<li class="gauche"> Date </li>
-					<li class="centre">	Description </li>
-					<li class="droit">	Image-lien </li>
-				</ul>
-				<ul>
-					<li class="gauche"> Date </li>
-					<li class="centre">	Description </li>
-					<li class="droit">	Image-lien </li>
-				</ul>		
+		<div class="case row" id="experiencePro">
+			<h1>Expériences Professionnelles</h1>		
+			<ul>
+				<li ng-repeat="experience in experiences">
+					<div class="col-md-3"> Date </div>
+					<div class="col-md-6"> Description </div>
+					<div class="col-md-3">	Image-lien </div>
+				</li>
+			</ul>
 		</div>
 					
-		<div class="case" class="sortable">
-			<h2>Compétences</h2>		
-				<ul>
-					<li class="gauche"> Date </li>
-					<li class="centre">	Description </li>
-					<li class="droit">	Image-lien </li>
-				</ul>
-				<ul>
-					<li class="gauche"> Date </li>
-					<li class="centre">	Description </li>
-					<li class="droit">	Image-lien </li>
-				</ul>
-				<ul>
-					<li class="gauche"> Date </li>
-					<li class="centre">	Description </li>
-					<li class="droit">	Image-lien </li>
-				</ul>		
+		<div class="case row" class="competence">
+			<h1>Compétences</h1>		
+			<ul>
+				<li ng-repeat="competence in competences">
+					<div class="col-md-3"> Date </div>
+					<div class="col-md-6"> Description </div>
+					<div class="col-md-3">	Image-lien </div>
+				</li>
+			</ul>	
 		</div>
 					
-		<div class="case" class="sortable">
-			<h2>Activités</h2>		
-				<ul>
-					<li class="gauche"> Date </li>
-					<li class="centre">	Description </li>
-					<li class="droit">	Image-lien </li>
-				</ul>
-				<ul>
-					<li class="gauche"> Date </li>
-					<li class="centre">	Description </li>
-					<li class="droit">	Image-lien </li>
-				</ul>
-				<ul>
-					<li class="gauche"> Date </li>
-					<li class="centre">	Description </li>
-					<li class="droit">	Image-lien </li>
-				</ul>	
+		<div class="case row" class="project">
+			<h1><i class="fa fa-coffee"></i>Projets</h1>		
+			<ul>
+				<li ng-repeat="project in projects">
+					<div class="col-md-3"> Date </div>
+					<div class="col-md-6"> Description </div>
+					<div class="col-md-3">	Image-lien </div>
+				</li>
+			</ul>	
+		</div>
+		
+		<div class="case row" class="language">
+			<h1><i class="fa fa-globe"></i>Langages</h1>		
+			<ul>
+				<li ng-repeat="language in languages">
+					<div class="col-md-3"> Date </div>
+					<div class="col-md-6"> Description </div>
+					<div class="col-md-3">	Image-lien </div>
+				</li>
+			</ul>	
 		</div>
 	</article>
 </div>

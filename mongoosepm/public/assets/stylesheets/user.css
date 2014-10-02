@@ -1,2 +1,16 @@
+.case {
+	margin : 20px;
+	background : rgba(130, 150, 150, 0.2);
+	margin-top : 50px;
+	padding : 15px 30px;
+	border-radius : 10px;
+	box-shadow:         0px 0px 5px 0px rgba(255, 255, 255, 1);
+		-webkit-box-shadow: 0px 0px 5px 0px rgba(255, 255, 255, 1);
+		-moz-box-shadow:    0px 0px 5px 0px rgba(255, 255, 255, 1);
+	font-size : 1.5em;
+}
 
-
+h1 {
+	text-align : left;
+	text-decoration: underline;
+}
