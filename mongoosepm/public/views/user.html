@@ -3,80 +3,18 @@
 </head>
 <div>
 
-	<article>
-		<div class="case row" id="headpage">
-			<h1> Profil </h1>
-			<div class="col-md-5">
-				<h2> {{user.userFirstName}} {{user.userLastName}} - {{user.statut}} </h2>
-				<p>	
-					{{ user.town }}</br>
-					{{ user.country }}</br>
-					{{ user.birthDate }} </br>
-					{{ user.mail }}</br>
-					{{ user.phone }}</br>
-				</p>
-			</div>
-			<div class="col-md-offset-4 col-md-3">
-				<p>image</p>
-			</div>
-		</div>
-
-		<div class="case row" id="formation">
-			<h1><i class="fa fa-graduation-cap"></i> Formation </h1>		
-			<ul>
-				<li ng-repeat="group in groups">
-					<div class="col-md-3"> Date </div>
-					<div class="col-md-6"> Description </div>
-					<div class="col-md-3">	Image-lien </div>
-				</li>
-			</ul>
-		</div>
-				
-
-				
-		<div class="case row" id="experiencePro">
-			<h1>Expériences Professionnelles</h1>		
-			<ul>
-				<li ng-repeat="experience in experiences">
-					<div class="col-md-3"> Date </div>
-					<div class="col-md-6"> Description </div>
-					<div class="col-md-3">	Image-lien </div>
-				</li>
-			</ul>
-		</div>
-					
-		<div class="case row" class="competence">
-			<h1>Compétences</h1>		
-			<ul>
-				<li ng-repeat="competence in competences">
-					<div class="col-md-3"> Date </div>
-					<div class="col-md-6"> Description </div>
-					<div class="col-md-3">	Image-lien </div>
-				</li>
-			</ul>	
-		</div>
-					
-		<div class="case row" class="project">
-			<h1><i class="fa fa-coffee"></i>Projets</h1>		
-			<ul>
-				<li ng-repeat="project in projects">
-					<div class="col-md-3"> Date </div>
-					<div class="col-md-6"> Description </div>
-					<div class="col-md-3">	Image-lien </div>
-				</li>
-			</ul>	
-		</div>
-		
-		<div class="case row" class="language">
-			<h1><i class="fa fa-globe"></i>Langages</h1>		
-			<ul>
-				<li ng-repeat="language in languages">
-					<div class="col-md-3"> Date </div>
-					<div class="col-md-6"> Description </div>
-					<div class="col-md-3">	Image-lien </div>
-				</li>
-			</ul>	
-		</div>
+	<article class="col-md-11">
+		<ui-view>
 	</article>
+	
+	<nav ng-if="sameUser()" class="col-md-1" id="manager">
+		<ul>
+			<li class="fa fa-edit" id="editUser" ng-click="editMode=!editMode" ui-sref="main.user.edit"></li>
+			<div ng-if="editMode">
+				<li class="fa fa-times" id="editStop" ui-sref="main.user.profile" ng-click="editMode = !editMode"></li>
+				<li class="fa fa-check" id="editSubmit" ng-click="editMode = !editMode"></li>
+			</div>
+		</ul>
+	</nav
 </div>
 

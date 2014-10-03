@@ -161,13 +161,24 @@ gatheringModule.controller('searchUserController', ['$scope', 'users', function(
 }]);
 
 
-gatheringModule.controller('userController', ['$rootScope', 'thisUser',  function($scope,thisUser) {
+gatheringModule.controller('userController', ['$rootScope', 'thisUser',  function($scope, thisUser) {
 	$scope.user=thisUser;
 	$scope.groups=thisUser.groups;
 	$scope.experiences=thisUser.experience;
 	$scope.competencies=thisUser.competencies;
 	$scope.projects=thisUser.projects;
 	$scope.languages=thisUser.languages;
+	
+	$scope.sameUser = function() {
+		if($scope.user._id = currentUser._id) {return true}
+		else {return false}
+	}
+	
+	
+	
+	
+	//Edit mode
+	$scope.editMode = false;
 }]);
 
 

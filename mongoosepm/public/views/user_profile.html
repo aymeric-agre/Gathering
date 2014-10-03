@@ -1,18 +1,13 @@
-<head>
-<link rel="stylesheet" href="/public/assets/stylesheets/user.css" />
-</head>
-<div>
-
-	<article>
-		<div class="case row" id="headpage">
+<div class="case row" id="headpage">
 			<h1><i class="fa fa-user"></i>Profil </h1>
 			<div class="col-md-5">
-				<h2> {{user.userFirstName}} {{user.userLastName}} - {{user.statut}} </h2>	
-					<input placeholder="Ville" value="{{ user.town }}"></br>
-					<input placeholder="Pays" value="{{ user.country }}"></br>
-					<input placeholder="Date de naissance" value="{{ user.birthDate }}"> </br>
-					<input placeholder="Email" value="{{ user.mail }}"></br>
-					<input placeholder="Telephone" value="{{ user.phone }}"></br>
+				<h2> {{user.userFirstName}} {{user.userLastName}} - {{user.statut}} </h2>
+				<p>	
+					{{ user.town }}</br>
+					{{ user.country }}</br>
+					{{ user.birthDate }} </br>
+					{{ user.mail }}</br>
+					{{ user.phone }}</br>
 				</p>
 			</div>
 			<div class="col-md-offset-4 col-md-3">
@@ -76,6 +71,3 @@
 				</li>
 			</ul>	
 		</div>
-	</article>
-</div>
-

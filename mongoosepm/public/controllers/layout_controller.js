@@ -56,9 +56,9 @@ var main = {
 		controller: 'searchProjectController',
 		parent : main
 	}
-		
-	var profile = {
-		name : 'main.profile',
+	
+	var user = {
+		name : 'main.user',
 		url : '/user/:userId',
 		templateUrl : '/public/views/user.html',
 		controller : 'userController',
@@ -77,7 +77,20 @@ var main = {
 					}]
 				}
 			}
-			
+	
+		var profile = {
+			name : 'main.user.profile',
+			//url : '/user/:userId',
+			templateUrl : '/public/views/user_profile.html',
+			parent : user
+			}
+		
+		var profile_edit = {
+			name : 'main.user.edit',
+			url : '/edit',
+			templateUrl : '/public/views/user_edit.html',
+			parent : user
+		}
 			
 			
 	
@@ -136,11 +149,13 @@ var main = {
 		
 $stateProvider.state(main)
 	.state(index)
-	.state(user_form)
 	.state(search_user)
 	.state(search_project)
-	.state(profile)
-		.state(projects_list)
+	.state(user_form)
+	.state(user)
+		.state(profile)
+		.state(profile_edit)
+	.state(projects_list)
 	.state(project)
 	.state(project_form);
  

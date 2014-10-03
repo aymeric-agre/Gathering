@@ -266,68 +266,6 @@ h3{
 	Recherche	
 	*********	*/
 
-#search {
-	float : right;
-	display : block;
-	margin : 5px 0;
-	height : 70px;
-	width : 70px;
-	background : #ea8206;
-	border: 3px solid #fff;
-	border-radius : 50px;
-	transition : all 0.5s ease;
-}
-
-#search:hover, #search:active, #search:focus {
-	width : 100%;
-	background : #b01600;
-}
-
-#search i {
-	display : block;
-	font-size : 25px;
-	text-align : center;
-	margin : 20px 0;
-}
-
-#search:hover i{
-	display : none;
-}
-
-#search #search_field {
-	display : none;
-	float : right;
-	width : 90%;
-	transition-delay : 0.2s;
-}
-
-#search:hover #search_field {
-	display : block;
-}
-
-#search input {
-	background : rgba(255, 150, 150, 0.5);
-	width : 70%;
-	border : none;
-	border-radius : 5px;
-	outline: 0;	
-	font-size : 1.5em;
-	margin: 0.3em 0;
-}
-
-#search ::-webkit-input-placeholder { color:#fff; font-size: 1.2em;}
-#search ::-moz-placeholder { color:#fff; font-size: 1.2em; } /* firefox 19+ */
-#search :-ms-input-placeholder { color:#fff; font-size: 1.2em; } /* ie */
-#search input:-moz-placeholder { color:#fff; font-size: 1.2em;}
-
-#search button {
-	border : none;
-	background : none;
-	font-size : 1.6em;
-	color : white;
-}
-
-
 /*	Menu recherche	*/
 .cn-button {
 	position : absolute;
@@ -336,11 +274,15 @@ h3{
 	text-align : center;
 	width : 4em;
 	height : 2em;
-	padding : 10%;
+	padding : 5%;
 	border-radius: 50% / 0 0 100% 100%;	/*Demi-cercle*/
 	border : none;
 	z-index : 4;
 	background : rgba(200,200,200, 0.5);
+}
+
+.cn-button i{
+	font-size : 1.3em;
 }
 
 .cn-button:hover, .cn-button:active, .cn-button:focus{
@@ -379,7 +321,6 @@ h3{
 
 .cn-wrapper li {
 	position : absolute;
-
 	width : 10em;
 	height : 10em;
 	left : 50%;
@@ -432,6 +373,18 @@ h3{
 		-moz-transform: skew(-30deg) rotate(-60deg) scale(1);
 	background : #ea8206;
 }
+
+.cn-wrapper li a:hover {
+	background : #b01600;
+}
+
+/*	Remet les logos à leurs place	*/
+.cn-wrapper li i{
+	margin-top : 80%;
+	font-size : 1.5em;
+}
+
+
 
 .cn-overlay {
   width: 100%;

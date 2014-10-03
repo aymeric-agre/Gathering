@@ -10,12 +10,12 @@
 			</div>
 			
 			<div class="col-md-1 col-md-offset-3">
-				<button class="cn-button fa fa-search" id="cn-button" ng-click="opened = !opened"></button>
+				<button class="cn-button" id="cn-button" ng-click="opened = !opened"><i class=" fa fa-search"></i></button>
 				<div class="cn-wrapper" id="cn-wrapper" ng-class="{'opened-nav' : opened}">
 				    <ul>
-				      <li><a ui-sref="main.search_user"><span class="fa fa-user">Projets</span></a></li>
-				      <li><a href="#"><span class="fa fa-users"></span></a></li>
-				      <li><a href="#"><span class="fa fa-briefcase"></span></a></li>
+				      <li><a ui-sref="main.search_user"><i class="fa fa-user"></i></a></li>
+				      <li><a ui-sref="main.search_project"><i class="fa fa-users"></i></a></li>
+				      <li><a href="#"><i class="fa fa-briefcase"></i></a></li>
 				     </ul>
 				</div>
 				<div id="cn-overlay" class="cn-overlay" ng-class="{'on-overlay' : opened}"></div>
@@ -31,7 +31,7 @@
 			<nav class="sidebar col-md-2"  ng-class="{'sidebar' : !isActive, 'sidebar active' : isActive}" ng-init="isActive = true">	
 				<ul ng-switch-when="false">
 					<a ui-sref="main.user_form"><li class="navigation-button" > 
-						<i class="fa fa-key"></i>
+						<i class="fa fa-sign-in"></i>
 						<span>Créer un compte</span>
 						
 					</li></a>
@@ -58,9 +58,13 @@
 						<i class="fa fa-coffee"></i>
 						<span>Mes projets</span>
 					</li></a>
-					<a ui-sref="main.profile({userId : currentUser._id})"><li class="navigation-button">  
+					<a ui-sref="main.user.profile({userId : currentUser._id})"><li class="navigation-button">  
 						<i class="fa fa-user"></i>
 						<span>Mon compte</span>  
+					</li></a>
+					<a ui-sref="main.user.mailbox({userId : currentUser._id})"><li class="navigation-button">  
+						<i class="fa fa-envelope"></i>
+						<span>Messagerie</span>  
 					</li></a>
 					<li class="navigation-button" ng-click="logout()"> 
 						<i class="fa fa-power-off"></i>
