@@ -12,7 +12,7 @@
 			<li class="fa fa-edit" id="editUser" ng-click="editMode=!editMode" ui-sref="main.user.edit"></li>
 			<div ng-if="editMode">
 				<li class="fa fa-times" id="editStop" ui-sref="main.user.profile" ng-click="editMode = !editMode"></li>
-				<li class="fa fa-check" id="editSubmit" ng-click="editMode = !editMode"></li>
+				<li class="fa fa-check" id="editSubmit" ng-click="edit()"></li>
 			</div>
 		</ul>
 	</nav

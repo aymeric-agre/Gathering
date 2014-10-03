@@ -43,7 +43,9 @@ exports.doCreateUser = function(req,res,done){	// fonction de traitement du form
 	******************	*/
 	
 /*	Modifier un utilisateur	*/
-exports.identite_modification = function(req, res){	// fonction de modification -> ne va pas être conservée, on se contentera de faire des updates un peu comme la page projet, à voir comment on mettra ça en oeuvre
+exports.updateUser = function(req, res){	// fonction de modification -> ne va pas être conservée, on se contentera de faire des updates un peu comme la page projet, à voir comment on mettra ça en oeuvre
+	console.log("On edite un user");	
+
 };
 
 /*	supprimer un utilisateur	*/
@@ -77,9 +79,9 @@ exports.allUsers = function(req, res, next) {
 
 exports.currentUser = function(req,res,next) {
 	if (req.isAuthenticated()) {
-		console.log('On cherche currentUser');
-		res.send({user : req.user, connexion : req.isAuthenticated()});
-	} else {res.send(404);}
+		console.log('On cherche currentUser : ' + req.user);
+		res.send({user : req.user , connexion : req.isAuthenticated()});
+	} else {res.send({user : "" , connexion : req.isAuthenticated()});}
 };
 	
 /*	Rechercher un utilisateur à partir de son nom	*/

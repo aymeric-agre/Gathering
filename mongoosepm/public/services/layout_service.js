@@ -9,8 +9,10 @@ var projectModule = angular.module('project', ['ngResource']);		//'Project' peut
 /*	Permet de créer et utliser l'object project	*/
 projectModule.factory('Project', ['$resource',	//on appelle la dépendance à $resource
 	function($resource){	//On lance une fonction sur les $resource
-		return $resource('/project/:id', {id: '@id'}	// return $resource permet de passer 'project' en argument des controllers et utiliser le CRUD
-	);
+		return $resource('/project/:id', {id: '@id'},	// return $resource permet de passer 'project' en argument des controllers et utiliser le CRUD
+		{
+			'update': { method:'PUT' }
+		});
 }]);												// "/project/:id" permet d'accéder à ces projets via leur id.
 													// @id indique que l'id est utilisé comme paramètre pour identifier un projet
 
@@ -55,8 +57,10 @@ var userModule = angular.module('user', ['ngResource']);		//'User' peut être ap
 /*	Permet de créer et utliser l'object user	*/
 userModule.factory('User', ['$resource',	//on appelle la dépendance à $resource
 	function($resource){	//On lance une fonction sur les $resource
-	return $resource('/user/:id', {id: '@id'}	//Permet d'utiliser la méthode update()
-	);	
+	return $resource('/user/:id', {id: '@id'},	//Permet d'utiliser la méthode update()
+		 {
+        'update': { method:'PUT' }
+    });	
 }]);												
 
 /*	Permet de charger tous les utilisateurs	*/
@@ -94,23 +98,6 @@ userModule.factory('allUsersLoader', ['User', '$q', //On appelle les dépendance
 	****************	*/
 
 var authModule = angular.module('auth', ['ngResource']);
-
-/* authModule.factory('userConnected', ['$resource',	//on appelle la dépendance à $resource
-	function($resource){	//On lance une fonction sur les $resource	
-		return $resource('/connected/');	
-}]);	
-
-authModule.factory('isConnected', ['userConnected', '$q', function(userConnected, $q) {	//Fonction qui permet de récupérer l'utilisateur pour le HTML notamment
-	return function() {
-	var delay = $q.defer();
-	userConnected.get(function(currentUserConnected) {	
-		delay.resolve(currentUserConnected);		
-	}, function() {					
-		delay.reject('Personne de connecté en ce moment');	
-	});
-	return delay.promise
-	};
-}]); */
 
 authModule.factory('Auth', ['$http', '$window', '$state', function($http, $window, $state) {
 	return {

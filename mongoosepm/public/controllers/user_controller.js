@@ -132,28 +132,6 @@ gatheringModule.controller('userFormController', ['$rootScope', '$scope', '$stat
 }]);
 
 
-/*	Controller de la page user/:id	*/
-gatheringModule.controller('userController', ['$scope', '$location', 'user', function($scope, $location, user){	//user désigne l'utilisateur de la page
-	$scope.title= user.userFirstName;
-	$scope.user = user;	//On défini le "user" des templates ($scope) comme étant celui de la dépendance
-}]);
-
-/*	Controller de la page /user_edit/:id	*/
-gatheringModule.controller('userEditController', ['$scope', '$location', 'user', function($scope, $location, user) {
-	$scope.user = user;
-	
-	$scope.save = function() {							//Enregistrer l'utilisateur
-		$scope.user.$save(function(user) {		//On enregitre l'utilisateur
-			$location.path('/user/' + user.id);	//Puis on redirige vers la page
-		});
-	};
-	
-	$scope.remove = function() {						//Supprimer l'utilisateur
-		delete $scope.user;							//On supprime l'utilisateur
-		$location.path('/');							//Puis on redirige vers la page d'accueil
-	};
-}]);
-
 
 /*	Page Recherche d'utilisateurs	*/
 gatheringModule.controller('searchUserController', ['$scope', 'users', function($scope, users) {
@@ -170,7 +148,7 @@ gatheringModule.controller('userController', ['$rootScope', 'thisUser',  functio
 	$scope.languages=thisUser.languages;
 	
 	$scope.sameUser = function() {
-		if($scope.user._id = currentUser._id) {return true}
+		if($scope.user._id == currentUser._id) {return true}
 		else {return false}
 	}
 	
@@ -179,6 +157,12 @@ gatheringModule.controller('userController', ['$rootScope', 'thisUser',  functio
 	
 	//Edit mode
 	$scope.editMode = false;
+	
+	$scope.edit = function(){
+		$scope.user.$update(function(){
+			$state.go('main.user.profile');
+		})
+	}
 }]);
 
 

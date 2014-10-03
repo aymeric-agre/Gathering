@@ -116,6 +116,7 @@ app.get('/delete_projects',project.doDeleteAllProjects);
 app.post('/user', user.doCreateUser);
 app.get('/user/:id', user.oneUser);
 app.get('/user', user.allUsers);
+app.put('/user/:id', user.updateUser);
 app.get('/connected', user.currentUser);
 //app.post('/doSearchUser',user.doSearchUser);
 app.get('/delete_users',user.doDeleteAllUsers);
