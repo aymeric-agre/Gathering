@@ -9,9 +9,9 @@
 	
 	<nav ng-if="sameUser()" class="col-md-1" id="manager">
 		<ul>
-			<li class="fa fa-edit" id="editUser" ng-click="editMode=!editMode" ui-sref="main.user.edit"></li>
+			<li class="fa fa-edit" id="editUser" ng-click="doEditMode()" ui-sref="main.user.edit"></li>
 			<div ng-if="editMode">
-				<li class="fa fa-times" id="editStop" ui-sref="main.user.profile" ng-click="editMode = !editMode"></li>
+				<li class="fa fa-times" id="editStop" ng-click="doEditMode()" ui-sref="main.user.profile" ></li>
 				<li class="fa fa-check" id="editSubmit" ng-click="edit()"></li>
 			</div>
 		</ul>

@@ -43,9 +43,19 @@ exports.doCreateUser = function(req,res,done){	// fonction de traitement du form
 	******************	*/
 	
 /*	Modifier un utilisateur	*/
-exports.updateUser = function(req, res){	// fonction de modification -> ne va pas être conservée, on se contentera de faire des updates un peu comme la page projet, à voir comment on mettra ça en oeuvre
-	console.log("On edite un user");	
-
+exports.updateUser = function(req, res, next){	
+	// userSchema.User.findById(req.params.id, function(err, userToUpdate) {	//On cherche l'utilisateur avec cet Id
+		// if (err) {console.log(err); return next(err);}
+		// else {
+		var userToUpdate = new userSchema.User(userToUpdate);
+			userToUpdate.save({'_id' : req.params.id},  {$set : {'mail' : req.body.mail}}, function(err, WriteResult){
+				if (err) {console.log(err); return next(err);}
+				else {
+				//res.send(userUpdated);	//On récupère 1 ?? Je sais pas pourquoi
+				console.log("user edité : " + WriteResult);
+			}});
+		// }
+	// })
 };
 
 /*	supprimer un utilisateur	*/

@@ -6,6 +6,7 @@ gatheringModule.config([ '$stateProvider', '$urlRouterProvider', '$locationProvi
 	
 	$locationProvider.html5Mode(true);	//Permet HTML5 PushState (l'appel de la dépendence permet d'éviter les problème quand on compile)
 	
+	
 		/*	AUTHENTIFICATION	*/
 	
 	var connexion = connected;

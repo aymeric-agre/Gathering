@@ -139,7 +139,7 @@ gatheringModule.controller('searchUserController', ['$scope', 'users', function(
 }]);
 
 
-gatheringModule.controller('userController', ['$rootScope', 'thisUser',  function($scope, thisUser) {
+gatheringModule.controller('userController', ['$rootScope', 'thisUser', 'User',  function($scope, thisUser, User) {
 	$scope.user=thisUser;
 	$scope.groups=thisUser.groups;
 	$scope.experiences=thisUser.experience;
@@ -157,9 +157,12 @@ gatheringModule.controller('userController', ['$rootScope', 'thisUser',  functio
 	
 	//Edit mode
 	$scope.editMode = false;
+	$scope.doEditMode = function() {$scope.editMode=!$scope.editMode}
 	
 	$scope.edit = function(){
-		$scope.user.$update(function(){
+		//var userToUpdate = new User({user : $scope.user});
+		$scope.user.$update({id : $scope.user._id}, function(){
+			$scope.editMode = false;
 			$state.go('main.user.profile');
 		})
 	}
