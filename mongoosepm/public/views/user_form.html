@@ -44,9 +44,9 @@
 		<div class="col-md-4">
 				<!-- Localisation -->
 			<input type="text" name="country" id="country" placeholder="Pays" ng-model="user.country"/>
-			<input type="text" name="area" id="area" placeholder="Région" ng-model="area"/>
-			<input type="text" name="town" id="town" placeholder="ville" ng-model="town"/>	
-			<input type="text" name="phone" id="phone" placeholder="Tel" ng-model="phone"/>
+			<input type="text" name="area" id="area" placeholder="Région" ng-model="user.area"/>
+			<input type="text" name="town" id="town" placeholder="ville" ng-model="user.town"/>	
+			<input type="text" name="phone" id="phone" placeholder="Tel" ng-model="user.phone"/>
 		
 		</div>
 		
@@ -54,7 +54,7 @@
 				<!-- Date de naissance  -->
 			<div id="birthDateBlock">
 				<label for="birthDate">Date de naissance : </label></br></br>
-				<input type="text" placeholder="dd.MM.yyyy" datepicker-popup="dd.MM.yyyy" ng-model="birthDate" datepicker-options="dateOptions" is-open="$parent.opened"/>
+				<input type="text" placeholder="dd.MM.yyyy" datepicker-popup="dd.MM.yyyy" ng-model="user.birthDate" datepicker-options="dateOptions" is-open="$parent.opened"/>
 				<span class="input-group-btn date-button">
 					<button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
 				</span>
@@ -81,7 +81,7 @@
 		
 		<div class="col-md-3 ">
 			<label for="competences">Compétences</label> : </br>
-			<input type="text" name="competences" placeholder="Mettez en avant vos compétences" ng-model="competence"/>
+			<input type="text" name="competences" placeholder="Mettez en avant vos compétences" ng-model="user.competences"/>
 			<i ng-click="add(competence)"></i>
 		</div>
 		<div class="col-md-2">
@@ -96,7 +96,7 @@
 		
 		<div class="col-md-3">
 			<label for="interests">Centres d'intérêt</label> : </br>
-			<input type="text" name="interests" placeholder="Qu'est ce qui vous intéresse ?" ng-model="interests"/>
+			<input type="text" name="interests" placeholder="Qu'est ce qui vous intéresse ?" ng-model="user.interests"/>
 			<i ng-click="add(competence)"></i>
 		</div>
 		<div class="col-md-2">
@@ -124,14 +124,14 @@
 			</a>
 		</nav>
 		<div class="col-md-5">
-			<label for="statut">Statut</label> : <select type="text" name="statut" ng-model="user.statut" ng-option="statuts.name for statut in statuts"/></select>
+			<label for="status">Statut</label> : <select type="text" name="status" ng-model="user.status" ng-option="status.name for status in statuses"/></select>
 			<br/>
-			<label for="diplomas">Diplômes</label> : <textarea type="text" name="diplomas" id="diplomas" class="champs_droit"/></textarea>
+			<label for="diplomas">Diplômes</label> : <textarea type="text" name="diplomas" ng-model="user.diplomas" id="diplomas" class="champs_droit"/></textarea>
 		</div>
 		<div class="col-md-5">
-			<label for="profession">Profession</label> : <textarea type="text" name="profession" id="profession" class="champs_droit"/></textarea>
+			<label for="profession">Profession</label> : <textarea type="text" name="profession" ng-model="user.profession" id="profession" class="champs_droit"/></textarea>
 			<br/>
-			<label for="otherProfession">Autres</label> : <textarea type="text" name="otherProfession" id="otherProfession" class="champs_droit"/></textarea>
+			<label for="otherProfession">Autres</label> : <textarea type="text" name="otherProfession" ng-model="user.otherProfession" id="otherProfession" class="champs_droit"/></textarea>
 		</div>
 		<nav class="col-md-1 nav-circlepop">
 			<a class="next" ng-click="next(selection)">

@@ -22,6 +22,7 @@ var userSchema = new Schema({	// Création d'un schéma userSchema (pour la cré
 	sports: {type: String},
 	leisures: {type: String},
 	ohterInterests: {type: String},
+	status: {type: String},
 	profession: {type: String},
 	studies: {type: String},
 	diplomas: {type: String},
