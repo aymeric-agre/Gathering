@@ -51,7 +51,6 @@ userSchema.pre('save', function(next){
 	});
 });
 
-
 /*	********
 	METHODES
 	********	*/
@@ -65,20 +64,11 @@ userSchema.methods.comparePassword = function(candidatePassword, cb){
 		cb(null, isMatch);
 	});
 };	
-	
-//	Méthode pour appeler l'utilisateur sur la commande
-userSchema.methods.speak = function () {		// Méthode propre à inscritSchema
-	var greeting = this.userFirstName
-		? "Mon prénom est " + this.userFirstName
-		: "Je n'ai pas de prénom."
-	console.log(greeting);
-};
 
 //	Recherche par nom
 userSchema.statics.findByName = function (tag, callback) {
 	this.find({ userFirstName : tag },{sort: 'modifiedOn'}, callback);
 };
-
 
 /*	*****
 	MODEL
