@@ -2,14 +2,6 @@ var mongooseUser = require('mongoose');
 var bcrypt = require('bcrypt');
 var SALT_WORK_FACTOR = 10;
 
-// Database connect
-var mongoOptions = {db: {safe: true} };
-
-mongooseUser.createConnection('mongodb://localhost/users', mongoOptions, function(err, res){
-	if(err) console.log('Erreur connecting to mongodb://localhost/users' + '.' + err);
-	else console.log('Successfully connected to : mongodb://localhost/users');
-});
-	
 /*	******
 	SCHEMA
 	******	*/
