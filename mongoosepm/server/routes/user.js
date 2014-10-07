@@ -43,8 +43,14 @@ exports.doCreateUser = function(req,res,done){	// fonction de traitement du form
 	
 /*	Modifier un utilisateur	*/
 exports.updateUser = function(req, res){	// fonction de modification -> ne va pas être conservée, on se contentera de faire des updates un peu comme la page projet, à voir comment on mettra ça en oeuvre
-	console.log("On edite un user");	
-
+	console.log("On edite un user");
+	if (req.isAuthenticated()) {
+		console.log('On cherche currentUser : ' + req.user);
+		res.send({user : req.user , connexion : req.isAuthenticated()},
+			userSchema.User.update({mail: user}, /* éléments à mettre à jour */, options, callback)
+		);
+	} else {res.send({user : "" , connexion : req.isAuthenticated()});}
+	
 };
 
 /*	supprimer un utilisateur	*/
@@ -77,10 +83,15 @@ exports.allUsers = function(req, res, next) {
 };
 
 exports.currentUser = function(req,res,next) {
-	if (req.isAuthenticated()) {
+	if (req.isAuthenticated()) 
+	{
 		console.log('On cherche currentUser : ' + req.user);
 		res.send({user : req.user , connexion : req.isAuthenticated()});
-	} else {res.send({user : "" , connexion : req.isAuthenticated()});}
+	} 
+	else
+	{
+		res.send({user : "" , connexion : req.isAuthenticated()});
+	}
 };
 	
 /*	Rechercher un utilisateur à partir de son nom	*/
