@@ -38,7 +38,6 @@ var app = express();
 
 var userSchema = require('./server/model/userSchema');
 
-
 /*	***********
 	ENVIRONMENT
 	***********	*/

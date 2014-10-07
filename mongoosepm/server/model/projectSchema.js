@@ -1,12 +1,5 @@
 var mongooseProject = require('mongoose');	// initialisation de mongoose
 
-var mongoOptions = {db: {safe: true} };
-
-mongooseProject.createConnection('mongodb://localhost/projects', mongoOptions, function(err, res){
-	if(err) console.log('Erreur connecting to mongodb://localhost/projects' + '.' + err);
-	else console.log('Successfully connected to : mongodb://localhost/projects');
-});	// création d'une connection propre aux projets
-
 /*	******
 	SCHEMA
 	******	*/

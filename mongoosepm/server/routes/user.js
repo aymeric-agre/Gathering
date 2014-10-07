@@ -18,8 +18,7 @@ var pass = require("../model/pass");
 exports.doCreateUser = function(req,res,done){	// fonction de traitement du formulaire d'inscription
 	var body = req.body;
 	console.log(body.user);
-	pass.createUser(body.user,
-		function(err,user){
+	pass.createUser(body.user, function(err,user){
 		 if (err) return res.render('user_form', {user: req.user, message: err.code === 11000 ? "User already exists" : err.message});
             req.login(user, function (err) {
                 if (err) {return next(err);}
@@ -34,7 +33,7 @@ exports.doCreateUser = function(req,res,done){	// fonction de traitement du form
 				//req.session.currentUser = user;
 				//res.send(req.session.currentUser);
             })
-        });
+    });
 };
 
 
@@ -43,19 +42,16 @@ exports.doCreateUser = function(req,res,done){	// fonction de traitement du form
 	******************	*/
 	
 /*	Modifier un utilisateur	*/
-exports.updateUser = function(req, res, next){	
-	// userSchema.User.findById(req.params.id, function(err, userToUpdate) {	//On cherche l'utilisateur avec cet Id
-		// if (err) {console.log(err); return next(err);}
-		// else {
-		var userToUpdate = new userSchema.User(userToUpdate);
-			userToUpdate.save({'_id' : req.params.id},  {$set : {'mail' : req.body.mail}}, function(err, WriteResult){
-				if (err) {console.log(err); return next(err);}
-				else {
-				//res.send(userUpdated);	//On récupère 1 ?? Je sais pas pourquoi
-				console.log("user edité : " + WriteResult);
-			}});
-		// }
-	// })
+
+exports.updateUser = function(req, res){	// fonction de modification -> ne va pas être conservée, on se contentera de faire des updates un peu comme la page projet, à voir comment on mettra ça en oeuvre
+	console.log("On edite un user");
+	if (req.isAuthenticated()) {
+		console.log('On cherche currentUser : ' + req.user);
+		res.send({user : req.user , connexion : req.isAuthenticated()},
+			userSchema.User.update({mail: user}, {} /* éléments à mettre à jour */, options, callback)
+		);
+	} else {res.send({user : "" , connexion : req.isAuthenticated()});}
+	
 };
 
 /*	supprimer un utilisateur	*/
@@ -88,10 +84,15 @@ exports.allUsers = function(req, res, next) {
 };
 
 exports.currentUser = function(req,res,next) {
-	if (req.isAuthenticated()) {
+	if (req.isAuthenticated()) 
+	{
 		console.log('On cherche currentUser : ' + req.user);
 		res.send({user : req.user , connexion : req.isAuthenticated()});
-	} else {res.send({user : "" , connexion : req.isAuthenticated()});}
+	} 
+	else
+	{
+		res.send({user : "" , connexion : req.isAuthenticated()});
+	}
 };
 	
 /*	Rechercher un utilisateur à partir de son nom	*/

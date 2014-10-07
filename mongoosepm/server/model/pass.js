@@ -71,14 +71,12 @@ exports.createUser = function(user, done) {
 		console.log(user.confirmPassword);
 		console.log("Passwords must match");
 		return done(null, false, {message: "Passwords must match"});}	//ne redirige pas
-		//return res.redirect('/identite_formulaire', {user: req.user});}  NE MARCHE PAS
 
 	//solidité du password
 	var result = zxcvbn(user.password);
     if (result.score < MIN_PASSWORD_SCORE){
 		console.log('Password is too simple');
     	return done(null,false);}		//ne redirige pas
-    	//res.redirect('/identite_formulaire', {user: req.user});}   NE MARCHE PAS
 
     var user = new userSchema.User(user);
 

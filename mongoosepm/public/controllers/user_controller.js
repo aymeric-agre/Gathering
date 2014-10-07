@@ -52,8 +52,8 @@ gatheringModule.controller('mainController', ['$rootScope', '$scope', '$location
 /*	Controller de la page /user_form	*/
 gatheringModule.controller('userFormController', ['$rootScope', '$scope', '$state', 'Auth', 'User', function($rootScope, $scope, $state, Auth, User)  {
 	$scope.title = "Formulaire";
-	$scope.user = new User({mail : "", password : "", confirmPassword : "", userLastName :"", userFirstName :"", country :""}); 
-	$scope.statuts = {name: "Étudiant"}, {name: "Doctorant"}, {name: "Enseignant"} ;
+	$scope.user = new User({mail : "", password : "", confirmPassword : "", lastName :"", firstName :"", country :""}); 
+	$scope.statuses = {name: "Étudiant"}, {name: "Doctorant"}, {name: "Enseignant"} ;
 	
 	//Navigation
 	$scope.etapes = ['Informations personnelles', 'Competences', 'Formation', 'Projets'];

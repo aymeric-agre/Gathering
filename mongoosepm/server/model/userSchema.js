@@ -2,14 +2,6 @@ var mongooseUser = require('mongoose');
 var bcrypt = require('bcrypt');
 var SALT_WORK_FACTOR = 10;
 
-// Database connect
-var mongoOptions = {db: {safe: true} };
-
-mongooseUser.createConnection('mongodb://localhost/users', mongoOptions, function(err, res){
-	if(err) console.log('Erreur connecting to mongodb://localhost/users' + '.' + err);
-	else console.log('Successfully connected to : mongodb://localhost/users');
-});
-	
 /*	******
 	SCHEMA
 	******	*/
@@ -18,8 +10,8 @@ var Schema = mongooseUser.Schema;
 var userSchema = new Schema({	// Création d'un schéma userSchema (pour la création d'utilisateur)
 	mail: {type: String, unique: true, required: true},
 	password: {type: String, max: 20, required: false},
-	userLastName: {type: String, required: false},
-	userFirstName: {type: String, required: false},
+	lastName: {type: String, required: false},
+	firstName: {type: String, required: false},
 	birthDate: { type: Date, required: false},
 	country: {type: String, required: false},
 	area: {type: String, required: false},
@@ -30,6 +22,7 @@ var userSchema = new Schema({	// Création d'un schéma userSchema (pour la cré
 	sports: {type: String},
 	leisures: {type: String},
 	ohterInterests: {type: String},
+	status: {type: String},
 	profession: {type: String},
 	studies: {type: String},
 	diplomas: {type: String},
@@ -59,7 +52,6 @@ userSchema.pre('save', function(next){
 	});
 });
 
-
 /*	********
 	METHODES
 	********	*/
@@ -73,20 +65,11 @@ userSchema.methods.comparePassword = function(candidatePassword, cb){
 		cb(null, isMatch);
 	});
 };	
-	
-//	Méthode pour appeler l'utilisateur sur la commande
-userSchema.methods.speak = function () {		// Méthode propre à inscritSchema
-	var greeting = this.userFirstName
-		? "Mon prénom est " + this.userFirstName
-		: "Je n'ai pas de prénom."
-	console.log(greeting);
-};
 
 //	Recherche par nom
 userSchema.statics.findByName = function (tag, callback) {
 	this.find({ userFirstName : tag },{sort: 'modifiedOn'}, callback);
 };
-
 
 /*	*****
 	MODEL
