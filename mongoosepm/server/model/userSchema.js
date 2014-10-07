@@ -10,8 +10,8 @@ var Schema = mongooseUser.Schema;
 var userSchema = new Schema({	// Création d'un schéma userSchema (pour la création d'utilisateur)
 	mail: {type: String, unique: true, required: true},
 	password: {type: String, max: 20, required: false},
-	userLastName: {type: String, required: false},
-	userFirstName: {type: String, required: false},
+	lastName: {type: String, required: false},
+	firstName: {type: String, required: false},
 	birthDate: { type: Date, required: false},
 	country: {type: String, required: false},
 	area: {type: String, required: false},

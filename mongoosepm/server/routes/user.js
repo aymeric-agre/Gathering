@@ -18,8 +18,7 @@ var pass = require("../model/pass");
 exports.doCreateUser = function(req,res,done){	// fonction de traitement du formulaire d'inscription
 	var body = req.body;
 	console.log(body.user);
-	pass.createUser(body.user,
-		function(err,user){
+	pass.createUser(body.user, function(err,user){
 		 if (err) return res.render('user_form', {user: req.user, message: err.code === 11000 ? "User already exists" : err.message});
             req.login(user, function (err) {
                 if (err) {return next(err);}
@@ -34,7 +33,7 @@ exports.doCreateUser = function(req,res,done){	// fonction de traitement du form
 				//req.session.currentUser = user;
 				//res.send(req.session.currentUser);
             })
-        });
+    });
 };
 
 
