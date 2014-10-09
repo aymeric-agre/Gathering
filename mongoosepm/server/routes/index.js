@@ -87,7 +87,7 @@ exports.doLogout = function(req, res) {
 
 
 /*	Vérifie que l'utilisateur est loggé	*/ 
-/* exports.currentUser = function(req, res, err) { 
+/*exports.currentUser = function(req, res, err) { 
 	if(req.isAuthenticated()) {	//Si la session est connecté
 		console.log('isLoggedIn : peut passer');
 		res.send(req.user);	//on renvoie l'utilisateur
@@ -96,7 +96,7 @@ exports.doLogout = function(req, res) {
 		res.send(404);
 		}				//Sinon on renvoie un erreur	
 	//res.send(req.isAuthenticated() ? req.user : '0'); 	//Fonction d'authentification faite avec passeport
-};  */
+};*/
 
 
 

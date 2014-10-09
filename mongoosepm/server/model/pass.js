@@ -65,18 +65,12 @@ exports.ensureAdmin = function ensureAdmin(req, res, next) {
 exports.createUser = function(user, done) {
 	console.log("on crée un user partie user.js");
 	console.log(user);
+	
 	//correspondance des passwords
-	if(user.password !== user.confirmPassword){
-		console.log(user.password);
-		console.log(user.confirmPassword);
-		console.log("Passwords must match");
-		return done(null, false, {message: "Passwords must match"});}	//ne redirige pas
-
+	passCorrespondance(user.password, user.confirmPassword);
+	
 	//solidité du password
-	var result = zxcvbn(user.password);
-    if (result.score < MIN_PASSWORD_SCORE){
-		console.log('Password is too simple');
-    	return done(null,false);}		//ne redirige pas
+	passSolidity(user.password);
 
     var user = new userSchema.User(user);
 
@@ -89,3 +83,50 @@ exports.createUser = function(user, done) {
     });
 
 };
+
+// Updating an existing user
+exports.updateUser = function(user, done) {
+	console.log("On modifie un user partie user.js");
+	console.log(user);
+	
+	// modification mot de passe
+	// correspondance des passwords
+	// passCorrespondance(user.password, user.confirmPassword);
+	
+	// solidité du password
+	// passSolidity(user.password);
+	
+	//var user = new userSchema.User(user);
+	user.modifiedOn = Date.now();
+	userSchema.User.update({_id: user._id}, user, {}, function(err) {
+		if(err)
+		{
+			done(err);
+		}
+		else
+		{
+			userSchema.User.findOne({_id: user._id}, function(err, user){
+				done(null, user);
+			});
+		}
+	});
+};
+
+passCorrespondance = function(pass, confirmPass){
+	if(pass !== confirmPass)
+	{
+		console.log(pass);
+		console.log(confirmPass);
+		console.log("Passwords must match");
+		return done(null, false, {message: "Passwords must match"});
+	}	//ne redirige pas
+}
+
+passSolidity = function(pass){
+	var result = zxcvbn(pass);
+    if (result.score < MIN_PASSWORD_SCORE)
+	{
+		console.log('Password is too simple');
+    	return done(null,false);
+	}	//ne redirige pas
+}

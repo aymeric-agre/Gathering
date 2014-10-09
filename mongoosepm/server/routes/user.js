@@ -19,20 +19,29 @@ exports.doCreateUser = function(req,res,done){	// fonction de traitement du form
 	var body = req.body;
 	console.log(body.user);
 	pass.createUser(body.user, function(err,user){
-		 if (err) return res.render('user_form', {user: req.user, message: err.code === 11000 ? "User already exists" : err.message});
-            req.login(user, function (err) {
-                if (err) {return next(err);}
-                // successful login
-				else {
-					console.log("Je modifie la connexion ? " + req.isAuthenticated());	
-					console.log("Le nouvel utilisateur est " + req.user.mail);	
-					res.send(req.isAuthenticated());
-				}
-                //le login de la version sans passport, à supprimer lors de a suppression de la variable loggedIn
-				//req.session.loggedIn = true;
-				//req.session.currentUser = user;
-				//res.send(req.session.currentUser);
-            })
+		if (err)
+		{
+			return res.render('user_form', {user: req.user, message: err.code === 11000 ? "User already exists" : err.message});
+		}
+		else
+		{
+			req.login(user, function (err) {
+					if (err) 
+					{
+						return next(err);
+					}
+					// successful login
+					else {
+						console.log("Je modifie la connexion ? " + req.isAuthenticated());	
+						console.log("Le nouvel utilisateur est " + req.user.mail);	
+						res.send(req.isAuthenticated());
+					}
+					//le login de la version sans passport, à supprimer lors de a suppression de la variable loggedIn
+					//req.session.loggedIn = true;
+					//req.session.currentUser = user;
+					//res.send(req.session.currentUser);
+			})
+		}
     });
 };
 
@@ -43,15 +52,26 @@ exports.doCreateUser = function(req,res,done){	// fonction de traitement du form
 	
 /*	Modifier un utilisateur	*/
 
-exports.updateUser = function(req, res){	// fonction de modification -> ne va pas être conservée, on se contentera de faire des updates un peu comme la page projet, à voir comment on mettra ça en oeuvre
+exports.updateUser = function(req, res, done){	// fonction de modification -> ne va pas être conservée, on se contentera de faire des updates un peu comme la page projet, à voir comment on mettra ça en oeuvre
 	console.log("On edite un user");
+	var body = req.body;
 	if (req.isAuthenticated()) {
-		console.log('On cherche currentUser : ' + req.user);
-		res.send({user : req.user , connexion : req.isAuthenticated()},
-			userSchema.User.update({mail: user}, {} /* éléments à mettre à jour */, options, callback)
-		);
-	} else {res.send({user : "" , connexion : req.isAuthenticated()});}
-	
+		console.log('On cherche currentUser : ' + body._id);
+		pass.updateUser(body.user, function(err, user){
+			if(err) 
+			{
+				return res.render('user_edit', {user: req.user, message: err.code === 500 ? "Updating problem" : err.message});
+			}
+			else
+			{
+				return res.render('user_profile', {user: req.user});
+			}
+		});
+	}
+	else
+	{
+		res.send({user : "" , connexion : req.isAuthenticated()});
+	}	
 };
 
 /*	supprimer un utilisateur	*/
@@ -116,25 +136,4 @@ exports.doSearchUser = function(req, res) {
 	}else{
 		res.redirect('/search_user');
 	}
-};
-
-
-/* ******************************* 
-   SUPPRIMER TOUS LES UTILISATEURS
-   ******************************* */
-
-/* Fonction pour effacer la bdd contenant les utilisateurs */
-exports.doDeleteAllUsers = function(req, res){
-	userSchema.User.find({}, function(err, gens){
-		console.log(gens);
-		userSchema.User.remove({}, function(err){
-			if(err) return console.error(err);
-			console.log("base de donnees utilisateurs effacee");
-			userSchema.User.find({}, function(err, insc){
-				if(err) return console.error(err);
-				console.log(insc);
-				setTimeout(function(){res.redirect('/');},1000);
-			});
-		});
-	});
 };
