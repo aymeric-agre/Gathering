@@ -48,7 +48,7 @@ exports.updateUser = function(req, res){	// fonction de modification -> ne va pa
 	if (req.isAuthenticated()) {
 		console.log('On cherche currentUser : ' + req.user);
 		res.send({user : req.user , connexion : req.isAuthenticated()},
-			userSchema.User.update({mail: user}, {} /* éléments à mettre à jour */, options, callback)
+			userSchema.User.update({mail: user.mail}, {} /* éléments à mettre à jour */, options, callback)
 		);
 	} else {res.send({user : "" , connexion : req.isAuthenticated()});}
 	
