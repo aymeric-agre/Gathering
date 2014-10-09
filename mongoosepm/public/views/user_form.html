@@ -95,9 +95,14 @@
 		</div>
 		
 		<div class="col-md-3">
-			<label for="interests">Centres d'intérêt</label> : </br>
-			<input type="text" name="interests" placeholder="Qu'est ce qui vous intéresse ?" ng-model="user.interests"/>
-			<i ng-click="add(competence)"></i>
+			<label>Centres d'intérêt</label> : </br>
+			<ui-select type="text" name="interests"  ng-model="user.interests">
+				<input ui-select-match placeholder="Qu'est ce qui vous intéresse ?" ng-model="newTheme">{{$item}}</input>
+				<ui-select-choices repeat="theme in themes | filter:$select.search">
+					{{theme}}
+				</ui-select-choices>
+			</ui-select>
+			<i ng-click="add(newTheme)"></i>
 		</div>
 		<div class="col-md-2">
 			<p>Vos centres d'intérêt : </p>

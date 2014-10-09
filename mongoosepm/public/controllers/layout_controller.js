@@ -39,7 +39,8 @@ var main = {
 		url : '/user_form/',
 		templateUrl : '/public/views/user_form.html',
 		controller :'userFormController',
-		parent : main
+		parent : main,
+		resolve : {themes : function(allThemesLoader){return allThemesLoader();}}
 	}
 		
 	var search_user = {
