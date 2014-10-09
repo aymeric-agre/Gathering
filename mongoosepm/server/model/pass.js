@@ -98,16 +98,16 @@ exports.updateUser = function(user, done) {
 	
 	//var user = new userSchema.User(user);
 	user.modifiedOn = Date.now();
-	userSchema.User.update({_id: user._id}, user, {}, function(err) {
+	userSchema.User.update({_id: user._id}, user, {}, function(err, user) {
 		if(err)
 		{
 			done(err);
 		}
 		else
 		{
-			userSchema.User.findOne({_id: user._id}, function(err, user){
+			//userSchema.User.findOne({_id: user._id}, function(err, user){
 				done(null, user);
-			});
+			//});
 		}
 	});
 };
