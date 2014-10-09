@@ -56,7 +56,7 @@ exports.updateUser = function(req, res, done){	// fonction de modification -> ne
 	console.log("On edite un user");
 	var body = req.body;
 	if (req.isAuthenticated()) {
-		console.log('On cherche currentUser : ' + body._id);
+		console.log('On cherche currentUser : ' + body.user._id);
 		pass.updateUser(body.user, function(err, user){
 			if(err) 
 			{
