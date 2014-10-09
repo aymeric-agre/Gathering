@@ -139,7 +139,7 @@ gatheringModule.controller('searchUserController', ['$scope', 'users', function(
 }]);
 
 
-gatheringModule.controller('userController', ['$rootScope', 'thisUser', 'User',  function($scope, thisUser, User) {
+gatheringModule.controller('userController', ['$rootScope', 'thisUser', 'User', '$state',  function($scope, thisUser, User, $state) {
 	$scope.user=thisUser;
 	$scope.groups=thisUser.groups;
 	$scope.experiences=thisUser.experience;

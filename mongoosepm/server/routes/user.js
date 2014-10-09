@@ -52,11 +52,11 @@ exports.doCreateUser = function(req,res,done){	// fonction de traitement du form
 	
 /*	Modifier un utilisateur	*/
 
-exports.updateUser = function(req, res, done){	// fonction de modification -> ne va pas être conservée, on se contentera de faire des updates un peu comme la page projet, à voir comment on mettra ça en oeuvre
+exports.doUpdateUser = function(req, res, done){	// fonction de modification -> ne va pas être conservée, on se contentera de faire des updates un peu comme la page projet, à voir comment on mettra ça en oeuvre
 	console.log("On edite un user");
 	var body = req.body;
 	if (req.isAuthenticated()) {
-		console.log('On cherche currentUser : ' + body._id);
+		console.log('On cherche le currentUser depuis update : ' + body.user._id);
 		pass.updateUser(body.user, function(err, user){
 			if(err) 
 			{
