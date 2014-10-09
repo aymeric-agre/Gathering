@@ -118,7 +118,6 @@ app.get('/user', user.allUsers);
 app.put('/user/:id', user.updateUser);
 app.get('/connected', user.currentUser);
 //app.post('/doSearchUser',user.doSearchUser);
-app.get('/delete_users',user.doDeleteAllUsers);
 
 
 
