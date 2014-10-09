@@ -54,10 +54,10 @@ exports.doCreateUser = function(req,res,done){	// fonction de traitement du form
 
 exports.updateUser = function(req, res, done){	// fonction de modification -> ne va pas être conservée, on se contentera de faire des updates un peu comme la page projet, à voir comment on mettra ça en oeuvre
 	console.log("On edite un user");
+	var body = req.body;
 	if (req.isAuthenticated()) {
-		var body = req.user;
 		console.log('On cherche currentUser : ' + body._id);
-		pass.updateUser(body, function(err, user){
+		pass.updateUser(body.user, function(err, user){
 			if(err) 
 			{
 				return res.render('user_edit', {user: req.user, message: err.code === 500 ? "Updating problem" : err.message});
@@ -67,14 +67,6 @@ exports.updateUser = function(req, res, done){	// fonction de modification -> ne
 				return res.render('user_profile', {user: req.user});
 			}
 		});
-		
-		
-		/*res.send({user: user, connexion : req.isAuthenticated()},
-			userSchema.User.update({_id: user}, {}, {}, function(err){
-					if(err) throw err;
-				}
-			)
-		);*/
 	}
 	else
 	{

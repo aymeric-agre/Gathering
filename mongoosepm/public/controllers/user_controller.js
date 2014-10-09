@@ -157,7 +157,9 @@ gatheringModule.controller('userController', ['$rootScope', 'thisUser', 'User', 
 	$scope.doEditMode = function() {$scope.editMode=!$scope.editMode}
 	
 	$scope.edit = function(){
+		console.log("coucou c'est moi le controlleur");
 		var userToUpdate = new User({user : $scope.user});
+		console.log($scope.user);
 		userToUpdate.$update({id : $scope.user._id}, function(){
 			$scope.editMode = false;
 			$state.go('main.user.profile');
