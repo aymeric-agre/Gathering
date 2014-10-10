@@ -12,7 +12,7 @@ gatheringModule.controller('userFormController', ['$rootScope', '$scope', '$stat
 	$scope.statuses = {name: "Étudiant"}, {name: "Doctorant"}, {name: "Enseignant"};
 	$scope.themes = themes;
 	console.log(themes);
-	$scope.newTheme = "";
+	$scope.newTheme = [];
 	
 	//Navigation
 	$scope.etapes = ['Informations personnelles', 'Competences', 'Formation', 'Projets'];
@@ -73,8 +73,8 @@ gatheringModule.controller('userFormController', ['$rootScope', '$scope', '$stat
 	console.log('On ajoute ' + theme);
 		if ($scope.themes.indexOf(theme) == -1) {	//si le nouveau theme n'est pas déjà dans la liste
 			console.log(theme + 'est passé');
-			$scope.themes.push(theme);
-			console.log($scope.themes);
+			$scope.newTheme.push(theme);
+			console.log($scope.newTheme);
 		}
 	};
 	$scope.remove = function(competence) {
@@ -86,9 +86,12 @@ gatheringModule.controller('userFormController', ['$rootScope', '$scope', '$stat
 		
 	//Sauvegarder l'utilisateur
 	$scope.create = function() {		//Enregistrer l'utilisateur
+		for(i=0; i<$scope.newTheme.length; i++){
+			var themeToSave = new Theme({theme : $scope.newTheme[i]});
+			themeToSave.$save();
+		}
+		
 		var userToSave = new User({user:$scope.user});
-		var themeToSave = new Theme({theme : $scope.themes});
-		themeToSave.$save();
 		userToSave.$save(function(user) {
 			$state.go('main.index', {}, {reload:true});
 		});

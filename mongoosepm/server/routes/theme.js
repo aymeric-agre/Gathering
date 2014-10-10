@@ -14,11 +14,12 @@ exports.allThemes = function(req,res, next) {
 };	
 
 exports.doSaveTheme = function(req, res) {
-	console.log(req.body.themes);
-	themeSchema.Theme.create({theme : req.body.themes}, function(err, savedTheme){ 
+	console.log('Le theme est ' + req.body.theme);
+	//var newTheme = new themeSchema.Theme(req.body.theme);
+	themeSchema.Theme.create({theme : req.body.theme}, function(err, savedTheme){ 
 		if(err){
 			console.log(err);
-			console.log(req.body.themes);
+			console.log(req.body.theme);
 			res.send(404);
 		}else{
 			console.log(savedTheme);
