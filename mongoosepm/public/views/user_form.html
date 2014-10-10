@@ -96,22 +96,16 @@
 		
 		<div class="col-md-3">
 			<label>Centres d'intérêt</label> : </br>
-			<ui-select type="text" name="interests"  ng-model="user.interests">
-				<input ui-select-match placeholder="Qu'est ce qui vous intéresse ?" ng-model="newTheme">{{$item}}</input>
-				<ui-select-choices repeat="theme in themes | filter:$select.search">
-					{{theme}}
+			<ui-select class="selected_data" type="text" name="interests" ng-model="user.interests">
+				<ui-select-match placeholder="Qu'est ce qui vous intéresse ?" ng-model="newTheme">{{$item}}</ui-select-match>
+				<ui-select-choices class="choice_data" repeat="item in themes | filter:$select.search">
+					{{item.theme}}
 				</ui-select-choices>
 			</ui-select>
-			<i ng-click="add(newTheme)"></i>
+			
 		</div>
 		<div class="col-md-2">
-			<p>Vos centres d'intérêt : </p>
-			<ul class="all-data">
-				<li ng-repeat="interest in interests">
-					<span>{{interest}}</span>
-					<span class="remove-data" ng-click="remove(this.competence)">x</span>
-				</li>
-			</ul>
+			<i ng-click="add(newTheme)"></i>
 		</div>
 		
 		<nav class="col-md-1 nav-circlepop">
