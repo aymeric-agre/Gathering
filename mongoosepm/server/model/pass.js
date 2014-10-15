@@ -96,7 +96,6 @@ exports.updateUser = function(user, done) {
 	// passSolidity(user.password);
 	user.modifiedOn = Date.now();
 	var userToUpdate = user;
-	delete userToUpdate._id;
 	userSchema.User.update({_id: user._id}, userToUpdate, {}, function(err, updatedUser) {
 		if(err)
 		{
@@ -104,10 +103,7 @@ exports.updateUser = function(user, done) {
 		}
 		else
 		{
-			userSchema.User.findOne({_id: updatedUser._id}, function(err, foundUser){
-				console.log(updatedUser._id);
-				done(null, foundUser);
-			});
+			done(null, updatedUser);
 		}
 	});
 };

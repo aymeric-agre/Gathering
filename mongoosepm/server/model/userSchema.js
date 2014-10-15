@@ -52,6 +52,12 @@ userSchema.pre('save', function(next){
 	});
 });
 
+// fonction de mise à jour de la date de mise à jour du user avant update ** NE FONCTIONNE PAS **
+// userSchema.pre('update', function(next){
+	// this.modifiedOn = Date.now();
+	// next();
+// });
+
 /*	********
 	METHODES
 	********	*/
