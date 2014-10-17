@@ -86,8 +86,7 @@ exports.createUser = function(user, done) {
 
 // Updating an existing user
 exports.updateUser = function(user, done) {
-	console.log("On modifie un user partie user.js");
-	console.log(user);
+	console.log("On modifie un user partie user.js" + user._id);
 	
 	// modification mot de passe
 	// correspondance des passwords
@@ -95,19 +94,26 @@ exports.updateUser = function(user, done) {
 	
 	// solidité du password
 	// passSolidity(user.password);
-	
-	//var user = new userSchema.User(user);
 	user.modifiedOn = Date.now();
+<<<<<<< HEAD
 	userSchema.User.update({_id: user._id}, user, {}, function(err, user) {
+=======
+	var userToUpdate = user;
+	userSchema.User.update({_id: user._id}, userToUpdate, {}, function(err, updatedUser) {
+>>>>>>> origin/update
 		if(err)
 		{
-			done(err);
+			console.log(err);
 		}
 		else
 		{
+<<<<<<< HEAD
 			//userSchema.User.findOne({_id: user._id}, function(err, user){
 				done(null, user);
 			//});
+=======
+			done(null, updatedUser);
+>>>>>>> origin/update
 		}
 	});
 };

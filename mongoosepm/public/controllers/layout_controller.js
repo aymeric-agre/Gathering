@@ -1,11 +1,11 @@
-var gatheringModule = angular.module('gathering', ['ngResource', 'ngRoute', 'ui.router', 'ngAnimate', 'ui.bootstrap', 'project', 'user', 'auth']);
+var gatheringModule = angular.module('gathering', ['ngResource', 'ngRoute', 'ui.router', 'ngAnimate', 'ui.bootstrap', 'project', 'user', 'auth', 'ui.select']);
 
 /*	Appel des templates	*/
-gatheringModule.config([ '$stateProvider', '$urlRouterProvider', '$locationProvider', '$httpProvider', 
-	function ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider) {
+gatheringModule.config([ '$stateProvider', '$urlRouterProvider', '$locationProvider', '$httpProvider', 'uiSelectConfig',
+	function ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider,uiSelectConfig) {
 	
 	$locationProvider.html5Mode(true);	//Permet HTML5 PushState (l'appel de la dépendence permet d'éviter les problème quand on compile)
-	
+	uiSelectConfig.theme = 'bootstrap';
 	
 		/*	AUTHENTIFICATION	*/
 	
@@ -39,7 +39,8 @@ var main = {
 		url : '/user_form/',
 		templateUrl : '/public/views/user_form.html',
 		controller :'userFormController',
-		parent : main
+		parent : main,
+		resolve : {themes : function(allThemesLoader){return allThemesLoader();}}
 	}
 		
 	var search_user = {
