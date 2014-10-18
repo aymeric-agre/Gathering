@@ -56,11 +56,7 @@ exports.doUpdateUser = function(req, res, done){	// fonction de modification -> 
 	console.log("On edite un user");
 	var body = req.body;
 	if (req.isAuthenticated()) {
-<<<<<<< HEAD
-		console.log('On cherche currentUser : ' + body.user._id);
-=======
 		console.log('On cherche le currentUser depuis update : ' + body.user._id);
->>>>>>> origin/update
 		pass.updateUser(body.user, function(err, user){
 			if(err) 
 			{

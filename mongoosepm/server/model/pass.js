@@ -95,25 +95,15 @@ exports.updateUser = function(user, done) {
 	// solidité du password
 	// passSolidity(user.password);
 	user.modifiedOn = Date.now();
-<<<<<<< HEAD
-	userSchema.User.update({_id: user._id}, user, {}, function(err, user) {
-=======
 	var userToUpdate = user;
 	userSchema.User.update({_id: user._id}, userToUpdate, {}, function(err, updatedUser) {
->>>>>>> origin/update
 		if(err)
 		{
 			console.log(err);
 		}
 		else
 		{
-<<<<<<< HEAD
-			//userSchema.User.findOne({_id: user._id}, function(err, user){
-				done(null, user);
-			//});
-=======
 			done(null, updatedUser);
->>>>>>> origin/update
 		}
 	});
 };
