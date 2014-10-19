@@ -26,8 +26,7 @@
 			<span class="verification" id="mail_verification"></span><br/>
 					
 				<!-- Mot de passe -->
-			<input type="password"  id="password" ng-click placeholder="Mot de passe" ng-model="user.password" required/>
-			<input id="strength" class="weak" type="text" value="weak" ng-model="strength" disabled />
+			<input type="password"  id="password" placeholder="Mot de passe" ng-model="user.password" ng-class="strength" required/>
 			<!-- <ul id="verificationPassword">
 			</ul> -->
 				
@@ -79,13 +78,12 @@
 			</a>
 		</nav>
 		
-		<div class="col-md-3 ">
-			<label for="competences">Compétences</label> : </br>
+		<!-- Competences -->
+		<div class="col-md-3 input-container">
 			<input type="text" name="competences" placeholder="Mettez en avant vos compétences" ng-model="user.competences"/>
-			<i ng-click="add(competence)"></i>
+			<i class="fa fa-check" ng-click="add(newThemeToAdd)"></i>
 		</div>
 		<div class="col-md-2">
-			<p>Vos compétences : </p>
 			<ul class="all-data">
 				<li ng-repeat="competence in competences">
 					<span>{{competence}}</span>
@@ -94,18 +92,25 @@
 			</ul>
 		</div>
 		
-		<div class="col-md-3">
-			<label>Centres d'intérêt</label> : </br>
-			<ui-select class="selected_data" type="text" name="interests" ng-model="user.interests">
-				<ui-select-match placeholder="Qu'est ce qui vous intéresse ?" ng-model="newTheme">{{$item}}</ui-select-match>
-				<ui-select-choices class="choice_data" repeat="item in themes | filter:$select.search">
-					{{item.theme}}
-				</ui-select-choices>
-			</ui-select>
+		<!-- Theme d'interet -->
+		<div class="col-md-3 input-container">
+			<input ng-model="newThemeToAdd" placeholder="Des thèmes qui vous intéressent"></input>
+			<i class="fa fa-check" ng-click="add(newThemeToAdd)"></i>
+			<div ng-show="themeContent()">
+				<ul class="show-data">
+					<li ng-repeat="themeCollection in themes" ng-click="add(themeCollection.theme)">{{themeCollection.theme}}</li>
+				</ul>
+			</div>
 			
 		</div>
-		<div class="col-md-2">
-			<i ng-click="add(newTheme)"></i>
+		
+		<div class="col-md-2">			
+			<ul class="all-data">
+				<li ng-repeat="interest in user.interests">
+					<i class="fa fa-times"></i>
+					<span>{{interest}}</span>
+				</li>
+			</ul>
 		</div>
 		
 		<nav class="col-md-1 nav-circlepop">

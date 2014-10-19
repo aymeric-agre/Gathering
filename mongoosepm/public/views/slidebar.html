@@ -10,15 +10,16 @@
 			</div>
 			
 			<div class="col-md-1 col-md-offset-3">
-				<button class="cn-button" id="cn-button" ng-click="opened = !opened" ng-blur="opened = false" ng-class="{'cn-button-open' : opened}"><i class=" fa fa-search"></i></button>
-				<div class="cn-wrapper" id="cn-wrapper" ng-class="{'opened-nav' : opened}">
-				    <ul>
-				      <li><a ui-sref="main.search_user"><i class="fa fa-user"></i></a></li>
-				      <li><a ui-sref="main.search_project"><i class="fa fa-briefcase"></i></a></li>
-				      <li><a href="#"><i class="fa fa-users"></i></a></li>
+				<button class="cn-button" id="cn-button" ng-click="opened = !opened"  ng-class="{'cn-button-open' : opened}"><i class=" fa fa-search"></i></button>
+				<div class="cn-wrapper" id="cn-wrapper" ng-class="{'opened-nav' : opened}" >
+				    <ul >
+				      <li ng-click="opened = false"><a ui-sref="main.search_user"><i class="fa fa-user"></i></a></li>
+					  <li ng-click="opened = false"><a href="#"><i class="fa fa-users"></i></a></li>
+				      <li ng-click="opened = false"><a ui-sref="main.search_project"><i class="fa fa-briefcase"></i></a></li>
+				      
 				     </ul>
 				</div>
-				<div id="cn-overlay" class="cn-overlay" ng-class="{'on-overlay' : opened}"></div>
+				<div id="cn-overlay" class="cn-overlay" ng-class="{'on-overlay' : opened}" ng-click="opened = false"></div>
 			</div>
 			
 			

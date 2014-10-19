@@ -8,11 +8,22 @@
 gatheringModule.controller('userFormController', ['$rootScope', '$scope', '$state', 'Auth', 'User', 'themes', 'Theme',
 	function($rootScope, $scope, $state, Auth, User, themes, Theme)  {
 	$scope.title = "Formulaire";
-	$scope.user = new User({mail : "", password : "", confirmPassword : "", lastName :"", firstName :"", country :""}); 
-	$scope.statuses = {name: "Étudiant"}, {name: "Doctorant"}, {name: "Enseignant"};
-	$scope.themes = themes;
-	console.log(themes);
-	$scope.newTheme = [];
+	$scope.user = new User({
+		mail : "", 
+		password : "", 
+		confirmPassword : "", 
+		lastName :"", 
+		firstName :"", 
+		birthDate: "",
+		country :"",
+		area:"",
+		town:"",
+		phone:"",
+		comeptences:[],
+		interests:[]
+		
+		}); 
+
 	
 	//Navigation
 	$scope.etapes = ['Informations personnelles', 'Competences', 'Formation', 'Projets'];
@@ -40,15 +51,15 @@ gatheringModule.controller('userFormController', ['$rootScope', '$scope', '$stat
 	
 	//check_password
 	
-	$scope.score = "";
-	$scope.strength = "";
+	$scope.score = "";	//On l'initialise à strong pour ne pas avoir l'input en rouge dés le départ (pas de risque car ^mpd est required)
+	$scope.strength = "";	
 	check_password = function(){
 		$scope.score = zxcvbn($scope.user.password).score;
   	 if ($scope.score < 2) {
         $scope.strength = "weak";
     }
     if ($scope.score === 2) {
-        $scope.strength = "so-so";
+        $scope.strength = "medium";
     }
     if ($scope.score > 2) {
         $scope.strength = "strong";
@@ -69,14 +80,24 @@ gatheringModule.controller('userFormController', ['$rootScope', '$scope', '$stat
 	};
 	
 	//Compétences et centre d'intérêt
-	$scope.add = function(theme) {
-	console.log('On ajoute ' + theme);
-		if ($scope.themes.indexOf(theme) == -1) {	//si le nouveau theme n'est pas déjà dans la liste
-			console.log(theme + 'est passé');
-			$scope.newTheme.push(theme);
-			console.log($scope.newTheme);
+		
+	$scope.themes = themes;
+	$scope.user.interests = [];
+	$scope.newThemeToAdd = ' ';
+	$scope.themeContent = function(){	//Affiche la liste des thèmes
+		if($scope.newThemeToAdd === ''){return false}
+		else {return true}
+	}
+	$scope.$watch('$scope.newThemeToAdd', $scope.themeContent);
+	
+	$scope.add = function(themeToAdd) {
+		if(themeToAdd != ""){
+			console.log('On ajoute ' + themeToAdd);
+			$scope.user.interests.push(themeToAdd);
+			$scope.newThemeToAdd = '';
 		}
 	};
+	
 	$scope.remove = function(competence) {
 		var index = $scope.competences.indexOf(competence);
 		if(index>-1) {
@@ -86,8 +107,9 @@ gatheringModule.controller('userFormController', ['$rootScope', '$scope', '$stat
 		
 	//Sauvegarder l'utilisateur
 	$scope.create = function() {		//Enregistrer l'utilisateur
-		for(i=0; i<$scope.newTheme.length; i++){
-			var themeToSave = new Theme({theme : $scope.newTheme[i]});
+		for(i=0; i<$scope.user.interests.length; i++){
+			if ($scope.themes.indexOf($scope.user.interests[i]) == -1) //Si le thème n'est pas déjà dans la liste
+			var themeToSave = new Theme({theme : $scope.user.interests[i]});
 			themeToSave.$save();
 		}
 		
@@ -97,4 +119,5 @@ gatheringModule.controller('userFormController', ['$rootScope', '$scope', '$stat
 		});
 	};
 
+	
 }]);

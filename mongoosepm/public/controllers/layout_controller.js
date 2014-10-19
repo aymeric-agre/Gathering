@@ -5,7 +5,7 @@ gatheringModule.config([ '$stateProvider', '$urlRouterProvider', '$locationProvi
 	function ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider,uiSelectConfig) {
 	
 	$locationProvider.html5Mode(true);	//Permet HTML5 PushState (l'appel de la dépendence permet d'éviter les problème quand on compile)
-	uiSelectConfig.theme = 'bootstrap';
+	// uiSelectConfig.theme = 'select2';
 	
 		/*	AUTHENTIFICATION	*/
 	
