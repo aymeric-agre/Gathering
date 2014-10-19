@@ -83,12 +83,13 @@ gatheringModule.controller('userFormController', ['$rootScope', '$scope', '$stat
 		
 	$scope.themes = themes;
 	$scope.user.interests = [];
-	$scope.newThemeToAdd = ' ';
-	$scope.themeContent = function(){	//Affiche la liste des thèmes
-		if($scope.newThemeToAdd === ''){return false}
-		else {return true}
-	}
-	$scope.$watch('$scope.newThemeToAdd', $scope.themeContent);
+	$scope.newThemeToAdd = '';
+	themeContent = function(){	//Affiche la liste des thèmes
+		alert(newThemeToAdd);
+		if($scope.newThemeToAdd !== ''){alert("On écrit");}
+		else {alert("On écrit pas");}
+	};
+	$scope.$watch('newThemeToAdd', themeContent);
 	
 	$scope.add = function(themeToAdd) {
 		if(themeToAdd != ""){
@@ -99,9 +100,9 @@ gatheringModule.controller('userFormController', ['$rootScope', '$scope', '$stat
 	};
 	
 	$scope.remove = function(competence) {
-		var index = $scope.competences.indexOf(competence);
+		var index = $scope.user.interests.indexOf(competence);
 		if(index>-1) {
-			$scope.competences.splice(index,1);
+			$scope.user.interests.splice(index,1);
 		}
 	};
 		

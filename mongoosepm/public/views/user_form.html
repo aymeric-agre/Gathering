@@ -40,7 +40,7 @@
 			<input type="text" name="firstName" id="firstName" placeholder="Prénom" ng-model="user.firstName"/>
 		</div>		
 		
-		<div class="col-md-4">
+		<div class="col-md-3">
 				<!-- Localisation -->
 			<input type="text" name="country" id="country" placeholder="Pays" ng-model="user.country"/>
 			<input type="text" name="area" id="area" placeholder="Région" ng-model="user.area"/>
@@ -49,15 +49,15 @@
 		
 		</div>
 		
-		<div class="col-md-3">
+		<div class="col-md-4">
 				<!-- Date de naissance  -->
 			<div id="birthDateBlock">
 				<label for="birthDate">Date de naissance : </label></br></br>
-				<input type="text" placeholder="dd.MM.yyyy" datepicker-popup="dd.MM.yyyy" ng-model="user.birthDate" datepicker-options="dateOptions" is-open="$parent.opened"/>
+				<input type="text" placeholder="dd.MM.yyyy" datepicker-popup="dd.MM.yyyy" ng-model="user.birthDate" datepicker-options="dateOptions" is-open="$parent.opened">
 				<span class="input-group-btn date-button">
 					<button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
 				</span>
-				
+				</input>
 			</div>	
 		</div>
 		
@@ -94,20 +94,19 @@
 		
 		<!-- Theme d'interet -->
 		<div class="col-md-3 input-container">
-			<input ng-model="newThemeToAdd" placeholder="Des thèmes qui vous intéressent"></input>
+			<input ng-model="newThemeToAdd" placeholder="Des thèmes qui vous intéressent"/>
 			<i class="fa fa-check" ng-click="add(newThemeToAdd)"></i>
-			<div ng-show="themeContent()">
+			<div ng-show="newThemeToAdd !== '' ">
 				<ul class="show-data">
 					<li ng-repeat="themeCollection in themes" ng-click="add(themeCollection.theme)">{{themeCollection.theme}}</li>
 				</ul>
-			</div>
-			
+			</div>			
 		</div>
 		
 		<div class="col-md-2">			
 			<ul class="all-data">
 				<li ng-repeat="interest in user.interests">
-					<i class="fa fa-times"></i>
+					<i class="fa fa-times" ng-click="remove(interest)"></i>
 					<span>{{interest}}</span>
 				</li>
 			</ul>

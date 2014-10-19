@@ -148,10 +148,22 @@ hr {
 		box-shadow: green;
 }
 
-.date-button{
-	display : inline-block;
-	height : 40px;
+
+/*	Date	*/
+#birthDateBlock {
+	width : 80%;
+}
+
+.date-button {
+	position : absolute;
+		right: 10px;
+		top: 41px;
 	width : 40px;
+	height : 40px;
+}
+
+.date-button i{
+	font-size : 1.8em;
 }
 
 
@@ -305,7 +317,11 @@ nav a.next {
 		right : 0px;
 	margin : 0 0.3em;
 	font-size : 1em;
-	margin : 1em 0px;
+	cursor : pointer;
+}
+
+.all-data li i:hover {
+	color : red;
 }
 
 .all-data li span {
