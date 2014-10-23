@@ -15,7 +15,6 @@ var pass = require('../model/pass');	//Remarque : problème avec zxcvbn
 
 exports.index = function(req, res) {
 	res.redirect('/#' + req.originalUrl);	//redirige automatiquement en cas d'erreur
-    
 };
 
 exports.layout = function(req, res) {

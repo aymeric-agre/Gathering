@@ -21,18 +21,14 @@ gatheringModule.controller('mainController', ['$rootScope', '$scope', '$location
 		function(err) {
 			$rootScope.error = "Failed to login";
 			$state.go('main.index', {}, {reload:true});
-		});
-		
+		});		
 	};	
-	
 	
 	$scope.logout = function() {
 		Auth.doLogout(function(){
 		$state.go('main.index', {}, {reload:true});
 		});
-		
-	};
-		
+	};		
 	
 	$scope.searchProject = function() {
 		console.log('on cherche un project');
@@ -43,4 +39,15 @@ gatheringModule.controller('mainController', ['$rootScope', '$scope', '$location
 		console.log('on cherche un utilisateur');
 		$state.go('main.search_user');
 	};
+	
+	// $rootScope.$on('$stateChangeStart', function () {
+        // $state.reload();
+    // });
+	
+	//Rechargement de la page
+	//$state.transitionTo($state.current, $stateParams, { reload: true, inherit: true, notify: true });
+	
+	// $scope.reload = function(){
+		// $state.transitionTo('myState');
+	// };
 }]);

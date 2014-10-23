@@ -11,20 +11,17 @@ gatheringModule.config([ '$stateProvider', '$urlRouterProvider', '$locationProvi
 	
 	var connexion = connected;
 
-
-var main = {
-	name : 'main',
-	templateUrl : '/public/views/slidebar.html',
-	controller : "mainController",
-	data : {},
-	resolve : {
+	var main = {
+		name : 'main',
+		templateUrl : '/public/views/slidebar.html',
+		controller : "mainController",
+		data : {},
+		resolve : {
 				projects: function(allProjectsLoader){return allProjectsLoader();},	
 				users: function(allUsersLoader){return allUsersLoader();},
 				currentUser : function(Auth){return Auth.isConnected()}	//Permet de modifier les variables currentUser et connected dans le HTML
 				}
 }
-
-
 	
 	var index = {
 		name : 'main.index',
@@ -92,10 +89,7 @@ var main = {
 			url : '/edit',
 			templateUrl : '/public/views/user_edit.html',
 			parent : user
-		}
-			
-			
-	
+		}	
 	
 	var project_form = {
 			name : 'main.project_form',
@@ -144,11 +138,6 @@ var main = {
 				}
 		}		
 	
-	
-
-
-		
-		
 $stateProvider.state(main)
 	.state(index)
 	.state(search_user)
@@ -159,10 +148,7 @@ $stateProvider.state(main)
 		.state(profile_edit)
 	.state(projects_list)
 	.state(project)
-	.state(project_form);
- 
-	 
-	 
+	.state(project_form); 
 	
 	$urlRouterProvider.otherwise('/');	//Si on a une autre adresse on renvoie celle là
 	 
@@ -187,9 +173,24 @@ $stateProvider.state(main)
 			params.push(k + '=' + v);
 		});
 		return path + '/?' + params.join('&');
-	});
-
-	
-			  		
+	});			  		
 }]);
 
+// gatheringModule.directive('uiSref', ['$location', '$state', function($location, $state){
+	// return function(scope, element, attrs){
+		// scope.$watch('uiSref', function(){
+			// if(attrs.uiSref)
+			// {
+				// element.attr('sref', attrs.uiSref);
+				// element.bind('click', function(event){
+					// scope.$apply(function(){
+						// if($location.path() == attrs.uiSref)
+						// {
+							// $state.reload();
+						// }
+					// });
+				// });
+			// }
+		// });
+	// }
+// }]);
