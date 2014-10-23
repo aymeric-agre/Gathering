@@ -80,8 +80,9 @@
 		
 		<!-- Competences -->
 		<div class="col-md-3 input-container">
+		<form ng-submit='add(register)'>
 			<input type="text" name="competences" placeholder="Mettez en avant vos compétences" ng-model="user.competences"/>
-			<i class="fa fa-check" ng-click="add(newThemeToAdd)"></i>
+			<button class="fa fa-check" ng-click="add(register)"></button>
 		</div>
 		<div class="col-md-2">
 			<ul class="all-data">
@@ -90,17 +91,20 @@
 					<span class="remove-data" ng-click="remove(this.competence)">x</span>
 				</li>
 			</ul>
+		</form>
 		</div>
 		
 		<!-- Theme d'interet -->
 		<div class="col-md-3 input-container">
-			<input ng-model="newThemeToAdd" placeholder="Des thèmes qui vous intéressent"/>
-			<i class="fa fa-check" ng-click="add(newThemeToAdd)"></i>
-			<div ng-show="newThemeToAdd !== '' ">
+		<form ng-submit='add(register)'>
+			<input ng-model="register.newThemeToAdd" placeholder="Des thèmes qui vous intéressent"/>
+			<button type="submit" class="fa fa-check" ng-click="add(register)"></button>
+			<div ng-show="register.newThemeToAdd !== '' ">
 				<ul class="show-data">
-					<li ng-repeat="themeCollection in themes" ng-click="add(themeCollection.theme)">{{themeCollection.theme}}</li>
+					<li ng-repeat="themeCollection in themes | filter : register.newThemeToAdd" ng-click="add(themeCollection.theme)">{{themeCollection.theme}}</li>
 				</ul>
-			</div>			
+			</div>
+		</form >
 		</div>
 		
 		<div class="col-md-2">			
