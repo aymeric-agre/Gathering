@@ -26,8 +26,7 @@
 			<span class="verification" id="mail_verification"></span><br/>
 					
 				<!-- Mot de passe -->
-			<input type="password"  id="password" ng-click placeholder="Mot de passe" ng-model="user.password" required/>
-			<input id="strength" class="weak" type="text" value="weak" ng-model="strength" disabled />
+			<input type="password"  id="password" placeholder="Mot de passe" ng-model="user.password" ng-class="strength" required/>
 			<!-- <ul id="verificationPassword">
 			</ul> -->
 				
@@ -41,7 +40,7 @@
 			<input type="text" name="firstName" id="firstName" placeholder="Prénom" ng-model="user.firstName"/>
 		</div>		
 		
-		<div class="col-md-4">
+		<div class="col-md-3">
 				<!-- Localisation -->
 			<input type="text" name="country" id="country" placeholder="Pays" ng-model="user.country"/>
 			<input type="text" name="area" id="area" placeholder="Région" ng-model="user.area"/>
@@ -50,15 +49,15 @@
 		
 		</div>
 		
-		<div class="col-md-3">
+		<div class="col-md-4">
 				<!-- Date de naissance  -->
 			<div id="birthDateBlock">
 				<label for="birthDate">Date de naissance : </label></br></br>
-				<input type="text" placeholder="dd.MM.yyyy" datepicker-popup="dd.MM.yyyy" ng-model="user.birthDate" datepicker-options="dateOptions" is-open="$parent.opened"/>
+				<input type="text" placeholder="dd.MM.yyyy" datepicker-popup="dd.MM.yyyy" ng-model="user.birthDate" datepicker-options="dateOptions" is-open="$parent.opened">
 				<span class="input-group-btn date-button">
 					<button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
 				</span>
-				
+				</input>
 			</div>	
 		</div>
 		
@@ -79,33 +78,42 @@
 			</a>
 		</nav>
 		
-		<div class="col-md-3 ">
-			<label for="competences">Compétences</label> : </br>
+		<!-- Competences -->
+		<div class="col-md-3 input-container">
+		<form ng-submit='add(register)'>
 			<input type="text" name="competences" placeholder="Mettez en avant vos compétences" ng-model="user.competences"/>
-			<i ng-click="add(competence)"></i>
+			<button class="fa fa-check" ng-click="add(register)"></button>
 		</div>
 		<div class="col-md-2">
-			<p>Vos compétences : </p>
 			<ul class="all-data">
 				<li ng-repeat="competence in competences">
 					<span>{{competence}}</span>
 					<span class="remove-data" ng-click="remove(this.competence)">x</span>
 				</li>
 			</ul>
+		</form>
 		</div>
 		
-		<div class="col-md-3">
-			<label>Centres d'intérêt</label> : </br>
-			<ui-select class="selected_data" type="text" name="interests" ng-model="user.interests">
-				<ui-select-match placeholder="Qu'est ce qui vous intéresse ?" ng-model="newTheme">{{$item}}</ui-select-match>
-				<ui-select-choices class="choice_data" repeat="item in themes | filter:$select.search">
-					{{item.theme}}
-				</ui-select-choices>
-			</ui-select>
-			
+		<!-- Theme d'interet -->
+		<div class="col-md-3 input-container">
+		<form ng-submit='add(register)'>
+			<input ng-model="register.newThemeToAdd" placeholder="Des thèmes qui vous intéressent"/>
+			<button type="submit" class="fa fa-check" ng-click="add(register)"></button>
+			<div ng-show="register.newThemeToAdd !== '' ">
+				<ul class="show-data">
+					<li ng-repeat="themeCollection in themes | filter : register.newThemeToAdd" ng-click="add(themeCollection.theme)">{{themeCollection.theme}}</li>
+				</ul>
+			</div>
+		</form >
 		</div>
-		<div class="col-md-2">
-			<i ng-click="add(newTheme)"></i>
+		
+		<div class="col-md-2">			
+			<ul class="all-data">
+				<li ng-repeat="interest in user.interests">
+					<i class="fa fa-times" ng-click="remove(interest)"></i>
+					<span>{{interest}}</span>
+				</li>
+			</ul>
 		</div>
 		
 		<nav class="col-md-1 nav-circlepop">

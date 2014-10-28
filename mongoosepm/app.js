@@ -131,7 +131,6 @@ app.use(function(err, req, res, next) {	//message d'erreur qui utilise la foncti
 });
 
 
-
 /*	******
 	SERVER
 	******	*/
