@@ -183,20 +183,9 @@ $stateProvider.state(main)
 	
 	//options pour Recaptcha.create
 	reCAPTCHAProvider.setOptions({
-		theme: 'blackglass'
+		theme: 'white'
 	});
 }]);
-
-// gatheringModule.config('captchaConfig', function(reCAPTCHAProvider){
-	// Google API public key
-	// local
-	// reCAPTCHAProvider.setPublicKey('6LfU3fwSAAAAAOP1VsSlTtONqsoL1nXFNFmB_YFg');
-	
-	// options pour Recaptcha.create
-	// reCAPTCHAProvider.setOptions({
-		// theme: 'blackglass'
-	// });
-// });
 
 // gatheringModule.directive('uiSref', ['$location', '$state', function($location, $state){
 	// return function(scope, element, attrs){
