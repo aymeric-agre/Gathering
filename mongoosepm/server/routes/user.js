@@ -20,15 +20,14 @@ exports.doCreateUser = function(req,res,done){	// fonction de traitement du form
 	var bodyUser = req.body.user;
 	var formCaptcha = bodyUser.captcha;
 	var response = res;
-	console.log('coucou');
 	console.log(bodyUser);
-	console.log(formCaptcha);
+	//console.log(formCaptcha);
 	//envoie une requete au serveur de verification captcha
 	request.post('http://www.google.com/recaptcha/api/verify',{
-			form: {privatekey: process.env.RECAPTCHA_PRIVATE_KEY,
+			form: {privatekey: '6LfU3fwSAAAAALjNiSHNG3UA0s_8k83RbanqMjMG',
 				remoteip: req.connection.remoteAddress,
-				challenge: formCaptcha.captcha.challenge,
-				response: formCaptcha.captcha.response}
+				challenge: formCaptcha.challenge,
+				response: formCaptcha.response}
 		},
 		function(err, res, body){
 			//si le serveur renvoie un body avec false c'est que le captcha est inexact
