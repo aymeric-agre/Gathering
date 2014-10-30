@@ -18,11 +18,9 @@ var request = require('request');
 /*	Créer un utilisateur	*/
 exports.doCreateUser = function(req,res,done){	// fonction de traitement du formulaire d'inscription
 	var bodyUser = req.body.user;
-	var formCaptcha = bodyUser.captcha;
+	var formCaptcha = req.body.captcha;
 	var response = res;
-	console.log('coucou');
 	console.log(bodyUser);
-	console.log(formCaptcha);
 	//envoie une requete au serveur de verification captcha
 	request.post('http://www.google.com/recaptcha/api/verify',{
 			form: {privatekey: process.env.RECAPTCHA_PRIVATE_KEY,
@@ -31,8 +29,8 @@ exports.doCreateUser = function(req,res,done){	// fonction de traitement du form
 				response: formCaptcha.captcha.response}
 		},
 		function(err, res, body){
-			//si le serveur renvoie un body avec false c'est que le captcha est inexact
-			if(body.match(/false/) === null){
+			//si le serveur renvoie un body avec false
+			if(body.math(/false/) === null){
 				pass.createUser(bodyUser, function(err,user){
 					if (err)
 					{

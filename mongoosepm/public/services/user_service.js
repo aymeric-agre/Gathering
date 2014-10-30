@@ -12,8 +12,7 @@ userModule.factory('User', ['$resource',	//on appelle la dépendance à $resourc
 	return $resource('/user/:id', {id: '@id'},	//Permet d'utiliser la méthode update()
 		 {
         'update': { method:'PUT' }
-		}
-	);	
+    });	
 }]);												
 
 /*	Permet de charger tous les utilisateurs	*/
@@ -28,5 +27,4 @@ userModule.factory('allUsersLoader', ['User', '$q', //On appelle les dépendance
 			});
 			return delay.promise	//A la fin on retourne le résultat de la promise delay : une liste d'utilisateurs.
 		};
-	}
-]);
+}]);

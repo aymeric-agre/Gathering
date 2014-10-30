@@ -20,9 +20,10 @@ gatheringModule.controller('userFormController', ['$rootScope', '$scope', '$stat
 		town:"",
 		phone:"",
 		comeptences:[],
-		interests:[],
-		captcha: {}
+		interests:[]
 		});
+	
+	$scope.captcha = {};
 	
 	//Navigation
 	$scope.etapes = ['Informations personnelles', 'Competences', 'Formation', 'Projets'];
