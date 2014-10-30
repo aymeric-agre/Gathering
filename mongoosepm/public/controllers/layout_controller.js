@@ -1,8 +1,8 @@
-var gatheringModule = angular.module('gathering', ['ngResource', 'ngRoute', 'ui.router', 'ngAnimate', 'ui.bootstrap', 'project', 'user', 'auth', 'ui.select']);
+var gatheringModule = angular.module('gathering', ['ngResource', 'ngRoute', 'ui.router', 'ngAnimate', 'ui.bootstrap', 'project', 'user', 'auth', 'ui.select', 'reCAPTCHA']);
 
 /*	Appel des templates	*/
-gatheringModule.config([ '$stateProvider', '$urlRouterProvider', '$locationProvider', '$httpProvider', 'uiSelectConfig',
-	function ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider,uiSelectConfig) {
+gatheringModule.config([ '$stateProvider', '$urlRouterProvider', '$locationProvider', '$httpProvider', 'uiSelectConfig', 'reCAPTCHAProvider', 
+	function ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider, uiSelectConfig, reCAPTCHAProvider) {
 	
 	$locationProvider.html5Mode(true);	//Permet HTML5 PushState (l'appel de la dépendence permet d'éviter les problème quand on compile)
 	// uiSelectConfig.theme = 'select2';
@@ -173,8 +173,30 @@ $stateProvider.state(main)
 			params.push(k + '=' + v);
 		});
 		return path + '/?' + params.join('&');
-	});			  		
+	});
+
+	//CAPTCHA
+	
+	//Google API public key
+	//local
+	reCAPTCHAProvider.setPublicKey('6LfU3fwSAAAAAOP1VsSlTtONqsoL1nXFNFmB_YFg');
+	
+	//options pour Recaptcha.create
+	reCAPTCHAProvider.setOptions({
+		theme: 'blackglass'
+	});
 }]);
+
+// gatheringModule.config('captchaConfig', function(reCAPTCHAProvider){
+	// Google API public key
+	// local
+	// reCAPTCHAProvider.setPublicKey('6LfU3fwSAAAAAOP1VsSlTtONqsoL1nXFNFmB_YFg');
+	
+	// options pour Recaptcha.create
+	// reCAPTCHAProvider.setOptions({
+		// theme: 'blackglass'
+	// });
+// });
 
 // gatheringModule.directive('uiSref', ['$location', '$state', function($location, $state){
 	// return function(scope, element, attrs){
