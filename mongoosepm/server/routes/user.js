@@ -29,7 +29,7 @@ exports.doCreateUser = function(req,res,done){	// fonction de traitement du form
 				challenge: formCaptcha.challenge,
 				response: formCaptcha.response}
 		},
-		function(err, res, body){
+		function(err, res, body, next){
 			//si le serveur renvoie un body avec false c'est que le captcha est inexact
 			if(body.match(/false/) === null){
 				pass.createUser(bodyUser, function(err,user){
@@ -48,7 +48,7 @@ exports.doCreateUser = function(req,res,done){	// fonction de traitement du form
 								else {
 									console.log("Je modifie la connexion ? " + req.isAuthenticated());	
 									console.log("Le nouvel utilisateur est " + req.user.mail);	
-									res.send(req.isAuthenticated());
+									response.send(req.isAuthenticated());
 								}
 								//le login de la version sans passport, à supprimer lors de a suppression de la variable loggedIn
 								//req.session.loggedIn = true;
