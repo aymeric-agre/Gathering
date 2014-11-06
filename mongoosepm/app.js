@@ -33,6 +33,7 @@ var index = require('./server/routes/index');
 var user = require('./server/routes/user');
 var project = require('./server/routes/project');
 var theme = require('./server/routes/theme');
+var competence = require('./server/routes/competence');
 var http = require('http');
 var path = require('path');
 var app = express();
@@ -120,9 +121,13 @@ app.put('/user/:id', user.doUpdateUser);
 app.get('/connected', user.currentUser);
 //app.post('/doSearchUser',user.doSearchUser);
 
-//Routes/thmes.js
+//Routes/themes.js
 app.get('/theme', theme.allThemes);
 app.post('/theme', theme.doSaveTheme);
+
+//Routes/competence.js
+app.get('/competence', competence.allCompetences);
+app.post('/competence', competence.doSaveCompetence);
 
 /*	Redirection automatique et Messages d'erreurs	*/
 app.use(function(err, req, res, next) {	//message d'erreur qui utilise la fonction "next"
