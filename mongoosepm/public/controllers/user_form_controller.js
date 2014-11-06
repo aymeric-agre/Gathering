@@ -20,10 +20,9 @@ gatheringModule.controller('userFormController', ['$rootScope', '$scope', '$stat
 		town:"",
 		phone:"",
 		comeptences:[],
-		interests:[]
-		
-		}); 
-
+		interests:[],
+		captcha: {}
+		});
 	
 	//Navigation
 	$scope.etapes = ['Informations personnelles', 'Competences', 'Formation', 'Projets'];
@@ -48,10 +47,8 @@ gatheringModule.controller('userFormController', ['$rootScope', '$scope', '$stat
 		return $scope.selection;
 	};
 	
-	
 	//check_password
-	
-	$scope.score = "";	//On l'initialise à strong pour ne pas avoir l'input en rouge dés le départ (pas de risque car ^mpd est required)
+	$scope.score = "";	//On l'initialise à strong pour ne pas avoir l'input en rouge dés le départ (pas de risque car mpd est required)
 	$scope.strength = "";	
 	check_password = function(){
 		$scope.score = zxcvbn($scope.user.password).score;
@@ -67,7 +64,6 @@ gatheringModule.controller('userFormController', ['$rootScope', '$scope', '$stat
 	};
 	$scope.$watch('user.password',check_password);
 	
-	
 	//datepicker
 	$scope.open = function($event) {
 		$event.preventDefault();
@@ -80,7 +76,6 @@ gatheringModule.controller('userFormController', ['$rootScope', '$scope', '$stat
 	};
 	
 	//Compétences et centre d'intérêt
-		
 	$scope.themes = themes;
 	$scope.user.interests = [];
 	$scope.competences = competences;
@@ -125,7 +120,7 @@ gatheringModule.controller('userFormController', ['$rootScope', '$scope', '$stat
 		//On enregistre les thèmes dans la BDD
 		for(i=0; i<$scope.user.interests.length; i++){
 			if ($scope.themes.indexOf($scope.user.interests[i]) == -1) //Si le thème n'est pas déjà dans la liste
-			var themeToSave = new Theme({theme : $scope.user.interests[i]});
+				var themeToSave = new Theme({theme : $scope.user.interests[i]});
 			themeToSave.$save();
 		}
 		
@@ -141,6 +136,4 @@ gatheringModule.controller('userFormController', ['$rootScope', '$scope', '$stat
 			$state.go('main.index', {}, {reload:true});
 		});
 	};
-
-	
 }]);
