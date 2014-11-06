@@ -32,5 +32,3 @@ formModule.service('fileUpload', ['$http', function ($http) {
         });
     }
 }]);
-
-formModule.directive('check_password', )

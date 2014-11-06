@@ -113,9 +113,9 @@ app.get('/delete_projects',project.doDeleteAllProjects);
 //app.get('/identite_statique',user.identite_statique);
 //app.get('/identite_formulaire',user.identite_formulaire);
 //app.post('/doCreateUser', user.doCreateUser);	//Action de se créer un compte
+app.get('/user', user.allUsers);
 app.post('/user', user.doCreateUser);
 app.get('/user/:id', user.oneUser);
-app.get('/user', user.allUsers);
 app.put('/user/:id', user.doUpdateUser);
 app.get('/connected', user.currentUser);
 //app.post('/doSearchUser',user.doSearchUser);

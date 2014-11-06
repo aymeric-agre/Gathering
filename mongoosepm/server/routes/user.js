@@ -7,6 +7,7 @@ var userSchema = require('../model/userSchema');
 var crypto = require("crypto");
 var passport = require('passport');
 var pass = require("../model/pass");
+var request = require('request');
 	
 		
 	
@@ -16,33 +17,53 @@ var pass = require("../model/pass");
 
 /*	Créer un utilisateur	*/
 exports.doCreateUser = function(req,res,done){	// fonction de traitement du formulaire d'inscription
-	var body = req.body;
-	console.log(body.user);
-	pass.createUser(body.user, function(err,user){
-		if (err)
-		{
-			return res.render('user_form', {user: req.user, message: err.code === 11000 ? "User already exists" : err.message});
-		}
-		else
-		{
-			req.login(user, function (err) {
-					if (err) 
+	var bodyUser = req.body.user;
+	var formCaptcha = bodyUser.captcha;
+	var response = res;
+	console.log(bodyUser);
+	//console.log(formCaptcha);
+	//envoie une requete au serveur de verification captcha
+	request.post('http://www.google.com/recaptcha/api/verify',{
+			form: {privatekey: '6LfU3fwSAAAAALjNiSHNG3UA0s_8k83RbanqMjMG',
+				remoteip: req.connection.remoteAddress,
+				challenge: formCaptcha.challenge,
+				response: formCaptcha.response}
+		},
+		function(err, res, body, next){
+			//si le serveur renvoie un body avec false c'est que le captcha est inexact
+			if(body.match(/false/) === null){
+				pass.createUser(bodyUser, function(err,user){
+					if (err)
 					{
-						return next(err);
+						return response.render('user_form', {user: req.user, message: err.code === 11000 ? "User already exists" : err.message});
 					}
-					// successful login
-					else {
-						console.log("Je modifie la connexion ? " + req.isAuthenticated());	
-						console.log("Le nouvel utilisateur est " + req.user.mail);	
-						res.send(req.isAuthenticated());
+					else
+					{
+						req.login(user, function (err) {
+								if (err) 
+								{
+									return next(err);
+								}
+								// successful login
+								else {
+									console.log("Je modifie la connexion ? " + req.isAuthenticated());	
+									console.log("Le nouvel utilisateur est " + req.user.mail);	
+									response.send(req.isAuthenticated());
+								}
+								//le login de la version sans passport, à supprimer lors de a suppression de la variable loggedIn
+								//req.session.loggedIn = true;
+								//req.session.currentUser = user;
+								//res.send(req.session.currentUser);
+						})
 					}
-					//le login de la version sans passport, à supprimer lors de a suppression de la variable loggedIn
-					//req.session.loggedIn = true;
-					//req.session.currentUser = user;
-					//res.send(req.session.currentUser);
-			})
-		}
-    });
+				});
+			}
+			else
+			{
+				return response.render('user_form', {message: "Recaptcha Validation Failed. Please Re-Enter the reCAPTCHA challenge.", err: err})
+			}
+		}		
+	)
 };
 
 
