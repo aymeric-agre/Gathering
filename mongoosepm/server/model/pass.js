@@ -94,8 +94,11 @@ exports.updateUser = function(user, done) {
 	
 	// solidité du password
 	// passSolidity(user.password);
-	user.modifiedOn = Date.now();
+	
+	delete user.captcha;	// Suppression du captcha de l'utilisateur
+	user.modifiedOn = Date.now();	// Mise à jour de la date de modification du profil
 	var userToUpdate = user;
+	console.log(userToUpdate);
 	userSchema.User.update({_id: user._id}, userToUpdate, {}, function(err, updatedUser) {
 		if(err)
 		{
