@@ -1,11 +1,10 @@
-﻿﻿var gatheringModule = angular.module('gathering', ['ngResource', 'ngRoute', 'ui.router', 'ngAnimate', 'ui.bootstrap', 'project', 'user', 'auth','reCAPTCHA']);
+﻿﻿﻿var gatheringModule = angular.module('gathering', ['ngResource', 'ngRoute', 'ui.router', 'ngAnimate', 'ui.bootstrap', 'project', 'user', 'auth','reCAPTCHA']);
 
 /*	Appel des templates	*/
 gatheringModule.config([ '$stateProvider', '$urlRouterProvider', '$locationProvider', '$httpProvider','reCAPTCHAProvider', 
 	function ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider, reCAPTCHAProvider) {
 	
 	$locationProvider.html5Mode(true);	//Permet HTML5 PushState (l'appel de la dépendence permet d'éviter les problème quand on compile)
-	// uiSelectConfig.theme = 'select2';
 	
 		/*	AUTHENTIFICATION	*/
 	
@@ -37,7 +36,9 @@ gatheringModule.config([ '$stateProvider', '$urlRouterProvider', '$locationProvi
 		templateUrl : '/public/views/user_form.html',
 		controller :'userFormController',
 		parent : main,
-		resolve : {themes : function(allThemesLoader){return allThemesLoader();}}
+		resolve : {	themes : function(allThemesLoader){return allThemesLoader();},
+					competences : function(allCompetencesLoader) {return allCompetencesLoader();}
+					}
 	}
 		
 	var search_user = {

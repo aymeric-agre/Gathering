@@ -78,27 +78,33 @@
 		<!-- Competences -->
 		<div class="col-md-3 input-container">
 		<form ng-submit='add(register)'>
-			<input type="text" name="competences" placeholder="Mettez en avant vos compétences" ng-model="user.competences"/>
-			<button class="fa fa-check" ng-click="add(register)"></button>
+			<input ng-model="register.newCompetenceToAdd" placeholder="Mettez en avant vos compétences" />
+			<button type="submit" class="fa fa-check" ng-click="addCompetence(register.newCompetenceToAdd)"></button>
+			<div ng-show="register.newCompetenceToAdd !== '' ">
+				<ul class="show-data">
+					<li ng-repeat="competenceCollection in competences | filter : register.newCompetenceToAdd" ng-click="addCompetence(competenceCollection.competence)">{{themeCollection.theme}}</li>
+				</ul>
+			</div>
+		</form>
 		</div>
 		<div class="col-md-2">
 			<ul class="all-data">
-				<li ng-repeat="competence in competences">
+				<li ng-repeat="competence in user.competences">
+					<i class="fa fa-times" ng-click="removeCompetence(competence)"></i>
 					<span>{{competence}}</span>
-					<span class="remove-data" ng-click="remove(this.competence)">x</span>
 				</li>
 			</ul>
-		</form>
+		
 		</div>
 		
 		<!-- Theme d'interet -->
 		<div class="col-md-3 input-container">
 		<form ng-submit='add(register)'>
 			<input ng-model="register.newThemeToAdd" placeholder="Des thèmes qui vous intéressent"/>
-			<button type="submit" class="fa fa-check" ng-click="add(register)"></button>
+			<button type="submit" class="fa fa-check" ng-click="addTheme(register.newThemeToAdd)"></button>
 			<div ng-show="register.newThemeToAdd !== '' ">
 				<ul class="show-data">
-					<li ng-repeat="themeCollection in themes | filter : register.newThemeToAdd" ng-click="add(themeCollection.theme)">{{themeCollection.theme}}</li>
+					<li ng-repeat="themeCollection in themes | filter : register.newThemeToAdd" ng-click="addTheme(themeCollection.theme)">{{themeCollection.theme}}</li>
 				</ul>
 			</div>
 		</form >
@@ -107,7 +113,7 @@
 		<div class="col-md-2">			
 			<ul class="all-data">
 				<li ng-repeat="interest in user.interests">
-					<i class="fa fa-times" ng-click="remove(interest)"></i>
+					<i class="fa fa-times" ng-click="removeTheme(interest)"></i>
 					<span>{{interest}}</span>
 				</li>
 			</ul>

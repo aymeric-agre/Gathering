@@ -1,12 +1,12 @@
-'user strict';
+﻿'user strict';
 
 /*	*********
 	CRUD USER
 	*********	*/
 
 /*	Controller de la page /user_form	*/
-gatheringModule.controller('userFormController', ['$rootScope', '$scope', '$state', 'Auth', 'User', 'themes', 'Theme',
-	function($rootScope, $scope, $state, Auth, User, themes, Theme)  {
+gatheringModule.controller('userFormController', ['$rootScope', '$scope', '$state', 'Auth', 'User', 'themes', 'Theme', 'competences', 'Competence',
+	function($rootScope, $scope, $state, Auth, User, themes, Theme, competences, Competence)  {
 	$scope.title = "Formulaire";
 	$scope.user = new User({
 		mail : "", 
@@ -78,34 +78,57 @@ gatheringModule.controller('userFormController', ['$rootScope', '$scope', '$stat
 	//Compétences et centre d'intérêt
 	$scope.themes = themes;
 	$scope.user.interests = [];
+	$scope.competences = competences;
+	$scope.user.competences = [];
 	$scope.register = {newThemeToAdd : '', newCompetenceToAdd : ''};
 	
-	$scope.add = function(registerData) {
-		if(registerData.newThemeToAdd != ""){
-			console.log('On ajoute ' + registerData.newThemeToAdd);
-			$scope.user.interests.push(registerData.newThemeToAdd);
+	//Add
+	$scope.addTheme = function(registerData) {
+		if(registerData != ""){
+			console.log('On ajoute ' + registerData);
+			$scope.user.interests.push(registerData);
 			$scope.register.newThemeToAdd = '';
 		}
-		if(registerData.newCompetenceToAdd != ""){
-			console.log('On ajoute ' + registerData.newCompetenceToAdd);
-			$scope.user.competences.push(registerData.newCompetenceToAdd);
+	};
+	$scope.addCompetence = function(registerData){
+		if(registerData != ""){
+			console.log('On ajoute ' + registerData);
+			$scope.user.competences.push(registerData);
 			$scope.register.newCompetenceToAdd = '';
 		}
-	};
+	};	
 	
-	$scope.remove = function(competence) {
-		var index = $scope.user.interests.indexOf(competence);
+	//Remove
+	$scope.removeTheme = function(theme) {
+		var index = $scope.user.interests.indexOf(theme);
 		if(index>-1) {
 			$scope.user.interests.splice(index,1);
 		}
 	};
+	
+	$scope.removeCompetence = function(competence) {
+		var index = $scope.user.competences.indexOf(competence);
+		if(index>-1) {
+			$scope.user.competences.splice(index,1);
+		}
+	};
+		
 		
 	//Sauvegarder l'utilisateur
 	$scope.create = function() {		//Enregistrer l'utilisateur
+		
+		//On enregistre les thèmes dans la BDD
 		for(i=0; i<$scope.user.interests.length; i++){
 			if ($scope.themes.indexOf($scope.user.interests[i]) == -1) //Si le thème n'est pas déjà dans la liste
 				var themeToSave = new Theme({theme : $scope.user.interests[i]});
 			themeToSave.$save();
+		}
+		
+		//On enregistre les compétences dans la BDD
+		for(i=0; i<$scope.user.competences.length; i++){
+			if ($scope.competences.indexOf($scope.user.competences[i]) == -1)
+			var competenceToSave = new Competence({competence : $scope.user.competences[i]});
+			competenceToSave.$save();
 		}
 		
 		var userToSave = new User({user:$scope.user});
