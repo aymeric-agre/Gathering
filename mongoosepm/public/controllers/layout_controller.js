@@ -1,4 +1,4 @@
-﻿var gatheringModule = angular.module('gathering', ['ngResource', 'ngRoute', 'ui.router', 'ngAnimate', 'ui.bootstrap', 'project', 'user', 'auth','reCAPTCHA']);
+﻿﻿var gatheringModule = angular.module('gathering', ['ngResource', 'ngRoute', 'ui.router', 'ngAnimate', 'ui.bootstrap', 'project', 'user', 'auth','reCAPTCHA']);
 
 /*	Appel des templates	*/
 gatheringModule.config([ '$stateProvider', '$urlRouterProvider', '$locationProvider', '$httpProvider','reCAPTCHAProvider', 
