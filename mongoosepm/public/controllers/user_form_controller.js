@@ -5,8 +5,8 @@
 	*********	*/
 
 /*	Controller de la page /user_form	*/
-gatheringModule.controller('userFormController', ['$rootScope', '$scope', '$state', 'Auth', 'User', 'themes', 'Theme', 	'competences', 'Competence',
-	function($rootScope, $scope, $state, Auth, User, themes, Theme, competences, Competence)  {
+gatheringModule.controller('userFormController', ['$rootScope', '$scope', '$state', 'Auth', 'User', 'themes', 'Theme',
+	function($rootScope, $scope, $state, Auth, User, themes, Theme)  {
 	$scope.title = "Formulaire";
 	$scope.user = new User({
 		mail : "", 
@@ -83,57 +83,34 @@ gatheringModule.controller('userFormController', ['$rootScope', '$scope', '$stat
 		
 	$scope.themes = themes;
 	$scope.user.interests = [];
-	$scope.competences = competences;
-	$scope.user.competences = [];
 	$scope.register = {newThemeToAdd : '', newCompetenceToAdd : ''};
 	
-	//Add
-	$scope.addTheme = function(registerData) {
-		if(registerData != ""){
-			console.log('On ajoute ' + registerData);
-			$scope.user.interests.push(registerData);
+	$scope.add = function(registerData) {
+		if(registerData.newThemeToAdd != ""){
+			console.log('On ajoute ' + registerData.newThemeToAdd);
+			$scope.user.interests.push(registerData.newThemeToAdd);
 			$scope.register.newThemeToAdd = '';
 		}
-	};
-	$scope.addCompetence = function(registerData){
-		if(registerData != ""){
-			console.log('On ajoute ' + registerData);
-			$scope.user.competences.push(registerData);
+		if(registerData.newCompetenceToAdd != ""){
+			console.log('On ajoute ' + registerData.newCompetenceToAdd);
+			$scope.user.competences.push(registerData.newCompetenceToAdd);
 			$scope.register.newCompetenceToAdd = '';
 		}
-	};	
+	};
 	
-	//Remove
-	$scope.removeTheme = function(theme) {
-		var index = $scope.user.interests.indexOf(theme);
+	$scope.remove = function(competence) {
+		var index = $scope.user.interests.indexOf(competence);
 		if(index>-1) {
 			$scope.user.interests.splice(index,1);
 		}
 	};
-	
-	$scope.removeCompetence = function(competence) {
-		var index = $scope.user.competences.indexOf(competence);
-		if(index>-1) {
-			$scope.user.competences.splice(index,1);
-		}
-	};
-		
 		
 	//Sauvegarder l'utilisateur
 	$scope.create = function() {		//Enregistrer l'utilisateur
-		
-		//On enregistre les thèmes dans la BDD
 		for(i=0; i<$scope.user.interests.length; i++){
 			if ($scope.themes.indexOf($scope.user.interests[i]) == -1) //Si le thème n'est pas déjà dans la liste
 			var themeToSave = new Theme({theme : $scope.user.interests[i]});
 			themeToSave.$save();
-		}
-		
-		//On enregistre les compétences dans le BDD
-		for(i=0; i<$scope.user.competences.length; i++){
-			if ($scope.competences.indexOf($scope.user.competences[i]) == -1)
-			var competenceToSave = new Competence({competence : $scope.user.competences[i]});
-			competenceToSave.$save();
 		}
 		
 		var userToSave = new User({user:$scope.user});
