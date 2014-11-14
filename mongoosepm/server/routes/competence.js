@@ -16,7 +16,7 @@ exports.allCompetences = function(req,res, next) {
 exports.doSaveCompetence = function(req, res) {
 	console.log('La competence est ' + req.body.competence);
 	//var newCompetence = new competenceSchema.Competence(req.body.competence);
-	competenceSchema.Competence.create({competence : req.body.competence}, function(err, savedCompetence){ 
+	competenceSchema.Competence.create({competence : req.body.competence, user : req.body.user}, function(err, savedCompetence){ 
 		if(err){
 			console.log(err);
 			console.log(req.body.competence);

@@ -87,8 +87,8 @@ gatheringModule.controller('userFormController', ['$rootScope', '$scope', '$stat
 	$scope.addTheme = function(registerData) {
 		if(registerData != ""){
 			console.log('On ajoute ' + registerData);
-			$scope.user.interests.push(registerData);
-			$scope.register.newThemeToAdd = '';
+			$scope.user.interests.push(registerData);	//On ajoute le theme dans le user.interest
+			$scope.register.newThemeToAdd = '';			//On remet l'input vide
 		}
 	};
 	$scope.addCompetence = function(registerData){
@@ -120,16 +120,18 @@ gatheringModule.controller('userFormController', ['$rootScope', '$scope', '$stat
 		
 		//On enregistre les thèmes dans la BDD
 		for(i=0; i<$scope.user.interests.length; i++){
-			if ($scope.themes.indexOf($scope.user.interests[i]) == -1) //Si le thème n'est pas déjà dans la liste
+			if ($scope.themes.theme.indexOf($scope.user.interests[i]) == -1){ //Si le thème n'est pas déjà dans la liste
 				var themeToSave = new Theme({theme : $scope.user.interests[i]});
-			themeToSave.$save();
+				themeToSave.$save();
+			}
 		}
 		
 		//On enregistre les compétences dans la BDD
 		for(i=0; i<$scope.user.competences.length; i++){
-			if ($scope.competences.indexOf($scope.user.competences[i]) == -1)
-			var competenceToSave = new Competence({competence : $scope.user.competences[i]});
-			competenceToSave.$save();
+			if ($scope.competences.competence.indexOf($scope.user.competences[i]) == -1){
+				var competenceToSave = new Competence({competence : $scope.user.competences[i]});
+				competenceToSave.$save();
+			}
 		}
 		$scope.user.thumbnail=thumbnail_tmp;
 		console.log('voici thumbnail');

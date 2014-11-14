@@ -121,7 +121,7 @@
 			<button type="submit" class="fa fa-check" ng-click="addCompetence(register.newCompetenceToAdd)"></button>
 			<div ng-show="register.newCompetenceToAdd !== '' ">
 				<ul class="show-data">
-					<li ng-repeat="competenceCollection in competences | filter : register.newCompetenceToAdd" ng-click="addCompetence(competenceCollection.competence)">{{themeCollection.theme}}</li>
+					<li ng-repeat="competenceCollection in competences | filter : register.newCompetenceToAdd" ng-click="addCompetence(competenceCollection.competence)">{{competenceCollection.competence}}</li>
 				</ul>
 			</div>
 		</form>
