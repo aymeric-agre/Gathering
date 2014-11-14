@@ -56,7 +56,7 @@
 				</span>
 				</input>
 			</div>	
-			
+
 <!-- Upload image -->
 			</br></br>
 			<div 
@@ -94,7 +94,9 @@
 				</table>
 				<img class="thumbnail" flow-img="$flow.files[0]"/>  <!-- visualisation image -->
 			</div>
-
+			
+				<!-- Captcha -->
+			<div re-captcha ng-model="user.captcha" class="col-md-offset-1"></div>
 		</div>
 		
 		<nav class="col-md-1 nav-circlepop">
@@ -194,8 +196,7 @@
 </div>
 	
 <div class="row">
-	<div re-captcha ng-model="user.captcha" class="col-md-4 col-md-offset-2"></div>
-	<div class="col-md-2">
+	<div class="col-md-2 col-md-offset-6">
 		<button id="submit_button" type="submit" ng-disabled="score<2" ng-click="create()">Submit</button>
 	</div>
 </div>

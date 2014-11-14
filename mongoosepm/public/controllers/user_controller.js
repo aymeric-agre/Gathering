@@ -3,6 +3,7 @@
 
 gatheringModule.controller('userController', ['$rootScope', 'thisUser', 'User', '$state',  function($scope, thisUser, User, $state) {
 	$scope.user=thisUser;
+	$scope.interests=thisUser.interests;
 	$scope.groups=thisUser.groups;
 	$scope.experiences=thisUser.experience;
 	$scope.competencies=thisUser.competencies;
