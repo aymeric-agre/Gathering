@@ -19,7 +19,8 @@ gatheringModule.controller('userFormController', ['$rootScope', '$scope', '$stat
 		area:"",
 		town:"",
 		phone:"",
-		comeptences:[],
+		thumbnail:"",
+		competences:[],
 		interests:[],
 		captcha: {}
 		});
@@ -130,10 +131,39 @@ gatheringModule.controller('userFormController', ['$rootScope', '$scope', '$stat
 			var competenceToSave = new Competence({competence : $scope.user.competences[i]});
 			competenceToSave.$save();
 		}
-		
+		$scope.user.thumbnail=thumbnail_tmp;
+		console.log('voici thumbnail');
+		console.log($scope.user.thumbnail);
 		var userToSave = new User({user:$scope.user});
 		userToSave.$save(function(user) {
 			$state.go('main.index', {}, {reload:true});
 		});
 	};
+}]);
+
+thumbnail_tmp = "";
+
+var upload = angular.module('upload', ['flow']);
+upload.config(['flowFactoryProvider', function(flowFactoryProvider){
+	flowFactoryProvider.defaults = {
+		target: '/uploadFile',
+		permanentErrors: [404, 500, 501],
+		maxChunkRetries: 1,
+		chunkRetryInterval: 5000,
+		simultaneousUploads: 4,
+		testChunks: false,
+		singleFile: true
+	};
+
+	flowFactoryProvider.on('catchAll', function(event){
+		console.log('catchAll', arguments);
+		console.log(arguments[0]);
+		if(arguments[0]=="fileSuccess"){
+				console.log(typeof(arguments[2]));
+    			console.log(arguments[2].substring(arguments[2].indexOf('"path":"')+8,arguments[2].indexOf(',"headers"')-1));
+				thumbnail_tmp = arguments[2].substring(arguments[2].indexOf('"path":"')+8,arguments[2].indexOf(',"headers"')-1);
+				console.log('thumbnail_tmp vaut ' + thumbnail_tmp);
+				//console.log(files.file.path)
+		}
+	});
 }]);

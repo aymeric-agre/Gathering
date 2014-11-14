@@ -1,8 +1,8 @@
-﻿﻿﻿var gatheringModule = angular.module('gathering', ['ngResource', 'ngRoute', 'ui.router', 'ngAnimate', 'ui.bootstrap', 'project', 'user', 'auth','reCAPTCHA']);
+﻿﻿var gatheringModule = angular.module('gathering', ['ngResource', 'ngRoute', 'ui.router', 'ngAnimate', 'ui.bootstrap', 'project', 'user', 'auth','reCAPTCHA', 'flow', 'upload']);
 
 /*	Appel des templates	*/
-gatheringModule.config([ '$stateProvider', '$urlRouterProvider', '$locationProvider', '$httpProvider','reCAPTCHAProvider', 
-	function ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider, reCAPTCHAProvider) {
+gatheringModule.config([ '$stateProvider', '$urlRouterProvider', '$locationProvider', '$httpProvider','reCAPTCHAProvider', 'flowFactoryProvider',
+	function ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider, reCAPTCHAProvider, flowFactoryProvider) {
 	
 	$locationProvider.html5Mode(true);	//Permet HTML5 PushState (l'appel de la dépendence permet d'éviter les problème quand on compile)
 	
@@ -65,7 +65,8 @@ gatheringModule.config([ '$stateProvider', '$urlRouterProvider', '$locationProvi
 		parent : main,
 		resolve : {	
 					//On ne peut pas récupérer $stateParams depuis les services
-					thisUser : ['User', '$stateParams', '$q',	function(User, $stateParams, $q) {	
+lp
+				thisUser : ['User', '$stateParams', '$q',	function(User, $stateParams, $q) {	
 						var delay = $q.defer();
 						User.get({id: $stateParams.userId}, function(user) {	//On cherche l'utilisateur avec l'id de l'URL
 							delay.resolve(user);		//On renvoie l'utilisateur
