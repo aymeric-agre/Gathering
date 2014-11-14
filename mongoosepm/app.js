@@ -34,6 +34,7 @@ var user = require('./server/routes/user');
 var project = require('./server/routes/project');
 var theme = require('./server/routes/theme');
 var competence = require('./server/routes/competence');
+var upload = require('./server/routes/upload');
 var http = require('http');
 var path = require('path');
 var app = express();
@@ -66,9 +67,10 @@ app.use(session({
 app.use(flash());
 app.use(passport.initialize());		
 app.use(passport.session());
+app.use(multipart({uploadDir: './uploads/tmp'}));
 app.use(bodyParser({
 	keepExtensions: true,
-	uploadDir: './uploads'
+	uploadDir: './uploads/tmp'
 })); // permet de récupérer des infos dans le body (formulaire)
 app.use('/server/model',express.static(path.join( __dirname, '/server/model' )));
 app.use('/public',express.static(path.join( __dirname, 'public' )));
@@ -120,6 +122,10 @@ app.get('/user/:id', user.oneUser);
 app.put('/user/:id', user.doUpdateUser);
 app.get('/connected', user.currentUser);
 //app.post('/doSearchUser',user.doSearchUser);
+
+//Upload
+app.get('/uploadFile', upload.uploadFileGet);
+app.post('/uploadFile', upload.uploadFilePost);
 
 //Routes/themes.js
 app.get('/theme', theme.allThemes);

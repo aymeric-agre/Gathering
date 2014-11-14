@@ -1,8 +1,8 @@
-var gatheringModule = angular.module('gathering', ['ngResource', 'ngRoute', 'ui.router', 'ngAnimate', 'ui.bootstrap', 'project', 'user', 'auth','reCAPTCHA']);
+﻿﻿var gatheringModule = angular.module('gathering', ['ngResource', 'ngRoute', 'ui.router', 'ngAnimate', 'ui.bootstrap', 'project', 'user', 'auth','reCAPTCHA', 'flow', 'upload']);
 
 /*	Appel des templates	*/
-gatheringModule.config([ '$stateProvider', '$urlRouterProvider', '$locationProvider', '$httpProvider','reCAPTCHAProvider', 
-	function ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider, uiSelectConfig, reCAPTCHAProvider) {
+gatheringModule.config([ '$stateProvider', '$urlRouterProvider', '$locationProvider', '$httpProvider','reCAPTCHAProvider', 'flowFactoryProvider',
+	function ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider, reCAPTCHAProvider, flowFactoryProvider) {
 	
 	$locationProvider.html5Mode(true);	//Permet HTML5 PushState (l'appel de la dépendence permet d'éviter les problème quand on compile)
 	
