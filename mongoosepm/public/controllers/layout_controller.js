@@ -65,7 +65,6 @@ gatheringModule.config([ '$stateProvider', '$urlRouterProvider', '$locationProvi
 		parent : main,
 		resolve : {	
 					//On ne peut pas récupérer $stateParams depuis les services
-lp
 				thisUser : ['User', '$stateParams', '$q',	function(User, $stateParams, $q) {	
 						var delay = $q.defer();
 						User.get({id: $stateParams.userId}, function(user) {	//On cherche l'utilisateur avec l'id de l'URL
