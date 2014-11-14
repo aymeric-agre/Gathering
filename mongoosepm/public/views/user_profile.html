@@ -14,6 +14,17 @@
 				<p>image</p>
 			</div>
 		</div>
+		
+		<div class="case row" class="interest">
+			<h1><i class="fa fa-heart"></i>Centres d'intérêts</h1>		
+			<ul>
+				<li ng-repeat="interest in interests">
+					<div class="col-md-3"> {{user.interest}} </div>
+					<div class="col-md-6"> Description </div>
+					<div class="col-md-3">	Image-lien </div>
+				</li>
+			</ul>	
+		</div>
 
 		<div class="case row" id="formation">
 			<h1><i class="fa fa-graduation-cap"></i>Formation </h1>		
@@ -43,7 +54,7 @@
 			<h1><i class="fa fa-trophy"></i>Compétences</h1>		
 			<ul>
 				<li ng-repeat="competence in competences">
-					<div class="col-md-3"> Date </div>
+					<div class="col-md-3"> {{user.competence}} </div>
 					<div class="col-md-6"> Description </div>
 					<div class="col-md-3">	Image-lien </div>
 				</li>
