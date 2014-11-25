@@ -7,10 +7,15 @@ var mongooseGroup = require('mongoose');	// initialisation de mongoose
 var Schema = mongooseGroup.Schema;
 
 var groupSchema = new Schema({		// création du modèle -> structure des données
-	groupName: {type: String, unique: true},
-	members: [{type: mongooseGroup.Schema.Types.ObjectId, ref: 'User'}],
-	administrators: [{type: mongooseGroup.Schema.Types.ObjectId, ref: 'User'}],
-	projects: [{type: mongooseGroup.Schema.Types.ObjectId, ref: 'Project'}],
+	private: {
+		administrators: [{type: mongooseGroup.Schema.Types.ObjectId, ref: 'User'}]
+	},
+	public: {
+		name: {type: String, unique: true},
+		members: [{type: mongooseGroup.Schema.Types.ObjectId, ref: 'User'}],
+		administrators: [{type: mongooseGroup.Schema.Types.ObjectId, ref: 'User'}],
+		projects: [{type: mongooseGroup.Schema.Types.ObjectId, ref: 'Project'}]
+	},
 	createdOn: {type: Date, default: Date.now},
 	modifiedOn: {type: Date, default: Date.now}
 });

@@ -23,11 +23,10 @@ authModule.factory('Auth', ['$http', '$window', '$state', function($http, $windo
 		
 		isConnected:function(success, error) {
 						$http.get('/connected').success(function(userConnexion) {	//userConnexion = {user : , connexion :}
-						currentUser = userConnexion.user;	//Modifie la variable dans le HMTL
-						connected = userConnexion.connexion;//Pareil
-						success(currentUser, connected);
-					}).error(error);
-				}
-
+							currentUser = userConnexion.user;	//Modifie la variable dans le HMTL
+							connected = userConnexion.connexion;//Pareil
+							success(currentUser, connected);
+						}).error(error);
+					}
 	};
 }]);

@@ -7,12 +7,10 @@
 		<div class="case row" id="headpage">
 			<h1><i class="fa fa-user"></i>Profil </h1>
 			<div class="col-md-5">
-				<h2> {{user.userFirstName}} {{user.userLastName}} - {{user.statut}} </h2>	
-					<input placeholder="Ville" value="{{ user.town }}" ng-model="user.town"></br>
-					<input placeholder="Pays" value="{{ user.country }}" ng-model="user.country"></br>
-					<input placeholder="Date de naissance" value="{{ user.birthDate }}" ng-model="user.birthDate"> </br>
-					<input placeholder="Email" value="{{ user.mail }}" ng-model="user.mail"></br>
-					<input placeholder="Telephone" value="{{ user.phone }}" ng-model="user.phone"></br>
+				<h2> {{user.public.firstName}} {{user.public.lastName}} - {{user.public.statut}} </h2>	
+					<input placeholder="Ville" value="{{ user.public.town }}" ng-model="user.public.town"></br>
+					<input placeholder="Pays" value="{{ user.public.country }}" ng-model="user.public.country"></br>
+					<input placeholder="Date de naissance" value="{{ user.public.birthDate }}" ng-model="user.public.birthDate"></br>
 				</p>
 			</div>
 			<div class="col-md-offset-4 col-md-3">
@@ -46,13 +44,25 @@
 					
 		<div class="case row" class="competence">
 			<h1><i class="fa fa-trophy"></i>Compétences</h1>		
-			<ul>
-				<li ng-repeat="competence in competences">
-					<div class="col-md-3"> Date </div>
-					<div class="col-md-6"> Description </div>
-					<div class="col-md-3">	Image-lien </div>
-				</li>
-			</ul>	
+			<div class="col-md-3 input-container">
+				<form ng-submit='add(register)'>
+					<input ng-model="register.newCompetenceToAdd" placeholder="Mettez en avant vos compétences" />
+					<button type="submit" class="fa fa-check" ng-click="addCompetence(register.newCompetenceToAdd)"></button>
+					<div ng-show="register.newCompetenceToAdd !== '' ">
+						<ul class="show-data">
+							<li ng-repeat="competenceCollection in competences | filter : register.newCompetenceToAdd" ng-click="addCompetence(competenceCollection.competence)">{{themeCollection.theme}}</li>
+						</ul>
+					</div>
+				</form>
+			</div>
+			<div class="col-md-2">
+				<ul class="all-data">
+					<li ng-repeat="competence in user.public.competences">
+						<i class="fa fa-times" ng-click="removeCompetence(competence)"></i>
+						<span>{{competence}}</span>
+					</li>
+				</ul>
+			</div>
 		</div>
 					
 		<div class="case row" class="project">

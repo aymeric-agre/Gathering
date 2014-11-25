@@ -9,50 +9,26 @@ gatheringModule.controller('userFormController', ['$rootScope', '$scope', '$stat
 	function($rootScope, $scope, $state, Auth, User, themes, Theme, competences, Competence)  {
 	$scope.title = "Formulaire";
 	$scope.user = new User({
-		mail : "", 
-		password : "", 
-		confirmPassword : "", 
-		lastName :"", 
-		firstName :"", 
-		birthDate: "",
-		country :"",
-		area:"",
-		town:"",
-		phone:"",
-		thumbnail:"",
-		competences:[],
-		interests:[],
+		private:{
+			mail : "", 
+			password : "", 
+			confirmPassword : ""
+		},
+		public:{
+			lastName :"", 
+			firstName :"", 
+			sex:""
+		},
 		captcha: {}
-		});
+	});
 	
-	//Navigation
-	$scope.etapes = ['Informations personnelles', 'Competences', 'Formation', 'Projets'];
-	$scope.selection = $scope.etapes[0];
-	$scope.selectionClass = function(currentSelection, etape) {
-		if(currentSelection === etape) {return 'selected';}
-	};
-	$scope.next = function(currentSelection){
-		switch(currentSelection){ 
-			case 'Informations personnelles' : $scope.selection = 'Competences'; break;			
-			case 'Competences' : $scope.selection = 'Formation'; break;			
-			case 'Formation' : $scope.selection = 'Projets'; break;			
-		}
-		return $scope.selection;
-	};
-	$scope.prev = function(currentSelection){
-		switch(currentSelection){ 
-			case 'Projets' : $scope.selection = 'Formation'; break;			
-			case 'Formation' : $scope.selection = 'Competences'; break;			
-			case 'Competences' : $scope.selection = 'Informations personnelles'; break;			
-		}
-		return $scope.selection;
-	};
+	// $scope.user = new User({});
 	
 	//check_password
 	$scope.score = "";	//On l'initialise à strong pour ne pas avoir l'input en rouge dés le départ (pas de risque car mpd est required)
 	$scope.strength = "";	
 	check_password = function(){
-		$scope.score = zxcvbn($scope.user.password).score;
+		$scope.score = zxcvbn($scope.user.private.password).score;
   	 if ($scope.score < 2) {
         $scope.strength = "weak";
     }
@@ -63,107 +39,15 @@ gatheringModule.controller('userFormController', ['$rootScope', '$scope', '$stat
         $scope.strength = "strong";
     }
 	};
-	$scope.$watch('user.password',check_password);
+	$scope.$watch('user.private.password',check_password);
 	
-	//datepicker
-	$scope.open = function($event) {
-		$event.preventDefault();
-		$event.stopPropagation();
-		$scope.opened = true;	//Permet d'ouvrir le calendrier
-	};
-	$scope.dateOptions = {
-		formatYear: 'yy',
-		startingDay: 1
-	};
-	
-	//Compétences et centre d'intérêt
-	$scope.themes = themes;
-	$scope.user.interests = [];
-	$scope.competences = competences;
-	$scope.user.competences = [];
-	$scope.register = {newThemeToAdd : '', newCompetenceToAdd : ''};
-	
-	//Add
-	$scope.addTheme = function(registerData) {
-		if(registerData != ""){
-			console.log('On ajoute ' + registerData);
-			$scope.user.interests.push(registerData);
-			$scope.register.newThemeToAdd = '';
-		}
-	};
-	$scope.addCompetence = function(registerData){
-		if(registerData != ""){
-			console.log('On ajoute ' + registerData);
-			$scope.user.competences.push(registerData);
-			$scope.register.newCompetenceToAdd = '';
-		}
-	};	
-	
-	//Remove
-	$scope.removeTheme = function(theme) {
-		var index = $scope.user.interests.indexOf(theme);
-		if(index>-1) {
-			$scope.user.interests.splice(index,1);
-		}
-	};
-	
-	$scope.removeCompetence = function(competence) {
-		var index = $scope.user.competences.indexOf(competence);
-		if(index>-1) {
-			$scope.user.competences.splice(index,1);
-		}
-	};
-		
-		
 	//Sauvegarder l'utilisateur
 	$scope.create = function() {		//Enregistrer l'utilisateur
-		
-		//On enregistre les thèmes dans la BDD
-		for(i=0; i<$scope.user.interests.length; i++){
-			if ($scope.themes.indexOf($scope.user.interests[i]) == -1) //Si le thème n'est pas déjà dans la liste
-				var themeToSave = new Theme({theme : $scope.user.interests[i]});
-			themeToSave.$save();
-		}
-		
-		//On enregistre les compétences dans la BDD
-		for(i=0; i<$scope.user.competences.length; i++){
-			if ($scope.competences.indexOf($scope.user.competences[i]) == -1)
-			var competenceToSave = new Competence({competence : $scope.user.competences[i]});
-			competenceToSave.$save();
-		}
-		$scope.user.thumbnail=thumbnail_tmp;
-		console.log('voici thumbnail');
-		console.log($scope.user.thumbnail);
+		console.log('creation user angular controller');
+		console.log('user a creer'+$scope.user);
 		var userToSave = new User({user:$scope.user});
 		userToSave.$save(function(user) {
 			$state.go('main.index', {}, {reload:true});
 		});
 	};
-}]);
-
-thumbnail_tmp = "";
-
-var upload = angular.module('upload', ['flow']);
-upload.config(['flowFactoryProvider', function(flowFactoryProvider){
-	flowFactoryProvider.defaults = {
-		target: '/uploadFile',
-		permanentErrors: [404, 500, 501],
-		maxChunkRetries: 1,
-		chunkRetryInterval: 5000,
-		simultaneousUploads: 4,
-		testChunks: false,
-		singleFile: true
-	};
-
-	flowFactoryProvider.on('catchAll', function(event){
-		console.log('catchAll', arguments);
-		console.log(arguments[0]);
-		if(arguments[0]=="fileSuccess"){
-				console.log(typeof(arguments[2]));
-    			console.log(arguments[2].substring(arguments[2].indexOf('"path":"')+8,arguments[2].indexOf(',"headers"')-1));
-				thumbnail_tmp = arguments[2].substring(arguments[2].indexOf('"path":"')+8,arguments[2].indexOf(',"headers"')-1);
-				console.log('thumbnail_tmp vaut ' + thumbnail_tmp);
-				//console.log(files.file.path)
-		}
-	});
 }]);

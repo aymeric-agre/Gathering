@@ -3,12 +3,12 @@
 
 gatheringModule.controller('userController', ['$rootScope', 'thisUser', 'User', '$state',  function($scope, thisUser, User, $state) {
 	$scope.user=thisUser;
-	$scope.interests=thisUser.interests;
-	$scope.groups=thisUser.groups;
-	$scope.experiences=thisUser.experience;
-	$scope.competencies=thisUser.competencies;
-	$scope.projects=thisUser.projects;
-	$scope.languages=thisUser.languages;
+	// $scope.interests=thisUser.interests;
+	// $scope.groups=thisUser.groups;
+	// $scope.experiences=thisUser.experience;
+	// $scope.competencies=thisUser.competencies;
+	// $scope.projects=thisUser.projects;
+	// $scope.languages=thisUser.languages;
 	
 	$scope.sameUser = function() {
 		if($scope.user._id == currentUser._id) {return true}
@@ -19,8 +19,55 @@ gatheringModule.controller('userController', ['$rootScope', 'thisUser', 'User', 
 	$scope.editMode = false;
 	$scope.doEditMode = function() {$scope.editMode=!$scope.editMode}
 	
+	//Compétences et centre d'intérêt
+	// $scope.themes = themes;
+	// $scope.user.public.interests = [];
+	$scope.competences = competences;
+	$scope.user.public.competences = [];
+	$scope.register = {newCompetenceToAdd : ''};
+	
+	//Add
+	// $scope.addTheme = function(registerData) {
+		// if(registerData != ""){
+			// console.log('On ajoute ' + registerData);
+			// $scope.user.public.interests.push(registerData);
+			// $scope.register.newThemeToAdd = '';
+		// }
+	// };
+	$scope.addCompetence = function(registerData){
+		if(registerData != ""){
+			console.log('On ajoute ' + registerData);
+			$scope.user.public.competences.push(registerData);
+			$scope.register.newCompetenceToAdd = '';
+		}
+	};	
+	
+	//Remove
+	// $scope.removeTheme = function(theme) {
+		// var index = $scope.user.public.interests.indexOf(theme);
+		// if(index>-1) {
+			// $scope.user.interests.splice(index,1);
+		// }
+	// };
+	
+	$scope.removeCompetence = function(competence) {
+		var index = $scope.user.public.competences.indexOf(competence);
+		if(index>-1) {
+			$scope.user.competences.splice(index,1);
+		}
+	};
+	
+	//Validation edition
 	$scope.edit = function(){
-		console.log("coucou c'est moi le controlleur");
+		console.log("controlleur user profile");
+		
+		//On enregistre les compétences dans la BDD
+		for(i=0; i<$scope.user.public.competences.length; i++){
+			if ($scope.competences.indexOf($scope.user.public.competences[i]) == -1)
+			var competenceToSave = new Competence({competence : $scope.user.public.competences[i]});
+			competenceToSave.$save();
+		}
+		
 		var userToUpdate = new User({user : $scope.user});
 		console.log($scope.user);
 		userToUpdate.$update({id : $scope.user._id}, function(){

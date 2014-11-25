@@ -11,17 +11,19 @@ gatheringModule.controller('mainController', ['$rootScope', '$scope', '$location
 	$scope.connected = connected;	//Récupère true ou false depuis le HTML
 	$scope.projects = projects;
 	$scope.isCollapsed = true;
-	$scope.infosConnection = {mail:"", password: ""};
+	$scope.infosConnection = {mail:"", password:""};
 	
 	$scope.opened = false;
 	
 	$scope.login = function(infosConnection) {
 		console.log("Je me connecte");
+		console.log(infosConnection);
 		Auth.doLogin(infosConnection,		//On récupère les infos des ng-model et on envoie la fonction login de Auth 
-		function(err) {
-			$rootScope.error = "Failed to login";
-			$state.go('main.index', {}, {reload:true});
-		});		
+			function(err) {
+				$rootScope.error = "Failed to login";
+				$state.go('main.index', {}, {reload:true});
+			}
+		);		
 	};	
 	
 	$scope.logout = function() {

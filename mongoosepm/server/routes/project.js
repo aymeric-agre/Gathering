@@ -2,8 +2,13 @@
 	REQUIERE
 	********	*/
 var fs=require("fs");
-var projectSchema = require('../model/projectSchema'); // appel du modèle mongoose projet
 var userSchema = require('../model/userSchema');
+var projectSchema = require('../model/projectSchema');
+var groupSchema = require('../model/groupSchema');
+var themeSchema = require('../model/themeSchema');
+var competenceSchema = require('../model/competenceSchema');
+var statutSchema = require('../model/statutSchema');
+var languageSchema = require('../model/languageSchema');
 
 /*	******
 	PROJET
@@ -15,17 +20,21 @@ exports.project_gathering = function(req, res){
 	console.log("une requete pr projet_gathering");
 	res.render('project_gathering', function(err,html){
 		var data={
-		title: 'Gathering',
-		body: html
+			title: 'Gathering',
+			body: html
 		};
 		var data_connected = {
-		title: "Gathering",
-		body: html,
-		user:req.session.user
+			title: "Gathering",
+			body: html,
+			user:req.session.user
 		};
-		if(req.session.loggedIn === true) {res.render('connected', data_connected);}		//S'il est loggé on rend connected
-		else {res.render('default', data);}
-		});
+		if(req.session.loggedIn === true) {
+			res.render('connected', data_connected);
+		}		//S'il est loggé on rend connected
+		else {
+			res.render('default', data);
+		}
+	});
 };
 
 /*	Projet PE	*/

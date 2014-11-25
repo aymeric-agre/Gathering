@@ -2,7 +2,13 @@
 	REQUIERE
 	********	*/
 var fs=require("fs");
-var themeSchema = require('../model/themeSchema'); // appel du modèle mongoose theme
+var userSchema = require('../model/userSchema');
+var projectSchema = require('../model/projectSchema');
+var groupSchema = require('../model/groupSchema');
+var themeSchema = require('../model/themeSchema');
+var competenceSchema = require('../model/competenceSchema');
+var statutSchema = require('../model/statutSchema');
+var languageSchema = require('../model/languageSchema');
 
 /*	Chercher tous les themes */
 exports.allThemes = function(req,res, next) {

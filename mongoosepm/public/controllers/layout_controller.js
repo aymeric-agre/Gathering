@@ -1,4 +1,4 @@
-﻿﻿var gatheringModule = angular.module('gathering', ['ngResource', 'ngRoute', 'ui.router', 'ngAnimate', 'ui.bootstrap', 'project', 'user', 'auth','reCAPTCHA', 'flow', 'upload']);
+﻿﻿var gatheringModule = angular.module('gathering', ['ngResource', 'ngRoute', 'ui.router', 'ngAnimate', 'ui.bootstrap', 'project', 'user', 'auth','reCAPTCHA', 'flow']);	// module upload retiré
 
 /*	Appel des templates	*/
 gatheringModule.config([ '$stateProvider', '$urlRouterProvider', '$locationProvider', '$httpProvider','reCAPTCHAProvider', 'flowFactoryProvider',
@@ -80,7 +80,6 @@ gatheringModule.config([ '$stateProvider', '$urlRouterProvider', '$locationProvi
 	
 		var profile = {
 			name : 'main.user.profile',
-			//url : '/user/:userId',
 			templateUrl : '/public/views/user_profile.html',
 			parent : user
 			}

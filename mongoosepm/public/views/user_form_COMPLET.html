@@ -1,0 +1,204 @@
+<head>
+<link rel="stylesheet" href="/public/assets/stylesheets/user_form.css" />
+</head>
+
+<nav class="etape-container ">
+	<ul>
+		<li ng-repeat="etape in etapes"  ng-class="selectionClass(selection, this.etape)" class="etape">
+			<h2 ng-click="$parent.selection = etape"  > {{etape}} </h2>
+		</li>	
+		<hr/><!--	Ligne qui souligne	-->
+	</ul>
+</nav>
+
+<form name="userForm" id="formulaire" enctype="multipart/form-data">
+<div ng-switch="selection" class="container form-group switch-container">
+
+	<!-- INFORMATIONS PERSONELLES -->
+	<div class="switch-form row" ng-switch-when="Informations personnelles">
+		
+		<div class="col-md-3 col-md-offset-1">
+				<!-- E-mail -->
+			<input type="email"  id="mail" placeholder="Adresse mail" ng-model="user.mail" required/>
+			<span class="verification" id="mail_verification"></span><br/>
+					
+				<!-- Mot de passe -->
+			<input type="password"  id="password" placeholder="Mot de passe" ng-model="user.password" ng-class="strength" required/>
+			<!-- <ul id="verificationPassword">
+			</ul> -->
+				
+				<!-- Confirmer mot de passe -->
+			<input type="password"  id="confirmPassword" placeholder="Confirmer mot de passe" ng-model="user.confirmPassword" repeat-password="password" required/>
+			<span class="verification" id="confirmedPassword_verification"></span><br/><br/>
+				
+				
+				<!-- Nom et Prénom -->
+			<input type="text" name="lastName" id="lastName" placeholder="Nom" ng-model="user.lastName"/>
+			<input type="text" name="firstName" id="firstName" placeholder="Prénom" ng-model="user.firstName"/>
+		</div>		
+		
+		<div class="col-md-3">
+				<!-- Localisation -->
+			<input type="text" name="country" id="country" placeholder="Pays" ng-model="user.country"/>
+			<input type="text" name="area" id="area" placeholder="Région" ng-model="user.area"/>
+			<input type="text" name="town" id="town" placeholder="ville" ng-model="user.town"/>	
+			<input type="text" name="phone" id="phone" placeholder="Tel" ng-model="user.phone"/>
+		
+		</div>
+		
+		<div class="col-md-4">
+				<!-- Date de naissance  -->
+			<div id="birthDateBlock">
+				<label for="birthDate">Date de naissance : </label></br></br>
+				<input type="text" placeholder="dd.MM.yyyy" datepicker-popup="dd.MM.yyyy" ng-model="user.birthDate" datepicker-options="dateOptions" is-open="$parent.opened">
+				<span class="input-group-btn date-button">
+					<button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+				</span>
+				</input>
+			</div>	
+
+<!-- Upload image -->
+			</br></br>
+			<div 
+				flow-init 
+				flow-prevent-drop 
+				flow-drag-enter="style={border: '5px solid green'}" 
+				flow-drag-leave="style={}" 
+				ng-style="style" 
+				flow-file-added="!!{png:1,gif:1,jpg:1,jpeg:1}[$file.getExtension()]" 
+				flow-files-submitted="$flow.upload()">
+				<hr class="soften"/>
+				<h4 class="image_profil">Image de profil : </h4></br>
+				<div class="row">
+					<span class="btn upload_btn" flow-btn>Parcourir...</span>
+					</br>
+				</div>
+				</br>
+				<div class="btn drag_btn" flow-drop flow-drag-enter="class='alert-success'" flow-drag-leave="class=''" ng-class="class">
+					Ou glisser une image ici
+				</div>
+				</br></br>
+				<table class="table table-hover table-bordered table-striped" flow-transfers>
+					<thead>
+					<tr>
+						<th>Name</th>
+						<th>Size</th>
+					</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="file in transfers">
+							<td>{{file.name}}</td>
+							<td>{{file.size}}</td>
+						</tr>
+					</tbody>
+				</table>
+				<img class="thumbnail" flow-img="$flow.files[0]"/>  <!-- visualisation image -->
+			</div>
+			
+				<!-- Captcha -->
+			<div re-captcha ng-model="user.captcha" class="col-md-offset-1"></div>
+		</div>
+		
+		<nav class="col-md-1 nav-circlepop">
+			<a class="next" ng-click="next(selection)">
+				<span class="icon-wrap"><svg class="icon" width="32" height="32" viewBox="0 0 64 64"><use xlink:href="#arrow-right"></svg></span>
+			</a>
+		</nav>
+		
+	</div>	
+	
+	<!--------------------->
+	
+	<div class="switch-form row competences-container" ng-switch-when="Competences">
+		<nav class="col-md-1 nav-circlepop">
+			<a class="prev" ng-click="prev(selection)">
+				<span class="icon-wrap"><svg class="icon" width="32" height="32" viewBox="0 0 64 64"><use xlink:href="#arrow-left"></svg></span>
+			</a>
+		</nav>
+		
+		<!-- Competences -->
+		<div class="col-md-3 input-container">
+		<form ng-submit='add(register)'>
+			<input ng-model="register.newCompetenceToAdd" placeholder="Mettez en avant vos compétences" />
+			<button type="submit" class="fa fa-check" ng-click="addCompetence(register.newCompetenceToAdd)"></button>
+			<div ng-show="register.newCompetenceToAdd !== '' ">
+				<ul class="show-data">
+					<li ng-repeat="competenceCollection in competences | filter : register.newCompetenceToAdd" ng-click="addCompetence(competenceCollection.competence)">{{themeCollection.theme}}</li>
+				</ul>
+			</div>
+		</form>
+		</div>
+		<div class="col-md-2">
+			<ul class="all-data">
+				<li ng-repeat="competence in user.competences">
+					<i class="fa fa-times" ng-click="removeCompetence(competence)"></i>
+					<span>{{competence}}</span>
+				</li>
+			</ul>
+		
+		</div>
+		
+		<!-- Theme d'interet -->
+		<div class="col-md-3 input-container">
+		<form ng-submit='add(register)'>
+			<input ng-model="register.newThemeToAdd" placeholder="Des thèmes qui vous intéressent"/>
+			<button type="submit" class="fa fa-check" ng-click="addTheme(register.newThemeToAdd)"></button>
+			<div ng-show="register.newThemeToAdd !== '' ">
+				<ul class="show-data">
+					<li ng-repeat="themeCollection in themes | filter : register.newThemeToAdd" ng-click="addTheme(themeCollection.theme)">{{themeCollection.theme}}</li>
+				</ul>
+			</div>
+		</form >
+		</div>
+		
+		<div class="col-md-2">			
+			<ul class="all-data">
+				<li ng-repeat="interest in user.interests">
+					<i class="fa fa-times" ng-click="removeTheme(interest)"></i>
+					<span>{{interest}}</span>
+				</li>
+			</ul>
+		</div>
+		
+		<nav class="col-md-1 nav-circlepop">
+			<a class="next" ng-click="next(selection)">
+				<span class="icon-wrap"><svg class="icon" width="32" height="32" viewBox="0 0 64 64"><use xlink:href="#arrow-right"></svg></span>
+			</a>
+		</nav>
+	</div>
+	
+	
+	<div class="switch-form row" ng-switch-when="Formation">		
+		<nav class="col-md-1 nav-circlepop">
+			<a class="prev" ng-click="prev(selection)">
+				<span class="icon-wrap"><svg class="icon" width="32" height="32" viewBox="0 0 64 64"><use xlink:href="#arrow-left"></svg></span>
+			</a>
+		</nav>
+		<div class="col-md-5">
+			<label for="status">Statut</label> : <select type="text" name="status" ng-model="user.status" ng-option="status.name for status in statuses"/></select>
+			<br/>
+			<label for="diplomas">Diplômes</label> : <textarea type="text" name="diplomas" ng-model="user.diplomas" id="diplomas" class="champs_droit"/></textarea>
+		</div>
+		<div class="col-md-5">
+			<label for="profession">Profession</label> : <textarea type="text" name="profession" ng-model="user.profession" id="profession" class="champs_droit"/></textarea>
+			<br/>
+			<label for="otherProfession">Autres</label> : <textarea type="text" name="otherProfession" ng-model="user.otherProfession" id="otherProfession" class="champs_droit"/></textarea>
+		</div>
+		<nav class="col-md-1 nav-circlepop">
+			<a class="next" ng-click="next(selection)">
+				<span class="icon-wrap"><svg class="icon" width="32" height="32" viewBox="0 0 64 64"><use xlink:href="#arrow-right"></svg></span>
+			</a>
+		</nav>
+	</div>
+	<div class="switch-form col-md-12" ng-switch-when="Projets">
+		<p> Projects réalisés ou à réaliser </p>
+	</div>
+</div>
+	
+<div class="row">
+	<div class="col-md-2 col-md-offset-6">
+		<button id="submit_button" type="submit" ng-disabled="score<2" ng-click="create()">Submit</button>
+	</div>
+</div>
+</form>
+	

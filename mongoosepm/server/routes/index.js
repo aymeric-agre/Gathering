@@ -4,8 +4,13 @@
  
 var fs=require("fs");
 var passport = require('passport');
-var userSchema = require('../model/userSchema'); // appel du modèle mongoose utilisateur 
-var projectSchema = require('../model/projectSchema'); // appel du modèle mongoose projet
+var userSchema = require('../model/userSchema');
+var projectSchema = require('../model/projectSchema');
+var groupSchema = require('../model/groupSchema');
+var themeSchema = require('../model/themeSchema');
+var competenceSchema = require('../model/competenceSchema');
+var statutSchema = require('../model/statutSchema');
+var languageSchema = require('../model/languageSchema');
 var pass = require('../model/pass');	//Remarque : problème avec zxcvbn
 
 
@@ -38,9 +43,9 @@ exports.layout = function(req, res) {
 /*	Se connecter	*/
 exports.doLogin = function(req, res, next) {
 	console.log("avant server "+req.isAuthenticated());
-	passport.authenticate('local', function(err, user, info) {
+	passport.authenticate('local', function(err, user, info) {	//passport.use dans pass.js
 		if (err) return next(err);
-		console.log('doLogin : voici le user' + user);
+		console.log('doLogin : voici le user' + user + info + err);
 		if (!user) {			//La vérif se fait dès le début avec passport.authenticate (qui appelle passport.use) Ce if(!user) cherche ensuite à savoir si la variable user contient qqchose, mais personne n'est loggé à ce stade.
 			console.log('doLogin : l\'utilisateur n\'est pas reconnu');
 			req.session.messages =  [info.message];		//aucune idée du message, toujours undefined
@@ -52,28 +57,6 @@ exports.doLogin = function(req, res, next) {
 			res.send(req.isAuthenticated());	
 		});
 	})(req, res, next);
-  /*if(req.user.mail) {											//Si ce qui est dans la case est bien un email
-		userSchema.User.findOne({'mail':req.body.mail},function(err, currentUser) {	//On recherche un utilisaeur (inscrit)
-			if(!err) {											//S'il n'y a pas d'erreur
-				if(!currentUser) {										//S'il n'y a pas d'utilisateur trouvé
-					console.log('il n\'y a pas de compte lié au mail');
-					res.send(err);							//On renvoie sur la page d'accueil avec une erreur
-					//PROBLEME : il faut bloquer l'envoie d'uinfo à Angular ici
-				}else{											//Si on trouve un utilisateur
-					req.session.loggedIn = true;				//On le considère connecté
-					req.session.currentUser = currentUser;		//On met ses données dans une session
-					console.log(req.session.currentUser + "s'est connecté");		
-					res.send(req.session.currentUser);
-					}
-			}else{												//S'il y a une erreur
-				res.send(err);
-				}
-			}
-		);
-	} else {													//Si ce n'est pas un email
-		res.redirect('/');	
-		console.log('Il n\'y avait pas de mail pour se connecter. req.body.mail = ' + req.body.mail);
-	};*/
 };
 
 

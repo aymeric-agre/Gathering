@@ -2,7 +2,13 @@
 	REQUIERE
 	********	*/
 var fs=require("fs");
-var competenceSchema = require('../model/competenceSchema'); // appel du modèle mongoose competence
+var userSchema = require('../model/userSchema');
+var projectSchema = require('../model/projectSchema');
+var groupSchema = require('../model/groupSchema');
+var themeSchema = require('../model/themeSchema');
+var competenceSchema = require('../model/competenceSchema');
+var statutSchema = require('../model/statutSchema');
+var languageSchema = require('../model/languageSchema');
 
 /*	Chercher tous les comptences */
 exports.allCompetences = function(req,res, next) {
@@ -15,7 +21,6 @@ exports.allCompetences = function(req,res, next) {
 
 exports.doSaveCompetence = function(req, res) {
 	console.log('La competence est ' + req.body.competence);
-	//var newCompetence = new competenceSchema.Competence(req.body.competence);
 	competenceSchema.Competence.create({competence : req.body.competence}, function(err, savedCompetence){ 
 		if(err){
 			console.log(err);

@@ -4,12 +4,22 @@
 	********	*/
 var fs=require("fs");
 var userSchema = require('../model/userSchema');
+var projectSchema = require('../model/projectSchema');
+var groupSchema = require('../model/groupSchema');
+var themeSchema = require('../model/themeSchema');
+var competenceSchema = require('../model/competenceSchema');
+var statutSchema = require('../model/statutSchema');
+var languageSchema = require('../model/languageSchema');
 var crypto = require("crypto");
 var passport = require('passport');
 var pass = require("../model/pass");
 var request = require('request');
 	
-		
+/*	************
+	APPEL MODELS
+	************	*/
+	
+	
 	
 /*	***************
 	CREER UN COMPTE
@@ -20,8 +30,8 @@ exports.doCreateUser = function(req,res,done){	// fonction de traitement du form
 	var bodyUser = req.body.user;
 	var formCaptcha = bodyUser.captcha;
 	var response = res;
+	console.log("creation user est dans user.js");
 	console.log(bodyUser);
-	//console.log(formCaptcha);
 	//envoie une requete au serveur de verification captcha
 	request.post('http://www.google.com/recaptcha/api/verify',{
 			form: {privatekey: '6LfU3fwSAAAAALjNiSHNG3UA0s_8k83RbanqMjMG',
@@ -105,25 +115,48 @@ exports.identite_suppression = function(req, res){	// fonction de suppression du
 	*********************	*/
 
 /*	Réupère un utilisateur à partir de son id	*/
-exports.oneUser = function(req,res, next) {
-	console.log("Cherche le user_id : " + req.params.id);	
-	userSchema.User.findById(req.params.id, function(err, user) {	//On cherche l'utilisateur avec cet Id
-		if (err) {console.log(err); return next(err);}
-		else {
-		console.log(user);
-		res.send(user);}
-	});
-};
+// exports.oneUser = function(req,res, next) {
+	// console.log("Cherche le user_id : " + req.params.id);	
+	// userSchema.User.findById(req.params.id, function(err, user) {	//On cherche l'utilisateur avec cet Id
+		// if (err) {console.log(err); return next(err);}
+		// else {
+		// console.log(user);
+		// res.send(user);}
+	// });
+// };
+
+exports.oneUser = function(req, res, next) {
+	console.log("Cherche le user par son id: " + req.params.id);
+	userSchema.User
+		.findOne({"_id": req.params.id})
+		.populate(["public.competences", "public.interests", "public.status", "public.projects", "public.group"])
+		.exec(function(err, user){
+			if(err){
+				console.log(err);
+				return next(err);
+			}
+			else{
+				console.log(user);
+				res.send(user);
+			}
+		});
+}
 
 /*	Récupère tous les utilisateurs	*/	
 exports.allUsers = function(req, res, next) {
-	var query = userSchema.User.find();
-	query.exec(function(err, users) {
-		if (err) {return next(err);}	//S'il y a une erreur, c'est géré par le middlewre error
-		else {res.send(users);}
+	userSchema.User
+		.find({}, "public")
+		.exec(function(err, users) {
+			if (err) {
+				return next(err);
+			}	//S'il y a une erreur, c'est géré par le middlewre error
+			else {
+				res.send(users);
+			}
   });
 };
 
+/*	Récupère l'utilisateur courant 	*/
 exports.currentUser = function(req,res,next) {
 	if (req.isAuthenticated()) 
 	{

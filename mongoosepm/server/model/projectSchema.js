@@ -7,16 +7,21 @@ var mongooseProject = require('mongoose');	// initialisation de mongoose
 var Schema = mongooseProject.Schema;
 
 var projectSchema = new Schema({		// création du modèle -> structure des données
-	projectName: {type: String, unique: true, required: true},
-	createdBy: {type: mongooseProject.Schema.Types.ObjectId, ref: 'User'},		//Créé par une seule personne
-	members: [{type: mongooseProject.Schema.Types.ObjectId, ref: 'User'}],		//Plusieurs membre : on utilise un tableau
-	administrators: [{type: mongooseProject.Schema.Types.ObjectId, ref: 'User'}],
-	group: [{type: mongooseProject.Schema.Types.ObjectId, ref: 'Group'}],
-	needs: [{type: String}],
-	themes: [{type: mongooseProject.Schema.Types.ObjectId, ref: 'Theme'}],
+	private: {
+		administrators: [{type: mongooseProject.Schema.Types.ObjectId, ref: 'User'}],
+	},
+	public: {
+		presentation: {type: String},
+		projectName: {type: String, unique: true, required: true},
+		createdBy: {type: mongooseProject.Schema.Types.ObjectId, ref: 'User'},		//Créé par une seule personne
+		members: [{type: mongooseProject.Schema.Types.ObjectId, ref: 'User'}],		//Plusieurs membre : on utilise un tableau
+		group: [{type: mongooseProject.Schema.Types.ObjectId, ref: 'Group'}],
+		administrators: [{type: mongooseProject.Schema.Types.ObjectId, ref: 'User'}],
+		competence: [{type: mongooseProject.Schema.Types.ObjectId, ref: 'Competence'}],
+		themes: [{type: mongooseProject.Schema.Types.ObjectId, ref: 'Theme'}],
+	},
 	createdOn: {type: Date, default: Date.now},
-	modifiedOn: {type: Date, default: Date.now},
-	presentation: {type: String},
+	modifiedOn: {type: Date, default: Date.now}
 });
 
 /*	********

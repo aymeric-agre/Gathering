@@ -1,13 +1,11 @@
 <div class="case row" id="headpage">
 			<h1><i class="fa fa-user"></i>Profil </h1>
 			<div class="col-md-5">
-				<h2> {{user.userFirstName}} {{user.userLastName}} - {{user.statut}} </h2>
+				<h2> {{user.public.userFirstName}} {{user.public.userLastName}} - {{user.pulic.statut}} </h2>
 				<p>	
-					{{ user.town }}</br>
-					{{ user.country }}</br>
-					{{ user.birthDate }} </br>
-					{{ user.mail }}</br>
-					{{ user.phone }}</br>
+					{{ user.public.town }}</br>
+					{{ user.public.country }}</br>
+					{{ user.public.birthDate }} </br>
 				</p>
 			</div>
 			<div class="col-md-offset-4 col-md-3">
@@ -19,7 +17,7 @@
 			<h1><i class="fa fa-heart"></i>Centres d'intérêts</h1>		
 			<ul>
 				<li ng-repeat="interest in interests">
-					<div class="col-md-3"> {{user.interest}} </div>
+					<div class="col-md-3"> {{user.public.interest}} </div>
 					<div class="col-md-6"> Description </div>
 					<div class="col-md-3">	Image-lien </div>
 				</li>
@@ -54,7 +52,7 @@
 			<h1><i class="fa fa-trophy"></i>Compétences</h1>		
 			<ul>
 				<li ng-repeat="competence in competences">
-					<div class="col-md-3"> {{user.competence}} </div>
+					<div class="col-md-3"> {{user.public.competence}} </div>
 					<div class="col-md-6"> Description </div>
 					<div class="col-md-3">	Image-lien </div>
 				</li>
