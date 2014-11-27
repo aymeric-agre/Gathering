@@ -24,7 +24,7 @@ var userSchema = new Schema({	// Création d'un schéma userSchema (pour la cré
 		thumbnail: {data: Buffer, contentType: String, required: false},
 		competences: [{type: mongooseUser.Schema.Types.ObjectId, ref: 'Competence'}],
 		interests: [{type: mongooseUser.Schema.Types.ObjectId, ref: 'Theme'}],
-		status: [{type: mongooseUser.Schema.Types.ObjectId, ref: 'Statut'}],
+		status: {type: mongooseUser.Schema.Types.ObjectId, ref: 'Statut'},
 		studies: {type: String},
 		projects: [{type: mongooseUser.Schema.Types.ObjectId, ref: 'Project'}],
 		group: [{type: mongooseUser.Schema.Types.ObjectId, ref: 'Group'}]
@@ -51,12 +51,6 @@ userSchema.pre('save', function(next){
 		});
 	});
 });
-
-// fonction de mise à jour de la date de mise à jour du user avant update ** NE FONCTIONNE PAS **
-// userSchema.pre('update', function(next){
-	// this.modifiedOn = Date.now();
-	// next();
-// });
 
 /*	********
 	METHODES

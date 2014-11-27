@@ -82,12 +82,11 @@ exports.doCreateUser = function(req,res,done){	// fonction de traitement du form
 	******************	*/
 	
 /*	Modifier un utilisateur	*/
-
 exports.doUpdateUser = function(req, res, done){	// fonction de modification -> ne va pas être conservée, on se contentera de faire des updates un peu comme la page projet, à voir comment on mettra ça en oeuvre
 	console.log("On edite un user");
 	var body = req.body;
 	if (req.isAuthenticated()) {
-		console.log('On cherche le currentUser depuis update : ' + body.user._id);
+		console.log('On cherche le currentUser depuis update : ');
 		pass.updateUser(body.user, function(err, user){
 			if(err) 
 			{
@@ -144,12 +143,11 @@ exports.oneUser = function(req, res, next) {
 
 /*	Récupère tous les utilisateurs	*/	
 exports.allUsers = function(req, res, next) {
-	userSchema.User
-		.find({}, "public")
-		.exec(function(err, users) {
+	userSchema.User.find({}, "public", function(err, users) {
 			if (err) {
+				console.log(err);
 				return next(err);
-			}	//S'il y a une erreur, c'est géré par le middlewre error
+			}
 			else {
 				res.send(users);
 			}

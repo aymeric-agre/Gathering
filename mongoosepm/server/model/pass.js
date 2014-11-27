@@ -96,19 +96,12 @@ exports.createUser = function(user, done) {
 };
 
 // Updating an existing user
-exports.updateUser = function(user, done) {
-	console.log("On modifie un user partie user.js" + user._id);
+exports.updateUser = function(userToUpdate, done) {
+	console.log("identifiant utilisateur à modifier dans pass.js : " + userToUpdate._id);
 	
-	// modification mot de passe
-	// correspondance des passwords
-	// passCorrespondance(user.private.password, user.private.confirmPassword);
-	
-	// solidité du password
-	// passSolidity(user.private.password);
-	user.modifiedOn = Date.now();	// Mise à jour de la date de modification du profil
-	var userToUpdate = user;
+	userToUpdate.modifiedOn = Date.now();
 	console.log(userToUpdate);
-	userSchema.User.update({_id: user._id}, userToUpdate, {}, function(err, updatedUser) {
+	userSchema.User.findByIdAndUpdate(userToUpdate._id, userToUpdate, function(err, updatedUser) {
 		if(err)
 		{
 			console.log(err);

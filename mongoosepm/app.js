@@ -63,7 +63,7 @@ app.use(cookieParser());	//Permet de traiter les cookies
 app.use(session({
 	secret : 'Hello World',
 	store : new mongoStore({db:'gathering'})
-	}));
+}));
 app.use(flash());
 app.use(passport.initialize());		
 app.use(passport.session());
@@ -115,7 +115,6 @@ app.get('/delete_projects',project.doDeleteAllProjects);
 //Routes/user.js
 //app.get('/identite_statique',user.identite_statique);
 //app.get('/identite_formulaire',user.identite_formulaire);
-//app.post('/doCreateUser', user.doCreateUser);	//Action de se créer un compte
 app.get('/user', user.allUsers);
 app.post('/user', user.doCreateUser);
 app.get('/user/:id', user.oneUser);

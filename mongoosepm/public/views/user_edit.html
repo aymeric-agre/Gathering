@@ -1,92 +1,118 @@
 <head>
-<link rel="stylesheet" href="/public/assets/stylesheets/user.css" />
+	<link rel="stylesheet" href="/public/assets/stylesheets/user.css" />
 </head>
 <div>
-<form>
-	<article>
-		<div class="case row" id="headpage">
-			<h1><i class="fa fa-user"></i>Profil </h1>
-			<div class="col-md-5">
-				<h2> {{user.public.firstName}} {{user.public.lastName}} - {{user.public.statut}} </h2>	
-					<input placeholder="Ville" value="{{ user.public.town }}" ng-model="user.public.town"></br>
-					<input placeholder="Pays" value="{{ user.public.country }}" ng-model="user.public.country"></br>
-					<input placeholder="Date de naissance" value="{{ user.public.birthDate }}" ng-model="user.public.birthDate"></br>
-				</p>
+	<form>
+		<article>
+			<div class="case row" id="headpage">
+				<h1><i class="fa fa-user"></i>Profil </h1>
+				<div class="col-md-5">
+					<h2>  {{user.public.firstName}}  {{user.public.lastName}}  -  <input placeholder="Statut" value="{{ user.public.statut }}" ng-model="user.public.statut"></h2>	
+						<input placeholder="Ville" value="{{ user.public.town }}" ng-model="user.public.town"></br>
+						<input placeholder="Pays" value="{{ user.public.country }}" ng-model="user.public.country"></br>
+						<!--<div id="birthDateBlock">
+							<label for="birthDate">Date de naissance: </label><br/><br/>
+							<input type="text" placeholder="dd.MM.yyyy" datepicker-popup="dd.MM.yyyy" ng-model="user.public.birthDate" datepicker-options="dateOptions" is-open="$parent.opened">
+							<span class="input-group-btn date-button">
+								<button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+							</span>
+						</div>-->
+					</p>
+				</div>
+				<div class="col-md-offset-4 col-md-3">
+					<p>image</p>
+				</div>
 			</div>
-			<div class="col-md-offset-4 col-md-3">
-				<p>image</p>
+			
+			<!-- <div class="case row" class="interest">
+				<h1><i class="fa fa-heart"></i>Centres d'intérêts</h1>		
+				<ul>
+					<li ng-repeat="interest in interests">
+						<div class="col-md-3"> {{user.public.interest}} </div>
+					</li>
+				</ul>	
 			</div>
-		</div>
-
-		<div class="case row" id="formation">
-			<h1><i class="fa fa-graduation-cap"></i>Formation </h1>		
-			<ul>
-				<li ng-repeat="group in groups">
-					<div class="col-md-3"> Date </div>
-					<div class="col-md-6"> Description </div>
-					<div class="col-md-3">	Image-lien </div>
-				</li>
-			</ul>
-		</div>
-				
-
-				
-		<div class="case row" id="experiencePro">
-			<h1><i class="fa fa-line-chart"></i>Expériences Professionnelles</h1>		
-			<ul>
-				<li ng-repeat="experience in experiences">
-					<div class="col-md-3"> Date </div>
-					<div class="col-md-6"> Description </div>
-					<div class="col-md-3">	Image-lien </div>
-				</li>
-			</ul>
-		</div>
-					
-		<div class="case row" class="competence">
-			<h1><i class="fa fa-trophy"></i>Compétences</h1>		
-			<div class="col-md-3 input-container">
-				<form ng-submit='add(register)'>
-					<input ng-model="register.newCompetenceToAdd" placeholder="Mettez en avant vos compétences" />
-					<button type="submit" class="fa fa-check" ng-click="addCompetence(register.newCompetenceToAdd)"></button>
-					<div ng-show="register.newCompetenceToAdd !== '' ">
-						<ul class="show-data">
-							<li ng-repeat="competenceCollection in competences | filter : register.newCompetenceToAdd" ng-click="addCompetence(competenceCollection.competence)">{{themeCollection.theme}}</li>
-						</ul>
-					</div>
-				</form>
-			</div>
-			<div class="col-md-2">
-				<ul class="all-data">
-					<li ng-repeat="competence in user.public.competences">
-						<i class="fa fa-times" ng-click="removeCompetence(competence)"></i>
-						<span>{{competence}}</span>
+			
+			<div class="case row" id="formation">
+				<h1><i class="fa fa-graduation-cap"></i>Formation </h1>		
+				<ul>
+					<li ng-repeat="group in groups">
+						<div class="col-md-3"> Date </div>
+						<div class="col-md-6"> Description </div>
+						<div class="col-md-3">	Image-lien </div>
 					</li>
 				</ul>
 			</div>
-		</div>
 					
-		<div class="case row" class="project">
-			<h1><i class="fa fa-coffee"></i>Projets</h1>		
-			<ul>
-				<li ng-repeat="project in projects">
-					<div class="col-md-3"> Date </div>
-					<div class="col-md-6"> Description </div>
-					<div class="col-md-3">	Image-lien </div>
-				</li>
-			</ul>	
-		</div>
-		
-		<div class="case row" class="language">
-			<h1><i class="fa fa-globe"></i>Langues</h1>		
-			<ul>
-				<li ng-repeat="language in languages">
-					<div class="col-md-3"> Date </div>
-					<div class="col-md-6"> Description </div>
-					<div class="col-md-3">	Image-lien </div>
-				</li>
-			</ul>	
-		</div>
-</article>
-</form>
+
+					
+			<div class="case row" id="experiencePro">
+				<h1><i class="fa fa-line-chart"></i>Expériences Professionnelles</h1>		
+				<ul>
+					<li ng-repeat="experience in experiences">
+						<div class="col-md-3"> Date </div>
+						<div class="col-md-6"> Description </div>
+						<div class="col-md-3">	Image-lien </div>
+					</li>
+				</ul>
+			</div>
+			
+			<div class="case row" class="competences">
+				<h1><i class="fa fa-coffee"></i>Compétences</h1>		
+				<ul>
+					<li ng-repeat="competence in competences">
+						<div class="col-md-3"> Date </div>
+						<div class="col-md-6"> Description </div>
+						<div class="col-md-3">	Image-lien </div>
+					</li>
+				</ul>	
+			</div>
+			
+			<div class="case row" class="competence">
+				<h1><i class="fa fa-trophy"></i>Compétences</h1>		
+				<div class="col-md-3 input-container">
+					<form ng-submit='add(register)'>
+						<input ng-model="register.newCompetenceToAdd" placeholder="Mettez en avant vos compétences" />
+						<button type="submit" class="fa fa-check" ng-click="addCompetence(register.newCompetenceToAdd)"></button>
+						<div ng-show="register.newCompetenceToAdd !== '' ">
+							<ul class="show-data">
+								<li ng-repeat="competenceCollection in competences | filter : register.newCompetenceToAdd" ng-click="addCompetence(competenceCollection.competence)">{{themeCollection.theme}}</li>
+							</ul>
+						</div>
+					</form>
+				</div>
+				<div class="col-md-2">
+					<ul class="all-data">
+						<li ng-repeat="competence in user.public.competences">
+							<i class="fa fa-times" ng-click="removeCompetence(competence)"></i>
+							<span>{{competence}}</span>
+						</li>
+					</ul>
+				</div>
+			</div> 
+						
+			<div class="case row" class="project">
+				<h1><i class="fa fa-coffee"></i>Projets</h1>		
+				<ul>
+					<li ng-repeat="project in projects">
+						<div class="col-md-3"> Date </div>
+						<div class="col-md-6"> Description </div>
+						<div class="col-md-3">	Image-lien </div>
+					</li>
+				</ul>	
+			</div>
+			
+			<div class="case row" class="language">
+				<h1><i class="fa fa-globe"></i>Langues</h1>		
+				<ul>
+					<li ng-repeat="language in languages">
+						<div class="col-md-3"> Date </div>
+						<div class="col-md-6"> Description </div>
+						<div class="col-md-3">	Image-lien </div>
+					</li>
+				</ul>	
+			</div> -->
+		</article>
+	</form>
 </div>
 

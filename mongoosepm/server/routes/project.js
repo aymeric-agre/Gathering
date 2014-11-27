@@ -37,30 +37,9 @@ exports.project_gathering = function(req, res){
 	});
 };
 
-/*	Projet PE	*/
-exports.project_gatherer = function(req, res){
-	console.log("une requete pr projects_gatherer");
-	res.render('project_gatherer', function(err,html){
-		var data={
-		title: 'Gatherer',
-		body: html
-		};
-		var data_connected = {
-		title: "Gatherer",
-		body: html,
-		user:req.session.user
-		};
-		if(req.session.loggedIn === true) {res.render('connected', data_connected);}		//S'il est loggé on rend connected
-		else {res.render('default', data);}
-		});
-};
-	
-
 /*	*************
 	LISTE PROJETS
 	*************	*/
-	
-
 	
 /*	Récupérer les projets de l'utilisateur	*/
 exports.byProjectId = function (req, res) {
@@ -137,9 +116,14 @@ exports.oneProject = function(req,res, next) {
 }; */
 exports.allProjects = function(req,res, next) {
 	console.log("Cherche des projets");	
-	projectSchema.Project.find(function(err, projects) {	//On cherche le projet avec cet Id
-		if (err) {console.log(err); return next(err);}
-		else {res.send(projects);}
+	projectSchema.Project.find({}, "public", function(err, projects) {	//On cherche le projet avec cet Id
+		if (err) {
+			console.log(err);
+			return next(err);
+		}
+		else {
+			res.send(projects);
+		}
 	});
 };	
 	
