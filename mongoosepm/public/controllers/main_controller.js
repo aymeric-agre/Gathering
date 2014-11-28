@@ -13,7 +13,7 @@ gatheringModule.controller('mainController', ['$rootScope', '$scope', '$location
 	$scope.isCollapsed = true;
 	$scope.infosConnection = {mail:"", password:""};
 	
-	$scope.opened = false;
+	//$scope.opened = false;
 	
 	$scope.login = function(infosConnection) {
 		console.log("Je me connecte");
