@@ -4,8 +4,8 @@
 	LAYOUT/LOGIN/LOGOUT
 	*******************	*/
 
-gatheringModule.controller('mainController', ['$rootScope', '$scope', '$location','User', 'Auth', '$state', 'projects', '$http',
-	function($rootScope, $scope, $location, Auth, User, $state, projects, $http) {
+gatheringModule.controller('mainController', ['$rootScope', '$scope', '$state', '$location','User', 'Auth', 'projects', '$http',
+	function($rootScope, $scope, $state, $location, Auth, User, projects, $http) {
 	
 	$scope.currentUser = currentUser;//Récupère l'utilisateur depuis le HTML
 	$scope.connected = connected;	//Récupère true ou false depuis le HTML
@@ -41,23 +41,21 @@ gatheringModule.controller('mainController', ['$rootScope', '$scope', '$location
 		console.log('on cherche un utilisateur');
 		$state.go('main.search_user');
 	};
-	
-	//FORUMULAIRE
-	/* $scope.user = new User({	//PROBLEME A RESOUDRE : ne reconnait pas User...
-		private:{
-			mail : "", 
-			password : "", 
-			confirmPassword : ""
-		},
-		public:{
-			lastName :"", 
-			firstName :"", 
-			sex:""
-		},
-		captcha: {}
-	}); */
-	
-	// $scope.user = new User({});
+
+	//initialisation user
+	// $scope.user = new User({
+		// private:{
+			// mail : "", 
+			// password : "", 
+			// confirmPassword : ""
+		// },
+		// public:{
+			// lastName :"", 
+			// firstName :"", 
+			// sex:""
+		// },
+		// captcha: {}
+	// });
 	
 	//check_password
 	$scope.score = "";	//On l'initialise à strong pour ne pas avoir l'input en rouge dés le départ (pas de risque car mpd est required)
@@ -85,17 +83,4 @@ gatheringModule.controller('mainController', ['$rootScope', '$scope', '$location
 			$state.go('main.index', {}, {reload:true});
 		});
 	};
-
-	
-	
-	// $rootScope.$on('$stateChangeStart', function () {
-        // $state.reload();
-    // });
-	
-	//Rechargement de la page
-	//$state.transitionTo($state.current, $stateParams, { reload: true, inherit: true, notify: true });
-	
-	// $scope.reload = function(){
-		// $state.transitionTo('myState');
-	// };
 }]);

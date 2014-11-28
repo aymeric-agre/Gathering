@@ -35,10 +35,7 @@ gatheringModule.config([ '$stateProvider', '$urlRouterProvider', '$locationProvi
 		url : '/user_form/',
 		templateUrl : '/public/views/user_form.html',
 		controller :'userFormController',
-		parent : main,
-		resolve : {	themes : function(allThemesLoader){return allThemesLoader();},
-					competences : function(allCompetencesLoader) {return allCompetencesLoader();}
-					}
+		parent : main
 	}
 		
 	var search_user = {
@@ -88,7 +85,10 @@ gatheringModule.config([ '$stateProvider', '$urlRouterProvider', '$locationProvi
 			name : 'main.user.edit',
 			url : '/edit',
 			templateUrl : '/public/views/user_edit.html',
-			parent : user
+			parent : user,
+			resolve : {	themes : function(allThemesLoader){return allThemesLoader();},
+					competences : function(allCompetencesLoader) {return allCompetencesLoader();}
+					}
 		}	
 	
 	var project_form = {

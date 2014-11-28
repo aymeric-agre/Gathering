@@ -33,7 +33,7 @@ exports.doCreateUser = function(req,res,done){	// fonction de traitement du form
 	console.log("creation user est dans user.js");
 	console.log(bodyUser);
 	//envoie une requete au serveur de verification captcha
-	request.post('http://www.google.com/recaptcha/api/verify',{
+	/*request.post('http://www.google.com/recaptcha/api/verify',{
 			form: {privatekey: '6LfU3fwSAAAAALjNiSHNG3UA0s_8k83RbanqMjMG',
 				remoteip: req.connection.remoteAddress,
 				challenge: formCaptcha.challenge,
@@ -41,7 +41,7 @@ exports.doCreateUser = function(req,res,done){	// fonction de traitement du form
 		},
 		function(err, res, body, next){
 			//si le serveur renvoie un body avec false c'est que le captcha est inexact
-			if(body.match(/false/) === null){
+			if(body.match(/false/) === null){*/
 				pass.createUser(bodyUser, function(err,user){
 					if (err)
 					{
@@ -67,13 +67,13 @@ exports.doCreateUser = function(req,res,done){	// fonction de traitement du form
 						})
 					}
 				});
-			}
+			/*}
 			else
 			{
 				return response.render('user_form', {message: "Recaptcha Validation Failed. Please Re-Enter the reCAPTCHA challenge.", err: err})
 			}
 		}		
-	)
+	)*/
 };
 
 
