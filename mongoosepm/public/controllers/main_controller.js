@@ -5,7 +5,7 @@
 	*******************	*/
 
 gatheringModule.controller('mainController', ['$rootScope', '$scope', '$location','User', 'Auth', '$state', 'projects', '$http',
-	function($rootScope, $scope, $location, Auth, User, $state, projects, $http) {
+	function($rootScope, $scope, $location, User, Auth, $state, projects, $http) {
 	
 	$scope.currentUser = currentUser;//Récupère l'utilisateur depuis le HTML
 	$scope.connected = connected;	//Récupère true ou false depuis le HTML
@@ -43,7 +43,7 @@ gatheringModule.controller('mainController', ['$rootScope', '$scope', '$location
 	};
 	
 	//FORUMULAIRE
-	/* $scope.user = new User({	//PROBLEME A RESOUDRE : ne reconnait pas User...
+	$scope.user = new User({	//PROBLEME A RESOUDRE : ne reconnait pas User...
 		private:{
 			mail : "", 
 			password : "", 
@@ -55,7 +55,7 @@ gatheringModule.controller('mainController', ['$rootScope', '$scope', '$location
 			sex:""
 		},
 		captcha: {}
-	}); */
+	});
 	
 	// $scope.user = new User({});
 	

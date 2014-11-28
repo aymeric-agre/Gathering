@@ -230,7 +230,7 @@ header {
 .submit_button{
 	border : none;
 	border-radius: 50%;
-	cursor :pointer;
+	cursor: pointer;
 	color : white;
 	font-size : 2em;
 }
