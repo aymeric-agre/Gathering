@@ -12,7 +12,7 @@ gatheringModule.config([ '$stateProvider', '$urlRouterProvider', '$locationProvi
 
 	var main = {
 		name : 'main',
-		templateUrl : '/public/views/slidebar.html',
+		templateUrl : '/public/views/sidebar.html',
 		controller : "mainController",
 		data : {},
 		resolve : {
