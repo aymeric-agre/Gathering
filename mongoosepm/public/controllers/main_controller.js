@@ -43,7 +43,7 @@ gatheringModule.controller('mainController', ['$rootScope', '$scope', '$location
 	};
 	
 	//FORUMULAIRE
-	$scope.user = new User({	//PROBLEME A RESOUDRE : ne reconnait pas User...
+	$scope.userForm = new User({	//PROBLEME A RESOUDRE : ne reconnait pas User...
 		private:{
 			mail : "", 
 			password : "", 
@@ -74,13 +74,13 @@ gatheringModule.controller('mainController', ['$rootScope', '$scope', '$location
         $scope.strength = "strong";
     }
 	};
-	$scope.$watch('user.private.password',check_password);
+	$scope.$watch('userForm.private.password',check_password);
 	
 	//Sauvegarder l'utilisateur
 	$scope.create = function() {		//Enregistrer l'utilisateur
 		console.log('creation user angular controller');
-		console.log('user a creer'+$scope.user);
-		var userToSave = new User({user:$scope.user});
+		console.log('user a creer'+$scope.userForm);
+		var userToSave = new User({user:$scope.userForm});
 		userToSave.$save(function(user) {
 			$state.go('main.index', {}, {reload:true});
 		});

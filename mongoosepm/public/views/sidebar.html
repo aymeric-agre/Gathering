@@ -47,27 +47,27 @@
 			<div ng-show="formConnexion">
 				<form name="userForm" id="formulaire" enctype="multipart/form-data">
 					<!-- Sexe -->
-					<span>I'm a boy </span><input type="radio" name="sex" id="sex" value="man" ng-model="user.public.sex"/><br/>
-					<span>I'm a girl </span><input type="radio" name="sex" id="sex" value="woman" ng-model="user.public.sex"/><br/>
+					<span>I'm a boy </span><input type="radio" name="sex" id="sex" value="man" ng-model="userForm.public.sex"/><br/>
+					<span>I'm a girl </span><input type="radio" name="sex" id="sex" value="woman" ng-model="userForm.public.sex"/><br/>
 			
 					<!-- E-mail -->
-					<input type="email"  id="mail" placeholder="Adresse mail" ng-model="user.private.mail" required/>
+					<input type="email"  id="mail" placeholder="Adresse mail" ng-model="userForm.private.mail" required/>
 					<span class="verification" id="mail_verification"></span><br/>
 									
 					<!-- Mot de passe -->
-					<input type="password"  id="password" placeholder="Mot de passe" ng-model="user.private.password" ng-class="strength" required/>
+					<input type="password"  id="password" placeholder="Mot de passe" ng-model="userForm.private.password" ng-class="strength" required/>
 									
 					<!-- Confirmer mot de passe -->
-					<input type="password"  id="confirmPassword" placeholder="Confirmer mot de passe" ng-model="user.private.confirmPassword" repeat-password="password" required/>
+					<input type="password"  id="confirmPassword" placeholder="Confirmer mot de passe" ng-model="userForm.private.confirmPassword" repeat-password="password" required/>
 					<span class="verification" id="confirmedPassword_verification"></span><br/><br/>
 													
 					<!-- Nom et Prénom -->
-					<input type="text" name="lastName" id="lastName" placeholder="Nom" ng-model="user.public.lastName"/>
-					<input type="text" name="firstName" id="firstName" placeholder="Prénom" ng-model="user.public.firstName"/>
+					<input type="text" name="lastName" id="lastName" placeholder="Nom" ng-model="userForm.public.lastName"/>
+					<input type="text" name="firstName" id="firstName" placeholder="Prénom" ng-model="userForm.public.firstName"/>
 					<br/><br/>
 									
 					<!-- Captcha -->
-					<div re-captcha ng-model="user.captcha" class="col-md-offset-1"></div>
+					<div re-captcha ng-model="userForm.captcha" class="col-md-offset-1"></div>
 					
 					<!-- Bouttons validation formulaire -->
 					<button class="submit_button" id="submit_false" ng-click="formConnexion = !formConnexion">X</button>				
