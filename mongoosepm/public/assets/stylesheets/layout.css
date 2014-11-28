@@ -226,6 +226,23 @@ header {
 	
 }
 
+/*	FORMULAIRE	*/
+.submit_button{
+	border : none;
+	border-radius: 50%;
+	cursor :pointer;
+	color : white;
+	font-size : 2em;
+}
+
+#submit_true{
+	background : green;
+}
+
+#submit_false{
+	background : red;
+}
+
 /* 	***************
 	Page Principale
 	***************	*/

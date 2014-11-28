@@ -30,29 +30,69 @@
 		<div class="row-fluid" ng-switch="connected" >
 		
 			<nav class="sidebar col-md-2"  ng-class="{'sidebar' : !isActive, 'sidebar active' : isActive}" ng-init="isActive = true">	
-				<ul ng-switch-when="false">
-					<a ui-sref="main.user_form"><li class="navigation-button" > 
-						<i class="fa fa-sign-in"></i>
-						<span>Créer un compte</span>
+				
+				<!-- PAS CONNECTE -->
+				
+				<ul ng-switch-when="false" ng-init="formConnexion = false">
+						<div ng-show ="!formConnexion">	<!-- Il faudrait faire un ng-if ou ng-switch -->
+							<li class="navigation-button" ng-click="formConnexion = !formConnexion"> 
+								<i class="fa fa-sign-in"></i>
+								<span>Créer un compte</span>
+							</li>
+							</a>
+							<li class="navigation-button" ng-click="isCollapsed = !isCollapsed"> 
+								<i class="fa fa-power-off"></i>
+								<span>Se connecter</span>
+								
+							</li>
+							
+												
+							<form method="post" name="loginForm" ng-submit="login(user)" collapse="isCollapsed" enctype="multipart/form-data" >
+								<input class="form-control" type="text" type="email" name="mail" placeholder="Adresse mail" ng-model="user.mail">
+								<input class="form-control" type="password" name="password" placeholder="Mot de passe" ng-model="user.password">
+								<button class="submit-login" ng-disabled="loginForm.$invalid" type="submit" > 
+									<span>Connexion</span>
+									<i class="fa fa-arrow-right"></i>
+								</button>	
+							</form>		
+						</div>
 						
-					</li></a>
-					<li class="navigation-button" ng-click="isCollapsed = !isCollapsed"> 
-						<i class="fa fa-power-off"></i>
-						<span>Se connecter</span>
-						
-					</li>
-					
-										
-						<form method="post" name="loginForm" ng-submit="login(user)" collapse="isCollapsed" enctype="multipart/form-data" >
-							<input class="form-control" type="text" type="email" name="mail" placeholder="Adresse mail" ng-model="user.mail">
-							<input class="form-control" type="password" name="password" placeholder="Mot de passe" ng-model="user.password">
-							<button class="submit-login" ng-disabled="loginForm.$invalid" type="submit" > 
-								<span>Connexion</span>
-								<i class="fa fa-arrow-right"></i>
-							</button>	
-						</form>	
+						<!-- FORMULAIRE DE CONNEXION RAPIDE -->
+						<div ng-show="formConnexion">
+							<form name="userForm" id="formulaire" enctype="multipart/form-data">
+								<!-- Sexe -->
+								<span>I'm a boy </span><input type="radio" name="sex" id="sex" value="man" ng-model="user.public.sex"/><br/>
+								<span>I'm a girl </span><input type="radio" name="sex" id="sex" value="woman" ng-model="user.public.sex"/><br/>
+								
+								<!-- E-mail -->
+								<input type="email"  id="mail" placeholder="Adresse mail" ng-model="user.private.mail" required/>
+								<span class="verification" id="mail_verification"></span><br/>
+												
+								<!-- Mot de passe -->
+								<input type="password"  id="password" placeholder="Mot de passe" ng-model="user.private.password" ng-class="strength" required/>
+								<!-- <ul id="verificationPassword">
+								</ul> -->
+											
+								<!-- Confirmer mot de passe -->
+								<input type="password"  id="confirmPassword" placeholder="Confirmer mot de passe" ng-model="user.private.confirmPassword" repeat-password="password" required/>
+								<span class="verification" id="confirmedPassword_verification"></span><br/><br/>
+														
+								<!-- Nom et Prénom -->
+								<input type="text" name="lastName" id="lastName" placeholder="Nom" ng-model="user.public.lastName"/>
+								<input type="text" name="firstName" id="firstName" placeholder="Prénom" ng-model="user.public.firstName"/>
+								<br/><br/>
+									
+								<!-- Captcha -->
+								<div re-captcha ng-model="user.captcha" class="col-md-offset-1"></div>
+								<button class="submit_button" id="submit_false" ng-click="formConnexion = !formConnexion">X</button>				
+								<button class="submit_button" id="submit_true" type="submit" ng-disabled="score<2" ng-click="create()">V</button>
+							</form>
+						</div>
 					
 				</ul>
+				
+				
+				<!-- CONNECTE -->
 				
 				<ul ng-switch-when="true">
 					<a ui-sref="main.projects_list({userId : currentUser._id})"> <li class="navigation-button"> 

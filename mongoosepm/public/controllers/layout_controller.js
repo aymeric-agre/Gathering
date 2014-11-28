@@ -1,4 +1,4 @@
-﻿﻿var gatheringModule = angular.module('gathering', ['ngResource', 'ngRoute', 'ui.router', 'ngAnimate', 'ui.bootstrap', 'project', 'user', 'auth','reCAPTCHA', 'flow']);	// module upload retiré
+﻿var gatheringModule = angular.module('gathering', ['ngResource', 'ngRoute', 'ui.router', 'ngAnimate', 'ui.bootstrap', 'project', 'user', 'auth','reCAPTCHA', 'flow']);	// module upload retiré
 
 /*	Appel des templates	*/
 gatheringModule.config([ '$stateProvider', '$urlRouterProvider', '$locationProvider', '$httpProvider','reCAPTCHAProvider', 'flowFactoryProvider',
