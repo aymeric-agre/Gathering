@@ -1,113 +1,125 @@
 <header>
-	<div class="row-fluid banniere">
-		<div  class="col-md-1">
-			<div id="icon-container"  ng-click="isActive = !isActive">
-				<i id="icon"></i>
+		<div class="row-fluid banniere">
+			<div  class="col-md-1">
+				<div id="icon-container"  ng-click="isActive = !isActive">
+					<i id="icon"></i>
+				</div>
 			</div>
-		</div>
-		<div class="col-md-2">
-			<h1> <a href="/"> Gathering	</a></h1>	
-		</div>
-		<div class="col-md-1 col-md-offset-3">
-			<button class="cn-button" id="cn-button" ng-click="opened = !opened"  ng-class="{'cn-button-open' : opened}"><i class=" fa fa-search"></i></button>
-			<div class="cn-wrapper" id="cn-wrapper" ng-class="{'opened-nav' : opened}" >
-			    <ul >
-					<li ng-click="opened = false"><a ui-sref="main.search_user"><i class="fa fa-user"></i></a></li>
-					<li ng-click="opened = false"><a href="#"><i class="fa fa-users"></i></a></li>
-					<li ng-click="opened = false"><a ui-sref="main.search_project"><i class="fa fa-briefcase"></i></a></li>      
-				</ul>
+			<div class="col-md-2">
+				<h1> <a href="/"> Gathering	</a></h1>	
 			</div>
-			<div id="cn-overlay" class="cn-overlay" ng-class="{'on-overlay' : opened}" ng-click="opened = false"></div>
-		</div>
-	</div>	
-</header>
+			
+			<div class="col-md-1 col-md-offset-3">
+				<button class="cn-button" id="cn-button" ng-click="opened = !opened"  ng-class="{'cn-button-open' : opened}"><i class=" fa fa-search"></i></button>
+				<div class="cn-wrapper" id="cn-wrapper" ng-class="{'opened-nav' : opened}" >
+				    <ul >
+				      <li ng-click="opened = false"><a ui-sref="main.search_user"><i class="fa fa-user"></i></a></li>
+					  <li ng-click="opened = false"><a href="#"><i class="fa fa-users"></i></a></li>
+				      <li ng-click="opened = false"><a ui-sref="main.search_project"><i class="fa fa-briefcase"></i></a></li>
+				      
+				     </ul>
+				</div>
+				<div id="cn-overlay" class="cn-overlay" ng-class="{'on-overlay' : opened}" ng-click="opened = false"></div>
+			</div>
+			
+			
+		</header>
 	
 	<!-- Permet à Bootstrap de définir la grille lignes/colonnes sur toute la page -->		
 	
-<div class="row-fluid" ng-switch="connected" >
-	<nav class="sidebar col-md-2"  ng-class="{'sidebar' : !isActive, 'sidebar active' : isActive}" ng-init="isActive = true">	
+		<div class="row-fluid" ng-switch="connected" >
 		
-		<!-- PAS CONNECTE -->
-		<ul ng-switch-when="false" ng-init="formConnexion = false">
-			<div ng-show ="!formConnexion">	<!-- Il faudrait faire un ng-if ou ng-switch -->
-				<li class="navigation-button" ng-click="formConnexion = !formConnexion"> 
-					<i class="fa fa-sign-in"></i>
-					<span>Créer un compte</span>
-				</li>
-				<li class="navigation-button" ng-click="isCollapsed = !isCollapsed"> 
-					<i class="fa fa-power-off"></i>
-					<span>Se connecter</span>
-				</li>
-				<form method="post" name="loginForm" ng-submit="login(user)" collapse="isCollapsed" enctype="multipart/form-data" >
-					<input class="form-control" type="text" type="email" name="mail" placeholder="Adresse mail" ng-model="user.mail">
-					<input class="form-control" type="password" name="password" placeholder="Mot de passe" ng-model="user.password">
-					<button class="submit-login" ng-disabled="loginForm.$invalid" type="submit" > 
-						<span>Connexion</span>
-						<i class="fa fa-arrow-right"></i>
-					</button>	
-				</form>		
-			</div>
+			<nav class="sidebar col-md-2"  ng-class="{'sidebar' : !isActive, 'sidebar active' : isActive}" ng-init="isActive = true">	
+				
+				<!-- PAS CONNECTE -->
+				
+				<ul ng-switch-when="false" ng-init="formConnexion = false">
+						<div ng-show ="!formConnexion">	<!-- Il faudrait faire un ng-if ou ng-switch -->
+							<li class="navigation-button" ng-click="formConnexion = !formConnexion"> 
+								<i class="fa fa-sign-in"></i>
+								<span>Créer un compte</span>
+							</li>
+							</a>
+							<li class="navigation-button" ng-click="isCollapsed = !isCollapsed"> 
+								<i class="fa fa-power-off"></i>
+								<span>Se connecter</span>
+								
+							</li>
+							
+												
+							<form method="post" name="loginForm" ng-submit="login(user)" collapse="isCollapsed" enctype="multipart/form-data" >
+								<input class="form-control" type="text" type="email" name="mail" placeholder="Adresse mail" ng-model="user.mail">
+								<input class="form-control" type="password" name="password" placeholder="Mot de passe" ng-model="user.password">
+								<button class="submit-login" ng-disabled="loginForm.$invalid" type="submit" > 
+									<span>Connexion</span>
+									<i class="fa fa-arrow-right"></i>
+								</button>	
+							</form>		
+						</div>
 						
-			<!-- FORMULAIRE DE CONNEXION RAPIDE -->
-			<div ng-show="formConnexion">
-				<form name="userForm" id="formulaire" enctype="multipart/form-data">
-					<!-- Sexe -->
-					<span>I'm a boy </span><input type="radio" name="sex" id="sex" value="man" ng-model="user.public.sex"/><br/>
-					<span>I'm a girl </span><input type="radio" name="sex" id="sex" value="woman" ng-model="user.public.sex"/><br/>
+						<!-- FORMULAIRE DE CONNEXION RAPIDE -->
+						<div ng-show="formConnexion">
+							<form name="userForm" id="formulaire" enctype="multipart/form-data">
+								<!-- Sexe -->
+								<span>I'm a boy </span><input type="radio" name="sex" id="sex" value="man" ng-model="user.public.sex"/><br/>
+								<span>I'm a girl </span><input type="radio" name="sex" id="sex" value="woman" ng-model="user.public.sex"/><br/>
+								
+								<!-- E-mail -->
+								<input type="email"  id="mail" placeholder="Adresse mail" ng-model="user.private.mail" required/>
+								<span class="verification" id="mail_verification"></span><br/>
+												
+								<!-- Mot de passe -->
+								<input type="password"  id="password" placeholder="Mot de passe" ng-model="user.private.password" ng-class="strength" required/>
+								<!-- <ul id="verificationPassword">
+								</ul> -->
+											
+								<!-- Confirmer mot de passe -->
+								<input type="password"  id="confirmPassword" placeholder="Confirmer mot de passe" ng-model="user.private.confirmPassword" repeat-password="password" required/>
+								<span class="verification" id="confirmedPassword_verification"></span><br/><br/>
+														
+								<!-- Nom et Prénom -->
+								<input type="text" name="lastName" id="lastName" placeholder="Nom" ng-model="user.public.lastName"/>
+								<input type="text" name="firstName" id="firstName" placeholder="Prénom" ng-model="user.public.firstName"/>
+								<br/><br/>
+									
+								<!-- Captcha -->
+								<div re-captcha ng-model="user.captcha" class="col-md-offset-1"></div>
+								<button class="submit_button" id="submit_false" ng-click="formConnexion = !formConnexion">X</button>				
+								<button class="submit_button" id="submit_true" type="submit" ng-disabled="score<2" ng-click="create()">V</button>
+							</form>
+						</div>
+					
+				</ul>
+				
+				
+				<!-- CONNECTE -->
+				
+				<ul ng-switch-when="true">
+					<a ui-sref="main.projects_list({userId : currentUser._id})"> <li class="navigation-button"> 
+						<i class="fa fa-coffee"></i>
+						<span>Mes projets</span>
+					</li></a>
+					<a ui-sref="main.user.profile({userId : currentUser._id})"><li class="navigation-button">  
+						<i class="fa fa-user"></i>
+						<span>Mon compte</span>  
+					</li></a>
+					<a ui-sref="main.user.mailbox({userId : currentUser._id})"><li class="navigation-button">  
+						<i class="fa fa-envelope"></i>
+						<span>Messagerie</span>  
+					</li></a>
+					<li class="navigation-button" ng-click="logout()"> 
+						<i class="fa fa-power-off"></i>
+						<span>Se déconnecter</span>
+					</li>
+					<a ui-sref="main.project_form" id="addProject">Créer un projet	</a>
+				</ul>
+			</nav>
+
+			<section class="col-md-8 col-md-offset-2 container" ui-view>		</section>
 			
-					<!-- E-mail -->
-					<input type="email"  id="mail" placeholder="Adresse mail" ng-model="user.private.mail" required/>
-					<span class="verification" id="mail_verification"></span><br/>
-									
-					<!-- Mot de passe -->
-					<input type="password"  id="password" placeholder="Mot de passe" ng-model="user.private.password" ng-class="strength" required/>
-									
-					<!-- Confirmer mot de passe -->
-					<input type="password"  id="confirmPassword" placeholder="Confirmer mot de passe" ng-model="user.private.confirmPassword" repeat-password="password" required/>
-					<span class="verification" id="confirmedPassword_verification"></span><br/><br/>
-													
-					<!-- Nom et Prénom -->
-					<input type="text" name="lastName" id="lastName" placeholder="Nom" ng-model="user.public.lastName"/>
-					<input type="text" name="firstName" id="firstName" placeholder="Prénom" ng-model="user.public.firstName"/>
-					<br/><br/>
-									
-					<!-- Captcha -->
-					<div re-captcha ng-model="user.captcha" class="col-md-offset-1"></div>
-					
-					<!-- Bouttons validation formulaire -->
-					<button class="submit_button" id="submit_false" ng-click="formConnexion = !formConnexion">X</button>				
-					<button class="submit_button" id="submit_true" type="submit" ng-click="create()">V</button>
-				</form>
-			</div>
-		</ul>
-					
-		<!-- CONNECTE -->
-		<ul ng-switch-when="true">
-			<a ui-sref="main.projects_list({userId : currentUser._id})"> <li class="navigation-button"> 
-				<i class="fa fa-coffee"></i>
-				<span>Mes projets</span>
-			</li></a>
-			<a ui-sref="main.user.profile({userId : currentUser._id})"><li class="navigation-button">  
-				<i class="fa fa-user"></i>
-				<span>Mon compte</span>  
-			</li></a>
-			<a ui-sref="main.user.mailbox({userId : currentUser._id})"><li class="navigation-button">  
-				<i class="fa fa-envelope"></i>
-				<span>Messagerie</span>  
-			</li></a>
-			<li class="navigation-button" ng-click="logout()"> 
-				<i class="fa fa-power-off"></i>
-				<span>Se déconnecter</span>
-			</li>
-			<a ui-sref="main.project_form" id="addProject">Créer un projet	</a>
-		</ul>
-	</nav>
-
-	<section class="col-md-8 col-md-offset-2 container" ui-view>		</section>	
-</div>
+		</div>
 		
-<div class="row fluid">
-	<footer class="footer col-md-10 col-md-offset-2">		</footer>
-</div>	
-
-</div>
+		<div class="row fluid">
+			<footer class="footer col-md-10 col-md-offset-2">		</footer>
+		</div>	
+	</div>

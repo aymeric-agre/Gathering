@@ -21,7 +21,9 @@ gatheringModule.controller('userFormController', ['$rootScope', '$scope', '$stat
 		},
 		captcha: {}
 	});
-
+	
+	// $scope.user = new User({});
+	
 	//check_password
 	$scope.score = "";	//On l'initialise à strong pour ne pas avoir l'input en rouge dés le départ (pas de risque car mpd est required)
 	$scope.strength = "";	

@@ -1,68 +1,74 @@
 <!DOCTYPE html>
 <html ng-app="gathering">
-	<head>
-		<base href="/">	 <!-- Permet d'éviter les # dans les appels d'URL -->
-		<meta name="viewport" content="width=device-width, initial-scale=1">	<!-- Permet à l'application d'être utilisé sur mobile -->
-		<meta charset="utf-8" />
-		<!--[if lt IE 9]>
-			<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-		<![endif]-->
-		<link rel="stylesheet" href="/public/javascripts/lib/bootstrap/css/bootstrap.min.css" />
-		<link rel="stylesheet" href="/public/assets/stylesheets/layout.css" />
-		<link rel="stylesheet" href="/public/assets/stylesheets/animation.css" />
-		<link rel="stylesheet" href="/public/assets/stylesheets/angular-ui-tree.min.css" />
-		<link rel="stylesheet" href="/public/assets/stylesheets/angular-ui-select.min.css" />
-		
-		<link rel="stylesheet" href="/public/assets/stylesheets/font-awesome.min.css" /> <!-- Ajoute du content CSS -->
+<head>
+	<base href="/">	 <!-- Permet d'éviter les # dans les appels d'URL -->
+	<meta name="viewport" content="width=device-width, initial-scale=1">	<!-- Permet à l'application d'être utilisé sur mobile -->
+	<meta charset="utf-8" />
+	<!--[if lt IE 9]>
+		<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+	<link rel="stylesheet" href="/public/javascripts/lib/bootstrap/css/bootstrap.min.css" />
+	<link rel="stylesheet" href="/public/assets/stylesheets/layout.css" />
+	<link rel="stylesheet" href="/public/assets/stylesheets/animation.css" />
+	<link rel="stylesheet" href="/public/assets/stylesheets/angular-ui-tree.min.css" />
+	<link rel="stylesheet" href="/public/assets/stylesheets/angular-ui-select.min.css" />
+	
+	<link rel="stylesheet" href="/public/assets/stylesheets/font-awesome.min.css" /> <!-- Ajoute du content CSS -->
 
-		<title>{{title}}</title>
-	</head>
+	<title>{{title}}</title>
+</head>
 
-	<body>
-		<div class="contrainer-fluid" ui-view> </div>
 
-		<script src="/public/javascripts/lib/jquery/jquery.js"></script>
-		<script src="/public/javascripts/lib/jquery/jquery-ui.js"></script>
-		
-		<script src="/public/javascripts/lib/angular/angular.js"></script>
-		<script src="/public/javascripts/lib/angular/angular-ui-router.js"></script>
-		<script src="/public/javascripts/lib/angular/angular-route.js"></script>
-		<script src="/public/javascripts/lib/angular/angular-resource.js"></script>
-		<script src="/public/javascripts/lib/angular/angular-message.js"></script>
-		<script src="/public/javascripts/lib/angular/angular-animate.js"></script>
-		<script src="/public/javascripts/lib/angular/angular-ui-tree.min.js"></script>
-		<script src="/public/javascripts/lib/angular/angular-ui-select.min.js"></script>
-		<script src="/public/javascripts/lib/angular/angular-re-captcha.js"></script>
 
-		<script src="/public/javascripts/lib/ng-flow/ng-flow-standalone.js"></script>
-		
-		<script src="/public/javascripts/lib/bootstrap/js/bootstrap.min.js"></script>
-		<script src="/public/javascripts/lib/bootstrap/js/ui-bootstrap.min.js"></script>
-		
-		<script type="text/javascript">
-			var currentUser = <%- currentUser %>;
-			var connected = <%- connected %>;
-		</script>
-		
-		<script src="/public/services/project_service.js"></script>
-		<script src="/public/services/authentification_service.js"></script>
-		<script src="/public/services/user_service.js"></script>
-		<script src="/public/services/theme_service.js"></script>
-		<script src="/public/services/competence_service.js"></script>
-		
-		<script src="/public/controllers/layout_controller.js"></script>
-		<script src="/public/controllers/main_controller.js"></script>
-		<script src="/public/controllers/index_controller.js"></script>
-		
-		<script src="/public/controllers/user_controller.js"></script>
-		<script src="/public/controllers/user_form_controller.js"></script>
-		<script src="/public/controllers/search_user_controller.js"></script>
-		
-		<script src="/public/controllers/project_controller.js"></script>
-		<script src="/public/controllers/project_form_controller.js"></script>
-		<script src="/public/controllers/search_project_controller.js"></script>
-		
-		<script src="/public/zxcvbn/zxcvbn/zxcvbn.js"></script>
+<body>
+	<div class="contrainer-fluid" ui-view> </div>
+	
+	
+	
+	<script src="/public/javascripts/lib/jquery/jquery.js"></script>
+	<script src="/public/javascripts/lib/jquery/jquery-ui.js"></script>
+	
+	<script src="/public/javascripts/lib/angular/angular.js"></script>
+	<script src="/public/javascripts/lib/angular/angular-ui-router.js"></script>
+	<script src="/public/javascripts/lib/angular/angular-route.js"></script>
+	<script src="/public/javascripts/lib/angular/angular-resource.js"></script>
+	<script src="/public/javascripts/lib/angular/angular-message.js"></script>
+	<script src="/public/javascripts/lib/angular/angular-animate.js"></script>
+	<script src="/public/javascripts/lib/angular/angular-ui-tree.min.js"></script>
+	<script src="/public/javascripts/lib/angular/angular-ui-select.min.js"></script>
+	<script src="/public/javascripts/lib/angular/angular-re-captcha.js"></script>
 
-	</body>
+	<script src="/public/javascripts/lib/ng-flow/ng-flow-standalone.js"></script>
+	
+	<script src="/public/javascripts/lib/bootstrap/js/bootstrap.min.js"></script>
+	<script src="/public/javascripts/lib/bootstrap/js/ui-bootstrap.min.js"></script>
+	
+	<script type="text/javascript">
+		var currentUser = <%- currentUser %>;
+		var connected = <%- connected %>;
+		
+	</script>
+	
+	<script src="/public/services/project_service.js"></script>
+	<script src="/public/services/authentification_service.js"></script>
+	<script src="/public/services/user_service.js"></script>
+	<script src="/public/services/theme_service.js"></script>
+	<script src="/public/services/competence_service.js"></script>
+	
+	<script src="/public/controllers/layout_controller.js"></script>
+	<script src="/public/controllers/main_controller.js"></script>
+	<script src="/public/controllers/index_controller.js"></script>
+	
+	<script src="/public/controllers/user_controller.js"></script>
+	<script src="/public/controllers/user_form_controller.js"></script>
+	<script src="/public/controllers/search_user_controller.js"></script>
+	
+	<script src="/public/controllers/project_controller.js"></script>
+	<script src="/public/controllers/project_form_controller.js"></script>
+	<script src="/public/controllers/search_project_controller.js"></script>
+	
+	<script src="/public/zxcvbn/zxcvbn/zxcvbn.js"></script>
+
+	
+</body>		
 </html>
