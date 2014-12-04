@@ -19,11 +19,11 @@ var projectSchema = new Schema({		// création du modèle -> structure des donn�
             date: { type: Date, default: Date.now }
         },
 		projectManager : [{type: ObjectId, ref: 'User'}],
-		members:{ 	admin: [{type: ObjectId, ref: 'User'}],
-					worker : [{type: ObjectId, ref: 'User'}],
-					guest : [{type: ObjectId, ref: 'User'}]
+		members:{ 	admins: [{type: ObjectId, ref: 'User'}],
+					workers : [{type: ObjectId, ref: 'User'}],
+					guests : [{type: ObjectId, ref: 'User'}]
 				},
-		group: [{type: ObjectId, ref: 'Group'}],
+		guilds : [{type: ObjectId, ref: 'Group'}],
 		whoCanRW: { type: String, enum: ['admin', 'worker', 'guest', 'everyOne'], default: 'worker' },	//Qui peut réécrire. Problème : c'est pour tout le projet
 		
 			//Organisation dans le temps
@@ -40,7 +40,7 @@ var projectSchema = new Schema({		// création du modèle -> structure des donn�
 		projectType: {type: ObjectId, ref: 'ProjectType' },	//Schéma défini en dessous
 		description : {type : String},
 		task: [{ type: ObjectId, ref: 'Tasks', default: null }],	//Schéma défini en dessous
-		competence: [{type: ObjectId, ref: 'Competence'}],
+		competences: [{type: ObjectId, ref: 'Competence'}],
 		themes: [{type: ObjectId, ref: 'Theme'}],
 		editedBy: {
             user: {type: ObjectId, ref: 'User'},

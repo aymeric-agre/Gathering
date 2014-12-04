@@ -2,17 +2,22 @@
 
 /*	Controller de la page /project_form	*/
 gatheringModule.controller('projectFormController', ['$scope', '$location', 'Project', function($scope, $location, Project) {
-	$scope.project = new Project({	//Créer un nouveau projet
-		projectName: {},			//On initialise les valeurs
-		presentation : {},
-		members : [{}],
-		groups: [{}],
-		themes: [{}],
-		needs: [{}]
+	$scope.projectForm = new Project({	//Créer un nouveau projet
+		private :{
+		
+		}
+		public : {
+			projectName: {},			//On initialise les valeurs
+			presentation : {},
+			members : { admins : [{}], workers : [{}], guests : [{}]}
+			guilds: [{}],
+			themes: [{}],
+			competences: [{}]
+		}
 	});
 	
 	$scope.save = function() {		//Enregistrer le projet
-		$scope.project.$save(function(project) {
+		$scope.projectForm.$save(function(project) {
 			$location.path('/project/' + project.id);
 		});
 	};

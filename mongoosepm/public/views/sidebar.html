@@ -45,7 +45,7 @@
 						
 			<!-- FORMULAIRE DE CONNEXION RAPIDE -->
 			<div ng-show="formConnexion">
-				<form name="userForm" id="formulaire" enctype="multipart/form-data">
+				<form id="formulaire" enctype="multipart/form-data">
 					<!-- Sexe -->
 					<span>I'm a boy </span><input type="radio" name="sex" id="sex" value="man" ng-model="userForm.public.sex"/><br/>
 					<span>I'm a girl </span><input type="radio" name="sex" id="sex" value="woman" ng-model="userForm.public.sex"/><br/>
@@ -71,7 +71,7 @@
 					
 					<!-- Bouttons validation formulaire -->
 					<button class="submit_button" id="submit_false" ng-click="formConnexion = !formConnexion">X</button>				
-					<button class="submit_button" id="submit_true" type="submit" ng-disabled="score<2" ng-click="create()">V</button>
+					<button class="submit_button" id="submit_true" ng-disabled="score<2" type="submit"  ng-click="create()">V</button>
 				</form>
 			</div>
 		</ul>
