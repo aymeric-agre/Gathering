@@ -8,20 +8,77 @@ var Schema = mongooseProject.Schema;
 
 var projectSchema = new Schema({		// création du modèle -> structure des données
 	private: {
-		administrators: [{type: mongooseProject.Schema.Types.ObjectId, ref: 'User'}],
+
 	},
 	public: {
-		presentation: {type: String},
+			//Membres du groupe
 		projectName: {type: String, unique: true, required: true},
-		createdBy: {type: mongooseProject.Schema.Types.ObjectId, ref: 'User'},		//Créé par une seule personne
-		members: [{type: mongooseProject.Schema.Types.ObjectId, ref: 'User'}],		//Plusieurs membre : on utilise un tableau
+		createdBy: {
+            user: {type: mongooseProject.Schema.Types.ObjectId, ref: 'User'},
+            date: { type: Date, default: Date.now }
+        },
+		projectManager : [{type: mongooseProject.Schema.Types.ObjectId, ref: 'User'}],
+		members:{ 	admin: [{type: mongooseProject.Schema.Types.ObjectId, ref: 'User'}],
+					worker : [{type: mongooseProject.Schema.Types.ObjectId, ref: 'User'}],
+					guest : [{type: mongooseProject.Schema.Types.ObjectId, ref: 'User'}]
+				},
 		group: [{type: mongooseProject.Schema.Types.ObjectId, ref: 'Group'}],
-		administrators: [{type: mongooseProject.Schema.Types.ObjectId, ref: 'User'}],
+		whoCanRW: { type: String, enum: ['admin', 'worker', 'guest', 'everyOne'], default: 'worker' },	//Qui peut réécrire. Problème : c'est pour tout le projet
+		
+			//Organisation dans le temps
+		StartDate: {type : Date},
+        EndDate: {type : Date},			//Si la date de fin est sûre
+		TargetEndDate: {type : Date},	//Si la date de fin est incertaine
+		sequence: { type: Number, default: 0 },	//Projet découpé en séquences
+		estimated: { type: Number, default: 0 },
+        logged: { type: Number, default: 0 },
+        remaining: { type: Number, default: 0 },
+        progress: { type: Number, default: 0 },
+		
+			//Contenu
+		projectType: {type: mongooseProject.Schema.Types.ObjectId, ref: 'ProjectType', default: '' },	//Schéma défini en dessous
+		description : {type : String},
+		task: [{ type: ObjectId, ref: 'Tasks', default: null }],	//Schéma défini en dessous
 		competence: [{type: mongooseProject.Schema.Types.ObjectId, ref: 'Competence'}],
 		themes: [{type: mongooseProject.Schema.Types.ObjectId, ref: 'Theme'}],
-	},
-	createdOn: {type: Date, default: Date.now},
-	modifiedOn: {type: Date, default: Date.now}
+		editedBy: {
+            user: {type: mongooseProject.Schema.Types.ObjectId, ref: 'User'},
+            date: { type: Date }
+        }
+	}
+});
+
+//Schéma des tâches
+var taskSchema = new Schema({
+    summary: { type: String, default: '' },
+    taskCount: { type: Number, default: 0 },
+    project: { type: mongooseProject.Schema.Types.ObjectId, ref: 'Project', default: null },
+    assignedTo: [{type: mongooseProject.Schema.Types.ObjectId, ref: 'User'}],
+    tags: [{type : String}],
+    description: {type : String},
+    priority: { type: String, default: 'P3' },
+    sequence: { type: Number, default: 0 },
+    StartDate: { type: Date, default: Date.now },
+    EndDate: { type: Date, default: Date.now },
+    duration: { type: Number, default: 0 },
+    type: { type: String, default: '' },
+    estimated: { type: Number, default: 0 },
+    logged: { type: Number, default: 0 },
+    remaining: { type: Number, default: 0 },
+    progress: { type: Number, default: 0 },
+    createdBy: {
+        user: { type: ObjectId, ref: 'Users', default: null },
+        date: { type: Date, default: Date.now }
+    },
+    editedBy: {
+        user: { type: ObjectId, ref: 'Users', default: null },
+        date: { type: Date }
+    }
+});
+
+//Schéma des types de projets
+var projectTypeSchema = mongoose.Schema({
+	name: {type : String}
 });
 
 /*	********
@@ -50,4 +107,7 @@ projectSchema.statics.findByProjectID = function (projectId, callback) {
 		callback);
 };
 
+
+exports.ProjectType = mongooseProject.model('ProjectType', projectTypeSchema);
+exports.Tasks = mongooseProject.model('Tasks', taskSchema);
 exports.Project = mongooseProject.model('Project', projectSchema);	// exportation du modèle pour pouvoir l'utiliser
