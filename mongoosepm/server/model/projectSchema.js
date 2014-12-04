@@ -1,10 +1,11 @@
-var mongooseProject = require('mongoose');	// initialisation de mongoose
+var mongoose = require('mongoose');	// initialisation de mongoose
 
 /*	******
 	SCHEMA
 	******	*/
 
-var Schema = mongooseProject.Schema;
+var Schema = mongoose.Schema;	
+var ObjectId = Schema.Types.ObjectId;
 
 var projectSchema = new Schema({		// création du modèle -> structure des données
 	private: {
@@ -14,15 +15,15 @@ var projectSchema = new Schema({		// création du modèle -> structure des donn�
 			//Membres du groupe
 		projectName: {type: String, unique: true, required: true},
 		createdBy: {
-            user: {type: mongooseProject.Schema.Types.ObjectId, ref: 'User'},
+            user: {type: ObjectId, ref: 'User'},
             date: { type: Date, default: Date.now }
         },
-		projectManager : [{type: mongooseProject.Schema.Types.ObjectId, ref: 'User'}],
-		members:{ 	admin: [{type: mongooseProject.Schema.Types.ObjectId, ref: 'User'}],
-					worker : [{type: mongooseProject.Schema.Types.ObjectId, ref: 'User'}],
-					guest : [{type: mongooseProject.Schema.Types.ObjectId, ref: 'User'}]
+		projectManager : [{type: ObjectId, ref: 'User'}],
+		members:{ 	admin: [{type: ObjectId, ref: 'User'}],
+					worker : [{type: ObjectId, ref: 'User'}],
+					guest : [{type: ObjectId, ref: 'User'}]
 				},
-		group: [{type: mongooseProject.Schema.Types.ObjectId, ref: 'Group'}],
+		group: [{type: ObjectId, ref: 'Group'}],
 		whoCanRW: { type: String, enum: ['admin', 'worker', 'guest', 'everyOne'], default: 'worker' },	//Qui peut réécrire. Problème : c'est pour tout le projet
 		
 			//Organisation dans le temps
@@ -36,13 +37,13 @@ var projectSchema = new Schema({		// création du modèle -> structure des donn�
         progress: { type: Number, default: 0 },
 		
 			//Contenu
-		projectType: {type: mongooseProject.Schema.Types.ObjectId, ref: 'ProjectType', default: '' },	//Schéma défini en dessous
+		projectType: {type: ObjectId, ref: 'ProjectType' },	//Schéma défini en dessous
 		description : {type : String},
 		task: [{ type: ObjectId, ref: 'Tasks', default: null }],	//Schéma défini en dessous
-		competence: [{type: mongooseProject.Schema.Types.ObjectId, ref: 'Competence'}],
-		themes: [{type: mongooseProject.Schema.Types.ObjectId, ref: 'Theme'}],
+		competence: [{type: ObjectId, ref: 'Competence'}],
+		themes: [{type: ObjectId, ref: 'Theme'}],
 		editedBy: {
-            user: {type: mongooseProject.Schema.Types.ObjectId, ref: 'User'},
+            user: {type: ObjectId, ref: 'User'},
             date: { type: Date }
         }
 	}
@@ -52,8 +53,8 @@ var projectSchema = new Schema({		// création du modèle -> structure des donn�
 var taskSchema = new Schema({
     summary: { type: String, default: '' },
     taskCount: { type: Number, default: 0 },
-    project: { type: mongooseProject.Schema.Types.ObjectId, ref: 'Project', default: null },
-    assignedTo: [{type: mongooseProject.Schema.Types.ObjectId, ref: 'User'}],
+    project: { type: ObjectId, ref: 'Project', default: null },
+    assignedTo: [{type: ObjectId, ref: 'User'}],
     tags: [{type : String}],
     description: {type : String},
     priority: { type: String, default: 'P3' },
@@ -77,7 +78,7 @@ var taskSchema = new Schema({
 });
 
 //Schéma des types de projets
-var projectTypeSchema = mongoose.Schema({
+var projectTypeSchema = new Schema({
 	name: {type : String}
 });
 
@@ -108,6 +109,6 @@ projectSchema.statics.findByProjectID = function (projectId, callback) {
 };
 
 
-exports.ProjectType = mongooseProject.model('ProjectType', projectTypeSchema);
-exports.Tasks = mongooseProject.model('Tasks', taskSchema);
-exports.Project = mongooseProject.model('Project', projectSchema);	// exportation du modèle pour pouvoir l'utiliser
+exports.ProjectType = mongoose.model('ProjectType', projectTypeSchema);
+exports.Tasks = mongoose.model('Tasks', taskSchema);
+exports.Project = mongoose.model('Project', projectSchema);	// exportation du modèle pour pouvoir l'utiliser
