@@ -63,7 +63,7 @@ gatheringModule.controller('mainController', ['$rootScope', '$scope', '$location
 	$scope.score = "";	//On l'initialise à strong pour ne pas avoir l'input en rouge dés le départ (pas de risque car mpd est required)
 	$scope.strength = "";	
 	check_password = function(){
-		$scope.score = zxcvbn($scope.user.private.password).score;
+		$scope.score = zxcvbn($scope.userForm.private.password).score;
   	 if ($scope.score < 2) {
         $scope.strength = "weak";
     }
@@ -80,7 +80,7 @@ gatheringModule.controller('mainController', ['$rootScope', '$scope', '$location
 	$scope.create = function() {		//Enregistrer l'utilisateur
 		console.log('creation user angular controller');
 		console.log('user a creer'+$scope.userForm);
-		var userToSave = new User({user:$scope.userForm});
+		var userToSave = new User({user : $scope.userForm});
 		userToSave.$save(function(user) {
 			$state.go('main.index', {}, {reload:true});
 		});
