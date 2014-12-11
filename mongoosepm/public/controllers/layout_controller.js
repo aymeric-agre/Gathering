@@ -96,7 +96,10 @@ gatheringModule.config([ '$stateProvider', '$urlRouterProvider', '$locationProvi
 			url : '/project_form/',
 			templateUrl : '/public/views/project_form.html',
 			controller: 'projectFormController',
-			parent : main
+			parent : main,
+			resolve : {	themes : function(allThemesLoader){return allThemesLoader();},
+						competences : function(allCompetencesLoader) {return allCompetencesLoader();}
+					}
 		}
 	
 	var project = {

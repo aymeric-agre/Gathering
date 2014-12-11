@@ -1,7 +1,11 @@
 'use strict';
 
 /*	Controller de la page /project_form	*/
-gatheringModule.controller('projectFormController', ['$scope', '$location', 'Project', function($scope, $location, Project) {
+gatheringModule.controller('projectFormController', ['$scope', '$location', 'themes', 'Theme', 'competences', 'Competence', 'Project', 
+	function($scope, $location, Project, themes, Theme, competences, Competence) {
+	
+	$scope.competences = competences;
+	$scope.themes = themes;
 	$scope.projectForm = new Project({	//Créer un nouveau projet
 		private :{
 		
