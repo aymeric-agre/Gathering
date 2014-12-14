@@ -8,7 +8,7 @@ var projectSchema = require('../model/projectSchema');
 var groupSchema = require('../model/groupSchema');
 var themeSchema = require('../model/themeSchema');
 var competenceSchema = require('../model/competenceSchema');
-var statutSchema = require('../model/statutSchema');
+var statusSchema = require('../model/statusSchema');
 var languageSchema = require('../model/languageSchema');
 var crypto = require("crypto");
 var passport = require('passport');
@@ -112,30 +112,19 @@ exports.identite_suppression = function(req, res){	// fonction de suppression du
 /*	*********************
 	RECHERCHE UTILISATEUR
 	*********************	*/
-
-/*	Réupère un utilisateur à partir de son id	*/
-// exports.oneUser = function(req,res, next) {
-	// console.log("Cherche le user_id : " + req.params.id);	
-	// userSchema.User.findById(req.params.id, function(err, user) {	//On cherche l'utilisateur avec cet Id
-		// if (err) {console.log(err); return next(err);}
-		// else {
-		// console.log(user);
-		// res.send(user);}
-	// });
-// };
-
+/*	Récupère un utilisateur	*/
 exports.oneUser = function(req, res, next) {
 	console.log("Cherche le user par son id: " + req.params.id);
 	userSchema.User
 		.findOne({"_id": req.params.id})
-		.populate(["public.competences", "public.interests", "public.status", "public.projects", "public.group"])
+		.populate("public.status")
 		.exec(function(err, user){
 			if(err){
 				console.log(err);
 				return next(err);
 			}
 			else{
-				console.log(user);
+				console.log(user.public.status.name);
 				res.send(user);
 			}
 		});

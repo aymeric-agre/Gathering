@@ -2,6 +2,12 @@ var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 var zxcvbn = require("zxcvbn");
 var userSchema = require('../model/userSchema');
+var projectSchema = require('../model/projectSchema');
+var groupSchema = require('../model/groupSchema');
+var themeSchema = require('../model/themeSchema');
+var competenceSchema = require('../model/competenceSchema');
+var statusSchema = require('../model/statusSchema');
+var languageSchema = require('../model/languageSchema');
 
 // Minimum password score based on scale from zxcvbn:
 // [0,1,2,3,4] if crack time (in seconds) is less than
@@ -86,9 +92,12 @@ exports.createUser = function(user, done) {
     var user = new userSchema.User(user);
 
     user.save(function(err) {
-        if(err) {
+        if(err) 
+		{
             done(err);
-        } else {
+        }
+		else 
+		{
             done(null, user);
         }
     });
@@ -100,16 +109,64 @@ exports.updateUser = function(userToUpdate, done) {
 	console.log("identifiant utilisateur à modifier dans pass.js : " + userToUpdate._id);
 	
 	userToUpdate.modifiedOn = Date.now();
-	console.log(userToUpdate);
-	userSchema.User.findByIdAndUpdate(userToUpdate._id, userToUpdate, function(err, updatedUser) {
+	console.log(userToUpdate);	
+	
+	statusSchema.Status.findOne({name: userToUpdate.public.status},	function(err, status){
 		if(err)
 		{
 			console.log(err);
+			return handleError(err);
 		}
-		else
+		else if(!status)	//Si on ne trouve pas de status existant on le créé
 		{
-			done(null, updatedUser);
+			var status = new statusSchema.Status({
+				name: userToUpdate.public.status,
+				members: userToUpdate._id});
+			console.log("création d'un nouveau statut: " + status);
+			status.save(function(err, status, done){
+				if(err)
+				{
+					console.log(err);
+				}
+				console.log(status);
+			});
 		}
+		else if(status)
+		{
+			console.log("le statut éxiste déjà")
+			status.members.push(userToUpdate._id);
+			status.save(function(err, status, done){
+				if(err)
+				{
+					console.log(err);
+				}
+				console.log(status);
+			});
+		}
+		
+		userSchema.User.findOne({_id: userToUpdate._id}, function(err, user){
+			if(err)
+			{
+				console.log(err);
+			}
+			else
+			{
+				userToUpdate.public.status = user.public.status;
+				console.log(userToUpdate.public.status);
+				userToUpdate.public.status.push(status._id);
+			}
+			
+			userSchema.User.findByIdAndUpdate(userToUpdate._id, userToUpdate, function(err, updatedUser){
+				if(err)
+				{
+					console.log(err);
+				}
+				else
+				{
+					done(null, updatedUser);
+				}
+			});
+		});
 	});
 };
 

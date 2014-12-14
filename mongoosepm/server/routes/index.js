@@ -9,7 +9,7 @@ var projectSchema = require('../model/projectSchema');
 var groupSchema = require('../model/groupSchema');
 var themeSchema = require('../model/themeSchema');
 var competenceSchema = require('../model/competenceSchema');
-var statutSchema = require('../model/statutSchema');
+var statusSchema = require('../model/statusSchema');
 var languageSchema = require('../model/languageSchema');
 var pass = require('../model/pass');	//Remarque : problème avec zxcvbn
 
