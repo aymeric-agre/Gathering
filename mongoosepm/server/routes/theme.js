@@ -21,7 +21,6 @@ exports.allThemes = function(req,res, next) {
 
 exports.doSaveTheme = function(req, res) {
 	console.log('Le theme est ' + req.body.theme);
-	//var newTheme = new themeSchema.Theme(req.body.theme);
 	themeSchema.Theme.create({theme : req.body.theme}, function(err, savedTheme){ 
 		if(err){
 			console.log(err);

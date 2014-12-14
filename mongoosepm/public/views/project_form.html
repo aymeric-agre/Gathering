@@ -1,63 +1,76 @@
 <head>
 	<link rel="stylesheet" href="/public/assets/stylesheets/project_form.css" />
 </head>
-								
-<form method="post" id="formulaire" ng-submit="save()" name="addForm">
-								
+
+															
 <div id="creation_projet">
-	<input class="input-projectName" placeholder="Nommez votre projet" ng-model="project.public.projectName"></input>
-	
-	<div id="menu">
-		<input class="bouton active" type="button" value='presentation' onclick='afficher(this, "presentation")'/>
-		<input class="bouton active" type="button" value='toolstore' onclick='afficher(this, "toolstore")'/>
-	</div>
+	<input class="input-projectName" placeholder="Nommez votre projet" requied="true" ng-model="projectForm.public.projectName"></input>
+
 		
 	<aside>
-		<div class="case">
-			<h3 class="new" id="new-members">L'Équipe</h3>				
-			<div ng-repeat="member in project.members">
-				<input class="input-members input" placeholder="members" ng-model="project.member"></input>
-				<button type="button" ng-click="removeMembers($index)" class="remove"> - </button>
+		<div class="case">			
+		
+		<!-- Competences -->
+		<div>
+		<form ng-submit="addCompetence(register.newCompetenceToAdd)">
+			<input ng-model="register.newCompetenceToAdd" placeholder="Compétences nécessaires au projet" />
+			<button type="submit" class="fa fa-check" ></button>
+			<div ng-show="register.newCompetenceToAdd !== '' ">
+				<ul class="show-data">
+					<li ng-repeat="competence in competences | filter : register.newCompetenceToAdd" ng-click="addCompetence(competence)">{{competence}}</li>
+				</ul>
 			</div>
-				<button type="button" ng-click="addMembers()" class="add"> + </button>
-			
-			<h3 class="new" id="new-themes">Thèmes</h3>
-			<div ng-reapeat="theme in project.themes">
-				<input class="input-themes input" placeholder="themes" ng-model="project.theme"></input>
-				<button type="button" ng-click="removeThemes($index)" class="remove"> - </button>
+		</form>
+		</div>
+		<div>
+			<ul class="all-data">
+				<li ng-repeat="competence in formCompetences">
+					<i class="fa fa-times" ng-click="removeCompetence(competence)"></i>
+					<span>{{competence}}</span>
+				</li>
+			</ul>
+		
+		</div>
+		
+		<!-- Theme d'interet -->
+		<div>
+		<form ng-submit='addTheme(register.newThemeToAdd)'>
+			<input ng-model="register.newThemeToAdd" placeholder="Thèmes du projet"/>
+			<button type="submit" class="fa fa-check"></button>
+			<div ng-show="register.newThemeToAdd !== '' ">
+				<ul class="show-data">
+					<li ng-repeat="theme in themes | filter : register.newThemeToAdd" ng-click="addTheme(theme)">{{theme}}</li>
+				</ul>
 			</div>
-				<button type="button" ng-click="addThemes()" class="add"> + </button>
-
-			<h3 class="new" id="new-needs">Recherche</h3>
-			<div ng-repeat="need in projects.needs">
-				<input class="input-needs input" placeholder="needs" ng-model="project.need"></input>
-				<button type="button" ng-click="removeNeeds($index)" class="remove"> - </button>
-			<div>
-				<button type="button" ng-click="addNeeds()" class="add"> + </button>
+		</form >
+		</div>
+		
+		<div>			
+			<ul class="all-data">
+				<li ng-repeat="interest in formThemes">
+					<i class="fa fa-times" ng-click="removeTheme(interest)"></i>
+					<span>{{interest}}</span>
+				</li>
+			</ul>
+		</div>
+		
 		</div>
 
 	</aside>
 	
 	<article id="presentation">
-		
-			<!-- Éiteur de texte -->
 
-			<textarea class="textarea" id='textarea-presentation' name='presentation' ng-model="projet.presentation">				</textarea>
+			<textarea class="textarea" id='textarea-summary' placeholder="Court résumé sur le projet" 
+				ng-Minlenght="50" ng-Maxlength="500" requied="true" ng-model="projetForm.public.summary">				
+			</textarea>
 			
+			<textarea class="textarea" id='textarea-presentation' placeholder="Présentation du projet" 
+				 ng-model="projetForm.public.presentation">				
+			</textarea>
 			
-		<div class="contenu" id="contenu-presentation" name="contenu-presentation">
-			<p>Décrivez votre projet :</br>
-			Vous pouvez mettre des images, des vidéo ou du texte</br>
-			Vous pouvez ajouter un nom de projet, des membres, ... Juste en cliquant sur la case correspondante !</p>
-		</div>
-	</article>
-
-	<article id="toolstore">	
-	<p> Il y aura ici la liste des outils qu'on pourra tester en ligne </p>	
 	</article>
 	
 	
-	<h3 class="modifier" id="annuler">Annuler</h3>	
-	<h3 class="modifier" id="Submit">Submit</h3>	
+	<button id="annuler">Annuler</h3>	
+	<button id="Submit" ng-click="save()">Submit</h3>	
 </div>
-</form>

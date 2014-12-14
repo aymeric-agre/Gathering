@@ -67,26 +67,46 @@ exports.byProjectId = function (req, res) {
 
 /*	Créer un projet	*/
 exports.doCreateProject = function(req, res) {
-	projectSchema.Project.create({
-		projectName: req.body.projectName,
-		presentation : req.body.presentation,
-		createdBy: req.session.user._id,
-		createOn : Date.now(),
-		members : req.body.members.split(","),	//on sépare chaque nom récupéré
-		groups: req.body.groups.split(","),
-		needs: req.body.needs.split(","),
-		themes: req.body.themes.split(",")
-	}, function(err, project){ 
-		if(err){
-			console.log(err);
-			console.log(req.body.projectName);
-			console.log("Le projet créé est " + project);
-			res.redirect('/projets_liste');
-		}else{
-			console.log(project);
-			res.redirect('/project/' + project._id);
+	console.log(req.body);
+	var j = 0;
+			//On cherche les competences et thèmes du projet (on envoie des noms, on ajoute des objets)
+		var projectCompetences = req.body.dataToServer.competences;	//On récupère le nom pour chercher l'objet
+		for(i=0; i<projectCompetences.length; i++){
+			competenceSchema.Competence.findOne({competence : projectCompetences[i]}, function(err, competence){
+				if(!err){
+					req.body.public.competences.push(competence._id);	//On ajoute l'objet competence dans le req.body approprié
+				} else {
+					console.log(err);
+				}
+			});
+			j++;
 		}
-	});
+		var projectThemes = req.body.dataToServer.themes;
+		for(i=0; i<projectThemes.length; i++){
+			themeSchema.Theme.findOne({theme : projectThemes[i]}, function(err, theme){
+				if(!err){
+					req.body.public.themes.push(theme._id);	//On ajoute l'objet theme dans le req.body approprié
+					console.log("1 - " + req.body.public.themes[i]);
+				} else {
+					console.log(err);
+				}
+			});
+			j++;
+		}				
+
+		//On crée le projet
+	if(j == (projectCompetences.length + projectThemes.length)){
+		console.log("2 - " + req.body.public.themes[0]);
+		var projectToSave = new projectSchema.Project({public : req.body.public, private : req.body.private});
+		projectToSave.save(function(err, project){ 
+			if(err){
+				console.log(err);
+				console.log("le projet qui ne fonctionne pas est " + project);
+			}else{
+				console.log("Le projet créé est " + project);
+			}
+		});
+	}
 };
 
 /*	********************
