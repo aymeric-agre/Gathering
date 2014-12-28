@@ -101,14 +101,22 @@ exports.doCreateProject = function(req, res) {
 		var projectToSave = new projectSchema.Project({public : req.body.public, private : req.body.private});
 		projectToSave.save(function(err, project){ 
 			if(!err){
-				console.log("Le projet créé est " + project);						
+				console.log("Le projet créé est " + project);
+				projectToUser(req.body.public.createdBy.user, project._id, res.send(project));	//On met le projet dans le user et on sauvegarde tout				
 			}else{
 				console.log(err);
 			}
 		});
 	});
-	
 };
+
+//Fonction appelée par doCreateProject pour mettre le projet dans l'utiliseur
+function projectToUser(userId, projectId, callback){
+	userSchema.User.findOne({_id : userId}, function(err, user){
+		user.public.projects.push(projectId);
+		user.save(callback);
+	});
+}
 
 /*	********************
 	RECHERCHE DE PROJETS

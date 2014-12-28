@@ -91,6 +91,14 @@ gatheringModule.config([ '$stateProvider', '$urlRouterProvider', '$locationProvi
 			templateUrl : '/public/views/user_edit.html',
 			parent : user
 		}	
+		
+		var projects_list = {
+			name : 'main.user.projects_list',
+			url : '/projects_list/',
+			templateUrl : '/public/views/projects_list.html',
+			controller: 'projectsListController',
+			parent : user
+		}
 	
 	var project_form = {
 			name : 'main.project_form',
@@ -120,27 +128,8 @@ gatheringModule.config([ '$stateProvider', '$urlRouterProvider', '$locationProvi
 						{return delay.promise;}	
 					}]
 				}
-			}
+		}
 		
-	var projects_list = {
-		name : 'main.projects_list',
-		url : '/projects_list/:userId',
-		templateUrl : '/public/views/projects_list.html',
-		controller: 'projectsListController',
-		parent : main,
-		resolve : {	
-					//On défini l'utilisateur et on cherchera ses projets avec Angular
-					thisUser : ['User', '$stateParams', '$q',	function(User, $stateParams, $q) {	
-						var delay = $q.defer();
-						User.get({id: $stateParams.userId}, function(user) {	//On cherche l'utilisateur avec l'id de l'URL
-							delay.resolve(user);		//On renvoie l'utilisateur
-						}, function() {					//Sinon
-							delay.reject('Cet utilisateur n\'est pas trouvé : ' + $stateParams.userId);	//On envoie une erreur
-						});
-						{return delay.promise;}	//A la fin on retourne le résultat
-					}]
-				}
-		}		
 	
 $stateProvider.state(main)
 	.state(index)

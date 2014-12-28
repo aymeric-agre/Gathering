@@ -9,9 +9,9 @@ var userModule = angular.module('user', ['ngResource']);		//'User' peut être ap
 /*	Permet de créer et utliser l'object user	*/
 userModule.factory('User', ['$resource',	//on appelle la dépendance à $resource
 	function($resource){	//On lance une fonction sur les $resource
-	return $resource('/user/:id', {id: '@id'},	//Permet d'utiliser la méthode update()
+	return $resource('/user/:id', {id: '@id'},	
 		 {
-        'update': { method:'PUT' }
+        'update': { method:'PUT' }	//Permet d'utiliser la méthode update()
 		}
 	);	
 }]);												
@@ -30,3 +30,4 @@ userModule.factory('allUsersLoader', ['User', '$q', //On appelle les dépendance
 		};
 	}
 ]);
+

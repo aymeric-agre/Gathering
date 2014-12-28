@@ -117,7 +117,7 @@ exports.oneUser = function(req, res, next) {
 	console.log("Cherche le user par son id: " + req.params.id);
 	userSchema.User
 		.findOne({"_id": req.params.id})
-		.populate("public.status")
+		.populate("public.status public.projects public.competences public.themes")
 		.exec(function(err, user){
 			if(err){
 				console.log(err);
@@ -178,3 +178,5 @@ exports.doSearchUser = function(req, res) {
 		res.redirect('/search_user');
 	}
 };
+
+

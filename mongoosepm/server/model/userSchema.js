@@ -23,7 +23,7 @@ var userSchema = new Schema({	// Création d'un schéma userSchema (pour la cré
 		town: {type: String, required: false},
 		thumbnail: {data: Buffer, contentType: String, required: false},
 		competences: [{type: mongooseUser.Schema.Types.ObjectId, ref: 'Competence'}],
-		interests: [{type: mongooseUser.Schema.Types.ObjectId, ref: 'Theme'}],
+		themes: [{type: mongooseUser.Schema.Types.ObjectId, ref: 'Theme'}],
 		status: [{type: mongooseUser.Schema.Types.ObjectId, ref: 'Status'}],
 		studies: {type: String},
 		projects: [{type: mongooseUser.Schema.Types.ObjectId, ref: 'Project'}],

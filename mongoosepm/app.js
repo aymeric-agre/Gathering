@@ -114,8 +114,6 @@ app.get('/delete_projects',project.doDeleteAllProjects);
 
 
 //Routes/user.js
-//app.get('/identite_statique',user.identite_statique);
-//app.get('/identite_formulaire',user.identite_formulaire);
 app.get('/user', user.allUsers);
 app.post('/user', user.doCreateUser);
 app.get('/user/:id', user.oneUser);
