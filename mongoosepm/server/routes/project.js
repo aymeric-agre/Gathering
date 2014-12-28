@@ -68,48 +68,46 @@ exports.byProjectId = function (req, res) {
 
 /*	Créer un projet	*/
 exports.doCreateProject = function(req, res) {
-	console.log(req.body);
 	var projectCompetences = req.body.dataToServer.competences;	//On récupère le nom pour chercher l'objet
 	var projectThemes = req.body.dataToServer.themes;
-	//On fait un async.each imbriqué : ok parce qu'il n'y a que deux éléments
-	async.each(projectCompetences, function(competenceToFind, callback){
-			competenceSchema.Competence.findOne({competence : competenceToFind}, function(err, competence){
-				if(!err){
-					console.log("1 - " + competence);
-					req.body.public.competences.push(competence._id);	//On ajoute l'objet competence dans le req.body approprié
-					console.log("2 - " + req.body.public.competences);
-				} else {
-					console.log(err);
-				}
-			callback(null, null);//on attend que tout soit fini et on fait un callback
-			});	
+	
+	async.series([
+		function(callback) {
+			async.each(projectCompetences, function(competenceToFind, callback2){
+				competenceSchema.Competence.findOne({competence : competenceToFind}, function(err, competence){
+					if(!err){
+						req.body.public.competences.push(competence._id);	//On ajoute l'objet competence dans le req.body approprié
+					} else {
+						console.log(err);
+					}
+				callback2(null, null);	//Callback du async.each
+				});	
+			}, callback);				//Callback de la fonction pour async.series
 		},
-		function(err, results){
-			async.each(projectThemes, function(projectToFind, callback){
-				themeSchema.Theme.findOne({theme : projectToFind}, function(err, theme){
+		function(callback) {
+			async.each(projectThemes, function(themeToFind, callback2){
+				themeSchema.Theme.findOne({theme : themeToFind}, function(err, theme){
 						if(!err){
 							req.body.public.themes.push(theme._id);
 						} else {
 							console.log(err);
 						}	
-				callback(null, null);
+				callback2(null, null);
 				}); 	
-			},
-				function(err, results) {
-					//On crée le projet
-					console.log("3 - " + req.body.public.competences);
-					var projectToSave = new projectSchema.Project({public : req.body.public, private : req.body.private});
-					projectToSave.save(function(err, project){ 
-						if(err){
-							console.log(err);
-							console.log("le projet qui ne fonctionne pas est " + project);
-						}else{
-							console.log("Le projet créé est " + project);
-						}
-					});
-				});
-		}	//fin du deuxième each
-	);	//fin du premier each
+			}, callback);
+		}
+	], function(err, results) {
+		//On crée le projet
+		var projectToSave = new projectSchema.Project({public : req.body.public, private : req.body.private});
+		projectToSave.save(function(err, project){ 
+			if(!err){
+				console.log("Le projet créé est " + project);						
+			}else{
+				console.log(err);
+			}
+		});
+	});
+	
 };
 
 /*	********************

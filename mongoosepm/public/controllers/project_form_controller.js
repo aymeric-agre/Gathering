@@ -76,7 +76,7 @@ gatheringModule.controller('projectFormController', ['$scope', '$timeout', '$loc
 	$scope.save = function() { 
 		addThemesToDB();							//On enregistre les thèmes et compétences nécessaire
 		addCompetencesToDB();
-		$timeout($scope.projectForm.$save(function(project){}),5000);	//On attend 500ms pour enregistrer
+		$scope.projectForm.$save();	//On attend 500ms pour enregistrer
 	};
 
 	
