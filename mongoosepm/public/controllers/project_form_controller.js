@@ -1,8 +1,8 @@
 'use strict';
 
 /*	Controller de la page /project_form	*/
-gatheringModule.controller('projectFormController', ['$scope', '$location', 'themes', 'Theme', 'competences', 'Competence',  'Project',
-	function($scope, $location,  themes, Theme, competences, Competence, Project) {
+gatheringModule.controller('projectFormController', ['$scope', '$timeout', '$location', 'themes', 'Theme', 'competences', 'Competence',  'Project',
+	function($scope, $timeout, $location,  themes, Theme, competences, Competence, Project) {
 
 	
 	//Compétences et centre d'intérêt
@@ -73,13 +73,10 @@ gatheringModule.controller('projectFormController', ['$scope', '$location', 'the
 	}); 
 	
 	//Save
-	$scope.save = function() {		
-		addThemesToDB();								//On enregistre les thèmes et compétences nécessaire
-		addCompetencesToDB()
-		//IL FAUT FAIRE UN CALLBACK ICI POUR APPELER SAVE APRES LA CREATION
-		$scope.projectForm.$save(function(project) {	//Enregistrer le projet
-			$location.path('/project/' + project.id);
-		});
+	$scope.save = function() { 
+		addThemesToDB();							//On enregistre les thèmes et compétences nécessaire
+		addCompetencesToDB();
+		$timeout($scope.projectForm.$save(function(project){}),5000);	//On attend 500ms pour enregistrer
 	};
 
 	

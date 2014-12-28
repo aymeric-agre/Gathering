@@ -2,6 +2,7 @@
 	REQUIERE
 	********	*/
 var fs=require("fs");
+var async = require("async");
 var userSchema = require('../model/userSchema');
 var projectSchema = require('../model/projectSchema');
 var groupSchema = require('../model/groupSchema');
@@ -68,45 +69,47 @@ exports.byProjectId = function (req, res) {
 /*	Créer un projet	*/
 exports.doCreateProject = function(req, res) {
 	console.log(req.body);
-	var j = 0;
-			//On cherche les competences et thèmes du projet (on envoie des noms, on ajoute des objets)
-		var projectCompetences = req.body.dataToServer.competences;	//On récupère le nom pour chercher l'objet
-		for(i=0; i<projectCompetences.length; i++){
-			competenceSchema.Competence.findOne({competence : projectCompetences[i]}, function(err, competence){
+	var projectCompetences = req.body.dataToServer.competences;	//On récupère le nom pour chercher l'objet
+	var projectThemes = req.body.dataToServer.themes;
+	//On fait un async.each imbriqué : ok parce qu'il n'y a que deux éléments
+	async.each(projectCompetences, function(competenceToFind, callback){
+			competenceSchema.Competence.findOne({competence : competenceToFind}, function(err, competence){
 				if(!err){
+					console.log("1 - " + competence);
 					req.body.public.competences.push(competence._id);	//On ajoute l'objet competence dans le req.body approprié
+					console.log("2 - " + req.body.public.competences);
 				} else {
 					console.log(err);
 				}
-			});
-			j++;
-		}
-		var projectThemes = req.body.dataToServer.themes;
-		for(i=0; i<projectThemes.length; i++){
-			themeSchema.Theme.findOne({theme : projectThemes[i]}, function(err, theme){
-				if(!err){
-					req.body.public.themes.push(theme._id);	//On ajoute l'objet theme dans le req.body approprié
-					console.log("1 - " + req.body.public.themes[i]);
-				} else {
-					console.log(err);
-				}
-			});
-			j++;
-		}				
-
-		//On crée le projet
-	if(j == (projectCompetences.length + projectThemes.length)){
-		console.log("2 - " + req.body.public.themes[0]);
-		var projectToSave = new projectSchema.Project({public : req.body.public, private : req.body.private});
-		projectToSave.save(function(err, project){ 
-			if(err){
-				console.log(err);
-				console.log("le projet qui ne fonctionne pas est " + project);
-			}else{
-				console.log("Le projet créé est " + project);
-			}
-		});
-	}
+			callback(null, null);//on attend que tout soit fini et on fait un callback
+			});	
+		},
+		function(err, results){
+			async.each(projectThemes, function(projectToFind, callback){
+				themeSchema.Theme.findOne({theme : projectToFind}, function(err, theme){
+						if(!err){
+							req.body.public.themes.push(theme._id);
+						} else {
+							console.log(err);
+						}	
+				callback(null, null);
+				}); 	
+			},
+				function(err, results) {
+					//On crée le projet
+					console.log("3 - " + req.body.public.competences);
+					var projectToSave = new projectSchema.Project({public : req.body.public, private : req.body.private});
+					projectToSave.save(function(err, project){ 
+						if(err){
+							console.log(err);
+							console.log("le projet qui ne fonctionne pas est " + project);
+						}else{
+							console.log("Le projet créé est " + project);
+						}
+					});
+				});
+		}	//fin du deuxième each
+	);	//fin du premier each
 };
 
 /*	********************
