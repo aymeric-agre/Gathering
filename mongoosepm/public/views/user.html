@@ -9,8 +9,8 @@
 	
 	<nav class="col-md-1" id="manager">
 		<ul>
-			<li class="fa fa-user"  ui-sref="main.user.profile"></li>
-			<li class="fa fa-briefcase"  ui-sref="main.user.projects_list"></li>
+			<li class="fa fa-user"  ui-sref="main.user.profile({userId : user._id})"></li>
+			<li class="fa fa-briefcase"  ui-sref="main.user.projects_list({userId : user._id})"></li>
 			
 		</ul>
 	</nav>

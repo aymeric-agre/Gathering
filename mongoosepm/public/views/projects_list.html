@@ -8,12 +8,11 @@
 							-->
 <div id="liste_projets">
 	
-	<h1> Projets de {{user.private.mail}}</h1>
-	<h1> Projets de {{user.public.projects}}</h1>
-	<ul data-liffect="slideBottom" id="liste">
-		<li ng-repeat="project in user.public.projects" class="project col-md-3">
+	<h1> Projets de {{user.public.firstName}}</h1>
+	<ul id="liste">
+		<li ng-repeat="project in projectsList" class="project col-md-3">
 			<h3>{{project}}</h3>
-			<!-- <a ui-sref="/project/({projectId : project._id})">Lire plus</a> -->
+			<a ui-sref="/project/({projectId : project._id})">Lire plus</a>
 		</li>
 	</ul>
 

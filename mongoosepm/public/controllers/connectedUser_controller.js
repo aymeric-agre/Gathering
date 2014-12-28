@@ -2,9 +2,8 @@
 
 
 gatheringModule.controller('connectedUserController', ['$rootScope', 'User', '$state',  function($scope, User, $state) {
-	$scope.user=currentUser;
-	delete $scope.user.$promise;
-	delete $scope.user.$resolved;
+	$scope.user=currentUser;	//Récupère le currentUser du HTML
+	$scope.projectsList = $scope.user.public.projects;
 	
 	//Edit mode
 	$scope.editMode = false;

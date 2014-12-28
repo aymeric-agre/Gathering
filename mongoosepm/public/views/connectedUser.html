@@ -7,15 +7,15 @@
 		<ui-view>
 	</article>
 	
-	<nav ng-if="sameUser()" class="col-md-1" id="manager">
+	<nav class="col-md-1" id="manager">
 		<ul>
 			<li class="fa fa-user" ui-sref="main.connectedUser.profile"></li>
 			<li class="fa fa-edit" id="editUser" ng-click="doEditMode()" ui-sref="main.connectedUser.edit"></li>
 			<div ng-if="editMode">
-				<li class="fa fa-times" id="editStop" ng-click="doEditMode()" ui-sref="main.user.profile" ></li>
+				<li class="fa fa-times" id="editStop" ng-click="doEditMode()" ui-sref="main.connectedUser.profile" ></li>
 				<li class="fa fa-check" id="editSubmit" ng-click="edit()"></li>
 			</div>
-			<li class="fa fa-user" ui-sref="main.connectedUser.projects_list"></li>
+			<li class="fa fa-briefcase" ui-sref="main.connectedUser.projects_list"></li>
 			<li class="fa fa-envelope" ui-sref="main.connectedUser.mailbox"></li>
 		</ul>
 	</nav>

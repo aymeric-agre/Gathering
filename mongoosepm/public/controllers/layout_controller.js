@@ -63,7 +63,8 @@ gatheringModule.config([ '$stateProvider', '$urlRouterProvider', '$locationProvi
 		url : '/connectedUser',
 		templateUrl : '/public/views/connectedUser.html',
 		controller : 'connectedUserController',
-		parent : main
+		parent : main,
+		resolve : {connectedUser : function(Auth){return Auth.isConnected()}}
 		}
 	
 		var profile_connected = {
@@ -84,7 +85,6 @@ gatheringModule.config([ '$stateProvider', '$urlRouterProvider', '$locationProvi
 			name : 'main.connectedUser.projects_list',
 			url : '/projects_list',
 			templateUrl : '/public/views/projects_list.html',
-			controller: 'projectsListController',
 			parent : connectedUser
 		}
 		
@@ -127,8 +127,7 @@ gatheringModule.config([ '$stateProvider', '$urlRouterProvider', '$locationProvi
 			name : 'main.user.projects_list',
 			url : '/projects_list/',
 			templateUrl : '/public/views/projects_list.html',
-			controller: 'projectsListController',
-			parent : connectedUser
+			parent : user
 		}
 	
 	

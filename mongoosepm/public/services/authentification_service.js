@@ -5,7 +5,7 @@
 
 var authModule = angular.module('auth', ['ngResource']);
 
-authModule.factory('Auth', ['$http', '$window', '$state', function($http, $window, $state) {
+authModule.factory('Auth', ['$http', '$window', '$state', '$q', function($http, $window, $state, $q) {
 	return {
 		doLogin : 	function(userInfo, success, error) {
 						$http.post('/doLogin', userInfo).success(function(isAuthentificated) {
@@ -22,10 +22,10 @@ authModule.factory('Auth', ['$http', '$window', '$state', function($http, $windo
 					},
 		
 		isConnected:function(success, error) {
+						var defer = $q.defer();
 						$http.get('/connected').success(function(userConnexion) {	//userConnexion = {user : , connexion :}
 							currentUser = userConnexion.user;	//Modifie la variable dans le HMTL
 							connected = userConnexion.connexion;//Pareil
-							success(currentUser, connected);
 						}).error(error);
 					}
 	};
