@@ -78,15 +78,15 @@
 					
 		<!-- CONNECTE -->
 		<ul ng-switch-when="true">
-			<a ui-sref="main.user.projects_list({userId : currentUser._id})"> <li class="navigation-button"> 
+			<a ui-sref="main.connectedUser.projects_list"> <li class="navigation-button"> 
 				<i class="fa fa-coffee"></i>
 				<span>Mes projets</span>
 			</li></a>
-			<a ui-sref="main.user.profile({userId : currentUser._id})"><li class="navigation-button">  
+			<a ui-sref="main.connectedUser.profile"><li class="navigation-button">  
 				<i class="fa fa-user"></i>
 				<span>Mon compte</span>  
 			</li></a>
-			<a ui-sref="main.user.mailbox({userId : currentUser._id})"><li class="navigation-button">  
+			<a ui-sref="main.connectedUser.mailbox"><li class="navigation-button">  
 				<i class="fa fa-envelope"></i>
 				<span>Messagerie</span>  
 			</li></a>

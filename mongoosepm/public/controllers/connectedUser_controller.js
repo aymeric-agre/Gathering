@@ -1,10 +1,14 @@
 'user strict';	//Permet une certaine optimisation de l'interprétation du code (et rend les erreurs javascript non sillencieuses)
 
 
-gatheringModule.controller('userController', ['$rootScope', 'thisUser', 'User', '$state',  function($scope, thisUser, User, $state) {
-	$scope.user=thisUser;
+gatheringModule.controller('connectedUserController', ['$rootScope', 'User', '$state',  function($scope, User, $state) {
+	$scope.user=currentUser;
 	delete $scope.user.$promise;
 	delete $scope.user.$resolved;
+	
+	//Edit mode
+	$scope.editMode = false;
+	$scope.doEditMode = function() {$scope.editMode=!$scope.editMode}
 	
 	//datepicker
 	$scope.open = function($event){
@@ -55,4 +59,22 @@ gatheringModule.controller('userController', ['$rootScope', 'thisUser', 'User', 
 		// }
 	// };
 	
+	//Validation edition
+	$scope.edit = function(){
+		console.log("controlleur user profile" + $scope.user);
+		
+		//On enregistre les compétences dans la BDD
+		// for(i=0; i<$scope.user.public.competences.length; i++){
+			// if ($scope.competences.indexOf($scope.user.public.competences[i]) == -1)
+			// var competenceToSave = new Competence({competence : $scope.user.public.competences[i]});
+			// competenceToSave.$save();
+		// }
+		
+		var userToUpdate = new User({user : $scope.user});
+		console.log($scope.user);
+		userToUpdate.$update({id : $scope.user._id}, function(){
+			$scope.editMode = false;
+			$state.go('main.user.profile');
+		})
+	};
 }]);

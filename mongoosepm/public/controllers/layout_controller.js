@@ -21,7 +21,7 @@ gatheringModule.config([ '$stateProvider', '$urlRouterProvider', '$locationProvi
 				users: function(allUsersLoader){return allUsersLoader();},
 				currentUser : function(Auth){return Auth.isConnected()}	//Permet de modifier les variables currentUser et connected dans le HTML
 				}
-}
+	}
 	
 	var index = {
 		name : 'main.index',
@@ -58,6 +58,43 @@ gatheringModule.config([ '$stateProvider', '$urlRouterProvider', '$locationProvi
 		parent : main
 	}
 	
+	var connectedUser = {
+		name : 'main.connectedUser',
+		url : '/connectedUser',
+		templateUrl : '/public/views/connectedUser.html',
+		controller : 'connectedUserController',
+		parent : main
+		}
+	
+		var profile_connected = {
+			name : 'main.connectedUser.profile',
+			url : '/profile',
+			templateUrl : '/public/views/user_profile.html',
+			parent : connectedUser
+			}
+		
+		var profile_edit = {
+			name : 'main.connectedUser.edit',
+			url : '/edit',
+			templateUrl : '/public/views/user_edit.html',
+			parent : connectedUser
+		}	
+		
+		var projects_list_connected = {
+			name : 'main.connectedUser.projects_list',
+			url : '/projects_list',
+			templateUrl : '/public/views/projects_list.html',
+			controller: 'projectsListController',
+			parent : connectedUser
+		}
+		
+		var mailbox = {
+			name : 'main.connectedUser.mailbox',
+			url : '/mailbox',
+			templateUrl : '/public/views/mailbox',
+			parent : connectedUser
+		}
+	
 	var user = {
 		name : 'main.user',
 		url : '/user/:userId',
@@ -81,24 +118,19 @@ gatheringModule.config([ '$stateProvider', '$urlRouterProvider', '$locationProvi
 	
 		var profile = {
 			name : 'main.user.profile',
+			url : '/profile',
 			templateUrl : '/public/views/user_profile.html',
 			parent : user
 			}
-		
-		var profile_edit = {
-			name : 'main.user.edit',
-			url : '/edit',
-			templateUrl : '/public/views/user_edit.html',
-			parent : user
-		}	
 		
 		var projects_list = {
 			name : 'main.user.projects_list',
 			url : '/projects_list/',
 			templateUrl : '/public/views/projects_list.html',
 			controller: 'projectsListController',
-			parent : user
+			parent : connectedUser
 		}
+	
 	
 	var project_form = {
 			name : 'main.project_form',
@@ -136,10 +168,14 @@ $stateProvider.state(main)
 	.state(search_user)
 	.state(search_project)
 	.state(user_form)
+	.state(connectedUser)
+		.state(profile_connected)
+		.state(profile_edit)
+		.state(projects_list_connected)
+		.state(mailbox)
 	.state(user)
 		.state(profile)
-		.state(profile_edit)
-	.state(projects_list)
+		.state(projects_list)
 	.state(project)
 	.state(project_form); 
 	
