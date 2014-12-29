@@ -104,7 +104,6 @@ app.post('/doLogout', index.doLogout);	// Action pour se déconnecter
 app.get('/project/:id', project.oneProject);	//récupère un projet à partir de son id
 app.get('/project', project.allProjects);		//Récupère tous les projets
 app.post('/project', project.doCreateProject);
-app.get('/project_gathering',project.project_gathering);
 //app.get('/project/byuser/:userid',project.byUser);	//project créé par un utilisateur (/:userid permet d'être utilisé avec req.params)
 //app.post('/projects_liste', project.doCreateProject);
 //app.post('/doSearchProject',project.doSearchProject);

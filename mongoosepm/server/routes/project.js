@@ -15,29 +15,6 @@ var languageSchema = require('../model/languageSchema');
 	PROJET
 	******	*/
 
-
-/* Projet Gathering */
-exports.project_gathering = function(req, res){
-	console.log("une requete pr projet_gathering");
-	res.render('project_gathering', function(err,html){
-		var data={
-			title: 'Gathering',
-			body: html
-		};
-		var data_connected = {
-			title: "Gathering",
-			body: html,
-			user:req.session.user
-		};
-		if(req.session.loggedIn === true) {
-			res.render('connected', data_connected);
-		}		//S'il est loggé on rend connected
-		else {
-			res.render('default', data);
-		}
-	});
-};
-
 /*	*************
 	LISTE PROJETS
 	*************	*/
@@ -126,8 +103,8 @@ function projectToUser(userId, projectId, callback){
 exports.oneProject = function(req,res, next) {
 	console.log("Cherche le projet_id : " + req.params.id);	
 	projectSchema.Project.findById(req.params.id, function(err, project) {	//On cherche le projet avec cet Id
-		if (err) {console.log(err)} return next(err);
-	res.send(project);
+		if (err) {console.log(err);}
+		else {res.send(project);}
 	});
 };
 

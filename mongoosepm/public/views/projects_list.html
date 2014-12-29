@@ -11,13 +11,10 @@
 	<h1> Projets de {{user.public.firstName}}</h1>
 	<ul id="liste">
 		<li ng-repeat="project in projectsList" class="project col-md-3">
-			<h3>{{project}}</h3>
-			<a ui-sref="/project/({projectId : project._id})">Lire plus</a>
+			<h3>{{project.public.projectName}}</h3>
+			<a ui-sref="main.project({projectId : project._id})">Lire plus</a>
 		</li>
 	</ul>
-
-	
-		<h3 class="modifier" id="creation">	<a href="/project_form">Créer un nouveau projet</a></h3>
 	
 </div>
 	

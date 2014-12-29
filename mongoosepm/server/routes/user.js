@@ -147,8 +147,19 @@ exports.allUsers = function(req, res, next) {
 exports.currentUser = function(req,res,next) {
 	if (req.isAuthenticated()) 
 	{
-		console.log('On cherche currentUser : ' + req.user);
-		res.send({user : req.user , connexion : req.isAuthenticated()});
+	userSchema.User
+		.findOne({"_id": req.user.id})
+		.populate("public.status public.projects public.competences public.themes")
+		.exec(function(err, currentUser){
+			if(err){
+				console.log(err);
+				return next(err);
+			}
+			else{
+				console.log('On cherche currentUser : ' + currentUser);
+				res.send({user : currentUser , connexion : req.isAuthenticated()});
+			}
+		});
 	} 
 	else
 	{

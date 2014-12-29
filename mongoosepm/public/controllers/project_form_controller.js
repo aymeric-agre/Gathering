@@ -17,21 +17,26 @@ gatheringModule.controller('projectFormController', ['$scope', '$timeout', '$loc
 			$scope.competences.push(competences[i].competence);
 		}
 	$scope.formCompetences = [];
+	
 	$scope.register = {newThemeToAdd : '', newCompetenceToAdd : ''};
 	
 	//Add
 	$scope.addTheme = function(registerData) {
-		if(registerData != ""){
-			console.log('On ajoute ' + registerData);
-			$scope.formThemes.push(registerData);
-			$scope.register.newThemeToAdd = '';
+		if(registerData != ""){	//S'il y a quelque chose d'écrit
+			if($scope.formThemes.indexOf(registerData) == -1) {	//Si ce qui est écrit n'est pas déjà dans la liste
+				console.log('On ajoute ' + registerData);
+				$scope.formThemes.push(registerData);
+				$scope.register.newThemeToAdd = '';
+			}
 		}
 	};
 	$scope.addCompetence = function(registerData){
 		if(registerData != ""){
-			console.log('On ajoute ' + registerData);
-			$scope.formCompetences.push(registerData);
-			$scope.register.newCompetenceToAdd = '';
+			if($scope.formCompetences.indexOf(registerData) == -1) {
+				console.log('On ajoute ' + registerData);
+				$scope.formCompetences.push(registerData);
+				$scope.register.newCompetenceToAdd = '';
+			}
 		}
 	};	
 	
