@@ -319,9 +319,6 @@ h3{
 	font-size : 1.3em;
 }
 
-.cn-button-open i {
-	
-}
 
 .cn-wrapper {
 	position : absolute;
@@ -339,7 +336,7 @@ h3{
 		-moz-transform: scale(0.1);
 	visibility : hidden;
 	transition: all .3s ease;
-		-webkit-transition: all .3s ease;
+ 		-webkit-transition: all .3s ease;
 		-moz-transition: all .3s ease;
 	
 }
@@ -475,16 +472,4 @@ h3{
 		-moz-transition: opacity 0.3s, -webkit-transform 0.3s; */
 }
 
-/*flèche
-.tooltip-content::after {
-	content: '';
-	position: absolute;
-	top: 100%;
-	left: 50%;
-	margin: -7px 0 0 -15px;
-	width: 1em;
-	height: 0.7em;
-	background: url(../img/tooltip1.svg) no-repeat center center;
-	background-size: 100%;
-}*/
 }

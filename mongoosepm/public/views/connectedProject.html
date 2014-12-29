@@ -12,17 +12,17 @@
 	<div class="case">				
 		<h3>L'Équipe</h3>
 		<div ng-repeat="member in project.public.members">
-			<p><a href="/identite">{{member.public.firstName}}<span></span></a></p>
+			<a ui-sref="main.user.profile({userId : member._id})"><span>{{member.public.firstName}}</span></a></p>
 		</div>
 				
 		<h3>Competences</h3>
 		<div ng-repeat="competenceProject in project.public.competences">
-			<p><a href="">'{{competenceProject.competence}}<span></a></span></p>
+			<span>{{competenceProject.competence}}</span>
 		</div>	
 	
 		<h3>Thèmes</h3>
 		<div ng-repeat="themeProject in project.public.themes">
-			<p>{{themeProject.theme}}</p>
+			<span>{{themeProject.theme}}</span>
 		</div>
 	</div>
 </aside>

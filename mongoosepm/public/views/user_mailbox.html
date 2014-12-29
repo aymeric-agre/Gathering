@@ -1,0 +1,50 @@
+<head>
+<link rel="stylesheet" href="/public/assets/stylesheets/mailbox.css" />
+</head>
+
+
+	<!-- Liste de mails -->
+
+<div class="col-md-10"> 
+<h1>Boîte de réception</h1>
+	<ul ng-repeat="mail in mails">
+		<li class="ligne" ng-click="showMail(mail)">
+			<ul class="row">
+				<li class="col-md-7">{{mail.title}}</li>
+				<li class="col-md-3">{{mail.userSender}}</li>
+				<li class="col-md-2">{{mail.sendedOn}}</li>
+			</ul>
+		</li>
+	</ul>
+</div>
+
+	<!-- Contenu du mail -->
+<div class="col-md-10">
+	<span>De	: {{mailContent.userSender.public.firstName}} {{mailContent.userSender.public.lastName}}</span></br>
+	<span>Pour	: <span ng-repeat="recipient in mailContent.userRecipient">{{recipient.public.firstName}} {{recipient.public.firstName}} - </span></span></br>
+	<span>Sujet	: {{mailContent.title}}</span></br>
+	<textarea class="col-md-10">{{mailContent.content}}</textarea></br>
+</div>
+
+	<!-- Nouveau mail -->
+
+<div class="col-md-10">
+<h1>Nouveau mail</h1>
+<form>
+
+	<div ng-show="newRecipient !== '' ">
+		<ul class="show-data" ng-repeat="user in users | filter : newRecipient">
+			<li  ng-click="addUserRecipient(user)">{{user.public.firstName}} {{user.public.lastName}}</li>
+		</ul>
+	</div>
+
+	<input class="col-md-10" placeholder="Destinataire" ng-model="newRecipient"></input></br>
+	<input class="col-md-10"> 
+		<span ng-repeat="recipient in mailForm.userRecipient">{{mailForm.userRecipient.public.firstName}} {{mailForm.userRecipient.public.lastName}}<span>
+	</input>
+	
+	<input class="col-md-10" placeholder="Sujet du mail" ng-model="mailForm.title"></input><br>
+	<textarea class="col-md-10" ng-model="mailForm.content"></textarea></br>
+	<button type="submit" ng-click="send()">Envoyer</br>
+</form>
+</div>

@@ -69,10 +69,9 @@
 <ul id='liste'>
 			<!-- Ici on accueil les projets et les utilisateurs recherchés-->
 		<li ng-repeat="project in projects | filter:query">
-		<a class="fiche" ui-sref="main.project({projectId : project._id})">
-			<div class="photo"><img src=""></div>
+		<a class="fiche" ng-click='goProject(project._id)'>
 			<ul>
-				<li>{{project.projectName}}</li>
+				<li>{{project.public.projectName}}</li>
 			</ul>
 		</a>
 	</li>

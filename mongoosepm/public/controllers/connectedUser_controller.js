@@ -1,7 +1,8 @@
 'user strict';	//Permet une certaine optimisation de l'interprétation du code (et rend les erreurs javascript non sillencieuses)
 
 
-gatheringModule.controller('connectedUserController', ['$rootScope', 'User', '$state',  function($scope, User, $state) {
+gatheringModule.controller('connectedUserController', ['$rootScope', 'User', 'users', '$state', 'mails', 'Mail',  function($scope, User, users, $state, mails, Mail) {
+	$scope.users = users;
 	$scope.user=currentUser;	//Récupère le currentUser du HTML
 	$scope.projectsList = $scope.user.public.projects;
 	
@@ -75,5 +76,48 @@ gatheringModule.controller('connectedUserController', ['$rootScope', 'User', '$s
 			$scope.editMode = false;
 			$state.go('main.user.profile');
 		})
+	};
+	
+	
+	
+	/*	*******
+		MAILBOX
+		*******	*/
+	
+ 	$scope.mails = mails;
+	$scope.newRecipient = '';	//Nom du destinataire vide
+	$scope.mailContent = new Mail ({	//contenu du mail reçu
+		userSender : "",
+		userRecipient : [],
+		title : '',
+		content : ''
+	})
+	$scope.mailForm = new Mail ({	//Mail a envoyé
+		userSender : currentUser,	//Récupéré du HTML
+		userRecipient : [],
+		title : '',
+		content : ''
+	})
+	
+	$scope.showMail = function(mail){$scope.mailContent = mail};
+	
+	$scope.addUserRecipient = function(registerData){
+		console.log("1 - ça passe")
+		if(registerData != ""){	//S'il y a quelque chose d'écrit
+			console.log("2 - ce n'est pas vide")
+			if($scope.mailForm.userRecipient.indexOf(registerData) == -1) {	//Si ce qui est écrit n'est pas déjà dans la liste
+				console.log("3 - ce n'est pas dans la liste");
+				$scope.mailForm.userRecipient.push(registerData);
+				$scope.newRecipient = '';
+			}
+		}
+	}
+	
+	$scope.save = function() {
+		$scope.mailForm.$save(function(){
+			$scope.mailForm.userRecipient =[];
+			$scope.mailForm.title ='';
+			$scope.mailForm.content ='';
+		});	//On remet tout à zéro
 	};
 }]);

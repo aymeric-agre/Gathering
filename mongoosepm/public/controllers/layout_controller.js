@@ -1,4 +1,4 @@
-﻿var gatheringModule = angular.module('gathering', ['ngResource', 'ngRoute', 'ui.router', 'ngAnimate', 'ui.bootstrap', 'project', 'user', 'auth','reCAPTCHA', 'flow', 'ngSanitize', 'ui.select']);	// module upload retiré
+﻿var gatheringModule = angular.module('gathering', ['ngResource', 'ngRoute', 'ui.router', 'ngAnimate', 'ui.bootstrap', 'project', 'user', 'auth', 'mail', 'reCAPTCHA', 'flow', 'ngSanitize', 'ui.select']);	// module upload retiré
 
 /*	Appel des templates	*/
 gatheringModule.config([ '$stateProvider', '$urlRouterProvider', '$locationProvider', '$httpProvider','reCAPTCHAProvider', 'flowFactoryProvider', 'uiSelectConfig',
@@ -64,7 +64,8 @@ gatheringModule.config([ '$stateProvider', '$urlRouterProvider', '$locationProvi
 		templateUrl : '/public/views/connectedUser.html',
 		controller : 'connectedUserController',
 		parent : main,
-		resolve : {connectedUser : function(Auth){return Auth.isConnected()}}
+		resolve : {	connectedUser : function(Auth){return Auth.isConnected()},
+					mails : function(allMailsLoader) {return allMailsLoader();}}
 		}
 	
 		var profile_connected = {
@@ -91,7 +92,7 @@ gatheringModule.config([ '$stateProvider', '$urlRouterProvider', '$locationProvi
 		var mailbox = {
 			name : 'main.connectedUser.mailbox',
 			url : '/mailbox',
-			templateUrl : '/public/views/mailbox',
+			templateUrl : '/public/views/user_mailbox.html',
 			parent : connectedUser
 		}
 	

@@ -34,6 +34,7 @@ var user = require('./server/routes/user');
 var project = require('./server/routes/project');
 var theme = require('./server/routes/theme');
 var competence = require('./server/routes/competence');
+var mail = require('./server/routes/mail');
 var upload = require('./server/routes/upload');
 var http = require('http');
 var path = require('path');
@@ -115,6 +116,11 @@ app.post('/user', user.doCreateUser);
 app.get('/user/:id', user.oneUser);
 app.put('/user/:id', user.doUpdateUser);
 app.get('/connected', user.currentUser);
+
+//Mailbox
+app.get('/mail/:userId', mail.allMails);
+app.post('/mail/:userId', mail.sendMail);
+
 
 //Upload
 app.get('/uploadFile', upload.uploadFileGet);

@@ -11,7 +11,8 @@ var userSchema = new Schema({	// Création d'un schéma userSchema (pour la cré
 	private:{
 		mail: {type: String, unique: true, required: true},
 		password: {type: String, max: 20, required: false},
-		phone: {type: String, required: false}
+		phone: {type: String, required: false},
+		mailbox : [{type: mongooseUser.Schema.Types.ObjectId, ref: 'Mail'}]
 	},
 	public:{
 		lastName: {type: String, required: false},
@@ -32,6 +33,14 @@ var userSchema = new Schema({	// Création d'un schéma userSchema (pour la cré
 	createdOn: {type: Date, default: Date.now},
 	modifiedOn: {type: Date, default: Date.now},
 	lastLogin: {type: Date, default: Date.now}
+});
+
+var mailSchema = new Schema({
+	userSender : {type: mongooseUser.Schema.Types.ObjectId, ref: 'User'},
+	userRecipient : [{type: mongooseUser.Schema.Types.ObjectId, ref: 'User'}],
+	title : {type : String},
+	content : {type : String},
+	sendedOn: {type: Date, default: Date.now}
 });
 
 /*  ***********
@@ -83,4 +92,4 @@ userSchema.statics.findByName = function (tag, callback) {
 	*****	*/
 
 exports.User = mongooseUser.model('User', userSchema);	// Export du modèle Inscrit 
-
+exports.Mail = mongooseUser.model('Mail', mailSchema);
