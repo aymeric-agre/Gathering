@@ -67,6 +67,7 @@ gatheringModule.controller('projectFormController', ['$scope', '$timeout', '$loc
 			guilds: [],
 			themes:  [],
 			competences: [],
+			members : [currentUser._id],
 			createdBy: {
 				user: currentUser._id
 			}
@@ -83,7 +84,7 @@ gatheringModule.controller('projectFormController', ['$scope', '$timeout', '$loc
 		addCompetencesToDB();
 		$scope.projectForm.$save(function(projectSaved) {
 			console.log(projectSaved._id);
-			$state.go('main.project', {projectId : projectSaved._id});
+			$state.go('main.connectedProject', {projectId : projectSaved._id});
 		});
 	};
 

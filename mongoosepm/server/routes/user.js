@@ -167,27 +167,5 @@ exports.currentUser = function(req,res,next) {
 	}
 };
 	
-/*	Rechercher un utilisateur à partir de son nom	*/
-exports.doSearchUser = function(req, res) {
-	console.log("Chercher un utilisateur avec le nom "+req.body.tag);
-	if(req.body.tag) {
-		userSchema.User.findByName(req.body.tag, function(err, userNom) {
-			if(err){
-				console.log(err);
-				res.redirect('/search_user/?500');
-			}else{
-				console.log(userNom);
-				if(userNom[0] != null){				
-					req.users = userNom[0].id;	//On enregiste la liste d'utilisateurs pour l'envoyer dans le res.render 'recherche'
-					res.redirect('/user/'+req.users);
-				}else{
-					res.redirect('/search_user/?404=user');
-				}
-			}
-		});
-	}else{
-		res.redirect('/search_user');
-	}
-};
 
 

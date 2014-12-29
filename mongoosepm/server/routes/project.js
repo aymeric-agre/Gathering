@@ -15,28 +15,7 @@ var languageSchema = require('../model/languageSchema');
 	PROJET
 	******	*/
 
-/*	*************
-	LISTE PROJETS
-	*************	*/
-	
-/*	Récupérer les projets de l'utilisateur	*/
-exports.byProjectId = function (req, res) {
-	console.log("récupérer les projets cherchés");
-	if (req.params.projectId) {											//Si on a un projectId
-		projectSchema.Project.findById(req.params.projectId, function(err, projets) {	//on utilise la méthode créée dans Projet.js
-				if(!err) {
-					console.log(projets);
-					res.json(projets);									//On transforme la liste de projets en json
-				}else{
-					console.log(err);
-					res.json({"status":"error", "error": "Error finding projects"});	//message d'erreur Json
-					}
-				})
-			}else{
-				console.log("Pas d'id utilisateur fournie");
-				res.json({"status":"error", "error": "No user id supplied"});
-			}
-		}; 
+
 		
 	
 /*	***********
@@ -104,7 +83,7 @@ exports.oneProject = function(req,res, next) {
 	console.log("Projet recherché : " + req.params.id);
 	projectSchema.Project
 		.findOne({"_id" : req.params.id})
-		.populate("public.competences public.themes")
+		.populate("public.competences public.themes public.members")
 		.exec(function(err, project){
 			if (err) {console.log(err);}
 			else {
@@ -128,30 +107,27 @@ exports.allProjects = function(req,res, next) {
 	});
 };	
 	
-	
-	
-/*	Rechercher une  projets à partir de son nom	*/
-exports.doSearchProject = function(req, res) {
-	console.log("Chercher une liste de projets pour "+req.body.tag);
-	if(req.body.tag) {
-		projectSchema.Project.findByName(req.body.tag, function(err, projectNom) {	//ATTENTION : on cherche selon les noms ici
-			if(err){
-				console.log(err);
-				res.redirect('/recherche/?500');
-			}else{
-				console.log(projectNom);
-				if(projectNom[0] != null){				
-					req.projects = projectNom[0].id;	//On enregiste l'id du premier projetpour l'instant pour l'envoyer dans le res.render 'recherche'
-					res.redirect('/project/'+req.projects);
-				}else{
-					res.redirect('/search_project/?404=user');
-				}
-			}
-		});
-	}else{
-		res.redirect('/search_project');
-	}
+/*	****************
+	MEMBRE DU PROJET
+	****************	*/
+
+/*	Vérifie si l'utilisateur est membre du projet	*/
+exports.isMember = function(req, res, next)	{
+	var userId = req.params.userId;
+	var projectId = req.params.projectId;
+	var isMember = false;
+	projectSchema.Project.findOne({"_id" : projectId}, function(err,project){
+		if(err){console.log(err);}
+		else{
+			if(project.public.members.indexOf(userId) != -1){	//Si l'utilisateur est membre du projet
+				isMember = true;
+				res.send(isMember);
+			} else {res.send(isMember);}
+		}
+	});
 };
+	
+	
 /* ******************************* 
    SUPPRIMER TOUS LES UTILISATEURS
    ******************************* */

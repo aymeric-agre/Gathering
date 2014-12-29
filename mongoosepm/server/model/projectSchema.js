@@ -19,10 +19,7 @@ var projectSchema = new Schema({		// création du modèle -> structure des donn�
             date: { type: Date, default: Date.now }
         },
 		projectManager : [{type: ObjectId, ref: 'User'}],
-		members:{ 	admins: [{type: ObjectId, ref: 'User'}],
-					workers : [{type: ObjectId, ref: 'User'}],
-					guests : [{type: ObjectId, ref: 'User'}]
-				},
+		members:[{type: ObjectId, ref: 'User'}],
 		guilds : [{type: ObjectId, ref: 'Group'}],
 		whoCanRW: { type: String, enum: ['admin', 'worker', 'guest', 'everyOne'], default: 'worker' },	//Qui peut réécrire. Problème : c'est pour tout le projet
 		

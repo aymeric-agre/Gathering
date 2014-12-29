@@ -5,14 +5,14 @@
 <h1 id="titre_projet">{{project.public.projectName}}</h1>
 
 <article class="col-md-11">
-	<ui-view>
+		<ui-view>
 </article>
 
 <aside class="col-md-1">
 	<div class="case">				
 		<h3>L'Équipe</h3>
 		<div ng-repeat="member in project.public.members">
-			<p><a href="/identite">{{member}}<span></span></a></p>
+			<p><a href="/identite">{{member.public.firstName}}<span></span></a></p>
 		</div>
 				
 		<h3>Competences</h3>

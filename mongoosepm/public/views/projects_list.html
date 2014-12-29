@@ -1,8 +1,6 @@
 <head>
 <link rel="stylesheet" href="/public/assets/stylesheets/projects_list.css" />
 </head>
-<html>
-
 <!-- 
 		LISTE DE PROJETS
 							-->
@@ -12,10 +10,8 @@
 	<ul id="liste">
 		<li ng-repeat="project in projectsList" class="project col-md-3">
 			<h3>{{project.public.projectName}}</h3>
-			<a ui-sref="main.project({projectId : project._id})">Lire plus</a>
+			<a ui-sref="main.connectedProject({projectId : project._id})">Lire plus</a>
 		</li>
 	</ul>
 	
 </div>
-	
-</html>

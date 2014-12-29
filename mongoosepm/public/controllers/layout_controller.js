@@ -142,6 +142,32 @@ gatheringModule.config([ '$stateProvider', '$urlRouterProvider', '$locationProvi
 					}
 		}
 	
+	var connectedProject = {
+		name : 'main.connectedProject',
+		url : '/connectedProject/:projectId',
+		templateUrl : '/public/views/project.html',
+		controller : 'connectedProjectController',
+		parent : main,
+		resolve : {	
+					thisProject : ['Project', '$stateParams', '$q',	function(Project, $stateParams, $q) {	
+						var delay = $q.defer();
+						Project.get({id: $stateParams.projectId}, function(project) {	
+							delay.resolve(project);	
+						}, function() {					
+							delay.reject('Ce projet n\'est pas trouvé : ' + $stateParams.projectId);
+						});
+						{return delay.promise;}	
+					}]
+				}
+	}
+	
+		var project_edit = {
+			name : 'main.connectedProject.edit',
+			url : '/edit',
+			templateUrl : '/public/views/project_edit.html',
+			parent : connectedProject
+		}
+
 	var project = {
 		name : 'main.project',
 		url : '/project/:projectId',
@@ -159,13 +185,14 @@ gatheringModule.config([ '$stateProvider', '$urlRouterProvider', '$locationProvi
 						{return delay.promise;}	
 					}]
 				}
-		}
-		
+	}	
+	
 	
 $stateProvider.state(main)
 	.state(index)
 	.state(search_user)
 	.state(search_project)
+	
 	.state(user_form)
 	.state(connectedUser)
 		.state(profile_connected)
@@ -175,8 +202,11 @@ $stateProvider.state(main)
 	.state(user)
 		.state(profile)
 		.state(projects_list)
-	.state(project)
-	.state(project_form); 
+	
+	.state(project_form)
+	.state(connectedProject)
+		.state(project_edit)
+	.state(project); 
 	
 	$urlRouterProvider.otherwise('/');	//Si on a une autre adresse on renvoie celle là
 	 
