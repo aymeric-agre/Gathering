@@ -83,7 +83,7 @@ gatheringModule.controller('projectFormController', ['$scope', '$timeout', '$loc
 		addCompetencesToDB();
 		$scope.projectForm.$save(function(projectSaved) {
 			console.log(projectSaved._id);
-			$state.go('main.user.project', {projectId : projectSaved._id}, {reload:true});
+			$state.go('main.project', {projectId : projectSaved._id});
 		});
 	};
 

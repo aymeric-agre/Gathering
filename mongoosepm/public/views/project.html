@@ -16,13 +16,13 @@
 		</div>
 				
 		<h3>Competences</h3>
-		<div ng-repeat="competence in project.public.competences">
-			<p><a href="">'{{group}}<span></a></span></p>
+		<div ng-repeat="competenceProject in project.public.competences">
+			<p><a href="">'{{competenceProject.competence}}<span></a></span></p>
 		</div>	
 	
 		<h3>Thèmes</h3>
-		<div ng-repeat="theme in project.public.themes">
-			<p>{{project.theme}}</p>
+		<div ng-repeat="themeProject in project.public.themes">
+			<p>{{themeProject.theme}}</p>
 		</div>
 	</div>
 </aside>

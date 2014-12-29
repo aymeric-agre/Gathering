@@ -100,26 +100,21 @@ function projectToUser(userId, projectId, callback){
 	********************	*/
 
 /*	Réupère un projet à partir de son id	*/
-exports.oneProject = function(req,res, next) {
-	console.log("Cherche le projet_id : " + req.params.id);	
-	projectSchema.Project.findById(req.params.id, function(err, project) {	//On cherche le projet avec cet Id
-		if (err) {console.log(err);}
-		else {res.send(project);}
-	});
+exports.oneProject = function(req,res, next) {	
+	console.log("Projet recherché : " + req.params.id);
+	projectSchema.Project
+		.findOne({"_id" : req.params.id})
+		.populate("public.competences public.themes")
+		.exec(function(err, project){
+			if (err) {console.log(err);}
+			else {
+				console.log("Projet : " + project);
+				res.send(project);}
+		});
 };
 
+
 /*	Récupère tous les projets	*/	
-/* exports.allProjects = function(req, res, next) {
-	var query = projectSchema.Project.find();
-	console.log('on cherche des projets');
-	query.exec(function(err, projects) {
-		if (err) {return next(err);}	//S'il y a une erreur, c'est géré par le middlewre error
-		else {
-			console.log(projects);
-			res.send(projects);
-		}
-	});
-}; */
 exports.allProjects = function(req,res, next) {
 	console.log("Cherche des projets");	
 	projectSchema.Project.find({}, "public", function(err, projects) {	//On cherche le projet avec cet Id
