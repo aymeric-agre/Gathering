@@ -112,8 +112,8 @@ gatheringModule.controller('connectedUserController', ['$rootScope', 'User', 'us
 		}
 	}
 	
-	$scope.save = function() {
-		$scope.mailForm.$save(function(){
+	$scope.send = function() {
+		$scope.mailForm.$save( function(){
 			$scope.mailForm.userRecipient =[];
 			$scope.mailForm.title ='';
 			$scope.mailForm.content ='';
