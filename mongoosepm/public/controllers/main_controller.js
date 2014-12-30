@@ -57,8 +57,6 @@ gatheringModule.controller('mainController', ['$rootScope', '$scope', '$location
 		captcha: {}
 	});
 	
-	// $scope.user = new User({});
-	
 	//check_password
 	$scope.score = "";	//On l'initialise à strong pour ne pas avoir l'input en rouge dés le départ (pas de risque car mpd est required)
 	$scope.strength = "";	
@@ -85,17 +83,4 @@ gatheringModule.controller('mainController', ['$rootScope', '$scope', '$location
 			$state.go('main.index', {}, {reload:true});
 		});
 	};
-
-	
-	
-	// $rootScope.$on('$stateChangeStart', function () {
-        // $state.reload();
-    // });
-	
-	//Rechargement de la page
-	//$state.transitionTo($state.current, $stateParams, { reload: true, inherit: true, notify: true });
-	
-	// $scope.reload = function(){
-		// $state.transitionTo('myState');
-	// };
 }]);

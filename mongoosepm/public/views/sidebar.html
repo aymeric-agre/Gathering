@@ -43,8 +43,9 @@
 				</form>		
 			</div>
 						
-			<!-- FORMULAIRE DE CONNEXION RAPIDE -->
+			<!-- FORMULAIRE D INSCRIPTION RAPIDE -->
 			<div ng-show="formConnexion">
+
 				<form id="formulaire" enctype="multipart/form-data">
 					<!-- Sexe -->
 					<span>I'm a boy </span><input type="radio" name="sex" id="sex" value="man" ng-model="userForm.public.sex"/><br/>
@@ -67,8 +68,9 @@
 					<br/><br/>
 									
 					<!-- Captcha -->
-					<div re-captcha ng-model="userForm.captcha" class="col-md-offset-1"></div>
-					
+					<no-captcha g-recaptcha-response="userForm.captcha">
+					</no-captcha>
+										
 					<!-- Bouttons validation formulaire -->
 					<button class="submit_button" id="submit_false" ng-click="formConnexion = !formConnexion">X</button>				
 					<button class="submit_button" id="submit_true" ng-disabled="score<2" type="submit"  ng-click="create()">V</button>
@@ -104,3 +106,6 @@
 <div class="row fluid">
 	<footer class="footer col-md-10 col-md-offset-2">		</footer>
 </div>
+
+<script src="//www.google.com/recaptcha/api.js?onload=recaptchaOnloadCallback&render=explicit">
+</script>

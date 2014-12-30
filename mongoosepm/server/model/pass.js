@@ -94,10 +94,12 @@ exports.createUser = function(user, done) {
     user.save(function(err) {
         if(err) 
 		{
+			console.log(err);
             done(err);
         }
 		else 
 		{
+			console.log(user.public.firstName + " est enregistré.")
             done(null, user);
         }
     });

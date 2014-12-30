@@ -1,8 +1,8 @@
-﻿var gatheringModule = angular.module('gathering', ['ngResource', 'ngRoute', 'ui.router', 'ngAnimate', 'ui.bootstrap', 'project', 'user', 'auth', 'mail', 'reCAPTCHA', 'flow', 'ngSanitize', 'ui.select']);	// module upload retiré
+﻿var gatheringModule = angular.module('gathering', ['ngResource', 'ngRoute', 'ui.router', 'ngAnimate', 'ui.bootstrap', 'project', 'user', 'auth', 'mail', 'noCAPTCHA', 'flow', 'ngSanitize', 'ui.select']);	// module upload retiré
 
 /*	Appel des templates	*/
-gatheringModule.config([ '$stateProvider', '$urlRouterProvider', '$locationProvider', '$httpProvider','reCAPTCHAProvider', 'flowFactoryProvider', 'uiSelectConfig',
-	function ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider, reCAPTCHAProvider, flowFactoryProvider, uiSelectConfig) {
+gatheringModule.config([ '$stateProvider', '$urlRouterProvider', '$locationProvider', '$httpProvider','noCAPTCHAProvider', 'flowFactoryProvider', 'uiSelectConfig',
+	function ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider, noCAPTCHAProvider, flowFactoryProvider, uiSelectConfig) {
 	
 	$locationProvider.html5Mode(true);	//Permet HTML5 PushState (l'appel de la dépendence permet d'éviter les problème quand on compile)
 	uiSelectConfig.theme = 'bootstrap';	//Détermine le style de angular select -> Bootstrap ici
@@ -237,30 +237,8 @@ $stateProvider.state(main)
 	//CAPTCHA
 	
 	//Google API public key
-	//local
-	reCAPTCHAProvider.setPublicKey('6LfU3fwSAAAAAOP1VsSlTtONqsoL1nXFNFmB_YFg');
+	noCAPTCHAProvider.setSiteKey('6LfU3fwSAAAAAOP1VsSlTtONqsoL1nXFNFmB_YFg');
 	
 	//options pour Recaptcha.create
-	reCAPTCHAProvider.setOptions({
-		theme: 'white'
-	});
+	noCAPTCHAProvider.setTheme('light');
 }]);
-
-// gatheringModule.directive('uiSref', ['$location', '$state', function($location, $state){
-	// return function(scope, element, attrs){
-		// scope.$watch('uiSref', function(){
-			// if(attrs.uiSref)
-			// {
-				// element.attr('sref', attrs.uiSref);
-				// element.bind('click', function(event){
-					// scope.$apply(function(){
-						// if($location.path() == attrs.uiSref)
-						// {
-							// $state.reload();
-						// }
-					// });
-				// });
-			// }
-		// });
-	// }
-// }]);

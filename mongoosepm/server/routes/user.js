@@ -26,20 +26,18 @@ var request = require('request');
 	***************	*/
 
 /*	Créer un utilisateur	*/
-exports.doCreateUser = function(req,res,done){	// fonction de traitement du formulaire d'inscription
+exports.doCreateUser = function(req,response,done){	// fonction de traitement du formulaire d'inscription
 	var bodyUser = req.body.user;
-	var formCaptcha = bodyUser.captcha;
-	var response = res;
+	var formCaptcha = req.body.user.captcha;
 	console.log("creation user est dans user.js");
-	console.log(bodyUser);
+	console.log(bodyUser);	
 	//envoie une requete au serveur de verification captcha
-	request.post('http://www.google.com/recaptcha/api/verify',{
-			form: {privatekey: '6LfU3fwSAAAAALjNiSHNG3UA0s_8k83RbanqMjMG',
+	request.post('https://www.google.com/recaptcha/api/siteverify',{
+			form: {secret: '6LfU3fwSAAAAALjNiSHNG3UA0s_8k83RbanqMjMG',
 				remoteip: req.connection.remoteAddress,
-				challenge: formCaptcha.challenge,
-				response: formCaptcha.response}
+				response: formCaptcha}
 		},
-		function(err, res, body, next){
+		function(err, res, body){
 			//si le serveur renvoie un body avec false c'est que le captcha est inexact
 			if(body.match(/false/) === null){
 				pass.createUser(bodyUser, function(err,user){
@@ -52,12 +50,12 @@ exports.doCreateUser = function(req,res,done){	// fonction de traitement du form
 						req.login(user, function (err) {
 								if (err) 
 								{
-									return next(err);
+									console.log(err);
 								}
 								// successful login
 								else {
 									console.log("Je modifie la connexion ? " + req.isAuthenticated());	
-									console.log("Le nouvel utilisateur est " + req.user.mail);	
+									console.log("Le nouvel utilisateur est " + req.user.private.mail);	
 									response.send(req.isAuthenticated());
 								}
 								//le login de la version sans passport, à supprimer lors de a suppression de la variable loggedIn
