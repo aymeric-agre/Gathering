@@ -74,7 +74,7 @@ gatheringModule.controller('connectedUserController', ['$rootScope', 'User', 'us
 		console.log($scope.user);
 		userToUpdate.$update({id : $scope.user._id}, function(){
 			$scope.editMode = false;
-			$state.go('main.user.profile');
+			$state.go('main.connectedUser.profile');
 		})
 	};
 	

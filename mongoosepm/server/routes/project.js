@@ -74,6 +74,23 @@ function projectToUser(userId, projectId, callback){
 	});
 }
 
+/*	Update	*/
+exports.doUpdateProject = function(req, res){
+	var projectToSave = req.body.project;
+	projectSchema.Project.findOne({_id :req.params.id}, function(err, oldProject){
+		if(err){console.log(err);}
+		else{
+			oldProject.public = projectToSave.public;	//on ne touche pas à l'id comme ça
+			oldProject.private = projectToSave.private;	//PROBLEME : les themes et competences sont populated, il faut juste des .id
+			oldProject.save(function(err, projectUpdated){
+				if(err){console.log(err);}
+				else{res.send(projectUpdated);}
+			});
+		}
+	});
+};
+
+
 /*	********************
 	RECHERCHE DE PROJETS
 	********************	*/

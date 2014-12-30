@@ -146,7 +146,7 @@ gatheringModule.config([ '$stateProvider', '$urlRouterProvider', '$locationProvi
 	var connectedProject = {
 		name : 'main.connectedProject',
 		url : '/connectedProject/:projectId',
-		templateUrl : '/public/views/project.html',
+		templateUrl : '/public/views/connectedProject.html',
 		controller : 'connectedProjectController',
 		parent : main,
 		resolve : {	

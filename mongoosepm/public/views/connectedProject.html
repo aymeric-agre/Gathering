@@ -24,7 +24,10 @@
 		<div ng-repeat="themeProject in project.public.themes">
 			<span>{{themeProject.theme}}</span>
 		</div>
+		
+		<button ui-sref="main.connectedProject.edit({projectId : project._id})">Editer projet</button>
 	</div>
+
 </aside>
 	
 
