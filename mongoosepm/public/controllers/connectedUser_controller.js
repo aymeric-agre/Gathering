@@ -85,6 +85,7 @@ gatheringModule.controller('connectedUserController', ['$rootScope', 'User', 'us
 		*******	*/
 	
  	$scope.mails = mails;
+	$scope.html = '<p> alors ça va ? </p></br><p>Moi ça va</p>';
 	$scope.newRecipient = '';	//Nom du destinataire vide
 	$scope.mailContent = new Mail ({	//contenu du mail reçu
 		userSender : "",
@@ -98,15 +99,13 @@ gatheringModule.controller('connectedUserController', ['$rootScope', 'User', 'us
 		title : '',
 		content : ''
 	})
-	
+
 	$scope.showMail = function(mail){$scope.mailContent = mail};
 	
 	$scope.addUserRecipient = function(registerData){
-		console.log("1 - ça passe")
+		console.log("1 - " + $scope.newRecipient);
 		if(registerData != ""){	//S'il y a quelque chose d'écrit
-			console.log("2 - ce n'est pas vide")
 			if($scope.mailForm.userRecipient.indexOf(registerData) == -1) {	//Si ce qui est écrit n'est pas déjà dans la liste
-				console.log("3 - ce n'est pas dans la liste");
 				$scope.mailForm.userRecipient.push(registerData);
 				$scope.newRecipient = '';
 			}

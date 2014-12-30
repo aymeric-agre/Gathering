@@ -1,4 +1,4 @@
-﻿var gatheringModule = angular.module('gathering', ['ngResource', 'ngRoute', 'ui.router', 'ngAnimate', 'ui.bootstrap', 'project', 'user', 'auth', 'mail', 'reCAPTCHA', 'flow', 'ngSanitize', 'ui.select']);	// module upload retiré
+﻿var gatheringModule = angular.module('gathering', ['ngResource', 'ngRoute', 'ui.router', 'ngAnimate', 'ui.bootstrap', 'ui.tinymce', 'project', 'user', 'auth', 'mail', 'reCAPTCHA', 'flow', 'ngSanitize', 'ui.select']);	// module upload retiré
 
 /*	Appel des templates	*/
 gatheringModule.config([ '$stateProvider', '$urlRouterProvider', '$locationProvider', '$httpProvider','reCAPTCHAProvider', 'flowFactoryProvider', 'uiSelectConfig',
@@ -161,7 +161,13 @@ gatheringModule.config([ '$stateProvider', '$urlRouterProvider', '$locationProvi
 					}]
 				}
 	}
-	
+		var project_presentation_connected = {
+			name : 'main.connectedProject.presentation',
+			url : '/presentation',
+			templateUrl : '/public/views/project_presentation.html',
+			parent : connectedProject
+		}
+		
 		var project_edit = {
 			name : 'main.connectedProject.edit',
 			url : '/edit',
@@ -186,7 +192,13 @@ gatheringModule.config([ '$stateProvider', '$urlRouterProvider', '$locationProvi
 						{return delay.promise;}	
 					}]
 				}
-	}	
+	}
+		var project_presentation = {
+			name : 'main.project.presentation',
+			url : '/presentation',
+			templateUrl : '/public/views/project_presentation.html',
+			parent : project
+		}
 	
 	
 $stateProvider.state(main)
@@ -206,8 +218,10 @@ $stateProvider.state(main)
 	
 	.state(project_form)
 	.state(connectedProject)
+		.state(project_presentation_connected)
 		.state(project_edit)
-	.state(project); 
+	.state(project)
+		.state(project_presentation); 
 	
 	$urlRouterProvider.otherwise('/');	//Si on a une autre adresse on renvoie celle là
 	 

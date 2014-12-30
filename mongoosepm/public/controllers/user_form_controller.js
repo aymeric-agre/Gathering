@@ -39,7 +39,7 @@ gatheringModule.controller('userFormController', ['$rootScope', '$scope', '$stat
         $scope.strength = "strong";
     }
 	};
-	$scope.$watch('user.private.password',check_password);
+	$scope.$watch('user.private.password',check_password());
 	
 	//Sauvegarder l'utilisateur
 	$scope.create = function() {		//Enregistrer l'utilisateur

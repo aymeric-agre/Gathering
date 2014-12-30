@@ -63,7 +63,7 @@ gatheringModule.controller('projectFormController', ['$scope', '$timeout', '$loc
 		public : {
 			projectName: '',			//On initialise les valeurs
 			summary: '',
-			presentation : '',
+			presentation: '',
 			guilds: [],
 			themes:  [],
 			competences: [],
@@ -84,7 +84,7 @@ gatheringModule.controller('projectFormController', ['$scope', '$timeout', '$loc
 		addCompetencesToDB();
 		$scope.projectForm.$save(function(projectSaved) {
 			console.log(projectSaved._id);
-			$state.go('main.connectedProject', {projectId : projectSaved._id});
+			$state.go('main.connectedProject.presentation', {projectId : projectSaved._id});
 		});
 	};
 

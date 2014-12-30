@@ -1,0 +1,10 @@
+.userRecipientAdress {
+	border : 1px solide black;
+}
+
+.userRecipientAdress li {
+    display: inline-block;
+    margin-left: 5px; 
+	padding : 2px;
+	background : rgba(200,200,200,1);
+}

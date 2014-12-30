@@ -36,7 +36,7 @@ var projectSchema = new Schema({		// création du modèle -> structure des donn�
 			//Contenu
 		projectType: {type: ObjectId, ref: 'ProjectType' },	//Schéma défini en dessous
 		summary : {type : String},
-		description : {type : String},
+		presentation : {type : String},
 		task: [{ type: ObjectId, ref: 'Tasks', default: null }],	//Schéma défini en dessous
 		competences: [{type: ObjectId, ref: 'Competence'}],
 		themes: [{type: ObjectId, ref: 'Theme'}],

@@ -9,8 +9,8 @@ gatheringModule.controller('searchProjectController', ['$scope', 'projects', '$h
 		var userId = currentUser._id;	//Récupère l'id du User dans le HTML
 		$http.get('/isMember/' + userId + '/' + projectId).success( 
 			function(isMember){
-				if(isMember == true){$state.go('main.connectedProject', {projectId : projectId});}
-				else {$state.go('main.project', {projectId : projectId});}
+				if(isMember == true){$state.go('main.connectedProject.presentation', {projectId : projectId});}
+				else {$state.go('main.project.presentation', {projectId : projectId});}
 			}
 		);
 	}
