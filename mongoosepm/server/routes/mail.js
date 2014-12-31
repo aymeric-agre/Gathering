@@ -23,18 +23,20 @@ exports.allMails = function(req, res){
 };
 
 /*	Envoyer un mails*/
-exports.sendMail = function(res, req){
+exports.sendMail = function(req, res){
+	var i;
 	var userId = req.params.userId;
 	var mailToSave = new userSchema.Mail({mail : req.body.public});
-		mailToSave.save(function(err, mail){ 
-			if(err){
-				console.log(err);			
-			}else{
-				for(i=0; i<mail.userRecipient.length; i++){
-					userSchema.User.findOne({'id': mail.userRecipient[i]}, function(recipient, err){
-						recipient.private.mailbox.push(mail);
-					});
-				}
-			}
-		});
+	mailToSave.save(function(err, mail){ 
+		if(err){
+			console.log(err);			
+		}else{
+			for(i=0; i<mail.userRecipient.length; i++){
+				userSchema.User.findOne({'id': mail.userRecipient[i]}, function(recipient, err){
+					recipient.private.mailbox.push(mail);
+				});
+			};
+			res.send(200);
+		}
+	});
 }

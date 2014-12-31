@@ -26,8 +26,6 @@ projectModule.factory('allProjectsLoader', ['Project', '$q', //On appelle les d�
 			}, function(){		//Sinon
 				delay.reject("Pas de projets trouvés")	//On renvoie une erreur (reject)
 			});
-			console.log('on appelle bien une liste de projets : ');
-			console.log(delay.promise);
 			return delay.promise	//A la fin on retourne le résultat de la promise delay : une liste de projets.
 		};
 }]);
