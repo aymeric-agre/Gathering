@@ -31,10 +31,9 @@ exports.sendMail = function(req, res){
 		if(err){
 			console.log(err);			
 		}else{
-			console.log("mail normal : " + mail);
 			for(i=0; i<mail.userRecipient.length; i++){
 				userSchema.User.findOne({'_id': mail.userRecipient[i]}, function(err,recipient){
-					console.log("Destinataire " + recipient);
+					console.log("mail " + mail);
 					recipient.private.mailbox.push(mail._id);
 				});
 			};

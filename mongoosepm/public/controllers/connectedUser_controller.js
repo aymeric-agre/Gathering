@@ -107,7 +107,7 @@ gatheringModule.controller('connectedUserController', ['$rootScope', 'User', 'us
 		if(registerData != ""){	//S'il y a quelque chose d'écrit
 			if($scope.mailForm.userRecipient.indexOf(registerData) == -1) {	//Si ce qui est écrit n'est pas déjà dans la liste
 				$scope.mailForm.userRecipient.push(registerData._id);
-				$scope.recipientsActivated.push(registerData);
+				$scope.recipientActivated.push(registerData);
 				$scope.newRecipient = '';
 			}
 		}
