@@ -11,7 +11,7 @@
 		<li class="ligne" ng-click="showMail(mail)">
 			<ul class="row">
 				<li class="col-md-7">{{mail.title}}</li>
-				<li class="col-md-3">{{mail.userSender}}</li>
+				<li class="col-md-3">{{mail.userSender.public.firstName}} {{mail.userSender.public.firstName}}</li>
 				<li class="col-md-2">{{mail.sendedOn}}</li>
 			</ul>
 		</li>
@@ -40,7 +40,7 @@
 			</ul>
 		</div>
 	
-	<ul class="col-md-10 userRecipientAdress" ng-repeat="recipient in mailForm.userRecipient"> 
+	<ul class="col-md-10 userRecipientAdress" ng-repeat="recipient in recipientActivated"> 
 		<li>{{recipient.public.firstName}} {{recipient.public.lastName}} </li>
 	</ul>
 	

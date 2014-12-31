@@ -85,20 +85,20 @@ gatheringModule.controller('connectedUserController', ['$rootScope', 'User', 'us
 		*******	*/
 	
  	$scope.mails = mails;
-	$scope.html = '<p> alors ça va ? </p></br><p>Moi ça va</p>';
 	$scope.newRecipient = '';	//Nom du destinataire vide
+	$scope.recipientActivated = [];
 	$scope.mailContent = new Mail ({	//contenu du mail reçu
 		userSender : "",
 		userRecipient : [],
 		title : '',
 		content : ''
-	})
+	});
 	$scope.mailForm = new Mail ({	//Mail a envoyé
-		userSender : currentUser,	//Récupéré du HTML
+		userSender : currentUser._id,	//Récupéré du HTML
 		userRecipient : [],
 		title : '',
 		content : ''
-	})
+	});
 
 	$scope.showMail = function(mail){$scope.mailContent = mail};
 	
@@ -106,14 +106,16 @@ gatheringModule.controller('connectedUserController', ['$rootScope', 'User', 'us
 		console.log("1 - " + $scope.newRecipient);
 		if(registerData != ""){	//S'il y a quelque chose d'écrit
 			if($scope.mailForm.userRecipient.indexOf(registerData) == -1) {	//Si ce qui est écrit n'est pas déjà dans la liste
-				$scope.mailForm.userRecipient.push(registerData);
+				$scope.mailForm.userRecipient.push(registerData._id);
+				$scope.recipientsActivated.push(registerData);
 				$scope.newRecipient = '';
 			}
 		}
-	}
+	};
 	
 	$scope.send = function() {
-		$scope.mailForm.$save( function(){
+		console.log($scope.mailForm);
+		$scope.mailForm.$save(function(){
 			$scope.mailForm.userRecipient =[];
 			$scope.mailForm.title ='';
 			$scope.mailForm.content ='';

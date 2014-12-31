@@ -14,11 +14,11 @@ var languageSchema = require('../model/languageSchema');
 exports.allMails = function(req, res){
 	console.log("Je cherche des mails");
 	userSchema.Mail
-		.find({})
+		.find({'userRecipient' : req.params.userId})
 		.populate("userRecipient userSender")
 		.exec(function(err, mails){
 			if (err) {console.log(err);}
-			else {res.send(mails);}
+			else {res.send(mails); console.log(mails);}
 		});
 };
 
@@ -26,14 +26,16 @@ exports.allMails = function(req, res){
 exports.sendMail = function(req, res){
 	var i;
 	var userId = req.params.userId;
-	var mailToSave = new userSchema.Mail({mail : req.body.public});
+	var mailToSave = new userSchema.Mail({userSender : req.body.userSender, userRecipient : req.body.userRecipient, content : req.body.content, title : req.body.title});
 	mailToSave.save(function(err, mail){ 
 		if(err){
 			console.log(err);			
 		}else{
+			console.log("mail normal : " + mail);
 			for(i=0; i<mail.userRecipient.length; i++){
-				userSchema.User.findOne({'id': mail.userRecipient[i]}, function(recipient, err){
-					recipient.private.mailbox.push(mail);
+				userSchema.User.findOne({'_id': mail.userRecipient[i]}, function(err,recipient){
+					console.log("Destinataire " + recipient);
+					recipient.private.mailbox.push(mail._id);
 				});
 			};
 			res.send(200);
