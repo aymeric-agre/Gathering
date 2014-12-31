@@ -11,7 +11,7 @@
 		<li class="ligne" ng-click="showMail(mail)">
 			<ul class="row">
 				<li class="col-md-7">{{mail.title}}</li>
-				<li class="col-md-3">{{mail.userSender.public.firstName}} {{mail.userSender.public.firstName}}</li>
+				<li class="col-md-3">{{mail.userSender.public.firstName}} {{mail.userSender.public.lastName}}</li>
 				<li class="col-md-2">{{mail.sendedOn}}</li>
 			</ul>
 		</li>
@@ -21,7 +21,7 @@
 	<!-- Contenu du mail -->
 <div class="col-md-10">
 	<span>De	: {{mailContent.userSender.public.firstName}} {{mailContent.userSender.public.lastName}}</span></br>
-	<span>Pour	: <span ng-repeat="recipient in mailContent.userRecipient">{{recipient.public.firstName}} {{recipient.public.firstName}} - </span></span></br>
+	<span>Pour	: <span ng-repeat="recipient in mailContent.userRecipient">{{recipient.public.firstName}} {{recipient.public.lastName}} - </span></span></br>
 	<span>Sujet	: {{mailContent.title}}</span></br>
 	<textarea readonly class="col-md-10" >{{mailContent.content}}</textarea></br>
 </div>
