@@ -101,18 +101,30 @@ gatheringModule.controller('connectedUserController', ['$rootScope', 'User', 'us
 	});
 
 	$scope.showMail = function(mail){$scope.mailContent = mail};
-	$scope.answer = function(sender){$scope.mailForm.userRecipient.push(sender);};
+	
+	//Répondre
+	$scope.answer = function(sender){
+		$scope.mailForm.userRecipient.push(sender._id);	//A envoyer au server
+		$scope.recipientActivated.push(sender);			//A afficher sur la page
+	};
 	$scope.answerAll = function(sender, recipients){
-		$scope.mailForm.userRecipient.push(sender);
-		for (i=0; i<recipients.length; i++){$scope.mailForm.userRecipient.push(recipients[i]);}
+		$scope.mailForm.userRecipient.push(sender._id);
+		$scope.recipientActivated.push(sender);
+		for (i=0; i<recipients.length; i++){		//Pour chaque destinataire
+			if(recipients[i]._id != $scope.user._id){	//A l'exception de l'utilisateur actuel
+				$scope.mailForm.userRecipient.push(recipients[i]._id);
+				$scope.recipientActivated.push(recipients[i]);
+			}
+		}
 	};
 	
+	//Ajouter un destinataire
 	$scope.addUserRecipient = function(registerData){
 		console.log("1 - " + $scope.newRecipient);
 		if(registerData != ""){	//S'il y a quelque chose d'écrit
-			if($scope.mailForm.userRecipient.indexOf(registerData) == -1) {	//Si ce qui est écrit n'est pas déjà dans la liste
-				$scope.mailForm.userRecipient.push(registerData._id);
-				$scope.recipientActivated.push(registerData);
+			if($scope.mailForm.userRecipient.indexOf(registerData._id) == -1) {	//Si ce qui est écrit n'est pas déjà dans la liste
+				$scope.mailForm.userRecipient.push(registerData._id);	//On met l'id dans le mail form
+				$scope.recipientActivated.push(registerData);			//Permet d'afficher les destinataires
 				$scope.newRecipient = '';
 			}
 		}
