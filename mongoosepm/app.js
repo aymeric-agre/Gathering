@@ -75,7 +75,6 @@ app.use(bodyParser({
 })); // permet de récupérer des infos dans le body (formulaire)
 app.use('/server/model',express.static(path.join( __dirname, '/server/model' )));
 app.use('/public',express.static(path.join( __dirname, 'public' )));
-app.use(express.static(__dirname + '/public/views'));
 app.use('/uploads',express.static(path.join( __dirname, 'uploads' )));
 app.use('/public/zxcvbn', express.static('node_modules/zxcvbn/zxcvbn'));
 
@@ -88,7 +87,7 @@ if ('development' == app.get('env')) {
 /*	******
 	ROUTES
 	******	*/
-
+app.get('/', index.layout);
 
 //Routes/Index.js
 

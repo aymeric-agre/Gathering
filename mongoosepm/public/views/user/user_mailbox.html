@@ -43,7 +43,7 @@
 		</div>
 	
 	<ul class="col-md-10 userRecipientAdress" ng-repeat="recipient in recipientActivated"> 
-		<li>{{recipient.public.firstName}} {{recipient.public.lastName}} </li>
+		<li>{{recipient.public.firstName}} {{recipient.public.lastName}} <span class="fa fa-times" ng-click="removeUserRecipient(recipient)"></span> </li>
 	</ul>
 	
 	<input class="col-md-10" placeholder="Sujet du mail" ng-model="mailForm.title"></input><br>

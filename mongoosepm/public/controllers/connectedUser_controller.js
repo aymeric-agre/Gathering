@@ -130,6 +130,14 @@ gatheringModule.controller('connectedUserController', ['$rootScope', 'User', 'us
 		}
 	};
 	
+	//Supprimer un destinataire
+	$scope.removeUserRecipient = function(registerData){
+		var index1 = $scope.mailForm.userRecipient.indexOf(registerData._id);
+		if(index1 > -1){$scope.mailForm.userRecipient.splice(index1, 1);}	//on retire dans le form
+		var index2 = $scope.recipientActivated.indexOf(registerData);
+		if(index2 > -1){$scope.recipientActivated.splice(index2, 1);}		//on retire dans le view
+	};
+	
 	$scope.send = function() {
 		console.log($scope.mailForm);
 		$scope.mailForm.$save(function(){
