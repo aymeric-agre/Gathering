@@ -23,10 +23,10 @@ gatheringModule.config([ '$stateProvider', '$urlRouterProvider', '$locationProvi
 				}
 	}
 	
-	var index = {
-		name : 'main.index',
+	var layout = {
+		name : 'main.layout',
 		url : '/',				
-		templateUrl : '/public/views/index.html',
+		templateUrl : '/public/views/layout.html',
 		controller :'indexController',
 		parent : main
 	}
@@ -202,7 +202,7 @@ gatheringModule.config([ '$stateProvider', '$urlRouterProvider', '$locationProvi
 	
 	
 $stateProvider.state(main)
-	.state(index)
+	.state(layout)
 	.state(search_user)
 	.state(search_project)
 	
