@@ -101,7 +101,7 @@ gatheringModule.controller('connectedUserController', ['$rootScope', 'User', 'us
 	});
 
 	$scope.showMail = function(mail){$scope.mailContent = mail};
-	$scope.answer = function(sender){$scope.mailForm.userRecipient.push(sender)};
+	$scope.answer = function(sender){$scope.mailForm.userRecipient.push(sender);};
 	$scope.answerAll = function(sender, recipients){
 		$scope.mailForm.userRecipient.push(sender);
 		for (i=0; i<recipients.length; i++){$scope.mailForm.userRecipient.push(recipients[i]);}

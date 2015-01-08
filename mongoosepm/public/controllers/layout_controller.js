@@ -34,7 +34,7 @@ gatheringModule.config([ '$stateProvider', '$urlRouterProvider', '$locationProvi
 	var user_form = {
 		name : 'main.user_form',
 		url : '/user_form/',
-		templateUrl : '/public/views/user_form.html',
+		templateUrl : '/public/views/user/user_form.html',
 		controller :'userFormController',
 		parent : main,
 		resolve : {	themes : function(allThemesLoader){return allThemesLoader();},
@@ -45,23 +45,15 @@ gatheringModule.config([ '$stateProvider', '$urlRouterProvider', '$locationProvi
 	var search_user = {
 		name : 'main.search_user',
 		url : '/search_user/',
-		templateUrl : '/public/views/search_user.html',
+		templateUrl : '/public/views/user/search_user.html',
 		controller: 'searchUserController',
-		parent : main
-	}
-	
-	var search_project = {
-		name : 'main.search_project',
-		url : '/search_project/',
-		templateUrl : '/public/views/search_project.html',
-		controller: 'searchProjectController',
 		parent : main
 	}
 	
 	var connectedUser = {
 		name : 'main.connectedUser',
 		url : '/connectedUser',
-		templateUrl : '/public/views/connectedUser.html',
+		templateUrl : '/public/views/user/connectedUser.html',
 		controller : 'connectedUserController',
 		parent : main,
 		resolve : {	connectedUser : function(Auth){return Auth.isConnected()},
@@ -71,35 +63,35 @@ gatheringModule.config([ '$stateProvider', '$urlRouterProvider', '$locationProvi
 		var profile_connected = {
 			name : 'main.connectedUser.profile',
 			url : '/profile',
-			templateUrl : '/public/views/user_profile.html',
+			templateUrl : '/public/views/user/user_profile.html',
 			parent : connectedUser
 			}
 		
 		var profile_edit = {
 			name : 'main.connectedUser.edit',
 			url : '/edit',
-			templateUrl : '/public/views/user_edit.html',
+			templateUrl : '/public/views/user/user_edit.html',
 			parent : connectedUser
 		}	
 		
 		var projects_list_connected = {
 			name : 'main.connectedUser.projects_list',
 			url : '/projects_list',
-			templateUrl : '/public/views/projects_list.html',
+			templateUrl : '/public/views/user/user_projectsList.html',
 			parent : connectedUser
 		}
 		
 		var mailbox = {
 			name : 'main.connectedUser.mailbox',
 			url : '/mailbox',
-			templateUrl : '/public/views/user_mailbox.html',
+			templateUrl : '/public/views/user/user_mailbox.html',
 			parent : connectedUser
 		}
 	
 	var user = {
 		name : 'main.user',
 		url : '/user/:userId',
-		templateUrl : '/public/views/user.html',
+		templateUrl : '/public/views/user/user.html',
 		controller : 'userController',
 		parent : main,
 		resolve : {	
@@ -120,14 +112,14 @@ gatheringModule.config([ '$stateProvider', '$urlRouterProvider', '$locationProvi
 		var profile = {
 			name : 'main.user.profile',
 			url : '/profile',
-			templateUrl : '/public/views/user_profile.html',
+			templateUrl : '/public/views/user/user_profile.html',
 			parent : user
 			}
 		
 		var projects_list = {
 			name : 'main.user.projects_list',
 			url : '/projects_list/',
-			templateUrl : '/public/views/projects_list.html',
+			templateUrl : '/public/views/project/projects_list.html',
 			parent : user
 		}
 	
@@ -143,10 +135,18 @@ gatheringModule.config([ '$stateProvider', '$urlRouterProvider', '$locationProvi
 					}
 		}
 	
+	var search_project = {
+		name : 'main.search_project',
+		url : '/search_project/',
+		templateUrl : '/public/views/project/search_project.html',
+		controller: 'searchProjectController',
+		parent : main
+	}
+	
 	var connectedProject = {
 		name : 'main.connectedProject',
 		url : '/connectedProject/:projectId',
-		templateUrl : '/public/views/connectedProject.html',
+		templateUrl : '/public/views/project/connectedProject.html',
 		controller : 'connectedProjectController',
 		parent : main,
 		resolve : {	
@@ -164,21 +164,21 @@ gatheringModule.config([ '$stateProvider', '$urlRouterProvider', '$locationProvi
 		var project_presentation_connected = {
 			name : 'main.connectedProject.presentation',
 			url : '/presentation',
-			templateUrl : '/public/views/project_presentation.html',
+			templateUrl : '/public/views/project/project_presentation.html',
 			parent : connectedProject
 		}
 		
 		var project_edit = {
 			name : 'main.connectedProject.edit',
 			url : '/edit',
-			templateUrl : '/public/views/project_edit.html',
+			templateUrl : '/public/views/project/project_edit.html',
 			parent : connectedProject
 		}
 
 	var project = {
 		name : 'main.project',
 		url : '/project/:projectId',
-		templateUrl : '/public/views/project.html',
+		templateUrl : '/public/views/project/project.html',
 		controller : 'projectController',
 		parent : main,
 		resolve : {	
@@ -196,7 +196,7 @@ gatheringModule.config([ '$stateProvider', '$urlRouterProvider', '$locationProvi
 		var project_presentation = {
 			name : 'main.project.presentation',
 			url : '/presentation',
-			templateUrl : '/public/views/project_presentation.html',
+			templateUrl : '/public/views/project/project_presentation.html',
 			parent : project
 		}
 	
