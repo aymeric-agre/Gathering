@@ -23,6 +23,8 @@
 	<span>De	: {{mailContent.userSender.public.firstName}} {{mailContent.userSender.public.lastName}}</span></br>
 	<span>Pour	: <span ng-repeat="recipient in mailContent.userRecipient">{{recipient.public.firstName}} {{recipient.public.lastName}} - </span></span></br>
 	<span>Sujet	: {{mailContent.title}}</span></br>
+	<button ng-click="answer(mailContent.userSender)">Repondre</button>
+	<button ng-click="answerAll(mailContent.userSender, mailContent.userRecipient)">Repondre à tous</button>
 	<textarea readonly class="col-md-10" >{{mailContent.content}}</textarea></br>
 </div>
 

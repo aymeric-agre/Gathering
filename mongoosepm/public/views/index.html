@@ -16,7 +16,7 @@
 	</li>
 	
 	
-	<li ng-repeat="project in projects" class="project col-md-3">
+	<li ng-repeat="project in projects | limitTo : 4" class="project col-md-3">
 		<img ng-src="/uploads/projects/{{project.projectName}}/logo_{{project.projectName}}.jpg">	<!-- Attention, l'image est défini en CSS aussi -->
 		<h3>{{project.projectName}}</h3>
 		<p>{{project.description}}</p>
