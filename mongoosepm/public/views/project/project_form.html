@@ -59,12 +59,13 @@
 	</aside>
 	
 	<article id="presentation">
-
-			<textarea ui-tinymce class="textarea" id='textarea-summary' placeholder="Court résumé sur le projet" 
-				ng-Minlenght="50" ng-Maxlength="500" requied="true" ng-model="projectForm.public.summary">				
+			<label>Court résumé sur le projet</label>
+			<textarea ui-tinymce class="textarea" id='textarea-summary' 
+				ng-Minlenght="0" ng-Maxlength="180" requied="true" ng-model="projectForm.public.summary">				
 			</textarea>
 			
-			<textarea ui-tinymce class="textarea" id='textarea-presentation' placeholder="Présentation du projet" 
+			<label>Présentation du projet</label>
+			<textarea ui-tinymce class="textarea" id='textarea-presentation'
 				 ng-model="projectForm.public.presentation">				
 			</textarea>
 			

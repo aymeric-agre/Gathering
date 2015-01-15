@@ -9,7 +9,7 @@ gatheringModule.config([ '$stateProvider', '$urlRouterProvider', '$locationProvi
 	
 		/*	AUTHENTIFICATION	*/
 	
-	var connexion = connected;
+	//var connexion = connected;
 
 	var main = {
 		name : 'main',
@@ -56,7 +56,7 @@ gatheringModule.config([ '$stateProvider', '$urlRouterProvider', '$locationProvi
 		templateUrl : '/public/views/user/connectedUser.html',
 		controller : 'connectedUserController',
 		parent : main,
-		resolve : {	connectedUser : function(Auth){return Auth.isConnected()},
+		resolve : {	//connectedUser : function(Auth){return Auth.isConnected()},
 					mails : function(allMailsLoader) {return allMailsLoader();}}
 		}
 	

@@ -60,10 +60,12 @@
 		<div class="case row" class="project">
 			<h1><i class="fa fa-coffee"></i>Projets</h1>		
 			<ul>
-				<li ng-repeat="project in projectsList">
+				<li ng-repeat="project in projectsList | limitTo: 5">
 					<p class="col-md-3"> {{ project.public.StartDate }} </p>
-					<p class="col-md-6" > {{ project.public.projectName }} </p>
+					<p class="col-md-6"> {{ project.public.projectName }}</p>
 					<p class="col-md-3">	Image-lien </p> </br>
+					
+					<p class="col-md-12" ng-bind-html="project.public.summary">  </p>
 
 				</li>
 			</ul>	

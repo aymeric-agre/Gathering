@@ -4,11 +4,14 @@
 	LAYOUT/LOGIN/LOGOUT
 	*******************	*/
 
-gatheringModule.controller('mainController', ['$rootScope', '$scope', '$location','User', 'Auth', '$state', 'projects', '$http',
-	function($rootScope, $scope, $location, User, Auth, $state, projects, $http) {
+gatheringModule.controller('mainController', ['$rootScope', '$scope', '$location','User', 'Auth', '$state', 'projects', '$http', 'currentUser',
+	function($rootScope, $scope, $location, User, Auth, $state, projects, $http, currentUser) {
 	
-	$scope.currentUser = currentUser;//Récupère l'utilisateur depuis le HTML
-	$scope.connected = connected;	//Récupère true ou false depuis le HTML
+	//$scope.currentUser = currentUser;//Récupère l'utilisateur depuis le HTML
+	//$scope.connected = connected;	//Récupère true ou false depuis le HTML
+	console.log(currentUser);
+	$scope.currentUser = currentUser.user;
+	$scope.connected = currentUser.connexion;
 	$scope.projects = projects;
 	$scope.isCollapsed = true;
 	$scope.infosConnection = {mail:"", password:""};
