@@ -63,6 +63,11 @@ gatheringModule.controller('connectedUserController', ['$rootScope', 'User', 'us
 	$scope.edit = function(){
 		console.log("controlleur user profile" + $scope.user);
 		
+		//On mets les id à la place des populate pour les projets
+		for (i=0; i<$scope.user.public.projects.length; i++){
+			$scope.user.public.projects[i] = $scope.user.public.projects[i]._id;
+		}
+		
 		//On enregistre les compétences dans la BDD
 		// for(i=0; i<$scope.user.public.competences.length; i++){
 			// if ($scope.competences.indexOf($scope.user.public.competences[i]) == -1)
@@ -71,10 +76,9 @@ gatheringModule.controller('connectedUserController', ['$rootScope', 'User', 'us
 		// }
 		
 		var userToUpdate = new User({user : $scope.user});
-		console.log($scope.user);
-		userToUpdate.$update({id : $scope.user._id}, function(){
+		userToUpdate.$update({id : $scope.user._id}, function(updatedUser){
 			$scope.editMode = false;
-			$state.go('main.connectedUser.profile');
+			$state.go('main.connectedUser.profile', ({userId : updatedUser._id}));
 		})
 	};
 	

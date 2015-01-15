@@ -55,20 +55,21 @@
 					<div class="col-md-3">	Image-lien </div>
 				</li>
 			</ul>	
-		</div>
+		</div> -->
 					
 		<div class="case row" class="project">
 			<h1><i class="fa fa-coffee"></i>Projets</h1>		
 			<ul>
-				<li ng-repeat="project in projects">
-					<div class="col-md-3"> Date </div>
-					<div class="col-md-6"> Description </div>
-					<div class="col-md-3">	Image-lien </div>
+				<li ng-repeat="project in projectsList">
+					<p class="col-md-3"> {{ project.public.StartDate }} </p>
+					<p class="col-md-6" > {{ project.public.projectName }} </p>
+					<p class="col-md-3">	Image-lien </p> </br>
+
 				</li>
 			</ul>	
 		</div>
 		
-		<div class="case row" class="language">
+		<!-- <div class="case row" class="language">
 			<h1><i class="fa fa-globe"></i>Langues</h1>		
 			<ul>
 				<li ng-repeat="language in languages">

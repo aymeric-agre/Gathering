@@ -80,26 +80,20 @@ exports.doCreateUser = function(req,response,done){	// fonction de traitement du
 	******************	*/
 	
 /*	Modifier un utilisateur	*/
-exports.doUpdateUser = function(req, res, done){	// fonction de modification -> ne va pas être conservée, on se contentera de faire des updates un peu comme la page projet, à voir comment on mettra ça en oeuvre
-	console.log("On edite un user");
-	var body = req.body;
-	if (req.isAuthenticated()) {
-		console.log('On cherche le currentUser depuis update : ');
-		pass.updateUser(body.user, function(err, user){
-			if(err) 
-			{
-				return res.render('user_edit', {user: req.user, message: err.code === 500 ? "Updating problem" : err.message});
-			}
-			else
-			{
-				return res.render('user_profile', {user: req.user});
-			}
-		});
-	}
-	else
-	{
-		res.send({user : "" , connexion : req.isAuthenticated()});
-	}	
+exports.doUpdateUser = function(req, res){
+	var userToSave = req.body.user;
+	console.log(userToSave);
+	userSchema.User.findOne({_id :req.params.id}, function(err, oldUser){
+		if(err){console.log(err);}
+		else{
+			oldUser.public = userToSave.public;	//on ne touche pas à l'id comme ça
+			oldUser.private = userToSave.private;	
+			oldUser.save(function(err, userUpdated){
+				if(err){console.log(err);}
+				else{res.send(userUpdated);}
+			});
+		}
+	});
 };
 
 /*	supprimer un utilisateur	*/

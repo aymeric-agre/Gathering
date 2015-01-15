@@ -21,7 +21,7 @@ $scope.updateProject = function(){
 	for(k = 0; k<projectToUpdate.project.public.members.length; k++){
 		projectToUpdate.project.public.members[k] = projectToUpdate.project.public.members[k]._id;	//On remplace le populate par son id
 	};
-	console.log(projectToUpdate);	//PROBLEME : Il y a une partie resolve ...
+	console.log(projectToUpdate);	
 	projectToUpdate.$update({id : $scope.project._id}, function(projectUpdated){
 		$state.go('main.connectedProject.presentation', ({projectId : projectUpdated._id}));
 	});

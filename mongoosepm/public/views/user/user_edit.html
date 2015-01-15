@@ -7,7 +7,8 @@
 			<div class="case row" id="headpage">
 				<h1><i class="fa fa-user"></i>Profil </h1>
 				<div class="col-md-5">
-					<h2>  {{user.public.firstName}}  {{user.public.lastName}}  -  <input placeholder=" " value="{{ coucou }}" ng-model="user.public.status"></h2>	
+					<h2>  {{user.public.firstName}}  {{user.public.lastName}}  -  </h2>
+						<input placeholder="Status" value="{{ user.public.status }}" ng-model="user.public.status">	
 						<input placeholder="Ville" value="{{ user.public.town }}" ng-model="user.public.town"></br>
 						<input placeholder="Pays" value="{{ user.public.country }}" ng-model="user.public.country"></br>
 						<!--<div id="birthDateBlock">
@@ -24,7 +25,7 @@
 				</div>
 			</div>
 			
-			<!-- <div class="case row" class="theme">
+			<div class="case row" class="theme">
 				<h1><i class="fa fa-heart"></i>Centres d'intérêts</h1>		
 				<ul>
 					<li ng-repeat="theme in themes">
@@ -68,7 +69,7 @@
 				</ul>	
 			</div>
 			
-			<div class="case row" class="competence">
+		<!-- 	<div class="case row" class="competence">
 				<h1><i class="fa fa-trophy"></i>Compétences</h1>		
 				<div class="col-md-3 input-container">
 					<form ng-submit='add(register)'>
@@ -90,11 +91,11 @@
 					</ul>
 				</div>
 			</div> 
-						
+					 -->	
 			<div class="case row" class="project">
 				<h1><i class="fa fa-coffee"></i>Projets</h1>		
 				<ul>
-					<li ng-repeat="project in projects">
+					<li ng-repeat="project in projectsList">
 						<div class="col-md-3"> Date </div>
 						<div class="col-md-6"> Description </div>
 						<div class="col-md-3">	Image-lien </div>
@@ -102,7 +103,7 @@
 				</ul>	
 			</div>
 			
-			<div class="case row" class="language">
+			<!-- <div class="case row" class="language">
 				<h1><i class="fa fa-globe"></i>Langues</h1>		
 				<ul>
 					<li ng-repeat="language in languages">
