@@ -57,7 +57,8 @@ gatheringModule.config([ '$stateProvider', '$urlRouterProvider', '$locationProvi
 		controller : 'connectedUserController',
 		parent : main,
 		resolve : {	//connectedUser : function(Auth){return Auth.isConnected()},
-					mails : function(allMailsLoader) {return allMailsLoader();}}
+					mails : function(allMailsLoader) {return allMailsLoader();}
+					}
 		}
 	
 		var profile_connected = {

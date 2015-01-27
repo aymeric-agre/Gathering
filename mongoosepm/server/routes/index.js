@@ -64,7 +64,7 @@ exports.doLogin = function(req, res, next) {
 exports.doLogout = function(req, res) {
 	console.log('se déconnecte');
 	req.logout();
-	res.send(req.isAuthenticated());
+	res.send();
 };
 
 

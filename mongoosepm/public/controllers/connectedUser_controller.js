@@ -1,7 +1,8 @@
 'user strict';	//Permet une certaine optimisation de l'interprétation du code (et rend les erreurs javascript non sillencieuses)
 
 
-gatheringModule.controller('connectedUserController', ['$rootScope', 'User', 'users', '$state', 'mails', 'Mail',  function($scope, User, users, $state, mails, Mail) {
+gatheringModule.controller('connectedUserController', ['$rootScope', 'User', 'users', '$state', 'mails', 'Mail', 'currentUser',  
+	function($scope, User, users, $state, mails, Mail, currentUser) {
 	$scope.users = users;
 	$scope.user=currentUser;	//Récupère le currentUser du HTML
 	$scope.projectsList = $scope.user.public.projects;

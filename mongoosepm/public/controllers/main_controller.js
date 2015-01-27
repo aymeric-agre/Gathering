@@ -21,12 +21,9 @@ gatheringModule.controller('mainController', ['$rootScope', '$scope', '$location
 	$scope.login = function(infosConnection) {
 		console.log("Je me connecte");
 		console.log(infosConnection);
-		Auth.doLogin(infosConnection,		//On récupère les infos des ng-model et on envoie la fonction login de Auth 
-			function(err) {
-				$rootScope.error = "Failed to login";
-				$state.go('main.index', {}, {reload:true});
-			}
-		);		
+		Auth.doLogin(infosConnection, function(){		//On récupère les infos des ng-model et on envoie la fonction login de Auth 
+			$state.go('main.index', {}, {reload:true});
+		});		
 	};	
 	
 	$scope.logout = function() {
